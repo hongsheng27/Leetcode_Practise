@@ -13,4 +13,5 @@ class Solution(object):
                 res[tuple(count)] = [word]
             else:
                 res[tuple(count)].append(word)
+                
         return list(res.values())
