@@ -5,14 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+        
         count = {}
-        for e in nums:
-            if e in count:
-                count[e] += 1
-            else:
-                count[e] = 1
-        array = list(count.items())
-        array.sort(key= lambda x: x[1]) # [("3",1),("2",2),("1",3)]
-        print(array, [x[0] for x in array[-k:] ])
-        return [x[0] for x in array[-k:]]
+        freq = [[] for i in range(len(nums) + 1)]
+        for num in nums:
+            count[num] = 1 + count.get(num, 0)
+        for num, cnt in count.items():
+            freq[cnt].append(num)
+        res = []
+        for i in range(len(freq) - 1,0,-1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k: return res
         
