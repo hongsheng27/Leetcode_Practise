@@ -1,33 +1,35 @@
 class Solution(object):
     def isValidSudoku(self, board):
-        for line in board:
-            count = {}
-            for c in line:
-                if c == ".":
-                    continue
-                count[c] = 1 + count.get(c, 0)
-                if count[c] > 1 : return False
+        # check row
+        for row in board:
+            seen = set()
+            for val in row:
+                if val != ".":
+                    if val in seen:
+                        return False
+                    seen.add(val)
+  
+        # check column
+        for col in range(9):
+            seen = set()
+            for row in board:
+                val = row[col]
+                if val != '.':
+                    if val in seen:
+                        return False
+                    seen.add(val)
 
-        for i in range(9):
-            count = {}
-            for line in board:
-                if line[i] != '.':
-                    count[line[i]] = 1 + count.get(line[i], 0)
-                if count.get(line[i]) > 1:
-                    return False
-
+        # check 3*3 box
         for box_row in range(0,9,3):
             for box_col in range(0,9,3):
-    	        count = {}
+    	        seen = set()
                 for r in range(3):
                     for c in range(3):
-                        num = board[box_row + r][box_col + c]
-                        if num != ".":
-                            count[num] = 1 + count.get(num, 0)
-                        if count.get(num) > 1:
-                            return False
-                count = {}
-                    
+                        val = board[box_row + r][box_col + c]
+                        if val != ".":
+                            if val in seen: 
+                                return False
+                            seen.add(val)     
         return True
 
         
