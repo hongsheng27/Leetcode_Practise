@@ -8,15 +8,14 @@ class Solution(object):
                 count[c] = 1 + count.get(c, 0)
                 if count[c] > 1 : return False
 
-        seen = {}
         for i in range(9):
+            count = {}
             for line in board:
                 if line[i] == '.':
                     continue
-                seen[line[i]] = 1 + seen.get(line[i], 0)
-                if seen[line[i]] > 1:
+                count[line[i]] = 1 + count.get(line[i], 0)
+                if count[line[i]] > 1:
                     return False
-            seen = {}
 
         for box_row in range(0,9,3):
             for box_col in range(0,9,3):
