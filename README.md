@@ -14,6 +14,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0136-single-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0136-single-number) |
+| [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0238-product-of-array-except-self](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0238-product-of-array-except-self) |
 | [0283-move-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0283-move-zeroes) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
@@ -74,6 +75,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Math
 |  |
 | ------- |
+| [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0263-ugly-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0263-ugly-number) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
@@ -119,6 +121,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Stack
 |  |
 | ------- |
+| [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
 ## Design
 |  |
