@@ -59,4 +59,20 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
+## Math
+|  |
+| ------- |
+| [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
+## Dynamic Programming
+|  |
+| ------- |
+| [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
+## Recursion
+|  |
+| ------- |
+| [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
+## Memoization
+|  |
+| ------- |
+| [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 <!---LeetCode Topics End-->
