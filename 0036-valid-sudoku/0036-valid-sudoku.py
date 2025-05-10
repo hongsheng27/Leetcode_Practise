@@ -7,7 +7,7 @@ class Solution(object):
                     continue
                 count[c] = 1 + count.get(c, 0)
                 if count[c] > 1 : return False
-        # print('pass 1')
+
         seen = {}
         for i in range(9):
             for line in board:
@@ -18,7 +18,6 @@ class Solution(object):
                     return False
             seen = {}
 
-        # print('pass 2')
         for box_row in range(0,9,3):
             for box_col in range(0,9,3):
     	        count = {}
