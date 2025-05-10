@@ -13,6 +13,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0121-best-time-to-buy-and-sell-stock) |
+| [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 | [0136-single-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0136-single-number) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0238-product-of-array-except-self](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0238-product-of-array-except-self) |
@@ -25,6 +26,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0003-longest-substring-without-repeating-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0003-longest-substring-without-repeating-characters) |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
+| [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 ## String
@@ -127,4 +129,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
+## Union Find
+|  |
+| ------- |
+| [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 <!---LeetCode Topics End-->
