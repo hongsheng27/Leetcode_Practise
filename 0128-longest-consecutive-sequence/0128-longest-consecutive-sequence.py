@@ -9,12 +9,11 @@ class Solution(object):
         longest = 0
         for num in nums_set:
             if num - 1 not in nums_set:
-                span = 1
-                while num + span in nums_set:
-                    span += 1
-                longest = span if span > longest else longest    
+                length = 1
+                while num + length in nums_set:
+                    length += 1
+                longest = max(length, longest)  
         return longest
 
-        return len(res) + 1
 
         
