@@ -12,6 +12,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0026-remove-duplicates-from-sorted-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0026-remove-duplicates-from-sorted-array) |
 | [0035-search-insert-position](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0035-search-insert-position) |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
+| [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
@@ -90,6 +91,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Dynamic Programming
 |  |
 | ------- |
+| [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 ## Recursion
@@ -107,6 +109,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0011-container-with-most-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0011-container-with-most-water) |
 | [0015-3sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0015-3sum) |
 | [0026-remove-duplicates-from-sorted-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0026-remove-duplicates-from-sorted-array) |
+| [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 | [0125-valid-palindrome](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0125-valid-palindrome) |
 | [0167-two-sum-ii-input-array-is-sorted](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0167-two-sum-ii-input-array-is-sorted) |
 | [0283-move-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0283-move-zeroes) |
@@ -132,6 +135,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Stack
 |  |
 | ------- |
+| [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
 ## Design
@@ -142,4 +146,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
+## Monotonic Stack
+|  |
+| ------- |
+| [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 <!---LeetCode Topics End-->
