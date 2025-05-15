@@ -13,6 +13,6 @@ class Solution(object):
             else:
                 stack.pop()
 
-        return len(stack) == 0
+        return True if not stack else False
 
         
