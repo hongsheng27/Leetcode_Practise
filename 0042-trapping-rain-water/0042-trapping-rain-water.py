@@ -7,12 +7,12 @@ class Solution(object):
         right_max = height[r]
         
         while l < r:
-            if height[l] <= height[r]:
+            if left_max <= right_max:
                 l += 1
                 water = max(0, left_max - height[l])
                 res += water
                 left_max = max(left_max, height[l])
-            elif height[l] > height[r]:
+            elif left_max > right_max:
                 r -= 1
                 water = max(0, right_max - height[r])
                 res += water
