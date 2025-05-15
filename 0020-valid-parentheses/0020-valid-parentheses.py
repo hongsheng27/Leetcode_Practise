@@ -1,6 +1,5 @@
 class Solution(object):
     def isValid(self, s):
-        if len(s) < 2: return False
         stack = []
         for c in s:
             if c == '(':
