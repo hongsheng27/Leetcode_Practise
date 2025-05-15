@@ -1,5 +1,6 @@
 class Solution(object):
     def trap(self, height):
+        if not height: return 0
         res = 0
         l, r = 0, len(height) - 1
         left_max = height[l]
@@ -16,5 +17,5 @@ class Solution(object):
                 water = max(0, right_max - height[r])
                 res += water
                 right_max = max(right_max, height[r]) 
-        print(left_max, right_max)
+        
         return res
