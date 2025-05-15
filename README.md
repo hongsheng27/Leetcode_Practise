@@ -39,6 +39,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0003-longest-substring-without-repeating-characters) |
 | [0006-zigzag-conversion](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0006-zigzag-conversion) |
+| [0020-valid-parentheses](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0020-valid-parentheses) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
 | [0125-valid-palindrome](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0125-valid-palindrome) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
@@ -135,6 +136,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Stack
 |  |
 | ------- |
+| [0020-valid-parentheses](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0020-valid-parentheses) |
 | [0042-trapping-rain-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0042-trapping-rain-water) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
