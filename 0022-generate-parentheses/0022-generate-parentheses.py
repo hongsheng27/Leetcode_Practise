@@ -6,9 +6,9 @@ class Solution:
             if len(i) == 2 * n:
                 return res.append(i)
            
-            if open_used >= close_used and open_used < n:
+            if open_used < n:
                 backtrack(i + '(',  open_used + 1, close_used)
-            if open_used >= close_used and close_used < n:
+            if close_used < open_used:
                 backtrack(i + ')', open_used, close_used + 1)
             
         backtrack("")
