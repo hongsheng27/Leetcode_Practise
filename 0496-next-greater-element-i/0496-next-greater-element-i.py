@@ -9,5 +9,4 @@ class Solution:
                 elif j > currentNums:
                     res[index_1] = j
                     break
-        print(res)
         return res
