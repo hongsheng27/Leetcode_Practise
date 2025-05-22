@@ -1,6 +1,6 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        biggnest_area = 0
+        biggest_area = 0
         n = len(heights)
         rightmost_lst = [n - 1] * n 
         leftmost_lst = [0] * n 
@@ -20,7 +20,7 @@ class Solution:
             height = heights[i]
             width = rightmost_lst[i] - leftmost_lst[i] + 1
             area = height * width
-            biggnest_area = max(area, biggnest_area)
+            biggest_area = max(area, biggest_area)
     
-        return biggnest_area
+        return biggest_area
         
