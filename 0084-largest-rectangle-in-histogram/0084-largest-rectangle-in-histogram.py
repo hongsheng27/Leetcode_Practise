@@ -11,7 +11,7 @@ class Solution:
                 rightmost[index] = i
             stack.append([i, heights[i]])
 
-        stacl = []
+        stack = []
 
         for i in range(n - 1, -1, -1):
             while stack and heights[i] < stack[-1][1]:
