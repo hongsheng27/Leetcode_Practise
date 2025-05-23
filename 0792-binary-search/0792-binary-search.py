@@ -3,9 +3,7 @@ class Solution:
         left = 0
         right = len(nums) - 1
         while left <= right:
-            print(left, right)
             middle = (right + left) // 2
-            print(middle)
             if nums[middle] < target:
                 left = middle + 1
             elif nums[middle] > target:
