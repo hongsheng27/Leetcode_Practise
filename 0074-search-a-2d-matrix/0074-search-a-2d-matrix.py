@@ -1,10 +1,25 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         index = 0
-        for i, r in enumerate(matrix):
-            if target <= r[-1]:
-                index = i
+
+        left, right = 0, len(matrix) - 1
+        while left < right:
+            middle = (right + left) // 2
+            if matrix[middle][-1] < target:
+                if right - left == 1:
+                    index = left + 1
+                    break
+                left = middle
+            elif matrix[middle][-1] > target:
+                if right - left == 1:
+                    index = left
+                    break
+                right = middle
+            else:
+                index = middle
                 break
+
+           
         new_lst = matrix[index]
 
         left, right = 0, len(new_lst) - 1
