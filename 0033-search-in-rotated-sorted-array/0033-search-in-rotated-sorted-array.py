@@ -13,7 +13,6 @@ class Solution:
                 r = m 
         pivot = r
         
-
         if locate_side == 'right':
             l, r = pivot, len(nums) - 1
         else:
