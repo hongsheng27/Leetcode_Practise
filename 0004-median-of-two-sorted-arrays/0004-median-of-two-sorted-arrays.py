@@ -30,8 +30,6 @@ class Solution:
         else:
             return nums3[m]
 
-
-        return ''
             
         
 
