@@ -8,7 +8,7 @@ class Solution:
         for value, cnt in count.items():
             freq[cnt].append(value)
         res = []
-        print(freq)
+
         for i in range(len(s), 0, -1):
             for j in freq[i]:
                 res.append(j * i)
