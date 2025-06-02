@@ -1,7 +1,7 @@
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         count = {}
-        length = float('-inf')
+        length = 0
         l = 0
         for r in range(len(s)):
             while s[r] in count:
@@ -10,7 +10,7 @@ class Solution(object):
             count[s[r]] = r
             length = max(length, len(count))
         length = max(length, len(count))
-        return 0 if length == float('-inf') else length
+        return length
             
 
 
