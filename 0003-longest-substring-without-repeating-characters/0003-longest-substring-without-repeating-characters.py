@@ -11,8 +11,4 @@ class Solution(object):
             length = max(length, len(count))
         length = max(length, len(count))
         return length
-            
-
-
-        print(count)
         
