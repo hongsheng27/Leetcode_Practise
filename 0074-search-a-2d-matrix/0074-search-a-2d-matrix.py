@@ -14,7 +14,6 @@ class Solution:
         if top > bot:
             return False
 
-        row = (bot + top) // 2
         left, right = 0, len(matrix[0]) - 1
         while left <= right:
             middle = (right + left) // 2
