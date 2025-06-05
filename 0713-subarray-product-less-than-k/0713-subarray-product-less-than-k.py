@@ -1,6 +1,5 @@
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
-        if k == 0: return 0
         res = 0
         l = 0
         product = 1
