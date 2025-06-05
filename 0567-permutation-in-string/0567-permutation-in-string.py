@@ -6,7 +6,7 @@ class Solution:
         count = {}
         for i in range(len(s1)):
             count[s2[i]] = 1 + count.get(s2[i], 0)
-        print(count)
+
         while r < len(s2):
             if s1_count == count:
                 return True
@@ -17,5 +17,4 @@ class Solution:
             r += 1
             if r < len(s2):
                 count[s2[r]] = 1 + count.get(s2[r], 0) 
-            print(count)
         return False
