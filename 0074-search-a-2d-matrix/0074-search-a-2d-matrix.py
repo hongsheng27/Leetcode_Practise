@@ -11,7 +11,7 @@ class Solution:
                 bot = row - 1
             else:
                 break
-        if not (top <= bot):
+        if top > bot:
             return False
 
         row = (bot + top) // 2
