@@ -1,21 +1,16 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        min_k, max_k = 1, max(piles)
-        res = max_k
-        while min_k <= max_k:
-            middle = (min_k + max_k) // 2
-            if self.is_finieshed(piles, middle, h):
-                res = min(res, middle)
-                max_k = middle - 1
-                print('finished',min_k, max_k)
+        l, r = 1, max(piles)
+        res = r
+        
+        while l <= r:
+            m = (l + r) // 2
+            hours = 0
+            for p in piles:
+                hours += math.ceil(p / (m))
+            if hours <= h:
+                res = min(res, m)
+                r = m - 1
             else:
-                min_k = middle + 1
-                print('not finished',min_k, max_k)
-        print(res)
+                l = m + 1
         return res
-
-    def is_finieshed(self, piles: List[int], k: int, h:int) -> int:
-        total_hour = 0
-        for i in range(len(piles)):
-            total_hour += math.ceil(piles[i] / k)
-        return total_hour <= h
