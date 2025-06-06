@@ -10,13 +10,11 @@ class Solution:
         res = (0, float(inf))
         for r in range(len(s)):
             windowCounter[s[r]] += 1
-           
-            if s[r] in tCounter and windowCounter[s[r]] <= tCounter[s[r]]:
+            if s[r] in tCounter and windowCounter[s[r]] == tCounter[s[r]]:
                 formed += 1
-            while formed == len(t):
+            while formed == len(tCounter):
                 if r - l < res[1] - res[0]:
                     res = (l, r)
-                    print(res)
                 windowCounter[s[l]] -= 1
                 if s[l] in tCounter and windowCounter[s[l]] < tCounter[s[l]]:
                     formed -= 1
