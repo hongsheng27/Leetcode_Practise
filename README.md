@@ -131,6 +131,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Recursion
 |  |
 | ------- |
+| [0206-reverse-linked-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0206-reverse-linked-list) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 ## Memoization
@@ -220,4 +221,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
+## Linked List
+|  |
+| ------- |
+| [0206-reverse-linked-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0206-reverse-linked-list) |
 <!---LeetCode Topics End-->
