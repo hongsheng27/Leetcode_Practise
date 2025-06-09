@@ -27,14 +27,5 @@ class Solution:
             tail.next = p2
             
         return dummy.next
-            
-            
-            
-
-                
-            
-        # p1 < p2 => p1 head
-        # p1 + 1
-
         
         
