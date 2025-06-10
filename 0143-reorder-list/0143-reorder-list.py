@@ -10,20 +10,21 @@ class Solution:
         """
         if not head:
             return
-        lst = []
+        nodes = []
         cur = head
         while cur:
-            lst.append(cur)
+            nodes.append(cur)
             cur = cur.next
-        l, r = 0, len(lst) - 1
-        while l < r:
-            lst[l].next = lst[r]
+
+        l, r = 0, len(nodes) - 1
+        while True:
+            nodes[l].next = nodes[r]
             l += 1
             if l >= r: break
-            lst[r].next = lst[l]
+            nodes[r].next = nodes[l]
             r -= 1
-        lst[r].next = None
-        return lst[0]
+        nodes[r].next = None
+
 
 
         
