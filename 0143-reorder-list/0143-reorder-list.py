@@ -8,25 +8,22 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
+        if not head:
+            return
         lst = []
         cur = head
         while cur:
             lst.append(cur)
             cur = cur.next
         l, r = 0, len(lst) - 1
-        dummy = tail = ListNode()
-        while l <= r:
-            if l != r:
-                lst[l].next = lst[r]
-                tail.next = lst[l]
-                tail = tail.next.next
-            else:
-                tail.next = lst[l]
-                tail = tail.next
-            tail.next = None
+        while l < r:
+            lst[l].next = lst[r]
             l += 1
+            if l >= r: break
+            lst[r].next = lst[l]
             r -= 1
-        return dummy.next
+        lst[r].next = None
+        return lst[0]
 
 
         
