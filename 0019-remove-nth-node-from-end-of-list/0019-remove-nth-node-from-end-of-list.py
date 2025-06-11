@@ -15,5 +15,5 @@ class Solution:
         cur = dummy
         for _ in range(length - n):
             cur = cur.next
-        cur.next = cur.next.next
+        cur.next = cur.next.next if cur.next else None
         return dummy.next
