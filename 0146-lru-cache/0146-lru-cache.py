@@ -1,14 +1,12 @@
 class Node:
     def __init__(self, key=None, val: int = None):
-        self.val = val
-        self.key = key
-        self.next = None
-        self.prev = None
+        self.val, self.key = val, key
+        self.next = self.prev = None
+
 class LRUCache:
     def __init__(self, capacity: int):
-        self.map = {}
-        self.head = Node()
-        self.tail = Node()
+        self.cache = {}
+        self.head, self.tail = Node(), Node()
         self.head.next = self.tail
         self.tail.prev = self.head
         self.capacity = capacity
@@ -24,29 +22,25 @@ class LRUCache:
         self.tail.prev = node
 
     def get(self, key: int) -> int:
-        if key in self.map:
-            node = self.map[key]
+        if key in self.cache:
+            node = self.cache[key]
             self._remove(node)
             self._add_to_tail(node)
             return node.val
-        else:
-            return -1
+        return -1
 
     def put(self, key: int, value: int) -> None:
-        if key in self.map:
-            node = self.map[key]
-            node.val = value
-            self._remove(node)
-            self._add_to_tail(node)
-        else:
-            if len(self.map) >= self.capacity:
-                first = self.head.next
-                self._remove(first)
-                del self.map[first.key]
-
-            new_node = Node(key, value)
-            self.map[key] = new_node
-            self._add_to_tail(new_node)
+        if key in self.cache:
+            self._remove(self.cache[key])
+            del self.cache[key]
+        new_node = Node(key, value)
+        self.cache[key] = new_node
+        self._add_to_tail(new_node)
+        
+        if len(self.cache) > self.capacity:
+            lru = self.head.next
+            self._remove(lru)
+            del self.cache[lru.key]
     
 
 
