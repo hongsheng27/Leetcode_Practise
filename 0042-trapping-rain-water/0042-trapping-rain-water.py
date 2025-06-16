@@ -1,12 +1,16 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         res = 0
-        pref, suff = [0] * len(height), [0] * len(height)
-        for i in range(1, len(height)):
-            pref[i] = max(pref[i - 1], height[i - 1])
-        for i in range(len(height) - 2, -1, -1):
-            suff[i] = max(suff[i + 1], height[i + 1])
-        for i in range(1, len(height) - 1):
-            h = min(pref[i], suff[i])
-            res += max(0, h - height[i])
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        while l < r:
+            if height[l] <= height[r]:
+                leftMax = max(leftMax, height[l])
+                l += 1
+                water = max(0, leftMax - height[l])
+            else:
+                rightMax = max(rightMax, height[r])
+                r -= 1
+                water = max(0, rightMax - height[r])
+            res += water
         return res
