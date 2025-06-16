@@ -32,7 +32,6 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
             self._remove(self.cache[key])
-            del self.cache[key]
         new_node = Node(key, value)
         self.cache[key] = new_node
         self._add_to_tail(new_node)
