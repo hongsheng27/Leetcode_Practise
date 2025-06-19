@@ -13,7 +13,6 @@ class Solution:
             if not kth:
                 break
             GroupNext = kth.next
-            # reverse
             prev = kth.next
             cur = groupPrev.next
             while cur != GroupNext:
@@ -25,8 +24,6 @@ class Solution:
             groupPrev.next = kth
             groupPrev = tmp
         return dummy.next
-
-        
 
     def findKth(self, curr, k):
         while curr and k > 0:
