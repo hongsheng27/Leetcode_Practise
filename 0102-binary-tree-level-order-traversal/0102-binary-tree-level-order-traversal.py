@@ -12,14 +12,16 @@ class Solution:
         res = []
 
         while queue:
-            layer = []
+            level = []
             for _ in range(len(queue)):
                 node = queue.popleft()
-                layer.append(node.val)
+                if node:
+                    level.append(node.val)
                 if node and node.left:
                     queue.append(node.left)
                 if node and node.right:
                     queue.append(node.right)
-            res.append(layer)
+            if level:
+                res.append(level)
         return res
                 
