@@ -7,10 +7,8 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         self.res = 0
-        if not root: return self.res
-        bignestNode = root.val
         def dfs(root, bignestNode):
-            if not root: return None
+            if not root: return 0
             if bignestNode <= root.val:
                 self.res += 1
             bignestNode = max(bignestNode, root.val)
