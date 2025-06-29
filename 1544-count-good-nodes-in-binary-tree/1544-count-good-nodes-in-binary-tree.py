@@ -7,13 +7,13 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         self.res = 0
-        def dfs(root, bignestNode):
+        def dfs(root, maxVal):
             if not root: return 0
-            if bignestNode <= root.val:
+            if maxVal <= root.val:
                 self.res += 1
-            bignestNode = max(bignestNode, root.val)
-            dfs(root.left, bignestNode)
-            dfs(root.right, bignestNode)
+            maxVal = max(maxVal, root.val)
+            dfs(root.left, maxVal)
+            dfs(root.right, maxVal)
 
         dfs(root, root.val)
         return self.res
