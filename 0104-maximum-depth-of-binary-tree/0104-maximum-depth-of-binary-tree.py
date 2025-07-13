@@ -14,9 +14,9 @@ class Solution:
             lenQ = len(q)
             for _ in range(lenQ):
                 node = q.popleft()
-                if node and node.left:
+                if node.left:
                     q.append(node.left)
-                if node and node.right:
+                if node.right:
                     q.append(node.right)
             res += 1
         return res
