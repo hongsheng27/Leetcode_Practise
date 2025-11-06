@@ -1,21 +1,21 @@
-class Solution(object):
-    def isValidSudoku(self, board):
-        cols = defaultdict(set)
-        rows = defaultdict(set)
-        squares = defaultdict(set)
-
-        for row in range(9):
-            for col in range(9):
-                val = board[row][col]
-                if val == '.':
-                    continue
-                if (val in rows[row] or val in cols[col] or val in squares[(col // 3, row // 3)]):
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        boxs = [set() for _ in range(9)]
+       
+        for row_index, row in enumerate(board):
+            for col_index, col in enumerate(row):
+                box_index = (row_index // 3) * 3 + col_index // 3
+                if col == '.': continue
+                if (col not in rows[row_index]) and (col not in cols[col_index]) and (col not in boxs[box_index]): 
+                    rows[row_index].add(col)
+                    cols[col_index].add(col)
+                    boxs[box_index].add(col)
+                else:
                     return False
-                rows[row].add(val)
-                cols[col].add(val)
-                squares[(col // 3, row // 3)].add(val)
-
-
         return True
+                
 
-        
+      
+    
