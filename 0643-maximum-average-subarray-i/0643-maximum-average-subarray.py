@@ -9,7 +9,6 @@ class Solution:
             cur_sum = cur_sum + nums[j] - nums[j-k]
             max_sum = max(max_sum, cur_sum)
         return max_sum / k
-
             
 
             

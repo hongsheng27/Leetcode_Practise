@@ -10,7 +10,12 @@ class Solution(object):
                 if val == '.':
                     continue
                 if (val in rows[row] or val in cols[col] or val in squares[(col // 3, row // 3)]):
-                    rows[row].add(val)
-                    cols[col].add(val)
-                    squares[(col // 3, row // 3)].add(val)
+                    return False
+                rows[row].add(val)
+                cols[col].add(val)
+                squares[(col // 3, row // 3)].add(val)
+
+
         return True
+
+        
