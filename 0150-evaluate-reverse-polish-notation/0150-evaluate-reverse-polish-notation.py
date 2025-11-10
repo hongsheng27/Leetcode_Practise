@@ -5,13 +5,14 @@ class Solution:
             if c == "+":
                 stack.append(stack.pop() + stack.pop())
             elif c == "-":
-                right,left = stack.pop(), stack.pop()
-                stack.append(left - right)
+                b, a = stack.pop(), stack.pop()
+                stack.append(a - b)
             elif c == "*":
                 stack.append(stack.pop() * stack.pop())
             elif c == "/":
-                right,left = stack.pop(), stack.pop()
-                stack.append(int(left / right))
+                b, a = stack.pop(), stack.pop()
+                stack.append(int(a / b))
             else:
                 stack.append(int(c))
         return stack[0]
+        
