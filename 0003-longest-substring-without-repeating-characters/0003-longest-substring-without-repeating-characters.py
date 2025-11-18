@@ -7,7 +7,6 @@ class Solution:
         for c in s:
             while c in window:
                 window.remove(s[l])
-                print(window)
                 l += 1
             window.add(c)
             length = max(length, len(window))
