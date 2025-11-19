@@ -57,6 +57,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0217-contains-duplicate](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0217-contains-duplicate) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
+| [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
@@ -74,6 +75,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0076-minimum-window-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0076-minimum-window-substring) |
 | [0125-valid-palindrome](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0125-valid-palindrome) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
+| [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
@@ -117,6 +119,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
+| [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 ## Quickselect
 |  |
