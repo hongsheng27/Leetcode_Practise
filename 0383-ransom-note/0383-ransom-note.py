@@ -5,7 +5,6 @@ class Solution:
             countR[ord(c) - ord('a')] += 1
         for c in magazine:
             countM[ord(c) - ord('a')] += 1
-        for c in ransomNote:
-            if countM[ord(c) - ord('a')] < countR[ord(c) - ord('a')]:
-                return False
+        for i in range(26):
+            if countR[i] > countM[i]: return False
         return True
