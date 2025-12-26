@@ -8,7 +8,7 @@ class Solution:
         while minH:
             first = minH[0]
             for i in range(first, first + groupSize):
-                if freq[i]:
+                if i in freq:
                     freq[i] -= 1
                 else: return False
                 if not freq[i]:
