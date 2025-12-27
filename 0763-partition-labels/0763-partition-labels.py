@@ -3,18 +3,15 @@ class Solution:
         res = []
         counter = Counter(s)
         start = 0
-        seen = set([s[start]])
+        seen = set()
         for i, c in enumerate(s):
-            if c not in seen:
-                seen.add(c)
+            seen.add(c)
             counter[c] -= 1
-            if c in seen and counter[c] == 0:
+            if counter[c] == 0:
                 seen.remove(c)
 
-            if len(seen) == 0: 
+            if not seen: 
                 res.append(i - start + 1)
                 start = i + 1
-                if start < len(s):
-                    seen.add(s[start])
         return res
 
