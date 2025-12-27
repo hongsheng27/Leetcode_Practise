@@ -8,11 +8,9 @@ class Solution:
             if c not in seen:
                 seen.add(c)
             counter[c] -= 1
-            print('@', c, counter[c])
             if c in seen and counter[c] == 0:
                 seen.remove(c)
 
-            print(counter, seen)
             if len(seen) == 0: 
                 res.append(i - start + 1)
                 start = i + 1
