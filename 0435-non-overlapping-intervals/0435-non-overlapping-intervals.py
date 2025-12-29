@@ -5,12 +5,11 @@ class Solution:
         preEnd = intervals[0][1]
 
         for interval in intervals[1:]:
-            if interval[0] < preEnd:
-                if interval[1] < preEnd:
-                    preEnd = interval[1]
-                res += 1
-            else:
+            if preEnd <= interval[0]:
                 preEnd = interval[1]
+            else:
+                res += 1
+                preEnd = min(preEnd, interval[1])
         return res
 
         
