@@ -52,6 +52,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
+| [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
 ## Hash Table
 |  |
@@ -115,6 +116,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
+| [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 ## Divide and Conquer
 |  |
 | ------- |
@@ -138,6 +140,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
+| [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 ## Bucket Sort
 |  |
 | ------- |
@@ -245,6 +248,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
+| [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 ## Sliding Window
 |  |
 | ------- |
@@ -424,4 +428,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
+## Line Sweep
+|  |
+| ------- |
+| [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 <!---LeetCode Topics End-->
