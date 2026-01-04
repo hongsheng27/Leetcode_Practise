@@ -1,22 +1,19 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def helper(i, nums, subSets, curSet):
+        def dfs(i):
             # base case
             if i >= len(nums):
                 subSets.append(curSet.copy())
-                return 
-
+                return
             # include nums[i]
             curSet.append(nums[i])
-            helper(i + 1, nums, subSets, curSet)
+            dfs(i + 1)
+
+            # not include nums[i]
             curSet.pop()
-
-            # Not include nums[i]
-            helper(i + 1, nums, subSets, curSet)
-
-        i = 0
+            dfs(i + 1)
         subSets, curSet = [], []
-        helper(0, nums, subSets, curSet)
+        dfs(0)
         return subSets
 
         
