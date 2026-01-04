@@ -22,6 +22,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0056-merge-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0056-merge-intervals) |
 | [0057-insert-interval](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0057-insert-interval) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
+| [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
 | [0084-largest-rectangle-in-histogram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0084-largest-rectangle-in-histogram) |
 | [0088-merge-sorted-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0088-merge-sorted-array) |
 | [0105-construct-binary-tree-from-preorder-and-inorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0105-construct-binary-tree-from-preorder-and-inorder-traversal) |
@@ -230,6 +231,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Bit Manipulation
 |  |
 | ------- |
+| [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
 | [0136-single-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0136-single-number) |
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
@@ -309,6 +311,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0022-generate-parentheses](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0022-generate-parentheses) |
+| [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
 ## Queue
 |  |
 | ------- |
