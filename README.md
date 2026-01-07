@@ -26,6 +26,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0057-insert-interval](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0057-insert-interval) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
 | [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
+| [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0084-largest-rectangle-in-histogram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0084-largest-rectangle-in-histogram) |
 | [0088-merge-sorted-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0088-merge-sorted-array) |
 | [0090-subsets-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0090-subsets-ii) |
@@ -93,6 +94,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0022-generate-parentheses](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0022-generate-parentheses) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
 | [0076-minimum-window-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0076-minimum-window-substring) |
+| [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0125-valid-palindrome](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0125-valid-palindrome) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
@@ -179,6 +181,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
+| [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 ## Math
 |  |
 | ------- |
@@ -320,6 +323,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0040-combination-sum-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0040-combination-sum-ii) |
 | [0046-permutations](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0046-permutations) |
 | [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
+| [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0090-subsets-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0090-subsets-ii) |
 ## Queue
 |  |
@@ -362,6 +366,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Depth-First Search
 |  |
 | ------- |
+| [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0098-validate-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0098-validate-binary-search-tree) |
 | [0100-same-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0100-same-tree) |
 | [0101-symmetric-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0101-symmetric-tree) |
