@@ -7,18 +7,18 @@ class Solution:
                 res.append(part.copy())
                 return
             for j in range(i, len(s)):
-                if self.isPalindrome(s, i, j):
+                if isPalindrome(i, j):
                     part.append(s[i: j + 1])
                     dfs(j + 1)
                     part.pop()
+        def isPalindrome(l, r):
+            while l < r:
+                if s[l] == s[r]:
+                    l += 1
+                    r -= 1
+                else:
+                    return False
+            return True
         dfs(0)
         return res
-    def isPalindrome(self, s, l, r):
-        while l < r:
-            if s[l] == s[r]:
-                l += 1
-                r -= 1
-            else:
-                return False
-        return True
         
