@@ -5,6 +5,3 @@ class Solution:
             count[i] = 1 + count.get(i, 0)
         freq = count.values()
         return len(freq) == len(set(freq))
-        
-
-        
