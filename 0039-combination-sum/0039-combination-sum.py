@@ -14,7 +14,7 @@ class Solution:
             # decision to NOT include candidates[i]
             curList.pop()
             dfs(i + 1, total)
-        dfs(0, 0)
+        dfs(0, 0) 
         return res
 
         
