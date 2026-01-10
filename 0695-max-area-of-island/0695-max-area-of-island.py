@@ -13,11 +13,11 @@ class Solution:
             while q:
                 row, col = q.popleft()
                 for dr, dc in neighbors:
-                    r, c = row + dr, col + dc
-                    if r < 0 or c < 0 or r == ROWS or c == COLS or (r, c) in visit or grid[r][c] == 0: continue
-                    visit.add((r, c))
+                    nr, nc = row + dr, col + dc
+                    if nr < 0 or nc < 0 or nr == ROWS or nc == COLS or (nr, nc) in visit or grid[nr][nc] == 0: continue
+                    visit.add((nr, nc))
                     count += 1
-                    q.append((r, c))
+                    q.append((nr, nc))
             return count
 
         for i in range(ROWS):
