@@ -4,6 +4,7 @@ class Solution:
         Do not return anything, modify board in-place instead.
         """
         ROWS, COLS = len(board), len(board[0])
+        visit = set()
         def dfs(r, c, visit):
             if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] == "X" or (r, c) in visit: return
             visit.add((r, c))
@@ -26,6 +27,7 @@ class Solution:
 
         for r in range(ROWS):
             for c in range(COLS):
-                if board[r][c] == "O": 
+                if board[r][c] == "O" and (r, c) not in visit: 
                     connect = dfs(r, c, set())
                     if isSurround(connect): fillX(connect)
+                    else: visit = visit | connect
