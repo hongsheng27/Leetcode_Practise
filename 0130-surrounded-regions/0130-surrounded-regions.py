@@ -29,5 +29,5 @@ class Solution:
             for c in range(COLS):
                 if board[r][c] == "O" and (r, c) not in visit: 
                     connect = dfs(r, c, set())
+                    visit = visit | connect
                     if isSurround(connect): fillX(connect)
-                    else: visit = visit | connect
