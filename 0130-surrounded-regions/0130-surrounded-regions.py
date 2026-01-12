@@ -5,14 +5,14 @@ class Solution:
         """
         ROWS, COLS = len(board), len(board[0])
         visit = set()
-        def dfs(r, c, visit):
-            if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] == "X" or (r, c) in visit: return
-            visit.add((r, c))
-            dfs(r + 1, c, visit)
-            dfs(r - 1, c, visit)
-            dfs(r, c + 1, visit)
-            dfs(r, c - 1, visit)
-            return visit
+        def dfs(r, c, connect_visit):
+            if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] == "X" or (r, c) in connect_visit: return
+            connect_visit.add((r, c))
+            dfs(r + 1, c, connect_visit)
+            dfs(r - 1, c, connect_visit)
+            dfs(r, c + 1, connect_visit)
+            dfs(r, c - 1, connect_visit)
+            
         def isSurround(connect):
             neighbors = [[1, 0], [-1, 0], [0, 1], [0, -1]]
             for r, c in connect:
@@ -28,6 +28,7 @@ class Solution:
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == "O" and (r, c) not in visit: 
-                    connect = dfs(r, c, set())
-                    visit.update(connect)
+                    connect = set()
+                    dfs(r, c, connect)
+                    visit.add((r, c))
                     if isSurround(connect): fillX(connect)
