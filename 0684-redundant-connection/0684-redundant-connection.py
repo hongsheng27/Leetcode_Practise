@@ -15,7 +15,7 @@ class Solution:
         def union(n1, n2):
             p1, p2 = find(n1), find(n2)
             if p1 == p2:
-                return [n1, n2]
+                return False
 
             if rank[p1] > rank[p2]:
                 par[p2] = p1
@@ -24,11 +24,10 @@ class Solution:
             else:
                 par[p2] = p1
                 rank[p1] += 1
-            return None
+            return True
             
         for u, v in edges:
-            res = union(u, v)
-            if res: return res
+            if not union(u, v): return [u, v]
 
         
         
