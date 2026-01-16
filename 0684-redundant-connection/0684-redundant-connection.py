@@ -4,7 +4,7 @@ class Solution:
         n = len(edges)
         for i in range(1, n + 1):
             par[i] = i
-            rank[i] = 0
+            rank[i] = 1
 
         def find(n):
             p = par[n]
@@ -19,11 +19,10 @@ class Solution:
 
             if rank[p1] > rank[p2]:
                 par[p2] = p1
-            elif rank[p1] < rank[p2]:
-                par[p1] = p2
+                rank[p1] += rank[p2]
             else:
-                par[p2] = p1
-                rank[p1] += 1
+                par[p1] = p2
+                rank[p2] += rank[p1]
             return True
             
         for u, v in edges:
