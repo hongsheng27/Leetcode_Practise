@@ -6,18 +6,18 @@ class Solution:
 
         for word in wordList:
             for j in range(len(word)):
-                pattern = word[:j] + "*" + word[j + 1:]
+                pattern = word[:j] + "*" + word[j+1:]
                 neis[pattern].append(word)
-
-        q = deque([beginWord])
+        
         visit = set([beginWord])
+        q = deque([beginWord])
         length = 1
         while q:
             for _ in range(len(q)):
                 word = q.popleft()
                 if word == endWord: return length
                 for j in range(len(word)):
-                    pattern = word[:j] + "*" + word[j + 1:]
+                    pattern = word[:j] + "*" + word[j+1:]
                     for nei in neis[pattern]:
                         if nei not in visit:
                             q.append(nei)
@@ -25,5 +25,3 @@ class Solution:
             length += 1
         return 0
 
-
-        
