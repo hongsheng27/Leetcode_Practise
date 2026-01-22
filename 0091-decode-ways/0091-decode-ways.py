@@ -2,8 +2,6 @@ class Solution:
     def numDecodings(self, s: str) -> int:
         cache = { len(s): 1 }
         def dfs(i):
-            if i >= len(s):
-                return 1
             if i in cache: return cache[i]
             if s[i] == "0": return 0
             res = dfs(i + 1)
