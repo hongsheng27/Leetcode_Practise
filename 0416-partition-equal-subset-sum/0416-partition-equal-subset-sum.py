@@ -4,14 +4,13 @@ class Solution:
         for n in nums:
             total += n
         if total % 2 != 0: return False
-        nums.sort()
-        
-        M, N = len(nums), total // 2 + 1
-        cache = [[-1] * N for _ in range(M)]
+        target = total // 2
+        M = len(nums)
+        cache = [[-1] * (target + 1) for _ in range(M)]
         def dfs(i, sum):
-            if sum == total / 2:
+            if sum == target:
                 return True
-            if i >= len(nums) or sum > total / 2:
+            if i >= M or sum > target:
                 return False
             if cache[i][sum] != -1: return cache[i][sum]
             cache[i][sum] = dfs(i + 1, sum + nums[i]) or dfs(i + 1, sum)   
