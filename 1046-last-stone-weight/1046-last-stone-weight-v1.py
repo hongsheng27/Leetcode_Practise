@@ -1,9 +1,12 @@
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
-        maxHeap = [-s for s in stones]
-        heapq.heapify(maxHeap)
-        while len(maxHeap) > 1:
-            first, second = heapq.heappop(maxHeap), heapq.heappop(maxHeap)
-            remaining = (-first) - (-second)
-            heapq.heappush(maxHeap, -remaining)
-        return -maxHeap[0]
+        stones = [-s for s in stones]
+        heapq.heapify(stones)
+
+        while len(stones) > 1:
+            first, second = heapq.heappop(stones), heapq.heappop(stones)
+            if second > first:
+                heapq.heappush(stones, first - second)
+        stones.append(0)
+
+        return abs(stones[0])
