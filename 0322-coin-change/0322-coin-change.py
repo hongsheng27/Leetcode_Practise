@@ -1,15 +1,17 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        cache = {}
-        def dfs(amount):
-            if amount == 0:
-                return 0
-            if amount in cache: return cache[amount]
-            res = float('inf')
-            for c in coins:
-                if amount - c >= 0:
-                    res = min(res, 1 + dfs(amount - c))
-            cache[amount] = res
-            return cache[amount]
-        result = dfs(amount)
-        return result if result != float('inf') else -1
+        N, M = len(coins) + 1, amount + 1
+        dp = [[float('inf')] * M for _ in range(N)]
+
+        for r in range(N):
+            dp[r][0] = 0
+
+        for i in range(1, N):
+            for j in range(1, M):
+                skip = dp[i - 1][j]
+                include = float('inf')
+                if j - coins[i - 1] >= 0:
+                    include = 1 + dp[i][j - coins[i - 1]]
+                dp[i][j] = min(skip, include)
+        res = dp[len(coins)][amount]
+        return res if res != float('inf') else -1
