@@ -37,6 +37,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
 | [0134-gas-station](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0134-gas-station) |
 | [0136-single-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0136-single-number) |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0152-maximum-product-subarray](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0152-maximum-product-subarray) |
 | [0153-find-minimum-in-rotated-sorted-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0153-find-minimum-in-rotated-sorted-array) |
@@ -85,6 +86,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 | [0133-clone-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0133-clone-graph) |
 | [0138-copy-list-with-random-pointer](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0138-copy-list-with-random-pointer) |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 | [0141-linked-list-cycle](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0141-linked-list-cycle) |
 | [0146-lru-cache](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0146-lru-cache) |
 | [0217-contains-duplicate](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0217-contains-duplicate) |
@@ -115,6 +117,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0125-valid-palindrome](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0125-valid-palindrome) |
 | [0127-word-ladder](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0127-word-ladder) |
 | [0131-palindrome-partitioning](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0131-palindrome-partitioning) |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
@@ -229,6 +232,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0091-decode-ways](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0091-decode-ways) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0131-palindrome-partitioning](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0131-palindrome-partitioning) |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 | [0152-maximum-product-subarray](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0152-maximum-product-subarray) |
 | [0198-house-robber](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0198-house-robber) |
 | [0213-house-robber-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0213-house-robber-ii) |
@@ -253,6 +257,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0070-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0070-climbing-stairs) |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 ## Two Pointers
 |  |
@@ -533,4 +538,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
+## Trie
+|  |
+| ------- |
+| [0139-word-break](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0139-word-break) |
 <!---LeetCode Topics End-->
