@@ -8,5 +8,5 @@ class Solution:
                 if nums[i] < nums[j]:
                     include += dp[j]
                     dp[i] = max(dp[i], include)
-        return max(dp[i] for i in range(len(nums)))
+        return max(dp)
         
