@@ -9,18 +9,16 @@ class Solution:
         if not subRoot: return True
         if not root: return False
 
-        if self.isSameTree(root, subRoot):
-            return True
+        def isSameTree(p1, p2):
+            if not p1 and not p2: return True
+            if not p1 or not p2 or p1.val != p2.val: return False
+
+            return (isSameTree(p1.left, p2.left) and
+                    isSameTree(p1.right, p2.right))
         
+        if isSameTree(root, subRoot):
+            return True
         return (self.isSubtree(root.left, subRoot) or
                 self.isSubtree(root.right, subRoot))
-
-    def isSameTree(self, p, q):
-        if not p and not q: 
-            return True
-        if not p or not q or (p.val != q.val):
-            return False
-
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
         
