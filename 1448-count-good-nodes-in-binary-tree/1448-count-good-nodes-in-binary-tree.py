@@ -10,8 +10,7 @@ class Solution:
    
         def dfs(node, rootVal):
             if not node: return 0
-            isGood = 0
-            if node.val >= rootVal: isGood += 1    
+            isGood = 1 if node.val >= rootVal else 0    
             rootVal = max(node.val, rootVal)  
             return isGood + dfs(node.left, rootVal) + dfs(node.right, rootVal)
         return dfs(root, root.val)
