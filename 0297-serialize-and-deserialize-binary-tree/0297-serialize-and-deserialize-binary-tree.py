@@ -21,7 +21,7 @@ class Codec:
             dfs(node.left)
             dfs(node.right)
         dfs(root)
-        print(",".join(res))
+
         return ",".join(res)
         
 
