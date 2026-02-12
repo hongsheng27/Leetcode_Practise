@@ -35,7 +35,7 @@ class Codec:
         self.index= 0
         def dfs():
             if data[self.index] == "N": return None
-            head = TreeNode(data[self.index])
+            head = TreeNode(str(data[self.index]))
             self.index += 1
             head.left = dfs()
             self.index += 1
