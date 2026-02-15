@@ -14,8 +14,8 @@ class Solution:
             for child in adj[node]:
                 if not dfs(child, path):
                     return False
-                else:
-                    adj[node].remove(child)
+
+            adj[node] = []
             path.remove(node)
             return True
 
