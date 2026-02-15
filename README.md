@@ -176,6 +176,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
@@ -459,6 +460,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0572-subtree-of-another-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0572-subtree-of-another-tree) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 ## Breadth-First Search
@@ -481,6 +483,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -569,6 +572,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0133-clone-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0133-clone-graph) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 ## Trie
 |  |
 | ------- |
@@ -580,4 +584,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
+## Shortest Path
+|  |
+| ------- |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 <!---LeetCode Topics End-->
