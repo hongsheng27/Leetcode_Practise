@@ -15,9 +15,9 @@ class Solution:
             if dst in visit: continue
             res += cost
             visit.add(dst)
-            for n1, n2 in adj[dst]:
-                if n2 not in visit:
-                    heapq.heappush(minHeap, (n1, n2))
+            for neiCost, nei in adj[dst]:
+                if nei not in visit:
+                    heapq.heappush(minHeap, (neiCost, nei))
         return res
             
 
