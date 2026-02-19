@@ -65,6 +65,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
 | [0746-min-cost-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0746-min-cost-climbing-stairs) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
@@ -182,6 +183,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
@@ -224,6 +226,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0200-number-of-islands](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0200-number-of-islands) |
 | [0212-word-search-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0212-word-search-ii) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 ## Math
@@ -319,6 +322,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0300-longest-increasing-subsequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0300-longest-increasing-subsequence) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
@@ -467,6 +471,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 ## Breadth-First Search
@@ -490,6 +495,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -572,6 +578,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
+| [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 ## Graph Theory
 |  |
