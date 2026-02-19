@@ -1,9 +1,9 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         adj = {}
-        for src, dst, w in times:
-            adj[src] = []
-            adj[dst] = []
+        for i in range(1, n + 1):
+            adj[i] = []
+
         for src, dst, w in times:
             adj[src].append((w, dst)) # [(distance, dst)]
 
