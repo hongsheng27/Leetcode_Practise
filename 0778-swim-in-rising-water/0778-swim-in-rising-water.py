@@ -6,7 +6,7 @@ class Solution:
         visit.add((0, 0))
         neighbors = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
-        while minHeap:
+        while True:
             maxHei, r, c = heapq.heappop(minHeap)
             if r == N - 1 and c == N - 1: return maxHei
             for dr, dc in neighbors:
