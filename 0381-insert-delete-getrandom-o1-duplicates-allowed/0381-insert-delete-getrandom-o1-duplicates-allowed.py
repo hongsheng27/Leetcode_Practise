@@ -4,9 +4,8 @@ class RandomizedCollection:
         self.count = {}
 
     def insert(self, val: int) -> bool:
-        isExsit = True
-        if val not in self.count:
-            isExsit = False
+        isExsit = val in self.count
+        if not isExsit:
             self.count[val] = set()
         self.arr.append(val)
         self.count[val].add(len(self.arr) - 1)
