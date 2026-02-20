@@ -8,7 +8,7 @@ class Solution:
         if not head: return None
         cur = head
         size = 1
-        while cur and cur.next:
+        while cur.next:
             cur = cur.next
             size += 1
         # form a circle
