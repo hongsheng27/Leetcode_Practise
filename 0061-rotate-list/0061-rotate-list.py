@@ -11,15 +11,13 @@ class Solution:
         while cur.next:
             cur = cur.next
             size += 1
-        # form a circle
         cur.next = head
 
         k = k % size
-        # newTail => seve
+        
         newTail = head
         for _ in range(size - k - 1):
             newTail = newTail.next
-        # new Head
         newHead = newTail.next
         newTail.next = None
         return newHead
