@@ -1,26 +1,27 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj = {}
-        for n in range(numCourses):
-            adj[n] = []
-        
-        for crs, pre in prerequisites:
-            adj[crs].append(pre)
-        
-        def dfs(node, path):
-            if not adj[node]: return True
-            if node in path: return False
-            path.add(node)
-            for child in adj[node]:
-                if not dfs(child, path):
-                    return False
+        adj = defaultdict(list)
+        for course, pre in prerequisites:
+            adj[pre].append(course)
 
-            adj[node] = []
-            path.remove(node)
-            return True
+        visit = set()
+        safe = set()
+        def has_cycle(node):
+            if node not in adj or node in safe:
+                return False # to the end
+            if node in visit:
+                return True # cycle
 
-        for n in range(numCourses):
-            if not dfs(n, set()): return False
+            visit.add(node)
+            for nei in adj[node]:
+                if has_cycle(nei): return True
+            visit.remove(node)
+            safe.add(node)
+            return False
+            
+        for i in range(numCourses):
+            if has_cycle(i): 
+                return False
         return True
-
-        
+           
+            
