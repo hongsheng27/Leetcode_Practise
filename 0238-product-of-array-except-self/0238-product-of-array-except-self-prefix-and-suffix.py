@@ -13,8 +13,6 @@ class Solution(object):
         for i in range(n):
             res[i] = pref[i] * suff[i]
         return res
-        
-            
 
 
         
