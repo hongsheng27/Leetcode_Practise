@@ -5,10 +5,14 @@
 
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        biggest_area = 0
-        for i in range(len(heights) + 1):
-            for j in range(i+1, len(heights) + 1):
-                area = (j - i) *  min(heights[i:j])
-                if area > biggest_area:
-                    biggest_area = area
-        return biggest_area
+        maxArea = 0
+        for i in range(len(heights)):
+            right = i
+            while right + 1 < len(heights) and heights[right + 1] >= heights[i]:
+                right += 1
+            left = i
+            while left - 1 >= 0 and heights[left - 1] >= heights[i]:
+                left -= 1
+            width = right - left + 1
+            maxArea = max(maxArea, width * heights[i])
+        return maxArea            
