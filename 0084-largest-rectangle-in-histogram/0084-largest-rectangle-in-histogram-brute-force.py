@@ -1,8 +1,6 @@
-# Brute force solution
-# Time complexity: O(n^3)
+# Time complexity: O(n^2)
 # Space complexity: O(1)
 # Can't pass the Leetcode since the time limit
-
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         maxArea = 0
