@@ -5,7 +5,6 @@ class Solution:
             fleets.append((position[i], (target - position[i]) / speed[i] ))
 
         fleets.sort()
-        print(fleets)
         stack = []
     
         for i in range(len(fleets) - 1, -1, -1):
