@@ -1,9 +1,3 @@
-496
-當看到 next greater element 關鍵字時即可以想到要用 monotonic stack
-nums1 找到 nums2 相同值的index 位置，用 hashmap 可以將 n ^ 2 優化成 o(n)
-stack 可以將要保留的值存下來，例如較小的值，等遇到較大的值時 pop出來，並一次填上 pop出來的 index
-
-
 LeetCode 496 - Next Greater Element I
 ======================================
 
