@@ -1,0 +1,26 @@
+496
+當看到 next greater element 關鍵字時即可以想到要用 monotonic stack
+nums1 找到 nums2 相同值的index 位置，用 hashmap 可以將 n ^ 2 優化成 o(n)
+stack 可以將要保留的值存下來，例如較小的值，等遇到較大的值時 pop出來，並一次填上 pop出來的 index
+
+
+LeetCode 496 - Next Greater Element I
+======================================
+
+題目：nums1 是 nums2 的子集，對 nums1 每個元素，找它在 nums2 中右邊第一個比它大的值，沒有就回 -1。
+限制：所有數字不重複。
+
+關鍵字觸發：看到「next greater element」→ monotonic stack。
+
+解題拆成兩件事：
+
+  1. 對 nums2 每個元素，找右邊第一個比它大的值
+     → Monotonic Stack（遞減）
+     → 從左往右掃 nums2，stack 裡放「還沒找到答案的元素」（由底到頂遞減）
+     → 碰到一個比 stack 頂端大的值時，stack 頂端的答案就是它，pop 出來填答案
+     → 一次遍歷就幫所有元素找到答案
+
+  2. nums1 的元素要去 nums2 裡查對應的結果
+     → 暴力：對每個 nums1 元素掃一遍 nums2 找 index → O(n^2)
+     → 優化：先用 HashMap 建 {值: index} 的對照表，查表 O(1) → 整體 O(n)
+     → 因為題目保證數字不重複，所以 HashMap 不會有覆蓋問題
