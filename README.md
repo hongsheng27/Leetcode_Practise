@@ -49,6 +49,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0213-house-robber-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0213-house-robber-ii) |
 | [0215-kth-largest-element-in-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0215-kth-largest-element-in-an-array) |
 | [0217-contains-duplicate](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0217-contains-duplicate) |
+| [0219-contains-duplicate-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0219-contains-duplicate-ii) |
 | [0238-product-of-array-except-self](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0238-product-of-array-except-self) |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
@@ -101,6 +102,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0146-lru-cache](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0146-lru-cache) |
 | [0208-implement-trie-prefix-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0208-implement-trie-prefix-tree) |
 | [0217-contains-duplicate](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0217-contains-duplicate) |
+| [0219-contains-duplicate-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0219-contains-duplicate-ii) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
@@ -355,6 +357,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0003-longest-substring-without-repeating-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0003-longest-substring-without-repeating-characters) |
 | [0076-minimum-window-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0076-minimum-window-substring) |
 | [0209-minimum-size-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0209-minimum-size-subarray-sum) |
+| [0219-contains-duplicate-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0219-contains-duplicate-ii) |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
