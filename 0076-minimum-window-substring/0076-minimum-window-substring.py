@@ -1,5 +1,6 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
         count = {}
         for c in t:
             count[c] = count.get(c, 0) + 1
