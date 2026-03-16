@@ -1,0 +1,42 @@
+LeetCode 658 - Find K Closest Elements
+========================================
+
+題目：給一個已排序的陣列 arr、整數 k 和目標值 x，找出最接近 x 的 k 個元素，回傳排序後的結果。
+
+解題是一開始以為 sliding window
+但 sliding window 是從左滑到右，
+無法準確框住最接近 x 的值。這題是 two pointers，方向是往內縮或往外擴。
+
+
+解法一：Two Pointers 從兩端往內縮 
+  從整個陣列開始，每次比較兩端誰離 x 更遠，砍掉遠的那端，直到剩 k 個。
+  注意 <= 的處理：距離相同時砍右邊保留左邊（較小的值），符合題目要求。
+
+time compacity: O(n)
+
+
+解法二：Binary Search + Two Pointers 往外擴 
+  第一步：binary search 找第一個 >= x 的位置。
+    要記住這個同時找到 mid or clostest mid 的方法
+    寫法：l, r = 0, len(arr) - 1，當 arr[mid] < x 時往右找（l = mid + 1），
+    否則往左縮（r = mid）。迴圈結束時 l 就是第一個 >= x 的 index。
+    如果所有元素都 < x，l 會停在 len(arr)（最右邊外面一格）。
+
+  第二步：設 l = 找到的位置 - 1, r = 找到的位置（exclusive boundaries）。
+    從這裡往兩邊擴展 k 次，每次挑距離更近的那端。
+
+  踩過的坑：
+    1. l 和 r 是 exclusive boundary（指向窗口外面一格）
+       窗口內元素數量 = r - l - 1，不是 r - l + 1
+       return arr[l+1 : r]，不是 arr[l : r+1]
+
+    2. 邊界處理：l 可能 < 0，r 可能 >= len(arr)
+       要先判斷邊界，再比較距離：
+         if l < 0 → 只能往右擴
+         elif r >= len(arr) → 只能往左擴
+         else → 比較距離決定方向
+
+    3. inclusive vs exclusive 搞混會導致初始狀態就算錯數量
+       用 exclusive 就全程用 exclusive，不要混用
+
+    time compacity: O(log n + k)
