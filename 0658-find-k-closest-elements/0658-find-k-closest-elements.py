@@ -6,7 +6,7 @@ class Solution:
         while r - l + 1 > k:
             leftDiff = abs(x - arr[l])
             rightDiff = abs(x - arr[r])
-            if leftDiff < rightDiff or leftDiff == rightDiff and arr[l] < arr[r]:
+            if leftDiff <= rightDiff:
                 r -= 1
             else:
                 l += 1
