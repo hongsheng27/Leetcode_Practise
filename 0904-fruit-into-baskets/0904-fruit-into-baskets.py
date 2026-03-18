@@ -4,10 +4,7 @@ class Solution:
         l = res = 0 
 
         for r in range(len(fruits)):
-            if fruits[r] not in count or not count[fruits[r]]:
-                count[fruits[r]] = 1
-            else:
-                count[fruits[r]] += 1
+            count[fruits[r]] = count.get(fruits[r], 0) + 1
             
             while len(count) == 3:
                 count[fruits[l]] -= 1
