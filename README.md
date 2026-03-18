@@ -75,6 +75,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
+| [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
@@ -116,6 +117,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
+| [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
@@ -370,6 +372,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0643-maximum-average-subarray-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0643-maximum-average-subarray-i) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
+| [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 ## Greedy
 |  |
 | ------- |
