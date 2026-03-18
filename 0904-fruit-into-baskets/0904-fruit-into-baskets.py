@@ -10,15 +10,12 @@ class Solution:
             else:
                 count[fruits[r]] += 1
             
-            if have == 2:
-                res = max(res, sum(count.values()))
             while have == 3:
                 count[fruits[l]] -= 1
                 if count[fruits[l]] == 0:
-                    have -= 1
-                    if have == 2:
-                        res = max(res, sum(count.values()))   
+                    have -= 1  
                 l += 1
+            res = max(res, r - l + 1)
         return res if res else sum(count.values())
 
 
