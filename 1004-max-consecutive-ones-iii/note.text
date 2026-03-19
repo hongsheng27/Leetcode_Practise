@@ -1,0 +1,20 @@
+LeetCode 1004 - Max Consecutive Ones III
+==========================================
+
+題目：給一個 0/1 陣列和整數 k，最多可以把 k 個 0 翻成 1，求最長連續 1 的長度。
+
+本質是 424（Longest Repeating Character Replacement）的簡化版。
+424 目標字元不確定，需要 maxFreq 追蹤哪個字元最多。
+這題目標字元鎖死是 1，只需要數窗口內 0 的數量，用一個 zeros 變數就夠。
+
+解題思路：Variable Sliding Window（找最長）
+  擴右邊界，碰到 0 就 zeros += 1。
+  zeros > k 時條件違反，縮左邊界，碰到 0 就 zeros -= 1。
+  每一步更新 res = max(res, r - l + 1)。
+
+踩過的坑：
+  一開始用 HashMap 記 0 和 1 的數量，但只有兩種值不需要 map。
+  而且 count[1] 在沒有 1 出現時會 KeyError，要用 count.get(1, 0)。
+  直接用 zeros 變數最乾淨，避開這個問題。
+
+複雜度：O(n) 時間，O(1) 空間。
