@@ -80,6 +80,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
+| [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
@@ -120,6 +121,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
+| [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
@@ -220,6 +222,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
+| [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 ## Quickselect
 |  |
 | ------- |
@@ -377,6 +380,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
+| [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 ## Greedy
 |  |
