@@ -52,6 +52,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0219-contains-duplicate-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0219-contains-duplicate-ii) |
 | [0238-product-of-array-except-self](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0238-product-of-array-except-self) |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
+| [0252-meeting-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0252-meeting-rooms) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0283-move-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0283-move-zeroes) |
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
@@ -168,6 +169,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0215-kth-largest-element-in-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0215-kth-largest-element-in-an-array) |
 | [0217-contains-duplicate](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0217-contains-duplicate) |
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
+| [0252-meeting-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0252-meeting-rooms) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
