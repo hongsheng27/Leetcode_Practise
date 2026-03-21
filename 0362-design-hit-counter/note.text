@@ -1,0 +1,22 @@
+Design Hit Counter
+
+題目解釋：
+設計一個 hit counter，支援 hit(timestamp) 記錄點擊，以及 getHits(timestamp) 回傳過去 300 秒內的點擊總數。核心概念是 sliding window，維護一個有效的時間窗口。
+
+解題思路：
+1. 需要一個資料結構記錄每次 hit 的時間
+2. getHits 時，只計算 300 秒窗口內的 hit
+3. 過期的資料要清掉，不然記憶體會一直長大
+4. 觀察到 hit 是按時間順序進來的，所以過期的一定在左邊 → 適合用 deque 從左邊 pop
+5. 進階優化：窗口固定 300 秒，可以用 % 300 映射到固定大小的陣列，空間降為 O(1)
+
+踩過的坑：
+1. 一開始想用 left pointer 取代 deque，但 deque.popleft() 複雜度是 O(1)，沒必要自己維護指標。而且用 list + left pointer 的做法，過期的 timestamp 不會真正從記憶體移除，只是邏輯上跳過，長期下來記憶體會持續增長，實務上效能不好。
+2. 這題要用 sliding window 同時判斷是否超過時間上限，又維護有效的時間窗口，我第一時間沒想到，應注意。
+3. 此題的 optimal 解是 circular buffer，用固定大小 300 的 list + % 300 映射時間到格子，搭配 counts 陣列記錄同秒的 hit 次數。主要解決 deque 版本空間隨 hit 總量線性增長的問題（O(N) → O(300) 固定），同時 getHits 的時間也穩定為 O(300)，不會因為某一秒大量 hit 而產生 spike。方法比較 tricky 但實務上很實用，值得記住。
+
+複雜度比較：
+                | Deque 版          | Circular Buffer 版
+hit()           | O(1)              | O(1)
+getHits()       | 攤提 O(1)，最壞 O(K) | O(300) = O(1)
+空間             | O(N)，N = 總 hit 數 | O(300) 固定
