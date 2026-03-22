@@ -6,13 +6,13 @@ class TicTacToe:
         self.d = 0
         self.rd = 0
     def move(self, row: int, col: int, player: int) -> int:
-        number = 1 if player == 1 else -1
-        self.h[row] += number 
-        self.v[col] += number
+        score = 1 if player == 1 else -1
+        self.h[row] += score 
+        self.v[col] += score
         if row - col == 0:
-            self.d += number
+            self.d += score
         if row + col == self.n - 1:
-            self.rd += number
+            self.rd += score
         if abs(self.h[row]) == self.n or abs(self.v[col]) == self.n or abs(self.d) == self.n or abs(self.rd) == self.n:
             return player
         return 0
