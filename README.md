@@ -60,6 +60,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
+| [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
@@ -113,6 +114,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0242-valid-anagram](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0242-valid-anagram) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
+| [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
@@ -253,6 +255,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
 | [0200-number-of-islands](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0200-number-of-islands) |
 | [0212-word-search-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0212-word-search-ii) |
+| [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
@@ -423,6 +426,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0211-design-add-and-search-words-data-structure](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0211-design-add-and-search-words-data-structure) |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
+| [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
@@ -663,6 +667,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Simulation
 |  |
 | ------- |
+| [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 ## Shortest Path
 |  |
