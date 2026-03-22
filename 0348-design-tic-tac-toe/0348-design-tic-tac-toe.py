@@ -13,11 +13,9 @@ class TicTacToe:
             self.d += number
         if row + col == n - 1:
             self.rd += number
-        print(self.h, self.v, self.d, self.rd)
         if abs(self.h[row]) == n or abs(self.v[col]) == n or abs(self.d) == n or abs(self.rd) == n:
             return player
-        else:
-            return 0
+        return 0
 
 
 # Your TicTacToe object will be instantiated and called as such:
