@@ -9,8 +9,7 @@ class Solution:
             else:
                 stack.append([c, 1])
         res = ""
-        for s in stack:
-            c, time = s
-            res += c * time
+        for char, count in stack:
+            res += char * count
         return res
         
