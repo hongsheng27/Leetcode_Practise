@@ -9,5 +9,5 @@ class Solution:
             if stack[-1][1] == k:
                     stack.pop()
 
-        return "".join(char * count for char, count in stack)
+        return "".join([char * count for char, count in stack])
         
