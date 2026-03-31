@@ -15,7 +15,7 @@ class Codec:
             length = int(s[l:r])
             l = r + 1
             res.append(s[l:l + length])
-            l = l + length
+            l += length
         return res
 
 
