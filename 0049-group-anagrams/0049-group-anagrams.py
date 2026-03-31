@@ -1,17 +1,14 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        res = {}
-        for word in strs:
-            count = [0] * 26
-            for letter in word:
-                count[ord(letter) - ord("a")] += 1
-            if tuple(count) not in res:
-                res[tuple(count)] = [word]
-            else:
-                res[tuple(count)].append(word)
-                
-        return list(res.values())
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        count = {}
+        for string in strs:
+            board = [0] * 26
+            for s in string:
+                board[ord(s) - ord('a')] += 1
+            board = tuple(board)
+            if board not in count:
+                count[board] = []
+            count[board].append(string)
+        return list(count.values())
+        
+        
