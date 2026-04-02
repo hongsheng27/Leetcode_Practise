@@ -1,0 +1,57 @@
+LeetCode 14 - Longest Common Prefix
+題目：給一組字串，找出它們的最長共同前綴（prefix）。
+
+關鍵定義：Prefix = 從 index 0 開始的連續片段。 "flower" 的 prefix 有："f", "fl", "flo", "flow", "flowe", "flower"。 不是任意位置的子字串（substring），一定從開頭算起。
+
+所以 ["dog", "og", "oga"] 答案是 ""，不是 "og"。 "og" 是 common substring，不是 common prefix。
+
+關鍵觀察：
+拿第一個字串當基準，逐字元問：「這個位置的字元，所有字串都一樣嗎？」
+一樣就繼續，不一樣就停。因為是 prefix，中間斷了就不用再往後找了。
+
+=== 1. 暴力解 startswith 版 ===
+
+每一輪把新字元加進 res，用 startswith(res) 跟每個字串比。
+
+問題：startswith 每次從頭比對整個 res。
+當 res = "flo" 時，比 f, l, o 三個字元，但 f 和 l 上一輪已經確認過了。
+重複做工。
+
+另一個冗餘：先加字元到 res，失敗再砍掉（return res[:-1]）。
+「做了再撤回」不如「先查再加」。
+
+=== 2. 逐字元比對 O(n × m) ===
+
+外層遍歷字元 index i，內層遍歷每個字串 j。
+每一輪只比一個字元 strs[j][i] == strs[0][i]，不回頭。
+
+注意 edge case：strs[j] 可能比 strs[0] 短。
+如果 i 超出 strs[j] 的長度，代表那個字串到底了，直接 return。
+
+n = 字串數量，m = strs[0] 的長度。
+外層跑 m 次，內層跑 n 次 → O(n × m)。
+最壞情況所有字串完全相同，你必須看過每個字串的每個字元，不可能更快。
+
+=== 為什麼這是 prefix 而不是 substring ===
+
+兩個條件合在一起保證了只找 prefix：
+
+i 從 0 開始 → 一定從開頭比
+不一致就直接 return → 中間斷了就停，不跳過繼續找
+如果是 substring，斷了不能停，還得繼續往後找其他位置的匹配，完全不同的演算法。
+
+=== 思路鏈 ===
+
+看到 "prefix" → 只從 index 0 開始，不是任意位置
+人類直覺：從左到右逐字元比，不一樣就停
+直覺翻成程式：外層遍歷 index，內層遍歷每個字串
+startswith 會重複比對 → 改成只比 strs[j][i]
+先加再砍 → 改成先查再加
+=== 反思 ===
+
+一開始把 prefix 跟 substring 搞混，以為要處理「重複不是從開頭開始」的情況，甚至想用 Trie。
+但題目說的是 prefix，定義就是從 index 0 開始，所以逐字元從頭比就夠了。
+
+問自己：「題目的關鍵字我真的理解了嗎？」
+Prefix、Suffix、Substring 三個字意思完全不同，搞清楚定義再動手。
+
