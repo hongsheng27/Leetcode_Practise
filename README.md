@@ -76,6 +76,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
+| [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
 | [0746-min-cost-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0746-min-cost-climbing-stairs) |
@@ -131,6 +132,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0496-next-greater-element-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0496-next-greater-element-i) |
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
+| [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
@@ -451,6 +453,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
+| [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 ## Union Find
 |  |
@@ -506,6 +509,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0146-lru-cache](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0146-lru-cache) |
 | [0206-reverse-linked-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0206-reverse-linked-list) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
+| [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 ## Tree
 |  |
 | ------- |
@@ -633,6 +637,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0572-subtree-of-another-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0572-subtree-of-another-tree) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
+| [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 ## Binary Search Tree
 |  |
 | ------- |
