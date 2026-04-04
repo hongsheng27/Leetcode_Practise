@@ -9,12 +9,9 @@ class MyHashSet:
         self.setList[index].append(key)
     def remove(self, key: int) -> None:
         index = key % 1000
-        if not self.setList[index]: return
-        lastElem = self.setList[index][-1]
         for i, elem in enumerate(self.setList[index]):
             if elem == key:
-                self.setList[index][i] = lastElem
-                self.setList[index].pop()
+                self.setList[index].pop(i)
     def contains(self, key: int) -> bool:
         index = key % 1000
         for elem in self.setList[index]:
