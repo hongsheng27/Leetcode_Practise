@@ -14,7 +14,6 @@ class MyHashMap:
         index = key % len(self.mapList)
         for i, elem in enumerate(self.mapList[index]):
             k, v = elem
-            print(k, v)
             if k == key:
                 return v
         return -1
