@@ -1,13 +1,30 @@
 class MyHashSet:
     def __init__(self):
-        self.count = {}
+        self.setList = [[] for _ in range(1000)]
     def add(self, key: int) -> None:
-        self.count[key] = 1
+        index = key % 1000
+        for elem in self.setList[index]:
+            if elem == key:
+                return
+        self.setList[index].append(key)
     def remove(self, key: int) -> None:
-        if key in self.count:
-            del self.count[key]
+        index = key % 1000
+        if not self.setList[index]: return
+        lastElem = self.setList[index][-1]
+        for i, elem in enumerate(self.setList[index]):
+            if elem == key:
+                self.setList[index][i] = lastElem
+                self.setList[index].pop()
     def contains(self, key: int) -> bool:
-        return key in self.count
+        index = key % 1000
+        for elem in self.setList[index]:
+            if elem == key:
+                return True
+        return False
+
+    
+
+        
 
 
 # Your MyHashSet object will be instantiated and called as such:
