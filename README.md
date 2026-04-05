@@ -62,6 +62,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0283-move-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0283-move-zeroes) |
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0300-longest-increasing-subsequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0300-longest-increasing-subsequence) |
+| [0303-range-sum-query-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0303-range-sum-query-immutable) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
@@ -263,6 +264,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0209-minimum-size-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0209-minimum-size-subarray-sum) |
 | [0238-product-of-array-except-self](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0238-product-of-array-except-self) |
+| [0303-range-sum-query-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0303-range-sum-query-immutable) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 ## Matrix
@@ -451,6 +453,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0271-encode-and-decode-strings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0271-encode-and-decode-strings) |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
+| [0303-range-sum-query-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0303-range-sum-query-immutable) |
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
