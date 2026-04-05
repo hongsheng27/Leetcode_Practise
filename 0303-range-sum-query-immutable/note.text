@@ -1,0 +1,32 @@
+LeetCode 303 - Range Sum Query Immutable
+題目：給一個不會變的整數陣列，多次查詢某個區間 [left, right] 的和。
+
+解題思路：Prefix Sum
+
+第一個要解決的問題：sumRange 被呼叫多次，每次都跑迴圈太慢。 暴力解：每次查詢都 for loop 從 left 加到 right → O(n)。 陣列不會變，為什麼每次都重新加？ 優化：在 init 時先算好 prefix sum，之後每次查詢只要一次減法 → O(1)。
+
+第二個要解決的問題：區間和怎麼用 prefix sum 算？
+prefix[i] = 前 i 個元素的和。
+sumRange(left, right) = prefix[right + 1] - prefix[left]。
+本質：「前 right+1 個的和」減掉「前 left 個的和」= 中間那段。
+
+第三個要解決的問題：left == 0 時 prefix[left - 1] 會越界。
+不補 0 的寫法：prefix = [nums[0], nums[0]+nums[1], ...]
+sumRange 需要 if left == 0 特殊處理，否則 prefix[-1] 拿到最後一個元素。
+補 0 的寫法：prefix = [0, nums[0], nums[0]+nums[1], ...]
+統一公式 prefix[right + 1] - prefix[left]，不需要 if 判斷。
+
+程式碼（補 0 版）： class NumArray: def init(self, nums): self.prefix = [0] for n in nums: self.prefix.append(self.prefix[-1] + n)
+
+  def sumRange(self, left, right):
+      return self.prefix[right + 1] - self.prefix[left]
+複雜度：init O(n) 時間 O(n) 空間，sumRange O(1) 時間。
+
+踩過的坑：
+
+prefix 的減法 index 容易搞混。 sumRange(2, 5) = prefix[5] - prefix[1] ← 這是不補 0 的版本，index 要自己對。 補 0 之後變成 prefix[6] - prefix[2]，統一公式 prefix[right+1] - prefix[left]，不用記特殊 case。
+補 0 技巧不只是讓這題更乾淨，後面 560、523 搭配 hashmap 時， 沒有這個初始 0 會到處加特殊判斷，code 會很亂。現在就養成習慣。
+觸發關鍵字：
+看到「多次查詢區間和」「陣列不會變」→ prefix sum 預處理。
+核心：用 O(n) 的預處理，把每次查詢從 O(n) 降到 O(1)。
+
