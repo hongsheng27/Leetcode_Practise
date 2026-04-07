@@ -5,7 +5,7 @@ class Solution:
             if n == 0: n = -1
             newNums.append(n)
         prefix = [0]
-        count = {0: 0}
+        count = {0: -1}
         res = 0
 
         for r in range(len(newNums)):
@@ -14,12 +14,9 @@ class Solution:
 
             if curSum in count:
                 l = count[curSum]
-                res = max(res, r + 1 - l)
-
-            if curSum not in count:
-                count[curSum] = r + 1
+                res = max(res, r - l)
             else:
-                count[curSum] = min(count[curSum], r + 1)
+                count[curSum] = r
         return res
             
 
