@@ -14,7 +14,6 @@ class Solution:
             while l < r and not isAlphanumeric(s[r]):
                 r -= 1
             if s[l].lower() != s[r].lower():
-                print(l, r)
                 return False
             l += 1
             r -= 1
