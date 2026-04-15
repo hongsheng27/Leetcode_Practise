@@ -1,20 +1,24 @@
-class Solution(object):
-    def isPalindrome(self, s):
-        left, right = 0, len(s) - 1
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        def isAlphanumeric(char):
+            return (ord('a') <= ord(char) <= ord('z') or
+                    ord('A') <= ord(char) <= ord('Z') or
+                    ord('0') <= ord(char) <= ord('9'))
+
+        l = 0
+        r = len(s) - 1
         
-        while left < right:
-            while left < right and not self.isAlphaNumeric(s[left]):
-                left += 1
-            while left < right and not self.isAlphaNumeric(s[right]):
-                right -= 1
-            if s[left].lower() != s[right].lower():
+        while l < r:
+            while l < r and not isAlphanumeric(s[l]):
+                l += 1
+            while l < r and not isAlphanumeric(s[r]):
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                print(l, r)
                 return False
-
-            left += 1
-            right -= 1       
-
+            l += 1
+            r -= 1
         return True
-    def isAlphaNumeric(self, c):
-        return (ord("A") <= ord(c) <= ord("Z") or 
-                ord("a") <= ord(c) <= ord("z") or 
-                ord("0") <= ord(c) <= ord("9"))
+            
+
+       
