@@ -1,0 +1,8 @@
+125. Valid Palindrome
+題目概述： 給一個字串，忽略非英數字元、不分大小寫，判斷是否為回文。
+解題邏輯： 左右雙指標從兩端往中間靠。遇到非英數字元就跳過（內層 while），兩邊都停在有效字元時，轉小寫比較，不同就 return False。全部比完沒問題就是回文。
+踩過的坑：
+
+手刻 isAlphanumeric 時，ord(char) - ord('a') < 26 少了下界檢查，負數也會通過。要用 0 <= ord(char) - ord('a') < 26 或直接用 char.isalnum()。
+
+複雜度： O(n) time / O(1) space
