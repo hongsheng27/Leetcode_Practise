@@ -1,10 +1,8 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        def palindrome(st):
-            l = 0
-            r = len(st) - 1
+        def palindrome(l, r):
             while l < r:
-                if st[l] != st[r]:
+                if s[l] != s[r]:
                     return False
                 r -= 1
                 l += 1
@@ -14,7 +12,7 @@ class Solution:
         r = len(s) - 1
         while l < r:
             if s[l] != s[r]:
-                return palindrome(s[l + 1: r + 1]) or palindrome(s[l: r])
+                return palindrome(l + 1, r) or palindrome(l, r - 1)
             l += 1
             r -= 1
         return True
