@@ -8,8 +8,10 @@ class Solution:
             rightMax = max(rightMax, height[r])
             if leftMax <= rightMax:
                 l += 1
-                total += max(0, leftMax - height[l])
+                if l < r:
+                    total += max(0, leftMax - height[l])
             else:   
                 r-= 1
-                total += max(0, rightMax - height[r])
+                if l < r:
+                    total += max(0, rightMax - height[r])
         return total
