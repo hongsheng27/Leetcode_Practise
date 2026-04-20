@@ -1,0 +1,13 @@
+189. Rotate Array
+題目概述： 給一個整數陣列，把最後 k 個元素搬到最前面，in-place 完成。
+解題邏輯： 三次 reverse trick。先 k = k % N 防溢出，然後：
+1.reverse 整個陣列
+2.reverse 前 k 個 
+3.reverse 剩下的
+例如 [1,2,3,4,5] k=2：[5,4,3,2,1] → [4,5,3,2,1] → [4,5,1,2,3]。
+
+踩過的坑：
+知道 start index 但想不到怎麼 in-place 搬運。這題就是背 trick——三次 reverse 把前後兩段各自歸位。知道就秒寫，不知道很難推。
+
+相關： Rotate List (61) 是 linked list 版本，概念不同（找斷點重接指標），但 k % N 這步一樣。
+複雜度： O(n) time / O(1) space
