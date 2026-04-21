@@ -6,12 +6,13 @@ class Solution:
                 string_q = deque()
                 while stack and stack[-1] != "[":
                     string_q.appendleft(stack.pop())
+                # pop [
                 stack.pop()
                 number_q = deque()
     
                 while stack and self.isNumber(stack[-1]):
                     number_q.appendleft(stack.pop())
-                stack = stack + list(int("".join(number_q)) * string_q)
+                stack.extend(int("".join(number_q)) * string_q)
                 
             else:
                 stack.append(c)
