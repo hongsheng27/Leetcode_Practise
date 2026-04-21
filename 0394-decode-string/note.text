@@ -1,0 +1,11 @@
+394. Decode String
+題目概述： 給一個編碼字串如 3[a2[c]]，解碼成 accaccacc。數字代表重複次數，方括號內是要重複的內容，可以巢狀。
+
+解題邏輯： 遇到 ] 之前，所有字元無腦 push 進 stack。遇到 ] 時往回 pop：先 pop 出字串（到 [ 為止），再 pop 掉 [，再 pop 出數字，然後把「數字 × 字串」展開後 extend 回 stack。最後 join 整個 stack 就是答案。
+
+踩過的坑：
+字串拼接 substr = pop + substr 是 O(n²)，因為字串 immutable 每次都複製整個舊字串。
+用 deque appendleft 或 list append + reverse 都是 O(n)。
+stack.extend(...) 比 stack = stack + list(...) 好，避免複製整個 stack。
+
+複雜度： O(S) time / O(S) space，S 是解碼後字串的總長度
