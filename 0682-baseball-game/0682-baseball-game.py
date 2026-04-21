@@ -10,8 +10,6 @@ class Solution:
                 stack.pop()
             else:
                 stack.append(int(o))
-        total = 0
-        for c in stack:
-            total += int(c)
-        return total
+        
+        return sum(stack)
         
