@@ -6,5 +6,3 @@ class Solution:
                 nums[s] = nums[f]
                 s += 1
         return s
-
-        
