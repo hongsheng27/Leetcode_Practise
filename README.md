@@ -462,6 +462,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0143-reorder-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0143-reorder-list) |
 | [0150-evaluate-reverse-polish-notation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0150-evaluate-reverse-polish-notation) |
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
+| [0225-implement-stack-using-queues](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0225-implement-stack-using-queues) |
 | [0394-decode-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0394-decode-string) |
 | [0496-next-greater-element-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0496-next-greater-element-i) |
 | [0503-next-greater-element-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0503-next-greater-element-ii) |
@@ -479,6 +480,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0155-min-stack](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0155-min-stack) |
 | [0208-implement-trie-prefix-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0208-implement-trie-prefix-tree) |
 | [0211-design-add-and-search-words-data-structure](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0211-design-add-and-search-words-data-structure) |
+| [0225-implement-stack-using-queues](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0225-implement-stack-using-queues) |
 | [0271-encode-and-decode-strings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0271-encode-and-decode-strings) |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
@@ -524,6 +526,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Queue
 |  |
 | ------- |
+| [0225-implement-stack-using-queues](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0225-implement-stack-using-queues) |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 ## Monotonic Queue
