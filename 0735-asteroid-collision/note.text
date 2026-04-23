@@ -1,0 +1,15 @@
+735. Asteroid Collision
+題目概述： 給一個陣列代表小行星，正數往右、負數往左，絕對值是大小。相遇時小的爆炸，一樣大兩個都炸。回傳碰撞後剩下的小行星。
+解題邏輯： stack 模擬。遍歷每個 a，用 alive flag 追蹤 a 是否存活。碰撞條件是 stack[-1] > 0 and a < 0（右向遇左向），其他方向組合不會撞。三種結果：
+
+abs(stack[-1]) < abs(a) → pop stack top，繼續 while
+abs(stack[-1]) > abs(a) → alive = False，a 被摧毀
+相等 → pop stack top，alive = False，兩個都毀
+
+迴圈結束後，alive 為 True 才 append。
+踩過的坑：
+
+碰撞只發生在「右向遇左向」：stack[-1] > 0 and a < 0。反方向（左向遇右向）是兩個往外飛走，不會撞。
+等量相撞需要 flag 控制，因為同時要 pop 又要阻止 append。用一個 boolean 同時控制 while 迴圈和最後 append 的條件，很乾淨。
+
+複雜度： O(n) time / O(n) space
