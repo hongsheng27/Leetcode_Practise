@@ -8,7 +8,7 @@ class Solution:
                 l = mid + 1
             else:
                 r = mid
-        return nums[l]
+        return nums[r]
 
 
             
