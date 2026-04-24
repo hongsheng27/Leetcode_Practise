@@ -1,0 +1,10 @@
+35. Search Insert Position
+題目概述： 給一個已排序且無重複的整數陣列和一個 target，如果 target 存在就回傳 index，不存在就回傳它應該插入的位置（讓陣列維持排序）。要求 O(log n)。
+
+解題邏輯： 標準 binary search（l <= r 模板）。nums[mid] == target 就 return mid；nums[mid] < target 就 l = mid + 1；nums[mid] > target 就 r = mid - 1。迴圈結束（沒找到）時，l 就是 target 應該插入的位置。
+
+踩過的坑：
+一開始想用 min(l, r) + 1 處理沒找到的 case，邏輯對但繞了。迴圈結束時永遠 r = l - 1（兩指標交錯前進最終差 1），所以直接 return l 最乾淨。
+為什麼 l 就是答案？每次 l = mid + 1 代表「mid 及左邊都 < target」，每次 r = mid - 1 代表「mid 及右邊都 > target」。結束時 l 指向「第一個 >= target 的位置」，剛好是插入點。
+
+複雜度： O(log n) time / O(1) space
