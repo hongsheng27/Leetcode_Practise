@@ -10,4 +10,4 @@ class Solution:
                 l = mid + 1
             else:
                 return mid
-        return min(l, r) + 1
+        return l
