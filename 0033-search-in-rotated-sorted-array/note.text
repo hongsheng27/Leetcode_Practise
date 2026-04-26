@@ -1,0 +1,24 @@
+33. Search in Rotated Sorted Array
+題目概述： 給一個被旋轉過的已排序陣列（無重複，如 [4,5,6,7,0,1,2]），找 target 的 index，找不到 return -1。要求 O(log n)。
+
+解題邏輯： l <= r 模板。每次 mid 後：
+nums[mid] == target → return mid
+先判斷哪半排序： nums[l] <= nums[mid] 代表左半排序，否則右半排序
+再判斷 target 是否落在排序那半的範圍：
+
+左半排序：nums[l] <= target < nums[mid] → 走左半 r = mid - 1，否則走右半 l = mid + 1
+右半排序：nums[mid] < target <= nums[r] → 走右半 l = mid + 1，否則走左半 r = mid - 1
+
+
+核心觀念：
+Binary search 需要單調區間。旋轉陣列每次切一半，必有一半仍是排序的。
+先找出排序那半，再判斷 target 是否落在那個範圍——這是關鍵跳躍，不是直覺，是學來的套路。
+
+踩過的坑：
+
+1.第一直覺是比較 target 和 nums[mid]，但旋轉陣列裡這個比較不單調，無法直接決定走哪邊。
+2.巢狀 if 太深時拆解：先確認哪半排序（外層條件），再用複合範圍 nums[l] <= target < nums[mid] 判斷（內層條件），結構平坦兩層。
+
+觸發關鍵字： 旋轉排序陣列 + 找 target → 「先判斷哪半排序，再看 target 在不在範圍」
+相關題： Find Minimum in Rotated (153) 是只找轉折點，邏輯簡單；本題多了 target 判斷，難度跳一級。
+複雜度： O(log n) time / O(1) space

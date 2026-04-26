@@ -1,0 +1,16 @@
+153. Find Minimum in Rotated Sorted Array
+題目概述： 給一個被旋轉過的已排序陣列（無重複，如 [4,5,6,7,0,1,2]），找出最小值。要求 O(log n)。
+
+解題邏輯： l < r 模板。比較 nums[mid] 和 nums[r]：
+nums[mid] > nums[r] → 最小值在右半（mid 確定不是），l = mid + 1
+否則 → 最小值在左半（mid 可能就是），r = mid
+
+迴圈結束時 l == r，nums[l] 就是答案。
+為什麼比較 nums[mid] 和 nums[r]？ 這個比較是單調可判斷的：旋轉後的陣列分成兩段遞增區段，右段的值都小於左段。nums[mid] > nums[r] 代表 mid 在左段（最小值在右段）；nums[mid] <= nums[r] 代表 mid 在右段（最小值在 mid 或更左邊）。
+踩過的坑：
+
+十個月前的寫法用 res = float('inf') 追蹤最小值 + 早停優化 + 邊界特判，邏輯繞。l < r 模板讓兩指標收斂成一點，nums[l] 自然就是答案，不需要 res 變數、不需要 if len(nums) == 1、不需要 if nums[l] < nums[r]: break。
+核心觀念：讓模板自然收斂，不要追蹤變數當補丁。
+
+觸發關鍵字： 旋轉排序陣列 + 找最小值 / 找轉折點 → binary search + nums[mid] vs nums[r]
+複雜度： O(log n) time / O(1) space
