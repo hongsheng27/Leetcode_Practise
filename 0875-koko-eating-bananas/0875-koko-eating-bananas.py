@@ -3,7 +3,7 @@ class Solution:
         maxValue = max(piles)
         l = 1
         r = maxValue
-        res = float('inf')
+        res = r
         while l <= r:
             m = (l + r) // 2
             total = 0
