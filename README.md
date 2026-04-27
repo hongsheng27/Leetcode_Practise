@@ -94,6 +94,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
+| [0875-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0875-koko-eating-bananas) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
@@ -421,6 +422,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
+| [0875-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0875-koko-eating-bananas) |
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
