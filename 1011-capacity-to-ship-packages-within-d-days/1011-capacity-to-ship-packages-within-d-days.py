@@ -1,17 +1,13 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         maxSum = sum(weights)
-        maxValue = max(weights)
-        l = 1
+        l = max(weights)
         r = maxSum
         res = r
         while l <= r:
             m = (l + r) // 2
             total = 0
             d = 0
-            if m < maxValue: 
-                l = m + 1
-                continue
             for w in weights:
                 if total + w > m:
                     d += 1
