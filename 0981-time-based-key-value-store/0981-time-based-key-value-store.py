@@ -11,15 +11,16 @@ class TimeMap:
         if key not in self.record: return ""
         l = 0
         r = len(self.record[key]) - 1
+        value = self.record[key]
         while l <= r:
             m = (l + r) // 2
-            if self.record[key][m][0] > timestamp:
+            if value[m][0] > timestamp:
                 r = m - 1
-            elif self.record[key][m][0] < timestamp:
+            elif value[m][0] < timestamp:
                 l = m + 1
             else:
-                return self.record[key][m][1]
-        return "" if r < 0 else self.record[key][r][1]
+                return value[m][1]
+        return "" if r < 0 else value[r][1]
         
         
 
