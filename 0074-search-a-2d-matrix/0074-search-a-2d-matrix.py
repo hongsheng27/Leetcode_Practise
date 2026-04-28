@@ -1,26 +1,27 @@
 class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        index = -1
-
-        top, bot = 0, len(matrix) - 1
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:  
+        top = 0
+        bot = len(matrix) - 1
+        row = -1
         while top <= bot:
-            row = (bot + top) // 2
-            if matrix[row][-1] < target:
-                top = row + 1
-            elif matrix[row][0] > target:
-                bot = row - 1
+            m = (top + bot) // 2
+            if target < matrix[m][0]:
+                bot = m - 1
+            elif target > matrix[m][-1]:
+                top = m + 1
             else:
+                row = m
                 break
-        if top > bot:
-            return False
+        if row == -1: return False
 
-        left, right = 0, len(matrix[0]) - 1
-        while left <= right:
-            middle = (right + left) // 2
-            if matrix[row][middle] < target:
-                left = middle + 1
-            elif matrix[row][middle] > target:
-                right = middle - 1
+        l = 0
+        r = len(matrix[0]) - 1
+        while l <= r:
+            m = (l + r) // 2
+            if target < matrix[row][m]:
+                r = m - 1
+            elif target > matrix[row][m]:
+                l = m + 1
             else:
                 return True
         return False
