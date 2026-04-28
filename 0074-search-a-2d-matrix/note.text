@@ -1,0 +1,25 @@
+74. Search a 2D Matrix
+
+  題目概述：
+  給一個 m x n 矩陣和 target，判斷 target 是否存在。每列由左到右遞增，且下一列第一個數 > 上一列最後一個數，所以整個 2D matrix 攤平成 1D 後仍是 sorted array。
+
+  解題邏輯：
+  用兩段 binary search。
+
+  第一段找 target 可能在哪一 row：
+  若 target < matrix[mid][0]，往上找。
+  若 target > matrix[mid][-1]，往下找。
+  否則 target 落在這列範圍內，記下 row。
+
+  第二段在該 row 裡做標準 binary search：
+  等於 target 就 return True，小於 target 往右，大於 target 往左。
+
+  踩過的坑：
+  row 要先設成 -1。雖然 Python while 沒有 block scope，但如果 target 不在任何 row 範圍內，row 不會被賦值；所以 row == -1 時要 return False。
+
+  row search 方向要記清楚：
+  target < matrix[mid][0] => bot = mid - 1
+  target > matrix[mid][-1] => top = mid + 1
+
+  複雜度：
+  O(log m + log n) = O(log(m * n)) time / O(1) space
