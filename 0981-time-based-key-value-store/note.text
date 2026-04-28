@@ -1,0 +1,37 @@
+981. Time Based Key-Value Store
+
+  題目概述：
+  設計一個 key-value store，set(key, value, timestamp) 會在指定時間存值；get(key, timestamp) 要回傳該 key 在 timestamp 當下能看到的最新 value。若沒有剛好 timestamp，要回傳「小
+  於等於 timestamp 的最近一次 value」；若不存在則回傳 ""。
+
+  解題邏輯：
+  用 hashmap 存每個 key 的歷史紀錄：
+  key -> [[timestamp, value], ...]
+
+  題目保證同一個 key 的 timestamp 會遞增，所以每個 key 對應的 list 本身就是 sorted。
+  set 時直接 append，O(1)。
+
+  get 時對該 key 的 timestamp list 做 binary search。
+  如果找到 timestamp 完全相等，直接回傳 value。
+  如果沒找到，binary search 結束後，r 會停在最後一個 <= target timestamp 的 index。
+  所以答案是 values[r][1]。
+  如果 r < 0，代表所有 timestamp 都比查詢時間晚，沒有可用 value，回傳 ""。
+
+  踩過的坑：
+  1.這題不是找 exact match，而是找「小於等於 timestamp 的最近一次紀錄」。
+  一開始雖然有想到要回傳 r，但還是需要畫圖確認為什麼 r 是答案。
+
+  關鍵理解：
+  binary search 結束時，l 和 r 會交錯。
+  l 會指向第一個 > timestamp 的位置。
+  r 會指向最後一個 <= timestamp 的位置。
+  所以沒找到 exact match 時，要用 r，而不是 l。
+
+  例如 timestamps = [1, 4, 7]，查 timestamp = 5：
+  最後 r 會停在 index 1，也就是 timestamp 4。
+  這正是小於等於 5 的最近一次紀錄。
+
+  複雜度：
+  set: O(1)
+  get: O(log n)
+  space: O(n)
