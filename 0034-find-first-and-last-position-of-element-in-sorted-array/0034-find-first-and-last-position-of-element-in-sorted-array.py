@@ -15,15 +15,12 @@ class Solution:
         start = l
         
         l = 0 
-        r = len(nums) - 1
-        res = float('inf')
-        while l <= r:
+        r = len(nums)
+        while l < r:
             m = (l + r) // 2
             if nums[m] <= target:
                 l = m + 1
             else:
-                res = min(res, m)
-                r = m - 1
-        end = res - 1 if res != float('inf') else len(nums) - 1
-        return [start, end]
+                r = m
+        return [start, l - 1]
         
