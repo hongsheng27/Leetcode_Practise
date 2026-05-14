@@ -1,0 +1,14 @@
+206. Reverse Linked List
+題目概述： 給一個 singly linked list 的 head，反轉後回傳新的 head。例如 1→2→3→null 變 3→2→1→null。
+
+解法 1：迭代（主流）
+核心：先存 nxt = cur.next，再改 cur.next = prev。 順序反了會丟失後面的 list。
+
+解法 2：遞迴（trick）
+
+變數別名陷阱： tmp = cur 是兩個變數指向同一個 node，改 cur.next 等同改 tmp.next。要存「下一個 node」就直接 nxt = cur.next，不要存 cur 本身。
+遞迴版的 newHead 不是 head.next，是整個 list 的尾巴。所以反轉動作是 head.next.next = head（讓鄰居反指回來），不是 newHead.next = head（會把頭接到尾巴後面）。
+每層 recursion 的工作對象是 head 和 head.next，跟 newHead 無關。newHead 只是用來最後 return。
+
+
+複雜度： O(n) time / O(1) space（迭代）或 O(n) space（遞迴 stack）
