@@ -1,0 +1,24 @@
+143. Reorder List
+題目概述： 給一個 linked list L0→L1→...→Ln，重排成 L0→Ln→L1→Ln-1→L2→Ln-2→...，in-place 修改。
+解題邏輯： 三步驟組合題，每步都是經典模板。
+
+核心觀念：
+前半長、後半短，後半當插入物：
+while fast.next and fast.next.next 讓 slow 停在前半段尾巴
+奇數長度時 list1 比 list2 多 1，偶數時等長
+合併用 while list2（短的先用完）
+必須切斷前半段 (slow.next = None)，否則 list1 走著走著會跟 list2 撞在一起
+
+踩過的坑：
+一開始想 reverse copy + 新 list，不符合 in-place 要求
+找中點後忘記切斷，list1 跟 list2 共用後半段，合併爆炸
+反轉時 prev 和 list2 變數混用，導致自我參照沒真的反轉。反轉模板就用標準 prev / cur / nxt，不要省變數
+心智模型——忘記 fast/slow 條件時，畫 1→2→3→4→5 推目標結果：兩個 3 在中間，list2 提供 5,4、list1 提供 1,2,3，自然推出「前半長後半短」
+
+相關模板：
+
+找中點（141 變體）
+反轉 list（206）
+合併兩 list（21 變體）
+
+複雜度： O(n) time / O(1) space
