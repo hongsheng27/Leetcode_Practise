@@ -1,0 +1,11 @@
+21. Merge Two Sorted Lists
+題目概述： 給兩個已排序的 linked list，合併成一個排序好的 list，回傳新 head。
+解題邏輯： Dummy node 模板。建一個 dummy，tail 指標跟著走。每輪比較 list1.val 和 list2.val，把小的接到 tail.next，然後該邊前進、tail 前進。其中一邊用完後，剩下那邊整段接上去 tail.next = list1 or list2。最後 return dummy.next。
+核心技巧：
+
+Dummy node：省掉「第一個 node 怎麼處理」的特判，所有 node 都用同樣邏輯接。最後 return dummy.next 跳過 dummy 本身。
+list1 or list2：Python 的 or 回傳第一個 truthy 值。其中一個是 None 時自動接上另一個剩餘的整段，不用額外 while 補齊。
+ListNode() 預設值：val=0, next=None，所以 dummy = ListNode() 直接可用。
+
+踩過的坑：dummy node 模板熟練, 但是 edge case 要多想，例如list1 = None or list2 = None。
+複雜度： O(n + m) time / O(1) space（重用原 node，沒建新節點）
