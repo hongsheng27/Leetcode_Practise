@@ -1,0 +1,14 @@
+141. Linked List Cycle
+題目概述： 給一個 linked list 的 head，判斷是否有環（有 node 的 next 指回前面某個 node）。
+解題邏輯： Floyd 快慢指標模板。slow 一步、fast 兩步，同步移動。如果有環，fast 會追上 slow 相遇；沒環的話 fast 先碰到 None。
+
+while fast and fast.next 一行涵蓋所有邊界：fast 會先碰到邊界
+為什麼一定會相遇？ 有環時 fast 比 slow 快一步，每輪距離 -1，最終追上。沒環時 fast 先碰 None 終止。
+變數命名： slow / fast 比 first / second 直覺。
+
+踩過的坑：
+一開始把 fast 拆成兩次前進（先 fast = fast.next，再 fast = fast.next.next），每步都單獨判斷邊界，邏輯爆炸。直接 fast = fast.next.next + 迴圈條件保護更乾淨。
+
+Floyd 快慢指標模板適用： 找環、找中點、找環入口（Linked List Cycle II）、找重複數字（Find the Duplicate Number）。
+複雜度： O(n) time / O(1) space
+因為 s f 距離 1, n - 1, n-1 每次（n + 1 - 2）收縮 1，O(n) 相遇
