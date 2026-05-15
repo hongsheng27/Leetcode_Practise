@@ -24,10 +24,9 @@ class Solution:
             cur.next = prev
             prev = cur
             cur = nxt
-
+        # merge
         list2 = prev
         list1 = head
- 
         while list2:
             nxt1 = list1.next
             nxt2 = list2.next
