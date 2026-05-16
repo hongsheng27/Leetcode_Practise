@@ -20,11 +20,8 @@ class Solution:
             cur = cur.next
             nth -= 1
 
-        if n != 1:
-            cur.next = cur.next.next
-        else:
-            cur.next = None
-
+        
+        cur.next = cur.next.next
         return dummy.next
 
 
