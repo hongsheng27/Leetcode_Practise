@@ -1,0 +1,18 @@
+19. Remove Nth Node From End of List
+題目概述： 給一個 linked list，刪除倒數第 n 個 node，回傳新 head。
+解題邏輯： Dummy node + 快慢指標 one pass。
+
+核心觀念：
+兩指標保持 n 步距離：fast 先走 n 步，之後同步前進。fast 到尾巴時，slow 正好停在倒數第 n 個的前一個 node。
+Dummy node 處理刪頭邊界：如果要刪的是第一個 node，slow 從 dummy 出發剛好能指到 head 並做 slow.next = slow.next.next，不用特判。
+
+踩過的坑：
+一開始用兩次掃描（算長度 + 找位置）也對，但面試會被追問 one pass。
+複雜度一樣 O(n)，差別只在常數和對快慢指標的掌握。
+
+快慢指標 + 距離保持模板適用：
+
+Find K-th from End
+Linked List Cycle II（找環入口時 slow 和 fast 也是有距離關係）
+
+複雜度： O(n) time / O(1) space
