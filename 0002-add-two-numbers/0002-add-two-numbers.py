@@ -12,11 +12,10 @@ class Solution:
             val2 = l2.val if l2 else 0
             total = val1 + val2 + quot
             tail.next = ListNode(total % 10)
-            quot = (val1 + val2 + quot) // 10
+            quot = total // 10
 
             tail = tail.next
-       
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
-            
+
         return dummy.next
