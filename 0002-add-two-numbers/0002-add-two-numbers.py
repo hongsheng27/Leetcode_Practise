@@ -15,9 +15,8 @@ class Solution:
             quot = (val1 + val2 + quot) // 10
 
             tail = tail.next
-            if l1:
-                l1 = l1.next
-            if l2:
-                l2 = l2.next
+       
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
         if quot > 0: tail.next = ListNode(quot)
         return dummy.next
