@@ -1,3 +1,5 @@
+
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -8,35 +10,33 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        slow, fast = head, head.next
-        while fast and fast.next:
+        fast = slow = head
+        while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
         
-        second = slow.next
-        prev = None
+        list2 = slow.next
         slow.next = None
 
-        while second:
-            tmp = second.next
-            second.next = prev
-            prev = second
-            second = tmp
+        #reverse
+        prev = None
+        cur = list2
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        # merge
+        list2 = prev
+        list1 = head
+        while list2:
+            nxt1 = list1.next
+            nxt2 = list2.next
+            list1.next = list2
+            list2.next = nxt1
+            list1 = nxt1
+            list2 = nxt2
 
-        first, second = head, prev
-        while second:
-            tmp1 = first.next
-            tmp2 = second.next
 
-            first.next = second
-            second.next = tmp1
-
-            first = tmp1
-            second = tmp2
         
-    
-
-
-
-
         
