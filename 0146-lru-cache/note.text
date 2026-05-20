@@ -1,0 +1,22 @@
+146. LRU Cache
+題目概述： 設計 Least Recently Used cache。get(key) 取值並標記為最近使用；put(key, value) 插入或更新，超過 capacity 時淘汰最久沒用的 key。兩個操作都要 O(1)。
+解題邏輯： Hashmap + 雙向 linked list（雙哨兵）。
+
+hashmap：key → node，提供 O(1) lookup
+doubly linked list：維護使用順序，head 端是最舊、tail 端是最新
+雙哨兵 (dummy head + dummy tail)：所有真實 node 永遠在中間，刪除/插入不用判斷邊界
+
+
+核心設計觀念：
+抽出 remove 和 addToTail 兩個 helper，所有操作（get、put、淘汰）都是這兩個的組合。沒有 helper 時邏輯會爆炸。
+雙哨兵省掉所有邊界判斷——刪除/插入時 node.prev 和 node.next 永遠存在。
+Node 必須存 key：淘汰最舊 node 時要從 hashmap 也刪掉那個 key，沒存 key 就找不到。
+put 三個 case 統一架構：先處理「拔舊的」（key 已存在 / 容量滿 / 不用拔），再統一建新 node、放 cache、加到 tail。
+
+踩過的坑：
+1.一開始所有邏輯混在一起寫，每個 case 都重複拼接指標，bug 一堆。抽 helper 之後邏輯瞬間清晰。
+2.一開始 Node 只存 val，淘汰時無法從 cache 刪 key。設計階段就要想到 Node 需要哪些欄位。
+
+重要性： 超高頻面試題，FAANG 必考。設計思路（hashmap + doubly linked list + 哨兵 + helper 抽象）是面試展示工程能力的好題材。
+相關題： LFU Cache (460) 進階版，多一層 frequency 排序，難度跳一級。
+複雜度： O(1) get / put / O(capacity) space
