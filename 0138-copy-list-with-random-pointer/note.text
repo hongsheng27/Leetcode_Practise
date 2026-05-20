@@ -1,0 +1,18 @@
+138. Copy List With Random Pointer
+題目概述： 給一個 linked list，每個 node 除了 next 還有一個 random 指標（指向 list 中任意 node 或 None）。做一個 deep copy，新 list 的指標都指向新 node，不能指回原 list。
+解題邏輯： Hashmap (oldToNew) 兩 pass。
+
+pythonoldToNew = {None: None}    # trick：None → None 省 if 判斷
+
+
+核心觀念：
+為什麼要兩 pass？ Random 可能指向後面還沒建立的 node。先一次建完所有新 node，第二輪才能安全連指標。
+{None: None} trick：讓 cur.next 或 cur.random 是 None 時也能正確映射到 None，省掉 if 判斷。
+hashmap 的本質是 old → new 對應表，讓任何時刻拿到 old node 就能 O(1) 找到對應的 new node。
+
+踩過的坑： 
+1.一開始沒想到 oldToNew = {None: None} 的 trick，遇到 cur.next 或 cur.random 是 None 時要寫 if 判斷，邏輯變繁瑣。預先把 None 也放進 map，所有指標複製都能無腦 oldToNew[原指標]。
+
+重要性： 中高頻，Meta 偶爾考。Hashmap 解法簡單，主要展示「先建框架再連線」的兩 pass 思維。
+複雜度： O(n) time / O(n) spaceYou said: {None: None} 一開始沒想到 寫進坑裡{None: None} 一開始沒想到 寫進坑裡下午3:19Claude responded: 踩過的坑：踩過的坑：
+
