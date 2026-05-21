@@ -1,0 +1,21 @@
+92. Reverse Linked List II
+題目概述： 給一個 linked list 和兩個整數 left、right（1-indexed），反轉從第 left 到第 right 個 node 的局部段，回傳新 head。例如 1→2→3→4→5, left=2, right=4 → 1→4→3→2→5。
+解題邏輯： Dummy node + 局部反轉。
+
+核心觀念：
+Dummy node 處理頭部邊界（left=1）：prevLeft 從 dummy 出發，不用特判第一個 node。
+不用先切斷再接——反轉迴圈跑完後，變數狀態本身就帶有重接需要的資訊：
+
+prev = 反轉後的新頭
+cur = 後段第一個 node（迴圈最後一次 cur = nxt 自然走到範圍外）
+
+prevLeft.next 從沒被動過，永遠指向原本的 leftNode，而 leftNode 反轉後正是尾巴。所以 prevLeft.next.next = cur 就是「尾巴接後段」。
+
+踩過的坑：
+1.卡了 45 分鐘——一開始想先「切片」（切斷三段，分別反轉再重接），需要同時記住 prevLeft、middle、end 三個指標，手忙腳亂。
+標準解法的關鍵 trick：讓迴圈結束時的指標狀態自然成為重接資訊，不用先切斷。
+尾部邊界（right=N）也不用特判——cur 自然會走到 None，prevLeft.next.next = None 也正確。
+
+Takeaway： Linked list 進階題的常見技巧——多想想「迴圈結束時各變數的狀態」，往往能省掉 edge case。
+相關題： Reverse Nodes in K Group (25) 是這題的多次重複版，每 k 個就反轉一段。掌握 92 後 25 就有基礎。
+複雜度： O(n) time / O(1) space
