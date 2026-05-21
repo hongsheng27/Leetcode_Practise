@@ -1,0 +1,23 @@
+23. Merge K Sorted Lists
+題目概述： 給 k 個已排序的 linked list，合併成一個排序好的 list。
+解題邏輯： Min-heap 維護每個 list 當前最小的 head。每次 pop 最小、接到 dummy、把 pop node 的 next push 回 heap。
+
+核心觀念：
+Heap 只存 k 個 node（每個 list 當前最前面那個），不是全部 N 個。pop 一個才 push 下一個，size 永遠 ≤ k。
+tuple (val, i, node) 三件套：val 是排序鍵；i 是 tiebreaker 避免 ListNode 沒有 __lt__ 報錯；node 是實際要接的 node。
+i 可以重用：同一個 list 的 node 不會同時在 heap 裡（pop 一個才 push 它的 next），所以 i 永遠唯一作為 tiebreaker。
+
+踩過的坑：
+1.直接 push node 進 heap 會在 val 相同時報錯（ListNode 沒實作 __lt__）。必須包 tuple 加 index 當 tiebreaker。
+2.一開始想用 amount 變數讓每次 push 的 index 都不同，多此一舉——重用原本的 i 就行。
+3.lists = [[]] 在 Python 是 [None]，所以一定要 if head 過濾，不然 head.val 直接 AttributeError。
+
+Heap 初始化的兩種方式：
+
+heappush k 次：O(k log k)
+heapify 一次：O(k)
+
+實務上 N log k 是主項，初始化的常數差異可忽略，面試寫 heappush 即可。
+替代解法（分治，同複雜度）： 兩兩合併直到剩一個，複用 21 的 mergeTwoLists 當 helper。當 follow-up「不用 heap 怎麼解」可上。
+重要性： 高頻，FAANG 常考（特別 Amazon）。Heap 在 linked list 題的代表應用。
+複雜度： O(N log k) time / O(k) space，N 是總 node 數、k 是 list 數量
