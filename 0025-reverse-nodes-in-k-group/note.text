@@ -1,0 +1,19 @@
+25. Reverse Nodes in K Group
+題目概述： 給一個 linked list 和整數 k，每 k 個 node 為一組反轉，最後不足 k 個的維持原順序。例如 1→2→3→4→5, k=2 → 2→1→4→3→5。
+解題邏輯： 92 (Reverse Linked List II) 的多組重複版。每輪：先檢查還剩 >= k 個 node、反轉這 k 個、更新 prevGroupTail 到下一輪。
+
+核心觀念：
+1.每輪都用同樣三步驟：檢查 → 反轉 → 重接。把 92 的單次反轉包進 while True，多組就自然處理。
+2,走 k 步檢查兼找尾巴：用 kth 從 prevGroupTail 走 k 步，遇到 None 直接 return，安全且 kth.next 自然就是 groupNext。
+prev = groupNext 起始的聰明 trick（複用自 92）：反轉迴圈跑完，最後一個被反轉的 node 自動指向後段，不用額外寫 tail.next = groupNext。
+prevGroupTail 的傳遞：原本的第一個 node 反轉後變尾巴，剛好是下一組的 prevGroupTail。
+
+踩過的坑：
+
+1.一開始只寫單組反轉就結束，忘記用 while 包起來處理多組。
+檢查 k 個 node 時直接 cur.next 不判斷 None 會炸，用 kth 走 k 步的同時檢查 None 最安全。
+反轉完忘記更新 prevGroupTail，下一輪會從錯誤位置開始。
+
+Takeaway： 把 Hard 題拆成「已知模板 + 重複結構」。25 看起來嚇人，本質就是「92 跑 N 次」。Linked list 進階題很多都是組合題思路（143 = 找中點 + 反轉 + 合併、25 = 92 跑多次）。
+重要性： 高頻 Hard，Meta 常考、Amazon 也愛出。展示「能把局部模板組合成整體解法」的工程能力。
+複雜度： O(n) time / O(1) space（不算遞迴版本，迭代版本 stack 不增長）Opus 4.7AdaptiveClaude is AI and can make mistakes. Please double-check responses.
