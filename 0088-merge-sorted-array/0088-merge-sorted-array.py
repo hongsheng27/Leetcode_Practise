@@ -8,7 +8,7 @@ class Solution:
         p = m + n - 1
         while p2 >= 0:
             num1 = nums1[p1] if p1 >= 0 else float('-inf')
-            num2 = nums2[p2] if p2 >= 0 else float('-inf')
+            num2 = nums2[p2]
             if num2 > num1:
                 nums1[p] = num2
                 p2 -= 1
