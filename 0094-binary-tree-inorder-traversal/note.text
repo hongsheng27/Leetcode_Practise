@@ -1,0 +1,30 @@
+94. Binary Tree Inorder Traversal
+題目概述： 給一棵二叉樹的 root，回傳 inorder（左 → 根 → 右）遍歷的所有節點 val 組成的 list。
+
+解法 1：遞迴（簡單）
+解法 2：迭代（面試常被追問）
+
+核心：
+1.一路往左走進 stack，到底後 pop 出來訪問
+2.訪問完轉去右子樹，重複「往左走到底」
+3.終止條件 while cur or stack：cur 還有 node 要處理 或 stack 還有未訪問的祖先
+
+
+踩過的坑：
+1.迭代版終止條件用 and 會錯——初始 stack 是空的會直接跳出。要用 or。
+append 是 cur.val，不是整個 node。
+2.Tree 遞迴的 space 是 O(h) 不是 O(n)：stack 只記當前路徑（DFS 是深度優先），pop 完前一個葉子後，新 node 進來深度不會無限累積。任何瞬間 stack 深度 ≤ 樹高 h。
+
+平衡樹：O(log n)
+歪斜樹（最壞）：O(n)
+
+
+
+
+模板觀念：
+
+遞迴版核心三行：dfs(left) → append → dfs(right)，順序就是 inorder
+Preorder 把 append 移到最前：append → dfs(left) → dfs(right)
+Postorder 把 append 放最後：dfs(left) → dfs(right) → append
+
+複雜度： O(n) time / O(h) space
