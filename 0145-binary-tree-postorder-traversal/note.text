@@ -1,0 +1,32 @@
+145. Binary Tree Postorder Traversal
+題目概述： 給一棵二叉樹的 root，回傳 postorder（左 → 右 → 根）遍歷的所有節點 val 組成的 list。
+最短完成時間： 遞迴 3 分鐘；迭代版自己想不出來，看解答後懂
+
+解法 1：遞迴（簡單）
+解法 2：迭代（reverse trick）
+
+核心觀念：reverse trick
+跟 preorder 比較：
+Preorder 順序：根 → 左 → 右（push 順序：right 先、left 後）
+把 push 順序顛倒：left 先、right 後 → 訪問順序變「根 → 右 → 左」
+整個 res reverse → 變「左 → 右 → 根」= postorder ✓
+
+
+踩過的坑：
+1.自己想不到 reverse trick。直覺想「stack 怎麼直接做出後序」，但那需要 lastVisited 變數追蹤右子樹是否訪問過，邏輯繞。reverse trick 把 postorder 變成 preorder 變體，再反轉，思路簡單很多。
+記住順序關係：Postorder 的反向 = 改版 preorder（先右後左）。
+
+
+三種遍歷迭代總結：
+模板Stack 存什麼Preorder 
+(94)inorder: cur 一路往左，到底 pop 訪問，轉 right等等回來訪問的祖先
+(144)prorder: 直接 pop 訪問，push right + left等等要處理的子樹
+(145)postorder:Preorder 變體（push left + right）+ reverse等等要處理的子樹
+
+面試重要性：
+1.遞迴版必須秒寫
+2.迭代版面試極少考，知道 reverse trick 思路即可，不用默寫
+3.真正的 postorder 迭代（不用 reverse、用 lastVisited）可完全跳過
+
+複習策略： 看筆記能講出「跟 preorder 差在哪 + reverse trick」即可。
+複雜度： O(n) time / O(h) space
