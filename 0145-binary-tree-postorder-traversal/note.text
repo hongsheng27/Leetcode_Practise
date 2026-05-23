@@ -1,6 +1,5 @@
 145. Binary Tree Postorder Traversal
 題目概述： 給一棵二叉樹的 root，回傳 postorder（左 → 右 → 根）遍歷的所有節點 val 組成的 list。
-最短完成時間： 遞迴 3 分鐘；迭代版自己想不出來，看解答後懂
 
 解法 1：遞迴（簡單）
 解法 2：迭代（reverse trick）
