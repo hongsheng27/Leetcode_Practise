@@ -16,6 +16,8 @@ class Solution:
                 stack.append(node.left)
             if node.right:
                 stack.append(node.right)
+        # preorder => [root, left, right]
+        # postorder => reverse[root, right, left] => [left, right, root]
         return res[::-1]
         
             
