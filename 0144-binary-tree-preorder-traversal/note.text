@@ -1,0 +1,24 @@
+144. Binary Tree Preorder Traversal
+題目概述： 給一棵二叉樹的 root，回傳 preorder（根 → 左 → 右）遍歷的所有節點 val 組成的 list。
+
+解法 1：遞迴（簡單）
+解法 2：迭代
+
+核心： 先 push right，再 push left。Stack 是 LIFO，所以 left 會先被 pop，符合「根 → 左 → 右」順序。
+
+踩過的坑：
+1.混淆「放進 stack 順序」和「訪問順序」。Preorder 的關鍵差別是「何時訪問當前 node」：
+2.Inorder：左子樹處理完才訪問當前 → stack 存的是「等等回來訪問」的祖先 → 只 push left，要用 cur 變數推進
+3.Preorder：立刻訪問當前 → stack 存的是「等等要處理」的子樹 → left/right 都 push，不需要 cur 變數
+
+一開始用 inorder 思維寫 preorder（用 cur 一路往左推進），能過但繞。Preorder 不需要 cur，直接 pop 訪問就好。
+
+模板比較：
+InorderPreorderLevel Order (BFS)資料結構StackStackQueue訪問時機左完才訪問立刻訪問立刻訪問訪問順序左 → 根 → 右根 → 左 → 右一層一層
+
+
+面試重要性：
+1.遞迴版必須秒寫（基本功）
+2.迭代版知道思路就好，面試官很少追問
+
+複雜度： O(n) time / O(h) space（h = 樹高，平衡 O(log n)，最壞 O(n)）
