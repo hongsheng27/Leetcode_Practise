@@ -1,0 +1,37 @@
+875. Koko Eating Bananas
+題目概述： 給一個 piles 陣列（每堆香蕉的數量）和 h 小時，Koko 每小時選一堆吃 k 根（吃完該堆就過下一小時，吃不完繼續吃但不換堆）。求能在 h 小時內吃完的最小 k。
+
+解題邏輯： binary search on answer
+答案 k 的範圍：[1, max(piles)]
+對給定的 k，計算需要幾小時：每堆需要 ceil(pile / k) 小時，加總後跟 h 比較
+feasible(k) 單調：k 越大越快吃完，所以可以二分找「第一個讓總時數 <= h 的 k」
+
+標準解法（l < r 模板）：
+pythondef minEatingSpeed(self, piles, h):
+    l, r = 1, max(piles)
+    while l < r:
+        m = (l + r) // 2
+        total = sum(math.ceil(p / m) for p in piles)
+        if total <= h:
+            r = m         # m 可能是答案，保留
+        else:
+            l = m + 1     # m 太慢，跳過
+    return l
+
+核心觀念：
+1.不是在陣列上二分，而是在答案空間（k 的可能值）上二分。 觸發條件：題目問「最小/最大的 k 使某條件成立」，且條件對 k 單調。
+
+
+
+踩過的坑：
+l < r 模板的無限迴圈防護：
+r = mid 配 (l + r) // 2（向下取整）→ mid 一定 < r，r 必減
+l = mid + 1 → l 必加
+兩邊都前進，必定收斂到 l == r
+
+錯誤寫法： l = mid（沒 +1）+ 向下取整 → 卡在 l=2, r=3, mid=2 無限循環
+對稱情況： 找最後一個 True 用 l = mid + 向上取整 (l + r + 1) // 2
+口訣：mid 要往「不動的那邊」靠，才能保證另一邊前進。
+l <= r + minK 變數的版本也對，但要額外變數追蹤，不夠精簡。面試一律用 l < r 模板。
+
+複雜度： O(n log m) time / O(1) space，n = piles 長度，m = max(piles)
