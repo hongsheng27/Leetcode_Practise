@@ -7,13 +7,13 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.maxLen = 0
-        def recursion(node):
+        def dfs(node):
             if not node: return 0
-            left = recursion(node.left)
-            right = recursion(node.right)
+            left = dfs(node.left)
+            right = dfs(node.right)
             self.maxLen = max(self.maxLen, left + right)
             return max(left, right) + 1
-        recursion(root)
+        dfs(root)
         return self.maxLen
 
         
