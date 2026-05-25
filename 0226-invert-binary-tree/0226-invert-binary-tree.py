@@ -5,8 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # postorder solution
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root: return None
-        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
-        return root
+        def recursion(node):
+            if not node: return None
+            left = recursion(node.left)
+            right = recursion(node.right)
+            node.left = right
+            node.right = left
+            return node
+        return recursion(root)
