@@ -1,0 +1,17 @@
+543. Diameter of Binary Tree
+題目概述： 給一棵二叉樹的 root，回傳樹的直徑（任意兩個節點之間最長路徑的邊數，路徑不一定過 root）。
+解題邏輯： 由下到上遞迴 + 全局變數。
+
+核心模板：全局最大 + return 值分離
+
+全局變數：記錄「過當前 node 的最長路徑」= left + right（兩邊都用）
+return 值：只能傳「單邊最長路徑」= max(left, right) + 1（上層只能接一邊）
+兩者目的不同，不能混用
+
+
+全局變數三種寫法：
+方式寫法建議
+nonlocal maxLen
+跟 self.maxLen
+
+複雜度： O(n) time / O(h) 
