@@ -8,10 +8,14 @@ class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # base case
         if not p and not q: return True
-        if not p or not q or p.val != q.val: return False
+        elif not p or not q: return False
+        elif p.val != q.val:
+            return False 
+       
+        left = self.isSameTree(p.left, q.left)
+        right = self.isSameTree(p.right, q.right)
         
-        # recursion case
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        
+        return left and right and p.val == q.val
 
+        
         
