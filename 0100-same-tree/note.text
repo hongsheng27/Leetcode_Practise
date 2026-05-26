@@ -1,0 +1,34 @@
+0100. Same Tree
+題目概述
+給兩棵二元樹 p 和 q，判斷它們是否完全相同——結構相同且每個對應位置的值相同。解題邏輯Return Value ContractisSameTree(p, q)：以 p 和 q 為根的兩棵子樹是否完全相同。三個 Base Case按順序排除特殊情況，順序很重要：
+
+解題邏輯
+isSameTree(p, q)：以 p 和 q 為根的兩棵子樹是否完全相同。
+三個 Base Case
+按順序排除特殊情況，順序很重要：
+
+兩個都是 None → True（空樹相同）
+只有一個是 None → False（結構不同）
+值不同 → False（內容不同）
+
+走過這三關後，才知道「當前 node 一樣，要繼續看子樹」。
+Recursive Case：Postorder 合併
+當前 node 已確認一樣 → 答案 = 左子樹相同 AND 右子樹相同。
+
+Order 分析
+Postorder：父的判斷需要左右子樹的結果合併（用 and）。資訊流向是子 → 父。
+利用 Python and 的 short-circuit：左子樹回 False 時，右子樹根本不會遞迴，自動省掉一整棵右子樹的工作。
+
+踩過的坑
+1. Base case 寫成 else: return True 把遞迴封死
+通用觀念：base case 用 if / elif / else 形成「完整覆蓋」時，下面的程式碼永遠死掉。要嘛拿掉 else、讓控制流自然流到遞迴，要嘛把遞迴併進 else。
+修正方式：用獨立的 if 而非 elif/else，遇到 base case 各自 return，其他情況自然流到後面。
+2. 比較 p.left != q.left 是指標比較（記憶體位址）
+如果寫 if p.left != q.left or p.right != q.right，這是在比較兩個 TreeNode 物件的記憶體位址——除非是同一個 Python 物件，否則永遠 True，邏輯整個錯。
+值的比較要用 p.val != q.val，結構的比較要遞迴呼叫 isSameTree。
+3. 不需要 return left and right and p.val == q.val                  
+p.val == q.val 在上面的 base case 已經檢查過了，能走到 return 表示一定相等。冗餘的條件不影響正確性，但顯示對 control flow 理解不夠精確。
+
+複雜度
+Time: O(min(m, n))，m、n 為兩棵樹大小。有任一邊先到 None 就停。最壞 O(n)（兩樹完全相同時）。
+Space: O(min(h₁, h₂))，遞迴 stack 深度為較淺那棵樹的高度。最壞 O(n)（skewed tree）。
