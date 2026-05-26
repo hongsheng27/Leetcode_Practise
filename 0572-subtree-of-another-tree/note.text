@@ -1,0 +1,36 @@
+572. Subtree of Another Tree
+題目概述
+給兩棵二元樹 root 和 subRoot，判斷 subRoot 是否是 root 的子樹。子樹的定義：root 中某個 node 為根、包含其所有後代，結構與值完全相同。Constraints 保證兩棵樹皆非空。
+
+解題邏輯
+核心抽象：兩層遞迴，職責分離
+這題有兩件不同的事，必須拆成兩個 function：
+
+isSubtree：在 root 的每個 node 嘗試比對（找位置）
+isSametree：比對兩棵樹是否完全相同（比結構）
+
+Traversal Order：
+isSubtree：Preorder（先檢查自己，再往子樹找）
+isSametree：Postorder（合併左右子樹結果）
+
+
+踩過的坑
+1. Base case 不能封死遞迴流程
+第一次嘗試把所有 base case 用 if/elif/else 完整覆蓋，最後一個 else: return True 讓函數在 root 就直接回傳，遞迴永遠不會執行。
+教訓：寫完 base case 後要確認「控制流能不能流到遞迴那行」。
+2. isSametree 的 if not p or not q: return False 不能漏
+子樹定義是「完全相同包含所有後代」，所以一邊有 node 另一邊沒有就是 False。漏掉這行會把「部分包含」誤判為 True。
+3. Constraints [1, 1000] 代表 subRoot 保證非空
+if not root and not subRoot: return True 永遠不會觸發，可刪。養成先讀 Constraints 的習慣：
+[1, n] → 保證非空，不用處理 None
+[0, n] → 可能空，要處理
+4. 一開始不確定 isSubtree 要用 preorder 還是 postorder
+這種「找到任一個符合的 node」的題目，preorder/postorder 都可以——因為遍歷到就行，先後順序不影響結果。遇到 order 不敏感的題目不要糾結，直接選 preorder（更直觀）。
+
+複雜度
+當前版本（暴力解）：
+Time：O(m × n)，m = root 的 node 數，n = subRoot 的 node 數。對 root 的每個 node 都可能 trigger 完整的 isSametree 比對。
+Space：O(m) recursion stack
+
+優化版本（面試可以口頭提）：
+把兩棵樹序列化成字串，子樹判斷 ≡ 子字串判斷
