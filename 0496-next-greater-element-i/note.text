@@ -18,3 +18,13 @@ LeetCode 496 - Next Greater Element I
      → 暴力：對每個 nums1 元素掃一遍 nums2 找 index → O(n^2)
      → 優化：先用 HashMap 建 {值: index} 的對照表，查表 O(1) → 整體 O(n)
      → 因為題目保證數字不重複，所以 HashMap 不會有覆蓋問題
+
+踩過的坑
+1. 用兩個資料結構繞遠路
+舊版思路：
+pythoncount   = {value: index}         
+greater = [-1] * len(nums2)      
+count[n] → index → greater[index]（
+新版思路：
+pythonnextGreater = {value: next_greater_value}
+查詢：nextGreater[n]
