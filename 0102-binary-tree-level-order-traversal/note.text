@@ -1,0 +1,40 @@
+0102. Binary Tree Level Order Traversal
+
+題目概述
+給一棵二元樹，按層級回傳所有 node 的值，每一層一個 list。
+例：
+    3
+   / \
+  9  20
+     / \
+    15  7
+→ [[3], [9, 20], [15, 7]]
+
+解題邏輯
+核心：BFS + 「snapshot 當前 queue 長度」
+BFS（廣度優先）一層一層走，用 queue
+
+關鍵技巧：用 len(q) 鎖定「這一層的 node 數」
+
+進入 for loop 時，q 裡剛好是「當前層的所有 node」
+在 for loop 內 popleft 取出當前層的 node，同時 append 下一層的 node
+range(len(q)) 在 loop 開始時就被算好，所以即使 q 在過程中變長，loop 次數不變
+loop 結束後，q 裡剛好是「下一層的所有 node」
+
+這是一個 invariant：每次 while loop 開始時，q 永遠只包含「當前層」。
+
+踩過的坑
+為什麼要 if root 的 base case？
+deque([None]) 會放一個 None 進 queue，然後 node.left 會 AttributeError。
+通用觀念：BFS 的 queue 永遠不放 None，所以入口要擋一次。後面 if node.left: q.append(...) 也是同樣道理——進 queue 前先檢查。
+
+複雜度
+
+Time: O(n)，每個 node 進出 queue 各一次
+Space: O(n)，最壞情況 queue 裡同時放著最寬一層的 node（balanced tree 的最底層有 n/2 個 node）
+
+
+DFS（遞迴）：適合「子樹整體屬性」（高度、和、是否符合性質）
+BFS（queue）：適合「層級資訊」、「最短距離」（無權圖）
+
+
