@@ -6,13 +6,13 @@ class Solution:
         while l <= r:
             m = (l + r) // 2
 
-            total = group = 0
+            total = 0
+            group = 1
             for w in weights:
                 if total + w > m:
                     total = 0
                     group += 1
                 total += w
-            if total > 0: group += 1
 
             if group <= days:
                 leastWeight = min(leastWeight, m)
