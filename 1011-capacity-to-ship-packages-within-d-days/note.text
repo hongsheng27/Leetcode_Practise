@@ -30,3 +30,5 @@ total += w              # 才加上當前 w
 複雜度
 Time O(n × log(sum - max))，二分搜尋 O(log(sum)) 次，每次 feasibility O(n)。
 Space O(1)。
+
+注意：錯誤的上下界會影響 time compacity 計算
