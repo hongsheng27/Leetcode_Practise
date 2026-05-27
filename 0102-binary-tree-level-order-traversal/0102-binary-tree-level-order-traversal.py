@@ -10,13 +10,13 @@ class Solution:
         q = deque([root])
         res = []
         while q:
-            group = []
+            level = []
             for _ in range(len(q)):
                 node = q.popleft()
                 if node.left: q.append(node.left)
                 if node.right: q.append(node.right)
-                group.append(node.val)
-            res.append(group)
+                level.append(node.val)
+            res.append(level)
         return res
             
 
