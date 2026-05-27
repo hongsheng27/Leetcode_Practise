@@ -1,0 +1,32 @@
+1011. Capacity To Ship Packages Within D Days
+題目概述
+有一排貨物 weights，必須按順序裝船（不能跳過、不能重排），在 days 天內運完。求最小的「每天載重容量」。
+例：weights = [1,2,3,4,5,6,7,8,9,10], days = 5。答案是 15。每天可裝：[1,2,3,4,5] / [6,7] / [8] / [9] / [10]。如果載重再小（例如 14），就無法在 5 天內運完。
+
+解題邏輯
+答案空間二分：候選答案是「每天的載重容量」，下界是 max(weights)（必須裝得下最重的箱子），上界是 sum(weights)（一天全載完）。
+每個候選 m 用 feasibility function 模擬：能不能 ≤ days 天裝完？
+Feasibility function 的核心是先試加再決定——預判「加上 w 會不會超過 m」，會的話開新一天。
+要背的模板
+# 正確版本（先試加、再決定）
+if total + w > m:       # 用「加上 w 之後」判斷
+    group += 1
+    total = 0
+total += w
+
+# 我的錯誤版本（先檢查、後累加）
+if total >= m:          # 用「已累積的」判斷
+    total = 0
+    group += 1
+total += w              # 才加上當前 w
+
+       
+踩過的坑
+1.分組邏輯顛倒：寫成「累積 >= m 才開新組，然後再加 w」會讓單組超過 m。正確是「加上 w 之前先預判會不會超過」
+下界寫成 l = 1：載重至少要能裝下最重的箱子，否則永遠運不完。下界是 max(weights)。
+2.typo：group + 1 沒賦值。寫完先手算一個 test case，這 30 秒能省 10 分鐘 debug。
+3.group 初始化：要從 1 開始（從第一天就在用），不是 0。
+
+複雜度
+Time O(n × log(sum - max))，二分搜尋 O(log(sum)) 次，每次 feasibility O(n)。
+Space O(1)。
