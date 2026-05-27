@@ -1,0 +1,45 @@
+0235. Lowest Common Ancestor of a Binary Search Tree
+
+題目概述
+給一棵 BST（不是普通二元樹）和兩個保證存在的 node p、q，回傳它們的 LCA。
+跟 236（普通樹版 LCA）的差別：BST 的值有大小順序，可以用值判斷方向，不需要遍歷整棵樹。
+
+解題邏輯
+對任一 node root，p、q 的位置只有三種情況：
+1.p、q 的值都 < root.val, LCA 在左子樹更深處 => 往左找都 
+2.p、q 的值都 > root.val, LCA 在右子樹更深處 => 往右找
+3.p q 一小一大, LCA 就是root => 直接 return
+
+Order 分析：Preorder 短路
+當前 node 直接用值判斷方向 → Preorder（在進入子樹前就決定走向）。
+對比 236 普通樹版的 Postorder（必須等左右子樹遞迴回來才能合併判斷）。
+通用觀念：有資訊就 preorder 短路；沒資訊才 postorder 合併。
+
+踩過的坑
+1. 用 or 而非 and 導致兩邊都遞迴
+
+if p.val < root.val or q.val < root.val:
+    left = self.lowestCommonAncestor(root.left, p, q)
+if p.val > root.val or q.val > root.val:
+    right = self.lowestCommonAncestor(root.right, p, q)
+
+問題：當 p、q 一小一大時，兩個 if 都成立 → 兩邊都遞迴 → 退化成普通樹的 O(n)。
+修正：用 and——「兩個都在某邊才往那邊找」，否則直接 return root。
+
+2. NameError: left、right 未定義
+承上，or 版本還有另一個 bug：當 p、q 同側時只有一個 if 成立，另一個變數從未定義，下面 if left and right 直接 NameError。
+Root cause：用「普通樹 LCA 的思路」硬套在 BST 上。普通樹的 postorder 合併需要兩邊都查，所以兩個變數都會被定義；BST 應該選一邊走，根本不該定義兩個變數。
+
+複雜度
+Recursive 
+T O(h) 
+S O(h)
+Iterative
+T O(h)
+S O(1)
+對 balanced BST：O(h) = O(log n)。
+最壞 skewed BST：O(h) = O(n)。
+對比 236 普通樹版的 O(n)：BST 因為有大小資訊，每層只走一邊，省掉一半搜尋空間。
+
+
+面試策略：先寫 recursive（更自然、好解釋），被問到「能不能 O(1) space？」再給 iterative。
