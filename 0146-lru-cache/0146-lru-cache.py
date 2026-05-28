@@ -7,7 +7,7 @@ class ListNode():
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.count = {}
+        self.cache = {}
         self.start, self.end = ListNode(), ListNode()
         self.start.next = self.end
         self.end.prev = self.start
@@ -24,24 +24,27 @@ class LRUCache:
         node.prev = tmp
 
     def get(self, key: int) -> int:
-        if key not in self.count: return -1
-        node = self.count[key]
+        if key not in self.cache: return -1
+        node = self.cache[key]
         self.remove(node)
         self.addToTail(node)
         return node.val
        
     def put(self, key: int, value: int) -> None:
-        if key in self.count:
-            oldNode = self.count[key]
-            self.remove(oldNode)
+        if key in self.cache:
+            node = self.cache[key]
+            node.val = value
+            self.remove(node)
+            self.addToTail(node)
+            return
         node = ListNode(key, value)
-        self.count[key] = node
+        self.cache[key] = node
         self.addToTail(node)
         
-        if len(self.count) > self.capacity:
+        if len(self.cache) > self.capacity:
             lru = self.start.next
             self.remove(lru)
-            del self.count[lru.key]
+            del self.cache[lru.key]
         
         
 
