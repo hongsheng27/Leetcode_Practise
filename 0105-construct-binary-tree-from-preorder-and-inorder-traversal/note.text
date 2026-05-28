@@ -1,0 +1,55 @@
+105. Construct Binary Tree from Preorder and Inorder Traversal
+題目概述
+給兩個 traversal array：
+preorder = root -> left -> right
+inorder  = left -> root -> right
+要重建出原本的 binary tree。
+
+這題的核心是：
+preorder 決定 root 出現順序
+inorder 決定左右子樹範圍
+每次從 preorder 拿下一個還沒用過的值當 root，再去 inorder 找它的位置。
+root 左邊是左子樹，root 右邊是右子樹。
+
+解題邏輯（含程式碼）
+先建立一個 inorderIndexMap，讓我們可以快速知道某個值在 inorder 的位置。
+接著用 preorderIndex 記錄 preorder 下一個要拿來當 root 的位置。
+定義：
+build(left, right)
+建立 inorder[left:right] 這段範圍的子樹
+包含 left，不包含 right
+left >= right：空子樹
+build(0, 1)：代表只有 inorder[0] 這一個節點
+
+每次遞迴做四件事：
+
+1. preorder[preorderIndex] 是目前子樹的 root
+2. preorderIndex += 1，表示 root 已經用掉
+3. 用 root 在 inorder 的位置 mid 切左右子樹
+4. 先 build 左子樹，再 build 右子樹
+
+
+踩過的坑
+1.一開始卡住的點是：build(left, right) 沒有傳 root，怎麼知道 root 是誰？
+
+這題要記得：
+root 不用從參數傳進來
+root 永遠是 preorder 下一個還沒用過的值
+
+也就是：
+preorder[preorderIndex]
+因為 preorder 的順序就是：
+root -> left -> right
+所以只要遞迴順序也是先 build 左子樹，再 build 右子樹，preorderIndex 的下一個值就一定會是目前子樹的 root。
+2.另一個坑是 preorderIndex += 1 的位置。
+拿到 root 後，要立刻加一：
+拿 root -> preorderIndex += 1 -> build left -> build right
+不能等左右子樹都 build 完才加，否則子樹會重複拿到同一個 root。
+
+
+複雜度
+時間複雜度：O(n)
+每個節點只會建立一次，inorderIndexMap 讓查找 root 位置變成 O(1)。
+空間複雜度：O(n)
+inorderIndexMap 需要 O(n) 空間。
+遞迴 call stack 最壞情況是 O(n)，如果樹平衡則是 O(log n)。
