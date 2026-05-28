@@ -14,17 +14,18 @@ class Solution:
 
         def build(left, right):
             # base case
-            if right < left: return None
+            if right <= left: return None
             # recursion case
             rootVal = preorder[self.preorderIndex]
             self.preorderIndex += 1
 
             mid = inorderIndexMap[rootVal]
             root = TreeNode(rootVal)
-            root.left = build(left, mid - 1)
+            root.left = build(left, mid)
             root.right = build(mid + 1, right)
 
+
             return root
-        return build(0, len(inorder) - 1)
+        return build(0, len(inorder))
 
         
