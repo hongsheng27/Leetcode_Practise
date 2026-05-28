@@ -1,50 +1,55 @@
-class ListNode:
-    def __init__(self, key = None, val = None):
-        self.key = key
+class ListNode():
+    def __init__(self, key= None, val= None):
         self.val = val
+        self.key = key
         self.next = None
         self.prev = None
-
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache = {}
-        self.head = ListNode()
-        self.tail = ListNode()
-        self.head.next = self.tail
-        self.tail.prev = self.head
-
+        self.count = {}
+        self.start, self.end = ListNode(), ListNode()
+        self.start.next = self.end
+        self.end.prev = self.start
     def remove(self, node):
-        node.prev.next = node.next
-        node.next.prev = node.prev
-
+        prev = node.prev
+        nxt = node.next
+        prev.next = nxt
+        nxt.prev = prev
     def addToTail(self, node):
-        prev = self.tail.prev
-        node.prev = prev
-        prev.next = node
-        node.next = self.tail
-        self.tail.prev = node
+        tmp = self.end.prev
+        self.end.prev.next = node
+        node.next = self.end
+        self.end.prev = node
+        node.prev = tmp
 
     def get(self, key: int) -> int:
-        if key in self.cache: 
-            node = self.cache[key]
-            self.remove(node)
-            self.addToTail(node)
-            return node.val
-        else: return -1
-        
-    def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.remove(self.cache[key])
-        elif len(self.cache) >= self.capacity:
-            lru = self.head.next
-            self.remove(lru)
-            del self.cache[lru.key]
-            
-        node = ListNode(key, value)
-        self.cache[key] = node
+        if key not in self.count: return -1
+        node = self.count[key]
+        self.remove(node)
         self.addToTail(node)
-    
+        return node.val
+       
+    def put(self, key: int, value: int) -> None:
+        if key in self.count:
+            oldNode = self.count[key]
+            self.remove(oldNode)
+        node = ListNode(key, value)
+        self.count[key] = node
+        self.addToTail(node)
+        
+        if len(self.count) > self.capacity:
+            lru = self.start.next
+            self.remove(lru)
+            del self.count[lru.key]
+        
+        
+
+        
+        
+       
+
+        
 
 
 # Your LRUCache object will be instantiated and called as such:
