@@ -1,0 +1,36 @@
+1448.Count Good Nodes in Binary Tree
+
+題目概述（
+給一棵 binary tree，計算有幾個 good node。
+good node 的定義是：
+從 root 到目前 node 的路徑上，沒有任何節點值比目前 node 大。
+換句話說：
+如果目前 node.val >= root 到目前 node 之前看過的最大值，那它就是 good node。
+
+解題邏輯
+這題用 DFS，並且是 top-down / preorder 思維。
+原因是：目前 node 是否 good，取決於「從 root 走到它之前，路徑上的最大值」。
+所以 dfs 要多帶一個資訊：
+maxSoFar
+代表目前路徑上看過的最大值。
+每到一個 node：
+如果 node.val >= maxSoFar，代表它是 good node
+更新 newMax = max(maxSoFar, node.val)
+把 newMax 傳給左右子樹
+回傳 left + right + 自己是否 good
+
+
+
+踩過的坑
+1.喔開始只傳父節點value, 但這題要傳的是 maxSoFar
+應該更新 maxSoFar
+再往左右子樹走
+正確做法是走 DFS 時，把 path max 一路傳下去。
+
+複雜度
+時間複雜度：O(n)
+每個 node 只拜訪一次。
+空間複雜度：O(h)
+h 是樹高，來自 recursion stack。
+平衡樹：O(log n)
+最壞退化成 linked list：O(n)
