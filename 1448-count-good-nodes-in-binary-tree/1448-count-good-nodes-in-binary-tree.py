@@ -6,12 +6,12 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        def dfs(node, lower):
+        def dfs(node, maxSoFar):
             # base case
             if not node: return 0
             # recursion case
-            left = dfs(node.left, max(node.val, lower))
-            right = dfs(node.right, max(node.val, lower))
-            isGood = 1 if node.val >= lower else 0
+            left = dfs(node.left, max(node.val, maxSoFar))
+            right = dfs(node.right, max(node.val, maxSoFar))
+            isGood = 1 if node.val >= maxSoFar else 0
             return left + right + isGood
         return dfs(root, root.val)
