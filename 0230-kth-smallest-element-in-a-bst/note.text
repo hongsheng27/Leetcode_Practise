@@ -1,0 +1,37 @@
+Kth Smallest Element in a BST
+
+題目概述
+
+給一棵 BST 和一個整數 k，找出第 k 小的節點值。
+BST 的特性：
+inorder traversal 會得到由小到大的排序結果。
+所以這題本質是：
+對 BST 做 inorder traversal，數到第 k 個 node。
+
+解題邏輯
+1.使用 inorder DFS：
+left -> root -> right
+因為 BST 的 inorder 是遞增順序，所以每拜訪一個 node，就代表遇到下一個較大的值。
+用 count 記錄目前已經拜訪第幾個 node。
+當 count == k 時，當前 node.val 就是答案。
+
+2.除了用 self.count / self.res 之外，也可以把 count 和 result 透過 dfs return 回去。
+這版值得理解
+dfs(node, count)
+
+我對return right 沒這麼熟悉可以再多練
+
+流程：
+先 dfs(left)，因為 BST inorder 是 left -> root -> right
+如果左子樹已經找到答案，直接 return
+處理目前 node：count += 1
+如果 count == k，回傳目前 node.val
+否則繼續 dfs(right)
+
+踩過的坑
+1.early stop
+ if self.res is not None: 可以做優化，但不會影響複雜度
+
+Time: O(n)
+Space: O(h)
+
