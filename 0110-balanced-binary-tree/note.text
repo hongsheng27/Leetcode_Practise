@@ -1,0 +1,42 @@
+110.Balanced Binary Tree
+
+題目概述
+給一棵 binary tree，判斷它是不是 height-balanced。
+
+Balanced 的定義是：
+每個節點的左右子樹高度差都不能超過 1。
+重點是「每個節點」都要符合，不是只有 root 符合就好。
+
+解題邏輯
+這題用 postorder DFS。
+原因是：要判斷目前 node 是否 balanced，需要先知道左右子樹的高度，以及左右子樹本身是否 balanced。
+所以 dfs(node) 回傳兩個資訊：
+這棵子樹的 height
+這棵子樹是否 balanced
+
+base case：
+空節點高度是 0，而且是 balanced。
+
+每次遞迴
+先拿 left subtree 的 height / balanced
+再拿 right subtree 的 height / balanced
+目前高度 = max(leftHeight, rightHeight) + 1
+目前是否 balanced = 左右子樹都 balanced，而且左右高度差 <= 1
+
+
+踩過的坑
+1.粗心：呼叫class內部 function call 自己是 self.isBalanced(node.left)
+在 function 內部的 dfs function 裡面應該繼續呼叫 dfs：
+
+dfs(node.left)
+dfs(node.right)
+
+不要呼叫 self.isBalanced(node.left)，不然會重複開新的判斷流程，也無法拿到 height。
+
+複雜度
+時間複雜度：O(n)
+每個 node 只拜訪一次。
+空間複雜度：O(h)
+h 是樹高，來自 recursion stack。
+平衡樹：O(log n)
+最壞退化成 linked list：O(n)
