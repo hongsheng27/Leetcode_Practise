@@ -9,8 +9,8 @@ class Solution:
         def dfs(node):
             if not node: return (0, True)
 
-            left = dfs(node.left)
-            right = dfs(node.right)
+            leftHeight, leftBalanced = dfs(node.left)
+            rightHeight, rightBalanced = dfs(node.right)
             
-            return (max(left[0], right[0]) + 1, left[1] and right[1] and abs(left[0] - right[0]) < 2)
+            return (max(leftHeight, rightHeight) + 1, leftBalanced and rightBalanced and abs(leftHeight - rightHeight) <= 1)
         return dfs(root)[1]
