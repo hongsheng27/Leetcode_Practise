@@ -9,13 +9,16 @@ class Solution:
         def dfs(node):
             if not node: return (float('-inf'), 0) # (largestSum, largestPath)
 
-            leftLargestSum, leftlargestPath = dfs(node.left)
-            rightLargestSum, rightLargestPath = dfs(node.right)
+            leftMaxSum, leftGain = dfs(node.left)
+            rightMaxSum, rightGain = dfs(node.right)
+
+            leftGain = max(leftGain, 0)
+            rightGain = max(rightGain, 0)
             
-            largestSum = node.val + leftlargestPath + rightLargestPath
-            largestSum = max(largestSum, rightLargestSum, leftLargestSum)
-            largestPath = node.val + max(leftlargestPath, rightLargestPath)
-            largestPath = max(largestPath, 0)
+            largestSum = node.val + leftGain + rightGain
+            largestSum = max(largestSum, rightMaxSum, leftMaxSum)
+            largestPath = node.val + max(leftGain, rightGain)
+
             return (largestSum, largestPath)
         return dfs(root)[0]
 
