@@ -1,0 +1,39 @@
+701. Insert into a Binary Search Tree
+     =====================================
+
+題目概述：
+給一棵 BST 和一個 val，把 val 插入正確位置並回傳 root。
+
+BST 特性：
+val < node.val → 往左找
+val > node.val → 往右找
+
+解題邏輯：
+使用 recursive DFS。
+dfs(node) 回傳：
+插入完成後的 subtree root
+如果目前 node 是空的：
+代表找到插入位置，直接回傳 TreeNode(val)。
+否則依照 BST 規則往左或往右遞迴，
+再把更新後的 subtree 接回原本位置。
+
+踩過的坑：
+1. node.left = dfs(node.left) 看起來像每一層都重新賦值，
+   但實際上通常只是把原本的 subtree root 接回去。
+   只有走到 None 時，才真的新增 TreeNode(val)。
+
+2. 也可以一路找到空位前一層再直接插入。
+   但 recursive return subtree root 的版本更簡潔，
+   也是 BST insert / delete 常見模板。
+
+複雜度：
+時間複雜度：O(h)
+h 是樹高，只需要走一條搜尋路徑。
+
+```
+平衡樹：O(log n)
+最壞退化成 linked list：O(n)
+```
+
+空間複雜度：O(h)
+來自 recursion stack。
