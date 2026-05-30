@@ -1,167 +1,70 @@
-Binary Tree Maximum Path Sum
+124. Binary Tree Maximum Path Sum
+     =================================
 
-題目概述（看到就能想起題目）
-
+題目概述：
 給一棵 binary tree，找出任意 path 的最大總和。
 
-path 可以從任意 node 開始，也可以在任意 node 結束，但必須是連續路徑，不能分叉。
+path 可以從任意 node 開始，也可以在任意 node 結束。
+但 path 必須連續，而且不能分叉。
 
-這題的核心是：
+核心觀念：
+對每個 node，要分清楚兩件事：
 
-完整答案可以同時接 left + node + right。
-但回傳給 parent 的 path 只能選一邊，不能分叉。
+1. 經過目前 node 的完整答案
+   可以同時接 left + node + right。
 
-解題邏輯（含程式碼）
+2. 回傳給 parent 的 path
+   只能選 left 或 right 其中一邊，不能分叉。
 
-這題用 postorder DFS：
 
-left -> right -> root
+解題邏輯：
+使用 postorder DFS：
+因為目前 node 要先知道左右 child 可以提供多少 gain，才能計算自己的答案。
+每個 node：
 
-因為目前 node 要先知道左右子樹能提供多少 gain，才能算自己的答案。
 
-dfs(node) 回傳兩個值：
+leftGain = 左 child 可以提供的最大單一路徑貢獻
+rightGain = 右 child 可以提供的最大單一路徑貢獻
 
-subtreeMaxSum
-目前 subtree 裡出現過的最大完整 path sum。
-gainToParent
-從目前 node 往下，只選一條路時，最多可以提供給 parent 的貢獻。
-
-對每個 node：
-
-leftGain = 左子樹可以提供的最大單一路徑貢獻
-rightGain = 右子樹可以提供的最大單一路徑貢獻
 
 經過目前 node 的完整 path：
-
 pathThroughNode = node.val + leftGain + rightGain
 
-目前 subtree 最大答案：
+用它更新 global max 或 return 回上層
 
-subtreeMaxSum = max(
-pathThroughNode,
-leftMaxSum,
-rightMaxSum
-)
 
-回傳給 parent 的 gain：
 
-gainToParent = node.val + max(leftGain, rightGain)
-
-但 gainToParent 不能是負數。
-如果是負數，代表接上這條路只會讓 parent 的答案變差，所以回傳 0。
-
-程式碼：
-
-class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        def dfs(node):
-            if not node:
-                return float("-inf"), 0  # subtreeMaxSum, gainToParent
-
-            leftMaxSum, leftGain = dfs(node.left)
-            rightMaxSum, rightGain = dfs(node.right)
-
-            pathThroughNode = node.val + leftGain + rightGain
-
-            subtreeMaxSum = max(
-                pathThroughNode,
-                leftMaxSum,
-                rightMaxSum
-            )
-
-            gainToParent = node.val + max(leftGain, rightGain)
-            gainToParent = max(gainToParent, 0)
-
-            return subtreeMaxSum, gainToParent
-
-        return dfs(root)[0]
-
-踩過的坑
-
-一開始沒想到要回傳兩個值
-
-這題不是只回傳一個最大值就夠。
-
-因為：
-
-subtreeMaxSum
-是目前 subtree 裡的完整答案，可以包含 left + node + right。
-
-gainToParent
-是要傳給 parent 的單一路徑，只能選 left 或 right 其中一邊。
-
-這兩個用途不同，所以 dfs 要回傳兩個值。
-
-leftGain / rightGain 不能是負數
-
+踩過的坑：
+1. 一開始沒想到要區分「完整答案」和「回傳給 parent 的 path」
+2. leftGain / rightGain 不能是負數
 如果 child path 是負數，接上去只會讓答案變差。
+3. base case 一開始想成回傳 (0, 0)
+為錯誤：
+因為空 subtree 沒有合法完整 path。
+如果整棵樹都是負數，0 會錯誤蓋過真正答案。
 
-例如：
+兩個值版本應該寫：
 
-  2
- / \
+```
+return (float("-inf"), 0)
+```
 
--1 -3
 
-最大答案應該是：
+4. self.res 不能初始化成 0
 
-2
-
-不是：
-
-2 + (-1) + (-3)
-
-所以 gainToParent 要做：
-
-gainToParent = max(gainToParent, 0)
-
-這樣 parent 收到的 leftGain / rightGain 一定不會是負數。
-
-base case 一開始容易寫成 (0, 0)
-
-空節點不能回傳：
-
-(0, 0)
-
-因為第一個值代表 subtree 內部的最大完整 path sum。
-
-空 subtree 裡沒有合法 path，所以不能把最大答案當成 0。
-如果整棵樹都是負數，錯誤的 0 會蓋過真正答案。
-
-例如：
-
+如果整棵樹都是負數，例如： -3
+正確答案應該是：
 -3
 
-正確答案是：
 
--3
-
-如果空節點回傳 (0, 0)，subtreeMaxSum 可能錯誤變成 0。
-
-所以 base case 應該是：
-
-(float("-inf"), 0)
-
-意思是：
-
-空 subtree 沒有合法完整 path，所以 subtreeMaxSum = -inf。
-空 subtree 不能提供任何 gain，所以 gainToParent = 0。
-
-這題是 postorder
-
-目前 node 的答案依賴左右 child 回傳的 gain 和 max sum。
-
-所以要先處理 left、right，再處理 root。
-
-複雜度
-
+複雜度：
 時間複雜度：O(n)
-
 每個 node 只拜訪一次。
 
 空間複雜度：O(h)
-
 h 是樹高，來自 recursion stack。
 
+```
 平衡樹：O(log n)
 最壞退化成 linked list：O(n)
+```
