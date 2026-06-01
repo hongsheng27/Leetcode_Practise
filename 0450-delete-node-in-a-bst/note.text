@@ -1,0 +1,51 @@
+450. Delete Node in a BST
+     ==========================
+
+題目概述：
+給一棵 BST 和 key，刪除 value = key 的 node，回傳刪除後的 root。
+
+BST 特性：
+target < node.val → 往左找
+target > node.val → 往右找
+
+解題邏輯：
+使用 recursive DFS。
+dfs(node, target) 回傳：
+刪除 target 後，更新完成的 subtree root。
+
+找到 target 後分三種情況：
+
+1. 沒有 left child
+   直接回傳 node.right。
+
+2. 沒有 right child
+   直接回傳 node.left。
+
+3. 左右 child 都存在
+   找右子樹最小值 successor。
+   用 successor.val 取代目前 node.val。
+   再到右子樹刪除原本的 successor。
+   (successor。可以選：
+        右子樹最小值 successor
+        或：
+        左子樹最大值 predecessor
+)
+
+踩過的坑：
+1. 粗心：dfs 
+不能在 dfs 裡一直用外層 key。
+
+這兩個才是能維持 BST 的合法替代值。
+
+
+複雜度：
+時間複雜度：O(h)
+搜尋 target 和尋找 successor 都沿著 BST 路徑進行。
+
+```
+平衡樹：O(log n)
+最壞退化成 linked list：O(n)
+```
+
+空間複雜度：O(h)
+來自 recursion stack。
