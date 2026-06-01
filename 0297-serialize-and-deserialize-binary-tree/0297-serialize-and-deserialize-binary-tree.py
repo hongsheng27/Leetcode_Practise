@@ -13,17 +13,16 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        if not root: return ""
-        self.res = ""
+        res = []
         def dfs(node):
             if not node:
-                self.res += '#,'
+                res.append('#')
                 return
-            self.res += str(node.val) + ','
+            res.append(str(node.val))
             dfs(node.left)
             dfs(node.right)
         dfs(root)
-        return self.res[:-1]
+        return ",".join(res)
         
 
     def deserialize(self, data):
@@ -32,7 +31,6 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        if not data: return None
         data = data.split(',')
         self.index = 0
         def dfs():
