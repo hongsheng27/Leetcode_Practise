@@ -1,0 +1,85 @@
+297. Serialize and Deserialize Binary Tree
+     =========================================
+
+題目概述：
+把 binary tree 轉成字串，再從字串完整還原原本的 tree。
+
+只記 node value 不夠，因為無法判斷左右 child 是否存在。
+所以遇到空節點時，要記錄特殊符號 #。
+
+解題邏輯：
+使用 preorder DFS：
+
+```
+root -> left -> right
+```
+
+serialize：
+遇到 node：
+記錄 node.val
+繼續 dfs(left)
+繼續 dfs(right)
+
+```
+遇到 None：
+  記錄 #
+```
+
+
+踩過的坑：
+1. 字串 token 之間要加分隔符號
+
+要用：
+
+```
+",".join(res)
+```
+
+不要直接拼成：
+
+```
+12##3##
+```
+
+否則遇到多位數或負數時，deserialize 無法切分。
+
+2. 優化：index 每讀一個 token 就要立刻 +1
+
+不管 token 是數字還是 #，都要先移動 index。
+
+正確順序：
+
+```
+value = data[self.index]
+self.index += 1
+
+if value == "#":
+    return None
+```
+
+v1版本:
+self.index += 1
+head.left = dfs()
+self.index += 1
+head.right = dfs()
+
+3. serialize 用 list + join 比一直拼 string 乾淨
+
+res.append(...)
+return ",".join(res)
+不需要最後再手動刪掉多餘逗號。
+
+複雜度：
+時間複雜度：O(n)
+每個 node 和 # 都只處理一次。
+
+空間複雜度：O(n)
+    serialize:
+        recursion stack：O(h)
+        輸出結果 res：O(n)
+        總體 O(n)。
+    Deserialize
+        token list：O(n)
+        建立 tree：O(n)
+        recursion stack：O(h)
+        總體：O(n)
