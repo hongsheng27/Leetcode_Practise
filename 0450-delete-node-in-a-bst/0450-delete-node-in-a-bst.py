@@ -8,7 +8,12 @@ class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         def dfs(node, target):
             if not node: return None
-            if target == node.val:
+            
+            if target < node.val:
+                node.left = dfs(node.left, target)
+            elif target > node.val:
+                node.right = dfs(node.right, target)
+            else:
                 # case 1:
                 if not node.left:
                     return node.right
@@ -23,10 +28,6 @@ class Solution:
                     node.val = successor.val
                     node.right = dfs(node.right, successor.val)
                     return node
-            if key < node.val:
-                node.left = dfs(node.left, target)
-            else:
-                node.right = dfs(node.right, target)
             return node
         return dfs(root, key)
         
