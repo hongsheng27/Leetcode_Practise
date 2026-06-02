@@ -1,0 +1,31 @@
+215. Kth Largest Element in an Array
+題目概述： 給一個未排序整數陣列和 k，回傳第 k 大的元素（排序後倒數第 k 個，不是第 k 個不同的值）。
+
+解法 1：維護 size-k 的 min-heap（面試首選）
+核心： 維護只有 k 個元素的 min-heap，堆裡永遠是「目前最大的 k 個」，堆頂（min-heap 最小的）就是第 k 大。
+
+解法 2：max-heap 全丟進去 pop k 次
+能過但不是面試最想看的。
+
+核心觀念：
+找「k 個最大」→ 維護 size-k 的 min-heap（堆頂 = 第 k 大）
+找「k 個最小」→ 維護 size-k 的 max-heap（值取負，堆頂 = 第 k 小）
+記法： 要找「最大的 k 個」，反而用 min-heap——因為要能 O(1) 踢掉「k 個裡最小的那個」，留下更大的。
+
+
+為什麼面試愛 size-k 版本？
+1.適用 streaming（資料源源不斷，不能全部載入）
+2.空間 O(k) 而非 O(n)
+
+複雜度比較：
+size-k min-heap: 時間 nlogk 空間k
+max-heap pop k 次 時間 n+klogn 空間 n
+quickselect 時間 n(average) 空間 1
+
+當 k 遠小於 n 時，size-k 版本明顯更省。
+進階解法： Quickselect（partition 思維）O(n) average，但最壞 O(n²)。面試被追問「能不能 O(n)」再提。
+
+踩過的坑：
+第一反應是「全部丟進 heap 再 pop k 次」，能過但沒展示 size-k 維護的技巧。面試要練 size-k min-heap 解法。
+
+複雜度： O(n log k) time / O(k) space（size-k 解法）
