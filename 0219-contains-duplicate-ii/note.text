@@ -17,3 +17,21 @@ Fixed Sliding Window 經典題。
 
 
 複雜度：O(n) 時間，O(k) 空間。
+
+
+# 補充：
+HashMap 也可以完成。
+
+HashMap 解法：
+記錄每個數字最近一次出現的 index。
+如果目前 index 和上次 index 的差 <= k，就回傳 True。
+
+但 HashMap 最壞會存下所有不同元素：
+
+Space: O(n)
+
+本題更好的做法是 sliding window + HashSet。
+
+因為只需要關心距離目前 index 不超過 k 的元素，
+不需要保留完整歷史紀錄。
+
