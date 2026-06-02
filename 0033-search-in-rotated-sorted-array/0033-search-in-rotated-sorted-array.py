@@ -6,13 +6,13 @@ class Solution:
             m = (l + r) // 2
             if nums[m] == target: return m
             if nums[l] <= nums[m]:
-                # left side is in order
+                # left sorted portion
                 if nums[l] <= target < nums[m]:
                     r = m - 1
                 else:
                     l = m + 1
             else:
-                # right side is in order
+                # right sorted portion
                 if nums[m] < target <= nums[r]:
                     l = m + 1
                 else:
