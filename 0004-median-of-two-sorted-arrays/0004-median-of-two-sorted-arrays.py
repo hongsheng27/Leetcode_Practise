@@ -1,29 +1,29 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        if len(nums1) > len(nums2): nums1, nums2 = nums2, nums1
+        A, B = nums1, nums2
+        total = len(nums1) + len(nums2)
+        half = total // 2
 
-        n = len(nums1)
-        m = len(nums2)
+        if len(A) > len(B):
+            A, B = B, A
+        
+        l, r = 0, len(A) - 1
+        while True:
+            i = (l + r) // 2 # a
+            j = half - i - 2 # b
 
-        l = 0
-        r = n
-
-        while l <= r:
-            i = (l + r) // 2
-            j = (m + n + 1) // 2 - i
-
-            nums1Left = nums1[i - 1] if i > 0 else float('-inf')
-            nums1Right = nums1[i] if i < n else float('inf')
-            nums2Left = nums2[j - 1] if j > 0 else float('-inf')
-            nums2Right = nums2[j] if j < m else float('inf')
-
-            if nums1Left <= nums2Right and nums2Left <= nums1Right:
-                if not (m + n) % 2:
-                    return (max(nums1Left, nums2Left) + min(nums1Right, nums2Right)) / 2
-                return max(nums1Left, nums2Left)
-            elif nums1Left > nums2Right:
+            leftA = A[i] if i >= 0 else float('-inf')
+            leftB = B[j] if j >= 0 else float('-inf')
+            rightA = A[i + 1] if (i + 1) < len(A) else float('inf')
+            rightB = B[j + 1] if (j + 1) < len(B) else float('inf')
+            
+            if leftA <= rightB and leftB <= rightA:
+                # odd
+                if total % 2:
+                    return min(rightA, rightB)
+                return (max(leftA, leftB) + min(rightA, rightB)) / 2
+            elif leftA > rightB:
                 r = i - 1
             else:
                 l = i + 1
-
         
