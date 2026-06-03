@@ -1,0 +1,41 @@
+4. Median of Two Sorted Arrays
+題目概述： 給兩個已排序陣列 A、B，找出合併後的中位數。要求 O(log(m+n))。
+
+解法 1：完整 merge（最直覺，O(m+n) space）
+雙指標比大小，小的 append 到 merged，最後取中間。
+
+解法 2：優化空間（不存整個陣列，O(1) space）
+只走到中位數位置，用 prev/cur 記錄前後兩個值。
+
+核心： 把 append 改成記 prev/cur。邊界判斷 i < m and (j >= n or A[i] <= B[j]) =「A 還有 且 (B 沒了 或 A 較小)」，跟 Merge Sorted Array (88) 的雙迴圈同概念。
+
+解法 3：binary search 切割（O(log(min(m,n)))，bonus）
+核心觀念：把「找中位數」轉化成「找合法切割」
+
+中位數的定義：左半 = 右半（數量相等），且左半所有值 ≤ 右半所有值
+只需二分 A 的切割位置——左半總數固定為 (m+n+1)//2，A 切 i 個，B 自動切 half - i 個（少一個自由度）
+合法條件： Aleft <= Bright and Bleft <= Aright
+不合法調整： Aleft > Bright（A 左半太大）→ r = i - 1；反之 l = i + 1
+
+
+踩過的坑：
+
+r = i - 1 不是 i -= 1：i -= 1 是線性掃描 O(m)，失去二分意義。r = i - 1 是排除「i 及其右邊」一半空間，O(log m)。
+r = i - 1 不會跳過值：[l, r] 是「還可能是答案的範圍」。設 r = i-1 只是縮小這一輪上界，範圍內其他值（如被擔心的 index 3）後續可能因 l = i+1 再被檢查到。範圍兩邊往中間收，每個還在範圍內的值都有機會。
+float('-inf') / float('inf') 哨兵：處理切在邊界（某陣列全進左半或右半）的 edge case，省去一堆 if。
+對短陣列二分：if len(A) > len(B): A, B = B, A，確保 j = half - i 不會變負，且複雜度 O(log min(m,n))。
+
+
+面試策略（三層解法展示優化思路）：
+
+先寫完整 merge（O(m+n)）：直覺、好寫
+主動說可優化空間 → prev/cur 版本 O(1) space
+面試官要 O(log) 才上 binary search 切割版
+
+大多數面試官不期望現場推出 O(log) 解法，merge 版通常可接受。
+重要性： 中頻但有名。Google/Amazon 偶爾考。難在抽象跳躍，不是高頻必刷。
+複雜度：
+
+解法 1：O(m+n) time / O(m+n) space
+解法 2：O(m+n) time / O(1) space
+解法 3：O(log(min(m,n))) time / O(1) space
