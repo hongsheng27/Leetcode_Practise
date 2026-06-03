@@ -1,0 +1,94 @@
+621. Task Scheduler
+     ===================
+
+題目概述：
+給一組 tasks 和 cooldown n。
+相同 task 之間至少要間隔 n 個 interval。
+每個 interval 可以執行一個 task，也可以 idle。
+回傳完成所有 tasks 最少需要多少 interval。
+
+解題邏輯：
+使用 max heap + cooldown queue。
+
+count：
+記錄每個 task 剩餘次數。
+Python heapq 是 min heap，所以 frequency 存負數。
+
+heap：
+存目前可以執行的 tasks。
+每次 pop 剩餘次數最多的 task。
+
+queue：
+存 cooldown 中的 task：
+
+```
+  (remainingFreq, availableTime)
+```
+
+每個 interval：
+1. time += 1
+2. 如果 heap 不為空，執行一次 task
+3. 如果 task 還有剩餘次數，放進 cooldown queue
+4. cooldown 到期的 task 放回 heap
+
+
+
+踩過的坑：
+
+1. heap 可能是空的
+cooldown 期間可能沒有 task 可以執行，代表目前 interval 是 idle。
+所以不能直接：
+```
+heapq.heappop(heap)
+```
+要先判斷：
+```
+if heap:
+```
+2. task 用完後不要再放進 queue
+frequency 使用負數。
+執行一次後：
+```
+freq + 1
+```
+如果結果是 0，代表 task 已經全部執行完，不需要再放入 queue。
+3. 使用 queue[0] 前，要先確認 queue 不為空
+要寫：
+```
+while queue and queue[0][1] == time:
+```
+否則 queue 為空時會 index out of range。
+
+4. 為什麼 cooldown 存 time + n
+task 在 time = 1 執行，n = 2：
+```
+time 1: 執行 A
+time 2: cooldown
+time 3: cooldown，迴圈結尾放回 heap
+time 4: 可以再次執行 A
+```
+所以 queue 存：
+
+```
+availableTime = time + n
+```
+
+複雜度：
+設：
+T = tasks 總數
+U = 不同 task 種類數
+
+時間複雜度：O(T log U)
+每個 task 最多進出 heap 一次。
+heap 大小最多是 U。
+
+空間複雜度：O(U)
+heap 和 queue 最多存不同 task 種類數。
+
+題目中 task 只有 A-Z，最多 26 種。
+因此也可以視為：
+
+```
+Time: O(T)
+Space: O(1)
+```
