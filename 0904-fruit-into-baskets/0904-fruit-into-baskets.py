@@ -1,14 +1,15 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        count = {}
         l = 0
-        maxNum = 0
+        count = {}
+        maxLen = 0
         for r in range(len(fruits)):
-            count[fruits[r]] = count.get(fruits[r], 0) + 1
+            fruit = fruits[r]
+            count[fruit] = count.get(fruit, 0) + 1
             while len(count) > 2:
+                maxLen = max(maxLen, r - l)
                 count[fruits[l]] -= 1
                 if not count[fruits[l]]: del count[fruits[l]]
-                l += 1  
-            maxNum = max(maxNum, r - l + 1)
-        return maxNum
-        
+                l += 1
+        maxLen = max(maxLen, r - l + 1)
+        return maxLen
