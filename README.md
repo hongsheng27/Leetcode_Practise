@@ -80,6 +80,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0503-next-greater-element-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0503-next-greater-element-ii) |
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0643-maximum-average-subarray-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0643-maximum-average-subarray-i) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
@@ -147,6 +148,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
@@ -216,6 +218,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0435-non-overlapping-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0435-non-overlapping-intervals) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
@@ -248,6 +251,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
@@ -269,6 +273,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 ## Quickselect
 |  |
@@ -462,6 +467,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0122-best-time-to-buy-and-sell-stock-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0122-best-time-to-buy-and-sell-stock-ii) |
 | [0134-gas-station](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0134-gas-station) |
 | [0435-non-overlapping-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0435-non-overlapping-intervals) |
+| [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0678-valid-parenthesis-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0678-valid-parenthesis-string) |
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
