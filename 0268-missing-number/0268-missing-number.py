@@ -3,8 +3,9 @@ class Solution:
         res = 0
         for i in range(len(nums) + 1):
             res ^= i
-        for n in nums:
-            res ^= n 
+        for num in nums:
+            res ^= num
         return res
+            
 
         
