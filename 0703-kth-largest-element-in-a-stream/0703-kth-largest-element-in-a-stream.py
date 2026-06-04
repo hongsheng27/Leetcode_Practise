@@ -4,7 +4,7 @@ class KthLargest:
         self.k = k
         for n in nums:
             heapq.heappush(self.minHeap, n)
-            if len(self.minHeap) > k:
+            if len(self.minHeap) > self.k:
                 heapq.heappop(self.minHeap)
     def add(self, val: int) -> int:
         heapq.heappush(self.minHeap, val)
