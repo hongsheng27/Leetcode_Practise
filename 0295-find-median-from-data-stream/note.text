@@ -1,0 +1,115 @@
+295. Find Median from Data Stream
+     =================================
+
+題目概述：
+設計一個資料結構，支援持續加入數字 addNum(num)，
+並隨時回傳目前所有數字的 median。
+
+median：
+奇數個數字 → 中間值
+偶數個數字 → 中間兩個值的平均
+
+解題邏輯：
+使用 two heaps，把數字分成左右兩半。
+
+maxHeap：
+存較小的一半。
+Python heapq 是 min heap，所以數字要取負數。
+heap top 是左半邊最大值。
+
+minHeap：
+存較大的一半。
+heap top 是右半邊最小值。
+
+需要維持兩個規則：
+
+```
+1. maxHeap 裡所有值 <= minHeap 裡所有值
+2. len(maxHeap) == len(minHeap)
+   或 len(maxHeap) == len(minHeap) + 1
+```
+
+addNum(num) 固定三步：
+
+```
+1. 先放進 maxHeap
+2. 把 maxHeap 最大值搬到 minHeap，維持左右順序
+3. 如果 minHeap 比 maxHeap 大，搬一個回 maxHeap，維持數量平衡
+```
+
+findMedian：
+
+```
+兩邊一樣大：
+  取兩個 heap top 的平均
+
+maxHeap 多一個：
+  median 是 maxHeap top
+```
+
+
+踩過的坑：
+
+1. 一開始會想先判斷 num 應該放左邊還是右邊
+
+這樣會出現很多 case：
+minHeap 是空的怎麼辦
+num 要放哪邊
+放完後要不要交換
+長度要怎麼平衡
+
+更簡潔的方式是固定流程：
+先放 maxHeap
+再把最大值搬到 minHeap
+最後平衡數量
+
+2. 交換其實在做兩件不同的事
+
+第一個交換：
+maxHeap → minHeap
+目的是維持順序正確。
+
+第二個交換：
+minHeap → maxHeap
+目的是維持數量平衡。
+
+不要把兩件事混在一起想。
+
+3. heap 不是完整排序
+heap 只保證 top 是最小值或最大值，
+其他位置不保證排序。
+
+這題不需要完整排序，
+只需要左半邊最大值和右半邊最小值。
+
+
+
+複雜度：
+addNum：
+O(log n)
+
+```
+每次最多做固定次數的 heap push / pop。
+每個 heap operation 是 O(log n)。
+```
+
+findMedian：
+O(1)
+
+```
+只需要讀取兩個 heap top。
+```
+
+空間複雜度：
+O(n)
+
+```
+所有數字都會存在兩個 heap 裡。
+```
+
+補充：
+leetcode 4: 如果一次拿到兩個已排序 arrays，只查一次 median，
+應該用 binary-search partition。
+
+295 適合 two heaps，
+因為資料會持續加入，而且每次都可能要查 median。
