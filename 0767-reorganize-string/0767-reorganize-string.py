@@ -14,10 +14,10 @@ class Solution:
             maxElem = heapq.heappop(maxHeap)
             newCnt = maxElem[0] + 1
             if newCnt < 0:
-                q.append(((newCnt, maxElem[1]), time + 1))
+                q.append((newCnt, maxElem[1], time + 1))
             res.append(maxElem[1])
-            while q and time == q[0][1]:
-                (newCnt, val), t = q.popleft()
+            while q and time == q[0][2]:
+                newCnt, val, t = q.popleft()
                 heapq.heappush(maxHeap, (newCnt, val))
         if len(q): return ""
         return "".join(res)
