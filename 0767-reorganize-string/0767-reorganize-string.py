@@ -1,20 +1,19 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        maxHeap = [] # [-cnt, c]
         preStatus = [] # [-cnt, c]
         count = Counter(s)
-        for c, cnt in count.items():
-            heapq.heappush(maxHeap, [-cnt, c])
+        maxHeap = [[-cnt, c] for c, cnt in count.items()] # [-cnt, c]
+        heapq.heapify(maxHeap)
         res = []
         while maxHeap:
-            maxElem = heapq.heappop(maxHeap)
-            maxElem[0] += 1
+            freq, char = heapq.heappop(maxHeap)
+            res.append(char)
+            freq += 1
 
             if preStatus and preStatus[0] < 0:
                 heapq.heappush(maxHeap, preStatus)
 
-            preStatus = maxElem
-            res.append(maxElem[1])
+            preStatus = [freq, char]
 
         return "".join(res) if len(res) == len(s) else ""
             
