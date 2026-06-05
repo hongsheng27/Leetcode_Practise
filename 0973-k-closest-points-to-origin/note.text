@@ -1,0 +1,32 @@
+973. K Closest Points to Origin
+     ===============================
+
+題目概述：
+給一組二維座標 points，每個 point 是 [x, y]。
+請找出距離原點 [0, 0] 最近的 k 個點。
+回傳順序不限。
+
+解題邏輯：
+使用 size = k 的 max heap。
+Python heapq 預設是 min heap，
+所以存 negative squared distance：
+
+heap 裡只保留目前最近的 k 個 points。
+如果 heap size 超過 k，就 pop 掉最遠的 point。
+
+不需要真的做 sqrt，
+因為平方根不會改變距離排序。
+
+
+踩過的坑：
+1. 不需要用 math.sqrt。
+   比較 squaredDistance 就足夠，排序結果相同。
+
+
+複雜度：
+時間複雜度：O(n log k)
+每個 point 都會 push。
+heap 大小最多是 k + 1，所以 push / pop 是 O(log k)。
+
+空間複雜度：O(k)
+heap 最多保留 k 個 points。
