@@ -2,9 +2,7 @@ class Solution:
     def reorganizeString(self, s: str) -> str:
         maxHeap = [] # [-cnt, c]
         preStatus = [] # [-cnt, c]
-        count = {}
-        for c in s:
-            count[c] = count.get(c, 0) + 1
+        count = Counter(s)
         for c, cnt in count.items():
             heapq.heappush(maxHeap, [-cnt, c])
         res = []
