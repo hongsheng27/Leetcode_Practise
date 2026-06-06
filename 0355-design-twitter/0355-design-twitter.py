@@ -12,9 +12,9 @@ class Twitter:
     def getNewsFeed(self, userId: int) -> List[int]:
         maxHeap = []
         res = []
-        followeeIds = self.followMap.get(userId, set()) | {userId}
+        followeeIds = self.followMap[userId] | {userId}
         for f in followeeIds:
-            if f in self.allTweets and self.allTweets[f]:
+            if self.allTweets[f]:
                 fNew = self.allTweets[f][-1]
                 heapq.heappush(maxHeap, fNew)
         while len(res) < 10 and maxHeap:
