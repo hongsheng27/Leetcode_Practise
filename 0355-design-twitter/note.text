@@ -1,0 +1,98 @@
+355. Design Twitter
+     ===================
+
+題目概述：
+設計一個簡化版 Twitter。
+支援發文 postTweet、追蹤 follow、取消追蹤 unfollow，
+以及查詢使用者自己和 followees 最新 10 則貼文 getNewsFeed。
+
+解題邏輯：
+使用 defaultdict + min heap。
+
+allTweets：
+userId -> [(time, userId, index, tweetId)]
+
+```
+每個 user 的 tweets 依照發文順序 append。
+time 每次遞減，所以越新的 tweet，time 越小。
+Python min heap 會優先 pop 最新 tweet。
+```
+
+followMap：
+userId -> set(followeeId)
+
+```
+getNewsFeed 時額外加上自己：
+
+  followMap[userId] | {userId}
+```
+
+getNewsFeed 使用 k-way merge：
+
+```
+1. 先把每個 followee 最新一則 tweet 放進 heap
+2. pop 出目前最新 tweet
+3. 將同一個 user 的下一則舊 tweet 放進 heap
+4. 最多取 10 次
+```
+
+不需要把所有歷史 tweets 都丟進 heap。
+
+踩過的坑：
+
+1. 一開始沒想到 heap 優化前 10 筆的方法。
+
+   不需要合併所有 followees 的 tweets。
+   只要先放每個人的最新一則，
+   pop 後再補同一人的下一則舊 tweet。
+
+2. defaultdict 可以避免過多初始化判斷。
+
+   使用：
+
+   defaultdict(list)
+   defaultdict(set)
+
+   就不用每次先判斷 userId 是否存在。
+
+3. 一開始不熟悉如何包含自己的 tweets。
+
+   getNewsFeed 時使用：
+
+   self.followMap[userId] | {userId}
+
+   不需要真的讓 user follow 自己。
+
+4. followMap 要用 set。
+
+   可以避免重複 follow，
+   follow 和 unfollow 也都是 O(1)。
+
+複雜度：
+設：
+F = 使用者追蹤的人數
+
+postTweet：
+O(1)
+
+follow：
+O(1)
+
+unfollow：
+O(1)
+
+getNewsFeed：
+O(F + 10 log F)
+
+```
+先放入每個 followee 最新 tweet：O(F)
+最多 pop / push 10 次：O(10 log F)
+```
+
+空間複雜度：
+O(T + R)
+
+```
+T = 所有 tweets 數量
+R = 所有 follow relationships 數量
+```
