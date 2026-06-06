@@ -138,6 +138,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
+| [0355-design-twitter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0355-design-twitter) |
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
@@ -253,6 +254,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
 | [0347-top-k-frequent-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0347-top-k-frequent-elements) |
+| [0355-design-twitter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0355-design-twitter) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 | [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
@@ -520,6 +522,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0303-range-sum-query-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0303-range-sum-query-immutable) |
 | [0304-range-sum-query-2d-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0304-range-sum-query-2d-immutable) |
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
+| [0355-design-twitter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0355-design-twitter) |
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
@@ -583,6 +586,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0143-reorder-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0143-reorder-list) |
 | [0146-lru-cache](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0146-lru-cache) |
 | [0206-reverse-linked-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0206-reverse-linked-list) |
+| [0355-design-twitter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0355-design-twitter) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 ## Tree
