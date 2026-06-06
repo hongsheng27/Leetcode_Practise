@@ -1,15 +1,12 @@
 class Twitter:
     def __init__(self):
-        self.allTweets = {} # userId: [(time, userId, index, tweetId)]
-        self.followMap = {} # userId: set(followeeId(#include himself))
+        self.allTweets = defaultdict(list) # userId: [(time, userId, index, tweetId)]
+        self.followMap = defaultdict(set) # userId: set(followeeId(#include himself))
         self.time = 0
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if userId not in self.allTweets:
-            self.allTweets[userId] = [(self.time, userId, 0, tweetId)]
-        else:
-            index = len(self.allTweets[userId])
-            self.allTweets[userId].append((self.time, userId, index, tweetId))
+        index = len(self.allTweets[userId])
+        self.allTweets[userId].append((self.time, userId, index, tweetId))
         self.time -= 1
 
     def getNewsFeed(self, userId: int) -> List[int]:
@@ -29,13 +26,10 @@ class Twitter:
         return res
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.followMap:
-            self.followMap[followerId] = set([followeeId])
-        else:
-            self.followMap[followerId].add(followeeId)
+        self.followMap[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.followMap or followeeId not in self.followMap[followerId]: return
+        if followeeId not in self.followMap[followerId]: return
         self.followMap[followerId].remove(followeeId)
 
 # Your Twitter object will be instantiated and called as such:
