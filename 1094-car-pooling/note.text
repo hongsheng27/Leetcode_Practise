@@ -1,0 +1,63 @@
+1094. Car Pooling
+      =================
+
+題目概述：
+給定 trips，其中每筆為 [numPassengers, from, to]，
+代表乘客在 from 上車、to 下車。
+判斷車上人數是否會超過 capacity。
+
+解題邏輯：
+將每個 interval 拆成兩個 event：
+
+```
+(from, +numPassengers)
+(to,   -numPassengers)
+```
+
+按照位置排序後，用 running total 累加目前車上人數。
+任何時候 total > capacity，就回傳 False。
+
+同一位置有人下車和上車時，要先下車。
+使用 tuple 排序時，負數會自動排在正數前面：
+
+```
+(5, -2)
+(5,  3)
+```
+
+解題技巧：
+
+```
+Interval
+-> 拆成 start / end events
+-> sort
+-> running prefix sum
+```
+
+這類技巧適合處理：
+某個時間或位置上的累積狀態
+同時存在的人數
+重疊區間造成的資源使用量
+
+踩過的坑：
+
+1. 一開始想到排序 interval，再判斷是否重疊。
+   但這題可能有多個 interval 同時重疊，直接比較區間會變複雜。
+
+   更好的想法是：
+   只記錄狀態改變的時間點。
+
+2. 一開始不熟悉 event 的資料結構。
+   原始資料：
+
+   [numPassengers, from, to]
+
+   要轉成：
+
+   (from, +numPassengers)
+   (to,   -numPassengers)
+
+複雜度：
+時間複雜度：O(n log n)
+空間複雜度：O(n)
+
