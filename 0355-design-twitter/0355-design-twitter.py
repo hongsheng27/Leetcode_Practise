@@ -7,7 +7,6 @@ class Twitter:
     def postTweet(self, userId: int, tweetId: int) -> None:
         if userId not in self.allTweets:
             self.allTweets[userId] = [(self.time, userId, 0, tweetId)]
-            self.follow(userId, userId) # init: follow himself
         else:
             index = len(self.allTweets[userId])
             self.allTweets[userId].append((self.time, userId, index, tweetId))
@@ -16,8 +15,7 @@ class Twitter:
     def getNewsFeed(self, userId: int) -> List[int]:
         maxHeap = []
         res = []
-        if userId not in self.followMap: return []
-        followeeIds = self.followMap[userId]
+        followeeIds = self.followMap.get(userId, set()) | {userId}
         for f in followeeIds:
             if f in self.allTweets and self.allTweets[f]:
                 fNew = self.allTweets[f][-1]
@@ -35,12 +33,10 @@ class Twitter:
             self.followMap[followerId] = set([followeeId])
         else:
             self.followMap[followerId].add(followeeId)
-        print(self.followMap)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         if followerId not in self.followMap or followeeId not in self.followMap[followerId]: return
         self.followMap[followerId].remove(followeeId)
-        print(self.followMap)
 
 # Your Twitter object will be instantiated and called as such:
 # obj = Twitter()
