@@ -1,15 +1,17 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        stack = []
-        intervals.append(newInterval)
-        intervals.sort()
-        for interval in intervals:
-            if stack and stack[-1][1] >= interval[0]:
-                oldStart, oldEnd = stack.pop()
-                end = max(oldEnd, interval[1])
-                stack.append((oldStart, end))
+        res = []
+        merged = newInterval
+        for i in range(len(intervals)):
+            start, end = intervals[i]
+            newStart, newEnd = merged
+            if newStart > end:
+                res.append([start, end])
+            elif newEnd < start:
+                return res + [merged] + intervals[i:]
             else:
-                stack.append(interval)
-        return stack
+                merged = [min(newStart, start), max(newEnd, end)]      
+        res.append(merged)
+        return res
 
         
