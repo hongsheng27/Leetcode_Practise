@@ -1,0 +1,73 @@
+57. Insert Interval
+    ===================
+
+題目概述：
+給定一組已排序、彼此不重疊的 intervals，
+再插入一個 newInterval。
+合併所有重疊區間後，回傳仍然排序且互不重疊的結果。
+
+解題邏輯：
+原本 intervals 已排序，所以不需要重新 sort。
+從左到右掃描，每個 interval 只會落在三種情況：
+
+1. interval 完全在 newInterval 左邊
+   直接加入 res。
+
+2. interval 和 newInterval 重疊
+   更新 newInterval 範圍：
+
+   newInterval[0] = min(newInterval[0], start)
+   newInterval[1] = max(newInterval[1], end)
+
+3. interval 完全在 newInterval 右邊
+   將 newInterval 加入 res，
+   後面的 intervals 可以直接接上並回傳。
+
+判斷方式：
+
+```
+interval 在左邊：
+  end < newInterval[0]
+
+interval 在右邊：
+  start > newInterval[1]
+
+其他情況：
+  overlap
+```
+
+核心技巧：
+
+```
+利用已排序條件，
+將區間拆成：
+
+  left | overlap | right
+
+用 newInterval 保存持續合併後的範圍。
+```
+
+踩過的坑：
+
+1. 一開始想到先 append newInterval 再排序。
+   可以做，但沒有利用題目已排序的條件，
+   複雜度會從 O(n) 變成 O(n log n)。
+
+2. 第一次遇到右邊區間後，
+   後面的 intervals 一定也都在右邊，
+   可以直接接上，不需要繼續比較。
+
+5. Python 可以直接修改 list parameter：
+
+   newInterval[0] = ...
+   newInterval[1] = ...
+
+   這會修改傳入的 list。
+   如果不想 mutate input，也可以另外使用 merged 變數。
+
+複雜度：
+時間複雜度：O(n)
+每個 interval 最多掃描一次。
+
+空間複雜度：O(n)
+res 儲存最後結果。
