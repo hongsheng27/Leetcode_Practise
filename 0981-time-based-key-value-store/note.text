@@ -22,6 +22,10 @@
   一開始雖然有想到要回傳 r，但還是需要畫圖確認為什麼 r 是答案。
 
   關鍵理解：
+  重點：
+  「找小於等於 target 的最大值
+  腦中直接出現：floor → right boundary → r」
+
   binary search 結束時，l 和 r 會交錯。
   l 會指向第一個 > timestamp 的位置。
   r 會指向最後一個 <= timestamp 的位置。
