@@ -18,7 +18,7 @@ class TimeMap:
                 l = m + 1
             else:
                 r = m - 1
-        return maxItem[1] if maxItem[0] != float('-inf') else ""
+        return maxItem[1]
 
 
 
