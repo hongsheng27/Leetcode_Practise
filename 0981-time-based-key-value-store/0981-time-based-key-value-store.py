@@ -6,16 +6,15 @@ class TimeMap:
         self.count[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
-        if key not in self.count or not self.count: return ""
+        if key not in self.count: return ""
         values = self.count[key]
         l = 0
         r = len(values) - 1
-        maxItem = [float('-inf'), None]
+        maxItem = (float('-inf'), "")
         while l <= r:
             m = (l + r) // 2
             if timestamp >= values[m][0]:
-                if values[m][0] > maxItem[0]:
-                    maxItem = values[m]
+                maxItem = values[m]
                 l = m + 1
             else:
                 r = m - 1
