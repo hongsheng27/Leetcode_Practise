@@ -1,6 +1,6 @@
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
-        wallets = [0, 0, 0] # [$5, $10, $20]
+        wallets = [0, 0] # [$5, $10]
         for bill in bills:
             if bill == 5:
                 wallets[0] += 1
@@ -13,7 +13,6 @@ class Solution:
                     wallets[1] -= 1
                 else:
                     wallets[0] -= 3
-                wallets[2] += 1
             if wallets[0] < 0 or wallets[1] < 0: return False
         return True
             
