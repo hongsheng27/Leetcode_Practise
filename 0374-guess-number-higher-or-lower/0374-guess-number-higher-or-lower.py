@@ -11,8 +11,11 @@ class Solution:
         r = n
         while l <= r:
             m = (l + r) // 2
-            res = guess(m)
-            if res == -1: r = m - 1
-            elif res == 1: l = m + 1
-            else: return m
+            if guess(m) == -1:
+                r = m - 1
+            elif guess(m) == 1:
+                l = m + 1
+            else:
+                return m
+
         
