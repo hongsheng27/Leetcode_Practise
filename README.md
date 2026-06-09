@@ -96,6 +96,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
+| [0860-lemonade-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0860-lemonade-change) |
 | [0875-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0875-koko-eating-bananas) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
@@ -485,6 +486,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
+| [0860-lemonade-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0860-lemonade-change) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
 ## Stack
