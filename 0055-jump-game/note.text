@@ -1,0 +1,94 @@
+55. Jump Game
+    =============
+
+題目概述：
+給定 nums，其中 nums[i] 代表從 index i 最多可以往右跳幾步。
+判斷是否可以從 index 0 抵達最後一個 index。
+
+解題邏輯：
+使用 greedy，從終點往前找。
+
+target：
+目前必須抵達的位置。
+
+從右往左掃描每個 index i：
+
+```
+如果：
+  nums[i] + i >= target
+
+代表 index i 可以跳到 target，
+所以把 target 往前移到 i。
+```
+
+最後：
+
+```
+target == 0
+→ 起點可以抵達終點。
+```
+
+核心技巧：
+不需要真的模擬跳躍路線。
+只需要持續把「可抵達終點的位置」往前推。
+
+可以理解成：
+
+```
+找到能抵達 target 的 index
+→ 把該 index 設為新的 target
+→ 繼續往左找
+```
+
+Recursion Version：
+dfs(index) 代表：
+判斷是否可以從 index 0 抵達目前 target index。
+
+每次從 target 左邊往前找，
+找到第一個可以跳到 target 的 index 後，
+直接遞迴檢查新的 target。
+
+這個 recursion 版本時間複雜度仍然是 O(n)，
+因為每層掃描的區間不會重複。
+
+踩過的坑：
+
+1. 一開始用 nums[:-1] 切片代表 target 往前移。
+
+   Python list slicing 需要複製元素，
+   重複切片會讓時間複雜度變成 O(n²)。
+
+   更好的方式是直接傳遞 target index。
+
+2. 一開始把可抵達條件寫反。
+
+   正確判斷：
+
+   nums[i] >= target - i
+
+   等同於：
+
+   nums[i] + i >= target
+
+3. 一開始以為 recursion 裡有多層 for loop，
+   時間複雜度一定是 O(n²)。
+
+   但找到答案後會立刻 return dfs(i)，
+   下一層只會繼續掃描 i 左邊的位置。
+
+   每個 index 最多只檢查一次，
+   所以 recursion 版本仍然是 O(n)。
+
+複雜度：
+Iterative Greedy：
+時間複雜度：O(n)
+空間複雜度：O(1)
+
+Recursion：
+時間複雜度：O(n)
+空間複雜度：O(n)
+來自 recursion stack。
+
+面試建議：
+優先使用 iterative greedy。
+邏輯更短，空間為 O(1)，也不會遇到 Python recursion depth limit。
