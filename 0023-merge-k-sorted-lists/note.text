@@ -34,3 +34,5 @@ heapify 一次：O(k)
 替代解法（分治，同複雜度）： 兩兩合併直到剩一個，複用 21 的 mergeTwoLists 當 helper。當 follow-up「不用 heap 怎麼解」可上。
 重要性： 高頻，FAANG 常考（特別 Amazon）。Heap 在 linked list 題的代表應用。
 複雜度： O(N log k) time / O(k) space，N 是總 node 數、k 是 list 數量
+
+跟 design twitter 一樣模板，兩個要活用
