@@ -12,7 +12,6 @@ class Solution:
                 heapq.heappush(minHeap, (lst.val,i ,lst))
         while minHeap:
             value, index, node = heapq.heappop(minHeap)
-
             tail.next = node
             tail = tail.next
             if node.next:
