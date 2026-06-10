@@ -5,7 +5,7 @@ class Solution:
         n = len(nums)
         for i in range(n - 1, -1, -1):
             if nums[i] >= n - i:
-                 return self.canJump(nums)
+                 return self.canJump(nums[:i + 1])
         return False
 
             
