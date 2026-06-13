@@ -1,0 +1,65 @@
+1899. Merge Triplets to Form Target Triplet
+      ==========================================
+
+題目概述：
+給定多組 triplets 和一個 target。
+每次 merge 會對三個位置分別取最大值。
+判斷是否能透過合併部分 triplets 得到 target。
+
+解題邏輯：
+使用 Greedy。
+
+如果某個 triplet 任一位置大於 target，
+就不能使用。
+
+因為 merge 只能讓數字變大，
+一旦超過 target，之後不可能再降回來。
+
+對剩下合法的 triplets，
+只要確認 target 的三個位置是否都曾經被補到即可。
+
+不需要枚舉：
+選哪些 triplets
+合併順序
+所有可能組合
+
+核心技巧：
+這題是 safe elimination greedy。
+
+不合法的 triplet：
+直接永久淘汰。
+
+合法的 triplet：
+可以放心累積有用資訊。
+
+可以記成：
+
+```
+merge 只能增加，不能減少
+-> 超過 target 的候選一定無效
+-> 剩下的合法候選可以直接使用
+```
+
+踩過的坑：
+
+1. 一開始邊檢查 triplet 是否合法，
+   邊更新 res。
+
+   這樣可能在發現 triplet 不合法前，
+   就已經修改 res。
+
+   應該先完整確認 triplet 合法，
+   再更新狀態。
+
+2. 一開始不確定這題哪裡是 greedy。
+
+   Greedy 在於：
+   超過 target 的 triplet 可以直接淘汰，
+   剩下合法 triplets 不會互相衝突。
+
+複雜度：
+時間複雜度：O(n)
+每個 triplet 固定檢查三個位置。
+
+空間複雜度：O(1)
+只需要記錄三個位置是否已經補齊。
