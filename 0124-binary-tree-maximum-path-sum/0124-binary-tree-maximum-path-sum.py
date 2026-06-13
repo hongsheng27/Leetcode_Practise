@@ -7,20 +7,12 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         def dfs(node):
-            if not node: return (float('-inf'), 0) # (largestSum, largestPath)
+            if not node: return (0, float('-inf')) # pathSum, ans
+            leftSum, leftAns  = dfs(node.left)
+            rigthSum, rightAns = dfs(node.right)
 
-            leftMaxSum, leftGain = dfs(node.left)
-            rightMaxSum, rightGain = dfs(node.right)
-
-            leftGain = max(leftGain, 0)
-            rightGain = max(rightGain, 0)
+            ans = node.val + max(0, leftSum) + max(0, rigthSum)
             
-            largestSum = node.val + leftGain + rightGain
-            largestSum = max(largestSum, rightMaxSum, leftMaxSum)
-            largestPath = node.val + max(leftGain, rightGain)
-
-            return (largestSum, largestPath)
-        return dfs(root)[0]
-
-        
+            return (node.val + max(leftSum, rigthSum, 0), max(ans, leftAns, rightAns))
+        return dfs(root)[1]
         
