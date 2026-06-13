@@ -1,5 +1,6 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) % groupSize: return False
         hand.sort()
         count = Counter(hand)
         for num in hand:
