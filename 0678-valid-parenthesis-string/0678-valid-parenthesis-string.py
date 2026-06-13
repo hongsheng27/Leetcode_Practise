@@ -1,16 +1,16 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        leftMin, leftMax = 0, 0
+        minOpen = maxOpen = 0
         for c in s:
-            if c == "(":
-                leftMin, leftMax = leftMin + 1, leftMax + 1
-            elif c == ")":
-                leftMin, leftMax = leftMin - 1, leftMax - 1
+            if c == "(": 
+                minOpen += 1
+                maxOpen += 1
+            elif c == ')':
+                minOpen -= 1
+                maxOpen -= 1
             else:
-                leftMin, leftMax = leftMin - 1, leftMax + 1
-            if leftMax < 0:
-                return False
-            if leftMin < 0:
-                leftMin = 0
-        return leftMin == 0
-        
+                minOpen -= 1
+                maxOpen += 1
+            if maxOpen < 0: return False
+            minOpen = max(0, minOpen)
+        return minOpen == 0
