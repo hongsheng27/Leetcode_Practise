@@ -7,25 +7,18 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder and not inorder: return None
-        self.preorderIndex = 0
-        inorderIndexMap = {}
-        for i in range(len(inorder)):
-            inorderIndexMap[inorder[i]] = i
+        
+        head = TreeNode(preorder[0])
+        mid = inorder.index(preorder[0])
 
-        def build(left, right):
-            # base case
-            if right <= left: return None
-            # recursion case
-            rootVal = preorder[self.preorderIndex]
-            self.preorderIndex += 1
+        head.left = self.buildTree(preorder[1: mid+1], inorder[:mid])
+        head.right = self.buildTree(preorder[mid+1:], inorder[mid + 1:])
+        return head
 
-            mid = inorderIndexMap[rootVal]
-            root = TreeNode(rootVal)
-            root.left = build(left, mid)
-            root.right = build(mid + 1, right)
+            
 
 
-            return root
-        return build(0, len(inorder))
+
+
 
         
