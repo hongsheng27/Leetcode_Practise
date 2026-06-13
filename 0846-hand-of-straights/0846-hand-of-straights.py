@@ -1,6 +1,7 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
         if len(hand) % groupSize: return False
+        
         heapq.heapify(hand)
         count = Counter(hand)
         while hand:
