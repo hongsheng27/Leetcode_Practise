@@ -1,0 +1,28 @@
+846. Hand of Straights
+
+題目概述：
+給定 hand 和 groupSize，判斷是否能把所有牌分成數組，
+每組都有 groupSize 張連續數字。
+
+解題邏輯：
+使用 Greedy + Counter + Min Heap。
+
+每次從目前最小的未使用數字開始，
+往後消耗 groupSize 個連續數字。
+
+因為目前最小牌沒有更小的牌可以接在前面，
+所以它只能當作某一組的起點。
+如果中間缺任何數字，直接回傳 False。
+
+踩過的坑：
+1. 一開始一直想避免 sort。
+   但真正要先想的是：哪個元素沒有其他選擇？
+   這題是目前最小牌。
+
+2. 不能用 array index 判斷連續。
+   要檢查的是數值：
+   num, num + 1, num + 2
+
+複雜度：
+Time: O(n log n)
+Space: O(n)
