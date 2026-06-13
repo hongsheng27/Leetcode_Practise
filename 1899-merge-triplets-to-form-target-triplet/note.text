@@ -18,44 +18,22 @@
 對剩下合法的 triplets，
 只要確認 target 的三個位置是否都曾經被補到即可。
 
-不需要枚舉：
-選哪些 triplets
-合併順序
-所有可能組合
 
-核心技巧：
-這題是 safe elimination greedy。
-
-不合法的 triplet：
-直接永久淘汰。
-
-合法的 triplet：
-可以放心累積有用資訊。
-
-可以記成：
-
-```
-merge 只能增加，不能減少
--> 超過 target 的候選一定無效
--> 剩下的合法候選可以直接使用
-```
 
 踩過的坑：
 
-1. 一開始邊檢查 triplet 是否合法，
-   邊更新 res。
+1. 一開始寫 isPassed: res = part
+   但最一開始在 part = res 建立出新 list，導致
+   part 和 res 會指向同一個 list。
+   所以修改：
+     part[i] = ...
 
-   這樣可能在發現 triplet 不合法前，
-   就已經修改 res。
+   也會直接修改 res。
 
-   應該先完整確認 triplet 合法，
-   再更新狀態。
-
-2. 一開始不確定這題哪裡是 greedy。
-
-   Greedy 在於：
-   超過 target 的 triplet 可以直接淘汰，
-   剩下合法 triplets 不會互相衝突。
+   如果需要複製一份再暫時修改，應該寫：
+     part = res[:]
+   或：
+     part = res.copy()
 
 複雜度：
 時間複雜度：O(n)
