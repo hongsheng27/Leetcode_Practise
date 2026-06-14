@@ -19,11 +19,13 @@ serialize：
 記錄 node.val
 繼續 dfs(left)
 繼續 dfs(right)
-
-```
-遇到 None：
-  記錄 #
-```
+      1
+     / \
+    2   3
+       / \
+      4   5
+      
+i.g. [1, 2, n, n, 3, 4, n ,n , 5, n, n]
 
 
 踩過的坑：
@@ -63,11 +65,7 @@ head.left = dfs()
 self.index += 1
 head.right = dfs()
 
-3. serialize 用 list + join 比一直拼 string 乾淨
-
-res.append(...)
-return ",".join(res)
-不需要最後再手動刪掉多餘逗號。
+3.要理解seralize 的順序，是preorder 的順序，因此可以在unserialize
 
 複雜度：
 時間複雜度：O(n)
