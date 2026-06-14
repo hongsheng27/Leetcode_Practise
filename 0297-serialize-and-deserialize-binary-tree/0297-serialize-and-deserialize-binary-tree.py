@@ -14,12 +14,10 @@ class Codec:
         """
         res = [] # i.g. [1, 2, n, n, 3, 4, n ,n , 5, n, n]
         def dfs(node):
-            if node:
-                res.append(str(node.val))
-            else: 
+            if not node: 
                 res.append('n')
                 return
-
+            res.append(str(node.val))
             dfs(node.left)
             dfs(node.right)
         dfs(root)
