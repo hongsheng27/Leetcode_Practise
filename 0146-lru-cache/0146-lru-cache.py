@@ -19,7 +19,7 @@ class LRUCache:
         prev.next = nxt
         nxt.prev = prev
 
-    def moveToTail(self, node):
+    def insertToTail(self, node):
         prev = self.end.prev
         node.next = self.end
         self.end.prev = node 
@@ -30,18 +30,18 @@ class LRUCache:
         if key not in self.count: return -1
         node = self.count[key]
         self.delete(node)
-        self.moveToTail(node)
+        self.insertToTail(node)
         return node.value
         
     def put(self, key: int, value: int) -> None:
         newNode = Node(key, value)
         if key in self.count:
             self.delete(self.count[key])
-            self.moveToTail(newNode)
+            self.insertToTail(newNode)
             self.count[key] = newNode
         else:
             self.count[key] = newNode
-            self.moveToTail(newNode)
+            self.insertToTail(newNode)
             if len(self.count) > self.capacity:
                 oldNode = self.start.next
                 del self.count[oldNode.key]
