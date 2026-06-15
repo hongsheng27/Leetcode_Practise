@@ -1,20 +1,20 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
-        curList = []
-        def dfs(i, total):
+        def backtrack(index, total, stack):
+            # base ase
             if total == target:
-                res.append(curList.copy())
+                res.append(stack.copy())
                 return
-            if i >= len(candidates) or total > target:
+            if total > target or index >= len(candidates):
                 return
-            # decision to include candidates[i]
-            curList.append(candidates[i])
-            dfs(i, total + candidates[i])
-            # decision to NOT include candidates[i]
-            curList.pop()
-            dfs(i + 1, total)
-        dfs(0, 0) 
+            # recursion case
+            # self
+            stack.append(candidates[index])
+            backtrack(index, total + candidates[index], stack)
+            stack.pop()
+            # nothing
+            backtrack(index + 1, total, stack)
+            
+        backtrack(0, 0, [])
         return res
-
-        
