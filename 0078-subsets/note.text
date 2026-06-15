@@ -1,0 +1,110 @@
+78. Subsets
+    ===========
+
+題目概述：
+給一個 nums，回傳所有 subset。
+
+題目說 nums 裡的元素是 distinct。
+所以不需要處理 duplicate subset。
+
+## 版本 1：Choose / Skip Backtracking
+
+解題邏輯：
+每個 nums[index] 都有兩種選擇：
+
+```
+1. choose nums[index]
+2. skip nums[index]
+```
+
+backtrack(index, path) 代表：
+現在正在決定 nums[index] 要不要加入 path。
+
+當 index == len(nums)：
+代表所有元素都決定完了。
+把 path.copy() 加入 res。
+
+核心流程：
+
+choose:
+path.append(nums[index])
+backtrack(index + 1, path)
+path.pop()
+
+skip:
+backtrack(index + 1, path)
+
+重點：
+選完 nums[index] 後，index + 1。
+因為 Subsets 裡每個元素只能用一次。
+
+這個版本的 res.append(path.copy()) 發生在 leaf node。
+也就是所有元素都決定完之後才加入答案。
+
+## 版本 2：For-loop Backtracking
+
+解題邏輯：
+backtrack(start, path) 代表：
+目前 path 已經是一個合法 subset。
+接下來可以從 nums[start:] 裡繼續選元素加入 path。
+
+每次進入 backtrack，先把目前 path 加入 res：
+
+```
+res.append(path.copy())
+```
+
+然後用 for-loop 從 start 開始，嘗試選下一個元素。
+
+核心流程：
+
+res.append(path.copy())
+
+for i in range(start, len(nums)):
+path.append(nums[i])
+backtrack(i + 1, path)
+path.pop()
+
+重點：
+for-loop 版本沒有明確的 skip 分支。
+
+它是：
+先收集目前 path
+再往後嘗試加更多元素
+
+所以目前 path 本身就代表：
+後面的元素可以先都不選。
+
+這個版本的 res.append(path.copy()) 發生在每一個 recursion node。
+因為每個 path 都是一個合法 subset。
+
+## 兩個版本差別
+
+Choose / Skip:
+每一層固定決定 nums[index] 要不要選。
+到 leaf node 才加入 res。
+
+For-loop:
+每一層決定「下一個要選誰」。
+每進一層就先加入 res。
+
+## 踩過的坑
+
+1. choose / skip 版本裡，choose 之後一定要 index + 1。
+   不可以 backtrack(index, path)，否則會無限遞迴。
+
+2. for-loop 版本沒有明確 skip。
+   不選的概念是由 res.append(path.copy()) 先收集目前 path 來完成。
+
+## 複雜度
+
+Time: O(n * 2^n)
+總共有 2^n 個 subset。
+每次 path.copy() 最多 O(n)。
+
+Space:
+O(n) auxiliary space
+recursion stack + path
+
+O(n * 2^n) if counting output result
+res 需要存所有 subsets。
