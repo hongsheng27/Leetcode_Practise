@@ -1,0 +1,79 @@
+39. Combination Sum
+    ===================
+
+題目概述：
+給 candidates 和 target，找出所有總和等於 target 的組合。
+
+題目說 candidates 是 distinct。
+所以不需要處理 candidates 裡有重複數字的情況。
+
+每個 candidate 可以被重複使用。
+
+解題邏輯：
+使用 choose / skip backtracking。
+
+backtrack(index, total, path) 代表：
+現在正在考慮 candidates[index]
+目前總和是 total
+目前組合是 path
+
+每個 candidates[index] 有兩種選擇：
+
+```
+1. choose
+   選 candidates[index]
+   因為同一個數字可以重複使用，所以 index 不變。
+
+2. skip
+   不選 candidates[index]
+   往下一個 candidate 走，所以 index + 1。
+```
+
+Base Case：
+如果 total == target：
+把 path.copy() 加入 res
+return
+
+如果 total > target：
+代表已經超過 target，不可能成功
+return
+
+如果 index >= len(candidates)：
+代表沒有 candidate 可以選了
+return
+
+
+重點：
+choose 分支 index 不變：
+因為 candidates[index] 可以重複使用。
+
+skip 分支 index + 1：
+代表放棄目前 candidate，之後不再使用它。
+
+path 放進 res 時要 copy：
+res.append(path.copy())
+
+
+和 78. Subsets 差別：
+Subsets:
+每個元素只能用一次。
+choose 後 index + 1。
+
+Combination Sum:
+每個 candidate 可以重複使用。
+choose 後 index 不變。
+
+踩過的坑：
+1. skip candidates[index] 後，才是 index + 1。
+
+
+複雜度：
+Time: exponential
+
+Space:
+O(target / min(candidates)) auxiliary space
+recursion depth 最深可能一直選最小的 candidate。
+
+```
+如果算 output result，要再加上所有答案本身佔用的空間。
+```
