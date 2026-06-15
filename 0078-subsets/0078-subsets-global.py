@@ -1,19 +1,19 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        def backtrack(index, stack):
+        def dfs(i):
             # base case
-            if index == len(nums):
-                res.append(stack.copy())
+            if i >= len(nums):
+                subSets.append(curSet.copy())
                 return
-            # recursion case
-            stack.append(nums[index])
-            backtrack(index + 1, stack)
-            stack.pop()
+            # include nums[i]
+            curSet.append(nums[i])
+            dfs(i + 1)
 
-            backtrack(index + 1, stack)
-
-        backtrack(0, [])
-        return res
+            # not include nums[i]
+            curSet.pop()
+            dfs(i + 1)
+        subSets, curSet = [], []
+        dfs(0)
+        return subSets
 
         
