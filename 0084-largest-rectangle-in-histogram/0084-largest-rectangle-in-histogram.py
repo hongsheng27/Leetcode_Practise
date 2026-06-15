@@ -4,8 +4,8 @@ class Solution:
         leftMost = [-1] * n
         rightMost = [n] * n 
 
-        stack = []
         # rightMost
+        stack = []
         for i in range(n):
             while stack and heights[stack[-1]] > heights[i]:
                 index = stack.pop()
