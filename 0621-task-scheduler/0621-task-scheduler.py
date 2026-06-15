@@ -12,6 +12,6 @@ class Solution:
                 heapq.heappush(maxHeap, c)
             if maxHeap:
                 cnt = heapq.heappop(maxHeap)
-                if cnt + 1 != 0:
+                if cnt + 1 < 0:
                     q.append((time + n + 1, cnt + 1)) 
         return time
