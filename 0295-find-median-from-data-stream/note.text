@@ -12,12 +12,12 @@ median：
 解題邏輯：
 使用 two heaps，把數字分成左右兩半。
 
-maxHeap：
+smalls(maxHeap)：
 存較小的一半。
 Python heapq 是 min heap，所以數字要取負數。
 heap top 是左半邊最大值。
 
-minHeap：
+bigs(minHeap)：
 存較大的一半。
 heap top 是右半邊最小值。
 
