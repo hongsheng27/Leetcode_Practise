@@ -2,8 +2,8 @@
     =============
 
 題目概述：
-給定 nums，其中 nums[i] 代表從 index i 最多可以往右跳幾步。
-判斷是否可以從 index 0 抵達最後一個 index。
+    給定 nums，其中 nums[i] 代表從 index i 最多可以往右跳幾步。
+    判斷是否可以從 index 0 抵達最後一個 index。
 
 解題邏輯：
 使用 greedy，從終點往前找。

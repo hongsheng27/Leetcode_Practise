@@ -1,0 +1,109 @@
+46. Permutations
+    ================
+
+題目概述：
+給一個 nums，回傳所有 permutation。
+
+題目說 nums 裡的元素是 distinct。
+所以不用處理 duplicate permutation。
+
+解題邏輯：
+使用 backtracking + used array。
+
+backtrack(path) 代表：
+目前 path 已經排了一部分。
+下一層要從還沒 used 的 nums 裡選一個放進 path。
+
+每一層決定：
+path 的下一格要放哪個還沒用過的數字。
+
+核心流程：
+for i in range(len(nums)):
+如果 used[i] 是 True：
+代表 nums[i] 已經放過，跳過。
+
+```
+否則：
+  path.append(nums[i])
+  used[i] = True
+
+  backtrack(path)
+
+  path.pop()
+  used[i] = False
+```
+
+Base Case：
+if len(path) == len(nums):
+res.append(path.copy())
+return
+
+重點：
+Permutation 和 Subsets 不一樣。
+
+Subsets：
+每一層決定 nums[index] 要不要選。
+
+Permutations：
+每一層決定 path 的下一格要放誰。
+所以每一層都要重新掃全部 nums，
+但要跳過 used 過的數字。
+
+## 另一種寫法：Insert Recursion
+
+也可以先取得後面元素的所有 permutation，
+再把 nums[i] 插入每個可能的位置。
+
+base case：
+backtrack(len(nums)) = [[]]
+
+[[]] 代表：
+後面沒有數字時，仍然有一種 permutation：空排列。
+
+例如 nums = [1,2,3]：
+backtrack(3) = [[]]
+backtrack(2) = [[3]]
+backtrack(1) = [[2,3], [3,2]]
+backtrack(0) = 所有 permutation
+
+這個方法正確，但面試比較推薦 used array 版本。
+
+為什麼面試推薦 used array：
+
+1. 模板比較標準
+2. decision tree 比較好解釋
+3. 容易延伸到 Permutations II
+4. 複雜度比較好分析
+5. 和其他 backtracking 題型比較一致
+
+踩過的坑：
+
+1. 要用 used array 排除已經放過的數字。
+
+2. 每一層都要掃全部 nums，
+   不是像 Subsets 一樣只往 index + 1 走。
+
+3. path 加入 res 時要 copy：
+   res.append(path.copy())
+
+4. recursion 回來後要恢復現場：
+   path.pop()
+   used[i] = False
+
+5. insert recursion 的 base case 是 [[]]，
+   不是 []。
+   因為需要一個空 permutation 讓上一層可以插入數字。
+
+複雜度：
+Time: O(n * n!)
+總共有 n! 個 permutations。
+每次 path.copy() 需要 O(n)。
+
+Space:
+O(n) auxiliary space
+used + path + recursion stack
+
+```
+O(n * n!) if counting output result
+  res 需要存所有 permutations。
+```
