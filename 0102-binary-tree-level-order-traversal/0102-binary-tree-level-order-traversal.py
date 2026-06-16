@@ -10,10 +10,14 @@ class Solution:
         q = deque([root])
         res = []
         while q:
-            res.append([n.val for n in q])
+            level = []
             for _ in range(len(q)):
                 node = q.popleft()
                 if node.left: q.append(node.left)
                 if node.right: q.append(node.right)
+                level.append(node.val)
+            res.append(level)
         return res
+            
+
         
