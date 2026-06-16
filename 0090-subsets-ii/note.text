@@ -1,0 +1,162 @@
+90. Subsets II
+    ==============
+
+題目概述：
+給一個 nums，回傳所有 subset。
+nums 裡可能有 duplicate。
+答案不能有重複 subset。
+
+為什麼要 sort：
+sort 不是為了排序答案。
+sort 是為了把 duplicate 放在一起，方便剪枝。
+
+例如：
+[1,2,3,2]
+
+sort 後變成：
+[1,2,2,3]
+
+這樣相同數字相鄰，才能判斷哪些分支會產生重複 subset。
+
+## 版本 1：For-loop Backtracking（推薦）
+
+解題邏輯：
+backtrack(start, path) 代表：
+目前 path 已經是一個合法 subset。
+接下來可以從 nums[start:] 裡繼續選元素加入 path。
+
+每次進入 backtrack：
+先 res.append(path.copy())
+
+然後用 for-loop 從 start 開始選下一個元素。
+
+核心剪枝：
+if i > start and nums[i] == nums[i - 1]:
+continue
+
+意思：
+只跳過同一層 for-loop 裡的重複選擇。
+
+同一層中：
+第一個 duplicate 可以選。
+第二個 duplicate 要跳過。
+
+但下一層可以繼續選 duplicate，
+因為那代表合法的 [2,2]。
+
+為什麼是 i > start，不是 i > 0：
+i > start：
+只剪同一層的 duplicate。
+
+i > 0：
+只要跟前一個數字一樣就永遠跳過，
+會錯殺合法答案，例如 [2,2]。
+
+例子：
+nums = [1,2a,2b]
+
+path = [1]
+start = 1
+同一層可選：2a, 2b
+
+2a 可以選。
+2b 要跳過，因為它和 2a 當開頭會產生重複 [1,2]。
+
+但如果 path = [1,2a]
+start = 2
+
+這時 2b 是這一層第一個選擇，
+應該允許選，形成 [1,2,2]。
+
+核心流程：
+nums.sort()
+
+res.append(path.copy())
+
+for i in range(start, len(nums)):
+if i > start and nums[i] == nums[i - 1]:
+continue
+
+```
+  path.append(nums[i])
+  backtrack(i + 1, path)
+  path.pop()
+```
+
+## 版本 2：Choose / Skip 思路
+
+也可以用 choose / skip 想，但剪枝比較繞。
+
+每個 nums[index] 有兩種選擇：
+
+1. choose nums[index]
+2. skip nums[index]
+
+重點：
+如果 choose nums[index]：
+下一層可以繼續選後面的 duplicate。
+例如可以產生 [2,2]。
+
+如果 skip nums[index]：
+要一次 skip 掉後面所有相同 value。
+因為如果 skip 第一個 2，卻又選第二個 2，
+會產生重複 subset。
+
+Choose / Skip 剪枝：
+
+# choose
+
+path.append(nums[index])
+backtrack(index + 1, path)
+path.pop()
+
+# skip nums[index] and all duplicates
+
+while index + 1 < len(nums) and nums[index] == nums[index + 1]:
+index += 1
+
+backtrack(index + 1, path)
+
+重點理解：
+backtrack(index, path)
+不是代表「不選 index」。
+
+它代表：
+從 index 開始繼續做 choose / skip 決策。
+
+所以 skip duplicate 後：
+backtrack(nextDifferentIndex, path)
+
+意思是：
+我不選這一整組 duplicate，
+接下來輪到下一個不同 value 做決策。
+
+踩過的坑：
+
+1. Subsets II 要先 sort，讓 duplicate 相鄰。
+
+2. for-loop 版本用：
+   if i > start and nums[i] == nums[i - 1]:
+   continue
+
+3. 不能寫 i > 0，否則會錯殺合法的 [2,2]。
+
+4. for-loop 版本是「同一層跳過重複開頭」。
+
+5. choose / skip 版本是「skip 分支一次跳過所有 duplicate」。
+
+6. path 加入 res 時要 copy：
+   res.append(path.copy())
+
+複雜度：
+Time: O(n * 2^n)
+最多仍然有 2^n 個 subset。
+每次 path.copy() 最多 O(n)。
+
+Space:
+O(n) auxiliary space
+recursion stack + path
+
+```
+O(n * 2^n) if counting output result
+```
