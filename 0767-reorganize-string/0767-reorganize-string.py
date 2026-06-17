@@ -3,7 +3,7 @@ class Solution:
         count = Counter(s)
         maxHeap = [(-cnt, c)for c, cnt in count.items()]
         heapq.heapify(maxHeap)
-        preStatus = None # (-cnt, c)
+        preStatus = () # (-cnt, c)
         res = []
         while maxHeap:
             if maxHeap:
