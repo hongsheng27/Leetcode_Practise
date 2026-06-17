@@ -3,16 +3,17 @@ class Solution:
         count = Counter(s)
         maxHeap = [(-cnt, c)for c, cnt in count.items()]
         heapq.heapify(maxHeap)
-        preStatus = () # (-cnt, c)
+        prev = None # (-cnt, c)
         res = []
         while maxHeap:
-            if maxHeap:
-                cnt, c = heapq.heappop(maxHeap)
-                res.append(c)
-                if preStatus:
-                    heapq.heappush(maxHeap, preStatus)
-                    preStatus = None
-                if cnt + 1 != 0:
-                    preStatus = (cnt + 1, c)
-        return "".join(res) if not preStatus else ""
+            freq, char = heapq.heappop(maxHeap)
+            res.append(char)
+            freq += 1
+            if prev:
+                heapq.heappush(maxHeap, prev)
+                prev = None
+            if freq < 0:
+                prev = (freq, char)
+         
+        return "".join(res) if not prev else ""
                 
