@@ -8,7 +8,7 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        cur = slow = fast = head
+        slow = fast = head
         while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
@@ -22,16 +22,16 @@ class Solution:
             cur.next = prev
             prev = cur
             cur = nxt
+        # merge
         list1 = head
         list2 = prev
-        # merge
         while list2:
-            list1Next = list1.next
-            list2Next = list2.next
+            nxt1 = list1.next
+            nxt2 = list2.next
             list1.next = list2
-            list2.next = list1Next
-            list2 = list2Next
-            list1 = list1Next
-        return head
+            list2.next = nxt1
+            list2 = nxt2
+            list1 = nxt1
+
 
         
