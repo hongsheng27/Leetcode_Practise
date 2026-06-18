@@ -1,0 +1,126 @@
+40. Combination Sum II
+    ======================
+
+題目概述：
+給 candidates 和 target，找出所有總和等於 target 的組合。
+
+candidates 可能有 duplicate。
+每個 index 只能使用一次。
+答案不能有重複 combination。
+
+和 39. Combination Sum 的差別：
+39:
+candidates 是 distinct。
+每個 candidate 可以重複使用。
+choose 後 index 不變。
+
+40:
+candidates 可能有 duplicate。
+每個 index 只能用一次。
+choose 後 i + 1。
+需要 sort + 去重。
+
+為什麼要 sort：
+sort 不是為了排序答案。
+sort 是為了把 duplicate 放在一起，方便剪枝。
+
+例如：
+[1,2,1,5]
+
+sort 後：
+[1,1,2,5]
+
+這樣同一層遇到第二個 1 時，就可以跳過，避免重複答案。
+
+解題邏輯：
+使用 for-loop backtracking。
+
+backtrack(start, total, path) 代表：
+目前 path 是已經選好的組合。
+接下來可以從 candidates[start:] 裡選下一個數字。
+
+每一層 for-loop：
+從 start 開始嘗試選一個 candidate。
+
+Base Case：
+如果 total == target：
+res.append(path.copy())
+return
+
+如果 total > target：
+return
+
+核心流程：
+candidates.sort()
+
+for i in range(start, len(candidates)):
+
+```
+  if i > start and candidates[i] == candidates[i - 1]:
+      continue
+
+  path.append(candidates[i])
+  backtrack(i + 1, total + candidates[i], path)
+  path.pop()
+```
+
+去重條件：
+if i > start and candidates[i] == candidates[i - 1]:
+continue
+
+意思：
+同一層裡，相同數字只讓第一個出來當開頭。
+
+i > start：
+代表這不是本層第一個選擇。
+
+candidates[i] == candidates[i - 1]：
+代表目前數字和前一個數字重複。
+
+所以要跳過，避免產生重複 combination。
+
+為什麼是 i + 1：
+因為每個 index 只能使用一次。
+
+選了 candidates[i] 後，
+下一層只能從 i + 1 後面繼續選。
+
+可以加的剪枝：
+因為 candidates 已經排序，
+如果：
+
+```
+total + candidates[i] > target
+```
+
+那後面的數字更大，也不可能成功，
+可以直接 break。
+
+踩過的坑：
+
+1. 這題 candidates 可能有 duplicate，所以要 sort。
+
+2. 不能像 39 一樣 choose 後 index 不變。
+   40 每個 index 只能用一次，所以要 i + 1。
+
+3. 去重要用 i > start，不是 i > 0。
+   因為只跳過同一層的 duplicate。
+
+4. path 加入 res 要用 copy：
+   res.append(path.copy())
+
+5. total + candidates[i] > target 時可以 break，
+   不是 continue，因為後面只會更大。
+
+複雜度：
+Time: O(n * 2^n)
+最多仍然會探索 subset decision tree。
+每次 path.copy() 最多 O(n)。
+
+Space:
+O(n) auxiliary space
+recursion stack + path
+
+```
+O(n * 2^n) if counting output result
+```
