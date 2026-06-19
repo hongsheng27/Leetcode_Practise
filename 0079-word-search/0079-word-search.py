@@ -1,25 +1,25 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        ROWS, COLS = len(board), len(board[0])
-        visited = [[False for _ in range(COLS)] for _ in range(ROWS)]
-        def dfs(r, c, i):
-            if i == len(word): return True
-            if r < 0 or c < 0 or r >= ROWS or c >= COLS or board[r][c] != word[i] or visited[r][c]: return False
-
-            visited[r][c] = True
-            res = (dfs(r + 1, c, i + 1) or 
-                   dfs(r - 1, c, i + 1) or
-                   dfs(r, c + 1, i + 1) or
-                   dfs(r, c - 1, i + 1)
-                  )
-            visited[r][c] = False
-            return res
-        
-        for i in range(ROWS):
-            for j in range(COLS):
-                if dfs(i, j, 0):
+        ROW = len(board)
+        COL = len(board[0])
+        visited = set()
+        neighbors = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        def backtrack(row, col, i):
+            # base case
+            if i == len(word):
+                return True
+            if (row < 0 or col < 0 or row == ROW or col == COL
+                or (row, col) in visited or board[row][col] != word[i]):
+                return False
+            visited.add((row, col))
+            for nr, nl in neighbors:
+                if backtrack(row + nr, col + nl, i + 1):
+                    return True
+            visited.remove((row, col))
+            return False
+          
+        for i in range(ROW):
+            for j in range(COL):
+                if backtrack(i, j, 0): 
                     return True
         return False
-        
-
-        
