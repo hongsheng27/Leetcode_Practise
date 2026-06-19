@@ -1,0 +1,97 @@
+79. Word Search
+    ===============
+
+題目概述：
+給一個 m x n board 和一個 word，
+判斷 word 是否能由相鄰格子組成。
+
+相鄰只能上下左右。
+同一個 cell 不能在同一條 path 裡重複使用。
+
+解題邏輯：
+使用 DFS + backtracking。
+
+從每一個 cell 當起點開始找。
+backtrack(row, col, i) 代表：
+目前要檢查 board[row][col] 是否等於 word[i]。
+
+Base Case：
+if i == len(word):
+return True
+
+代表前面已經成功匹配完 word 的所有字母。
+
+Invalid Case：
+return False if:
+row / col 越界
+(row, col) 已經在 visited 裡
+board[row][col] != word[i]
+
+核心流程：
+
+1. 檢查目前格子是否合法，且是否 match word[i]
+
+2. visited.add((row, col))
+
+3. 往四個方向找 word[i + 1]
+
+4. 如果其中一個方向成功，return True
+
+5. 如果四個方向都失敗：
+   visited.remove((row, col))
+   return False
+
+更完整的 backtracking 寫法：
+如果希望成功時也 undo visited，可以寫成：
+
+```
+visited.add((row, col))
+
+found = False
+
+for dr, dc in directions:
+    if backtrack(row + dr, col + dc, i + 1):
+        found = True
+        break
+
+visited.remove((row, col))
+return found
+```
+
+這樣 choose / explore / undo 結構最清楚。
+
+為什麼不需要 path：
+i 已經代表目前匹配到 word 的第幾個字。
+所以不需要用 path 組字串。
+
+不推薦：
+"".join(path) == word
+
+因為每次 join 會多花時間，也容易放錯判斷時機。
+
+踩過的坑：
+
+1. 子遞迴 return True 時，parent 也要把 True 往上傳。
+
+2. visited.add 之後，失敗時要 visited.remove。
+
+3. path.pop / visited.remove 應該在四個方向都試完後做，
+   不要放在 for-loop 裡每個方向後面。
+
+4. 如果用 path 判斷成功，要注意 append 時機；
+   更簡單是直接用 i 判斷。
+
+5. base case `i == len(word)` 要放在讀 word[i] 之前，
+   避免 index out of range。
+
+複雜度：
+Time: O(m * n * 4^L)
+m = rows
+n = cols
+L = len(word)
+
+更精準可說 O(m * n * 3^L)，
+因為走過第一步後通常不能回頭走上一格。
+
+Space: O(L)
+recursion depth + visited path
