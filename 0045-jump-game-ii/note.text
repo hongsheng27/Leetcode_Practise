@@ -78,7 +78,8 @@ farthest
 4. left / right 版本比精簡 for-loop 版本更直觀。
    它清楚呈現 BFS 分層概念，
    面試時比較容易解釋。
-
+5.jumps的邊界問題要想清楚
+6.curEnd, farthest 兩個變數個有用處
 複雜度：
 時間複雜度：O(n)
 每個 index 最多掃描一次。
