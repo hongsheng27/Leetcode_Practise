@@ -1,0 +1,125 @@
+47. Permutations II
+    ===================
+
+題目概述
+給一個 nums，裡面可能有重複數字。
+回傳所有不重複的 permutations。
+
+例如：
+nums = [1,1,2]
+
+答案：
+[1,1,2]
+[1,2,1]
+[2,1,1]
+
+解題邏輯
+使用 backtracking + used array。
+
+因為是 permutation：
+每一層都從 nums 裡挑一個還沒用過的數字放進 path。
+
+因為 nums 有 duplicate：
+要先 sort，讓相同數字排在一起。
+
+核心去重條件：
+
+if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+continue
+
+意思：
+如果目前 nums[i] 跟前一個 nums[i - 1] 一樣，
+而且前一個 duplicate 還沒有在目前 path 裡，
+代表你正在同一層想先選後面的 duplicate，
+這會產生重複分支，所以跳過。
+
+核心觀念
+duplicate 必須照 index 順序使用。
+
+例如 nums = [1a, 1b, 2]
+
+root 層：
+可以選 1a
+不能選 1b
+可以選 2
+
+因為如果 root 層同時允許 1a 和 1b 當開頭，
+會產生重複排列：
+
+1a 開頭 -> [1a,1b,2]
+1b 開頭 -> [1b,1a,2]
+
+拿掉 a/b 後都是：
+[1,1,2]
+
+所以同一層只能讓第一個 duplicate 出來。
+
+但如果 path = [1a]：
+used[0] = True
+
+下一層看到 1b 時可以選。
+因為這不是同層重複選擇，而是在合法使用第二個 1。
+
+為什麼是 not used[i - 1]
+used[i - 1] == False：
+代表前一個 duplicate 不在目前 path 裡。
+也就是前一個 duplicate 的分支已經跑完並 undo 了。
+此時如果再選現在這個 duplicate，就是同層重複分支，要跳過。
+
+used[i - 1] == True：
+代表前一個 duplicate 已經在目前 path 裡。
+此時選現在這個 duplicate，是照順序使用第二個相同數字，合法。
+
+模板
+
+nums.sort()
+used = [False] * len(nums)
+
+def backtrack(path):
+if len(path) == len(nums):
+res.append(path.copy())
+return
+
+```
+for i in range(len(nums)):
+    if used[i]:
+        continue
+
+    if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+        continue
+
+    path.append(nums[i])
+    used[i] = True
+
+    backtrack(path)
+
+    used[i] = False
+    path.pop()
+```
+
+踩過的坑
+
+1. 忘記 nums.sort()
+   duplicate 不相鄰，去重條件無法正確作用。
+
+2. 寫成：
+   if i > 0 and nums[i] == nums[i - 1]:
+   continue
+
+   這會讓第二個 duplicate 永遠不能被使用。
+   例如 [1,1,2] 中，第二個 1 永遠選不到，會少答案。
+
+3. not used[i - 1] 不是多餘的。
+   它是用來分辨：
+
+   * 同一層重複選擇：要跳過
+   * path 裡合法使用第二個 duplicate：可以選
+
+複雜度
+Time: O(n * n!)
+最壞情況 nums 都不重複，有 n! 個 permutations，每次 copy path 需要 O(n)。
+
+Space: O(n)
+不算 output，path + used + recursion stack 都是 O(n)。
+
+Output space: O(n * n!)
