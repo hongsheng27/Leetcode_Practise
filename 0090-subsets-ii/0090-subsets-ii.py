@@ -3,9 +3,8 @@ class Solution:
         nums.sort()
         res = []
         def backtrack(i, path):
-            # base case
             res.append(path.copy())
-            # recursion case
+
             for j in range(i, len(nums)):
                 if j > i and nums[j] == nums[j - 1]:
                     continue
@@ -15,3 +14,4 @@ class Solution:
             
         backtrack(0, [])
         return res
+        
