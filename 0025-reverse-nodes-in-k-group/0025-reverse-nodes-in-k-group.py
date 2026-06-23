@@ -8,21 +8,23 @@ class Solution:
         dummy = preGroupTail = ListNode(0, head)
         while True:
             cur = preGroupTail
-            # check
             for _ in range(k):
                 cur = cur.next
                 if not cur:
                     return dummy.next
-
-            groupNext = cur.next
+            nextGroupHead = cur.next
+            cur.next = None
             # reverse
-            prev = groupNext
+            prev = None
             cur = preGroupTail.next
-            for _ in range(k):
+            while cur:
                 nxt = cur.next
                 cur.next = prev
                 prev = cur
                 cur = nxt
-            tmp = preGroupTail.next
+            firstElem = preGroupTail.next
+            firstElem.next = nextGroupHead
             preGroupTail.next = prev
-            preGroupTail = tmp
+            preGroupTail = firstElem
+
+            
