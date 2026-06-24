@@ -1,0 +1,188 @@
+77. Combinations
+    ================
+
+題目概述
+給兩個整數 n 和 k，回傳從 1 到 n 裡面選 k 個數字的所有組合。
+
+例如：
+n = 4, k = 2
+
+答案：
+[1,2]
+[1,3]
+[1,4]
+[2,3]
+[2,4]
+[3,4]
+
+核心概念
+Combination 是「選組合」，順序不重要。
+
+所以：
+[1,2] 和 [2,1] 是同一組。
+
+為了避免重複順序，每次選完一個數字後，下一層只能從更大的數字開始選。
+
+也就是：
+backtrack(start, path)
+
+start 代表：
+下一個可以選的最小數字。
+
+解法一：choose / skip
+對每個 num 做兩個選擇：
+
+1. 選 num
+2. 不選 num
+
+流程：
+path.append(num)
+backtrack(num + 1, path)
+path.pop()
+
+backtrack(num + 1, path)
+
+這個寫法觀念像 Subsets。
+正確，但會走比較多不必要分支。
+
+解法二：for-loop backtracking
+每一層決定「這一格要放哪個數字」。
+
+for num in range(start, n + 1):
+path.append(num)
+backtrack(num + 1, path)
+path.pop()
+
+這個寫法比較推薦。
+
+原因：
+Combination 的本質是每層選下一個數字。
+選了 num 之後，下一層從 num + 1 開始，避免出現 [2,1] 這種重複順序。
+
+推薦模板
+
+def combine(n, k):
+res = []
+
+```
+def backtrack(start, path):
+    if len(path) == k:
+        res.append(path.copy())
+        return
+
+    for num in range(start, n + 1):
+        path.append(num)
+        backtrack(num + 1, path)
+        path.pop()
+
+backtrack(1, [])
+return res
+```
+
+剪枝版本
+如果剩下的數字已經不夠湊滿 k，就不用再試。
+
+need = k - len(path)
+
+for num in range(start, n - need + 2):
+path.append(num)
+backtrack(num + 1, path)
+path.pop()
+
+為什麼是 n - need + 2
+range 的 stop 不包含結尾。
+
+最後可以選的 num 必須保證：
+從 num 到 n 至少還有 need 個數字。
+
+所以：
+num <= n - need + 1
+
+因此 range stop 要寫：
+n - need + 2
+
+C(n, k) 是什麼
+C(n, k) 代表：
+從 n 個元素裡選 k 個，不看順序，有幾種組合。
+
+公式：
+C(n, k) = n! / (k! * (n-k)!)
+
+例如：
+C(4, 2)
+
+= 4! / (2! * 2!)
+= 24 / (2 * 2)
+= 6
+
+也可以直覺理解：
+從 4 個裡選 2 個：
+
+如果看順序：
+第一個有 4 種選法
+第二個有 3 種選法
+所以是 4 * 3 = 12
+
+但 combination 不看順序：
+[1,2] 和 [2,1] 算同一組
+
+所以要除以 2!：
+12 / 2 = 6
+
+因此：
+C(4, 2) = 6
+
+C(n, k) 和複雜度
+C(n, k) 不是剪枝。
+它是答案本身的數量。
+
+因為題目要求回傳所有長度為 k 的 combinations。
+答案數量就是 C(n, k)。
+
+每個答案長度是 k。
+每次 res.append(path.copy()) 需要 O(k)。
+
+所以光是輸出答案就需要：
+O(k * C(n, k))
+
+剪枝是什麼
+剪枝是避免走到不可能湊滿 k 的分支。
+
+例如：
+n = 4, k = 3
+path = [4]
+
+後面已經沒有數字可以選，不可能湊滿 3 個。
+這種分支可以提前不走。
+
+複雜度
+for-loop 版本：
+Time: O(k * C(n, k))
+Space: O(k) 不算 output
+
+Output space:
+O(k * C(n, k))
+
+choose / skip 版本：
+Loose upper bound: O(n * 2^n)
+更精準可以說它會走長度 0 到 k 的組合節點。
+但面試通常不用講太細。
+
+Space: O(n)
+因為 choose / skip 最深可能一路走到 num > n。
+
+面試推薦說法
+There are C(n, k) valid combinations.
+Each combination has length k, and copying it costs O(k).
+So the output cost is O(k * C(n, k)).
+The recursion space is O(k) for the for-loop backtracking version, excluding output.
+
+一句話記
+Combination 題：
+用 start 控制下一層只能選更大的數字，避免重複順序。
+
+C(n, k)：
+從 n 個裡選 k 個，不看順序。
+
+C(n, k) 是答案數量，不是剪枝。
+剪枝只是讓我們不要走不可能完成的分支。
