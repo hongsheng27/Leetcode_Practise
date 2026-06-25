@@ -7,10 +7,10 @@ class Solution:
                 res.append(path.copy())
                 return
             # recursion case
-            for i in range(start, len(s)):
-                if isPalindrome(start, i):
-                    path.append(s[start: i + 1])
-                    backtrack(i + 1, path)
+            for end in range(start, len(s)):
+                if isPalindrome(start, end):
+                    path.append(s[start: end + 1])
+                    backtrack(end + 1, path)
                     path.pop()
 
         def isPalindrome(l, r):
