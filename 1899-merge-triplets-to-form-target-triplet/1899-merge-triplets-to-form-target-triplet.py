@@ -6,11 +6,10 @@ class Solution:
                 triplet[1] <= target[1] and
                 triplet[2] <= target[2]):
                 newTriplets.append(triplet)
-        print(newTriplets)
-        isPass = [False] * 3
+        good = set()
         for triplet in newTriplets:
             for i in range(3):
                 if triplet[i] == target[i]: 
-                    isPass[i] = True
-        return isPass == [True] * 3
+                    good.add(i)
+        return len(good) == 3
         
