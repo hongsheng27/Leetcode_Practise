@@ -6,10 +6,10 @@ class Solution:
                 res.append(path.copy())
                 return
             if i >= len(candidates) or s > target: return
-            path.append(candidates[i])
-            backtrack(i, s + candidates[i], path)
-            path.pop()
+            for j in range(i, len(candidates)):
+                path.append(candidates[j])
+                backtrack(j, s + candidates[j], path)
+                path.pop()
 
-            backtrack(i + 1, s, path)
         backtrack(0, 0, [])
         return res
