@@ -1,24 +1,27 @@
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         res = []
-        part = []
-        def dfs(i):
-            if i >= len(s):
-                res.append(part.copy())
+        def backtrack(start, end, path):
+            # base case
+            if start > end:
+                res.append(path.copy())
                 return
-            for j in range(i, len(s)):
-                if isPalindrome(i, j):
-                    part.append(s[i: j + 1])
-                    dfs(j + 1)
-                    part.pop()
+            # recursion case
+            for i in range(start, len(s)):
+                if isPalindrome(start, i):
+                    path.append(s[start: i + 1])
+                    backtrack(i + 1, len(s) - 1, path)
+                    path.pop()
+
         def isPalindrome(l, r):
-            while l < r:
+            while l <= r:
                 if s[l] == s[r]:
                     l += 1
                     r -= 1
                 else:
                     return False
             return True
-        dfs(0)
+
+
+        backtrack(0, len(s) - 1, [])
         return res
-        
