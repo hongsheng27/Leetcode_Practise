@@ -1,0 +1,139 @@
+131. Palindrome Partitioning
+     ===========================
+
+題目概述
+給一個字串 s，回傳所有切法，使得每一段 substring 都是 palindrome。
+
+例如：
+s = "aab"
+
+答案：
+["a", "a", "b"]
+["aa", "b"]
+
+核心概念
+這題是 backtracking。
+
+每一層不是選一個字母，而是選一段 substring。
+
+從 start 開始，嘗試所有可能的 end：
+
+s[start:end + 1]
+
+如果這段 substring 是 palindrome，才可以加入 path，然後從 end + 1 繼續切。
+
+核心流程
+backtrack(start, path)
+
+start 代表：
+目前要從 s 的哪個 index 開始切。
+
+如果 start == len(s)：
+代表整個字串都切完了，path 是一組合法答案。
+
+for end in range(start, len(s)):
+檢查 s[start:end + 1] 是否為 palindrome
+如果是：
+path.append(s[start:end + 1])
+backtrack(end + 1, path)
+path.pop()
+
+Palindrome helper
+用 two pointers 檢查：
+
+left = start
+right = end
+
+while left <= right:
+if s[left] != s[right]:
+return False
+left += 1
+right -= 1
+
+return True
+
+推薦模板
+
+class Solution:
+def partition(self, s: str) -> List[List[str]]:
+res = []
+
+```
+    def isPalindrome(left, right):
+        while left <= right:
+            if s[left] != s[right]:
+                return False
+            left += 1
+            right -= 1
+        return True
+
+    def backtrack(start, path):
+        if start == len(s):
+            res.append(path.copy())
+            return
+
+        for end in range(start, len(s)):
+            if isPalindrome(start, end):
+                path.append(s[start:end + 1])
+                backtrack(end + 1, path)
+                path.pop()
+
+    backtrack(0, [])
+    return res
+```
+
+Dry run: s = "aab"
+
+start = 0
+choose "a" -> path = ["a"], start = 1
+choose "a" -> path = ["a", "a"], start = 2
+choose "b" -> path = ["a", "a", "b"], start = 3
+start == len(s), append answer
+
+```
+choose "ab" -> not palindrome, skip
+```
+
+choose "aa" -> path = ["aa"], start = 2
+choose "b" -> path = ["aa", "b"], start = 3
+start == len(s), append answer
+
+choose "aab" -> not palindrome, skip
+
+答案：
+["a", "a", "b"]
+["aa", "b"]
+
+踩過的坑
+
+1. for end 要寫：
+   for end in range(start, len(s))
+
+   不要寫：
+   range(start, len(s) - 1)
+
+   因為 s[start:end + 1] 需要讓 end 跑到最後一個 index。
+   否則最後一個字元永遠不會被檢查。
+
+2. base case 用 start == len(s) 最直覺。
+   代表前面的字串都已經被切完。
+
+3. end 不需要當成 backtrack 參數。
+   每一層只需要知道 start，然後用 for loop 嘗試所有 end。
+
+4. 每次 append substring 後，遞迴完要 path.pop() 還原狀態。
+
+複雜度
+Time: O(n * 2^n)
+
+原因：
+長度 n 的字串有很多切法，每個字元中間都有「切 / 不切」的可能，最多約 2^(n-1) 種切法。
+每次檢查 palindrome 可能需要 O(n)，所以整體約 O(n * 2^n)。
+
+如果考慮 copy path / substring 成本，也可以說 backtracking 類型是 exponential。
+
+Space: O(n)
+不算 output，path 和 recursion stack 最深都是 O(n)。
+
+Output space:
+最壞情況也是 exponential。

@@ -28,9 +28,12 @@ dfs(node, count)
 如果 count == k，回傳目前 node.val
 否則繼續 dfs(right)
 
+
 踩過的坑
 1.early stop
  if self.res is not None: 可以做優化，但不會影響複雜度
+2.在 inner function 裡如果要重新賦值外層變數，例如 count += 1 或 res = node.val，
+需要用 nonlocal 或 self；但如果只是 list.append() 修改物件內容，則不需要。
 
 Time: O(n)
 Space: O(h)
