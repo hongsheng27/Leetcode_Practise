@@ -17,7 +17,8 @@ class Solution:
             cur.next = prev
             prev = cur
             cur = nxt
-        preHead.next.next = cur
+        tmp = preHead.next
+        tmp.next = cur
         preHead.next = prev
         return dummy.next
 
