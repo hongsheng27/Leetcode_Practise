@@ -14,7 +14,7 @@ class Solution:
             leftPath = max(0, leftPath)
             rightPath = max(0, rightPath)
 
-            path = node.val + max(leftPath, rightPath, 0)
+            path = node.val + max(leftPath, rightPath)
             pathSum = node.val + leftPath + rightPath
             pathSum = max(pathSum, leftSum, rightSum)
             return (path, pathSum)
