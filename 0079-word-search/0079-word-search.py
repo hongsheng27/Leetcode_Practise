@@ -3,10 +3,10 @@ class Solution:
         ROW, COL = len(board), len(board[0])
         visited = set()
         def dfs(r, c, index):
+            if index == len(word): return True
             if (r < 0 or c < 0 or r >= ROW or c >= COL or
                 (r, c) in visited or board[r][c] != word[index]):
                  return False
-            if index == len(word) - 1: return True
             visited.add((r, c))
             result = (dfs(r + 1, c, index + 1) or
                       dfs(r - 1, c, index + 1) or
