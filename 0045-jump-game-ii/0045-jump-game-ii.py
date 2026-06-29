@@ -1,18 +1,9 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        farthest = 0
-        l = r = 0
-        jumps = 0
-        
-        while r < len(nums) - 1:
-            for i in range(l, r + 1):
-                farthest = max(farthest, i + nums[i])
-            l = r + 1
-            r = farthest
-            jumps += 1
-        return jumps
-
-
-
-
-        
+        farthest = curFar = steps = 0
+        for i in range(len(nums) - 1):
+            curFar = max(curFar, i + nums[i])
+            if i == farthest:
+                farthest = curFar
+                steps += 1
+        return steps
