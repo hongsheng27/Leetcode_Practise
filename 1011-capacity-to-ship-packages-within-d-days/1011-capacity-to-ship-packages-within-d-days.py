@@ -4,12 +4,13 @@ class Solution:
         r = leastWeight = sum(weights)
         while l <= r:
             m = (l + r) // 2
-            total = d = 0
-            for i in range(len(weights)):
-                total += weights[i]
-                if i == len(weights) - 1 or i < len(weights) and total + weights[i + 1] > m:
+            total = 0
+            d = 1
+            for w in weights:
+                if total + w > m:
                     d += 1
                     total = 0
+                total += w
             if d <= days:
                 leastWeight = min(leastWeight, m)
                 r = m - 1
