@@ -5,7 +5,7 @@ class Solution:
         """
         p1 = m - 1
         p2 = n - 1
-        p = len(nums1) - 1
+        p = m + n - 1
 
         while p2 >= 0:
             if p1 >= 0 and nums1[p1] > nums2[p2]:
