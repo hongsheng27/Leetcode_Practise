@@ -1,24 +1,20 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
-        r = sum(weights)
         l = max(weights)
-        leastWeight = r
+        r = leastWeight = sum(weights)
         while l <= r:
             m = (l + r) // 2
-
-            total = 0
-            group = 1
-            for w in weights:
-                if total + w > m:
+            total = d = 0
+            for i in range(len(weights)):
+                total += weights[i]
+                if i == len(weights) - 1 or i < len(weights) and total + weights[i + 1] > m:
+                    d += 1
                     total = 0
-                    group += 1
-                total += w
-
-            if group <= days:
+            if d <= days:
                 leastWeight = min(leastWeight, m)
                 r = m - 1
             else:
                 l = m + 1
         return leastWeight
-                
+
         
