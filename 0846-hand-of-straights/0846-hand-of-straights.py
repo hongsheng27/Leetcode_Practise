@@ -4,9 +4,9 @@ class Solution:
         count = Counter(hand)
         hand.sort()
         for h in hand:
-            if not count[h]: continue
-            for i in range(groupSize):
-                count[h + i] -= 1
-                if count[h + i] < 0: return False
+            if count[h] == 0: continue
+            for i in range(h, h + groupSize):
+                count[i] -= 1
+                if count[i] < 0: return False
         return True
         
