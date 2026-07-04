@@ -15,13 +15,12 @@ class Solution:
             newNode = Node(cur.val)
             oldToNew[cur] = newNode
             cur = cur.next
+
         cur = head
         while cur:
-            oldNxt = cur.next
-            oldRandom = cur.random
-            oldToNew[cur].next = oldToNew[oldNxt]
-            oldToNew[cur].random = oldToNew[oldRandom]
+            newNext = oldToNew[cur.next]
+            newRandom = oldToNew[cur.random]
+            oldToNew[cur].next = newNext
+            oldToNew[cur].random = newRandom
             cur = cur.next
         return oldToNew[head]
-        
-        
