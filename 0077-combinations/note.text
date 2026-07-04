@@ -59,25 +59,6 @@ path.pop()
 Combination 的本質是每層選下一個數字。
 選了 num 之後，下一層從 num + 1 開始，避免出現 [2,1] 這種重複順序。
 
-推薦模板
-
-def combine(n, k):
-res = []
-
-```
-def backtrack(start, path):
-    if len(path) == k:
-        res.append(path.copy())
-        return
-
-    for num in range(start, n + 1):
-        path.append(num)
-        backtrack(num + 1, path)
-        path.pop()
-
-backtrack(1, [])
-return res
-```
 
 剪枝版本
 如果剩下的數字已經不夠湊滿 k，就不用再試。
@@ -100,7 +81,7 @@ num <= n - need + 1
 
 因此 range stop 要寫：
 n - need + 2
-
+--
 C(n, k) 是什麼
 C(n, k) 代表：
 從 n 個元素裡選 k 個，不看順序，有幾種組合。
@@ -172,7 +153,7 @@ Space: O(n)
 因為 choose / skip 最深可能一路走到 num > n。
 
 面試推薦說法
-There are C(n, k) valid combinations.
+There are n choose k C(n, k) valid combinations.
 Each combination has length k, and copying it costs O(k).
 So the output cost is O(k * C(n, k)).
 The recursion space is O(k) for the for-loop backtracking version, excluding output.
