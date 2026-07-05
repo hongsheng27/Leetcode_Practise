@@ -4,16 +4,15 @@ class Solution:
         r = len(nums) - 1
         while l <= r:
             m = (l + r) // 2
-            if nums[m] == target:
-                return m
-            # left is in order
+            if nums[m] == target: return m
             if nums[l] <= nums[m]:
+                # left sorted portion
                 if nums[l] <= target < nums[m]:
                     r = m - 1
                 else:
-                    l = m + 1 
-            # right is in order
+                    l = m + 1
             else:
+                # right sorted portion
                 if nums[m] < target <= nums[r]:
                     l = m + 1
                 else:
