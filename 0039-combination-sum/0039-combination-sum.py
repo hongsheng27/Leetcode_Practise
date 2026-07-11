@@ -9,11 +9,10 @@ class Solution:
             if s > target or i == len(candidates):
                 return
             # recursion case
-            path.append(candidates[i])
-            backtrack(i, s + candidates[i], path)
-            path.pop()
-
-            backtrack(i + 1, s, path)
+            for j in range(i, len(candidates)):
+                path.append(candidates[j])
+                backtrack(j, s + candidates[j], path)
+                path.pop()
 
         backtrack(0, 0, [])
         return res
