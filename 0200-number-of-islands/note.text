@@ -1,0 +1,109 @@
+Number of Islands
+
+題目概述
+給一個由 `"1"`（陸地）和 `"0"`（水）組成的 grid，計算有幾座島。
+
+島的定義：
+上下左右相連的 `"1"` 屬於同一座島。
+
+所以這題本質是：
+掃過整張 grid，每遇到一個「還沒拜訪過的陸地」，就代表發現一座新島，count + 1，然後用 DFS 把整座島標記成 visited。
+
+解題邏輯
+
+1. 掃過 grid 每一格
+
+如果目前位置：
+
+* 是 `"1"`
+* 而且還沒被 visited
+
+代表找到一座新的島：
+
+count += 1
+
+接著從這個位置開始 DFS。
+
+2. DFS 把整座島走完
+
+dfs(r, c)：
+
+如果遇到以下情況就 return：
+
+* 超出 grid 範圍
+* 已經 visited
+* 是水 `"0"`
+
+否則：
+
+* 把 `(r, c)` 加入 visited
+* 往上下左右四個方向繼續 DFS
+
+```python
+dfs(r + 1, c)
+dfs(r - 1, c)
+dfs(r, c + 1)
+dfs(r, c - 1)
+```
+
+這樣從某塊陸地開始 DFS 後，所有與它相連的陸地都會被標記成 visited。
+
+之後主迴圈再次遇到這些位置時，就不會重複 count。
+
+核心概念：
+
+每次遇到：
+
+```python
+grid[r][c] == "1" and (r, c) not in visited
+```
+
+就代表這是一座「還沒被發現的新島」。
+
+所以：
+
+```python
+dfs(r, c)
+count += 1
+```
+
+踩過的坑
+
+1. DFS 本身不需要 return 0 / 1
+
+可以讓 dfs 單純負責 traversal，把「是否發現新島」的判斷放在外層：
+
+```python
+if grid[r][c] == "1" and (r, c) not in visited:
+    dfs(r, c)
+    count += 1
+```
+
+這樣語意比較清楚，也比較適合面試。
+
+2. 座標順序
+
+visited 裡面存的是：
+
+```python
+(r, c)
+```
+
+也就是：
+
+```text
+(row, col)
+```
+
+不要寫反成 `(col, row)`。
+
+Time: O(m * n)
+
+Space: O(m * n)
+
+m = rows
+n = cols
+
+每個格子最多實際拜訪一次。
+
+Space 主要來自 visited，以及最壞情況下 DFS recursion stack。
