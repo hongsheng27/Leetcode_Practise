@@ -1,0 +1,64 @@
+Course Schedule
+
+題目概述
+
+給 numCourses 和 prerequisites = [[課, 先修課], ...]，判斷能不能修完所有課。
+本質是：有向圖裡有沒有環。有環 = 互相等 = 修不完。
+
+建圖是關鍵，兩行同時記錄一條邊的兩個方向：
+adj[pre].append(crs)   # 正向：pre 修完可以解鎖 crs
+indegree[crs] += 1     # crs 又多欠一門
+
+
+解題邏輯
+
+1. BFS（Kahn / 拓撲排序）← 主力
+indegree[i] = i 還欠幾門先修課，是一個倒數計數器。
+把 indegree == 0 的先丟進 queue（不用先修課，現在就能修）。
+每 pop 一門課：finish += 1，然後掃 adj[node] 幫所有依賴它的課 indegree -= 1。
+誰減到 0 就進 queue。
+最後 return finish == numCourses。
+有環的節點永遠等不到 indegree 歸零 → 進不了 queue → finish 會少人。
+
+2. DFS（三狀態找環）
+state: 0=未訪問 1=訪問中(在當前路徑上) 2=已完成
+撞到 state==1 → 有環，return False
+撞到 state==2 → 之前確認安全，直接 return True
+進去時 state=1，遞迴完 state=2。
+NeetCode 版用 visiting set + preMap[crs] = [] 是同一件事的偷懶寫法。
+
+外層都要跑 for i in range(numCourses)，因為圖可能不連通，
+環可能藏在從某個起點走不到的區塊。
+
+
+踩過的坑
+
+1. 為什麼是 O(V+E) 不是 O(V×E)
+   雙層迴圈不代表相乘。內層 for nei in adj[node] 只掃「這個點自己的邊」，
+   全部加起來剛好是 E（每條邊走一次），不是每次都掃全部 E。
+   判斷法：內層的大小會不會隨外層變？會變且不重疊 → 相加。不會變 → 相乘。
+   真正的 O(V×E) 長這樣：for _ in range(V): for a,b in prerequisites
+
+2. 時間和空間為什麼都是 O(V+E)
+   空間 = 存了幾格，時間 = 讀了幾次，這裡剛好「每格只讀一次」所以相等。
+   不是通則。空間 ≤ 時間 才是通則（寫一格至少花一步）。
+   adj 佔 V+E（外層 V 個位置，內層 E 個數字，空的位置也要佔），
+   indegree / queue / visited / 遞迴堆疊各佔 V，被吸收掉。
+
+3. 建圖方向搞反
+   LeetCode 格式是 [後修課, 先修課]。命名成 crs, pre 就不會錯，別用 src/dst。
+   方向反了 Course Schedule I 還是對（有沒有環跟方向無關），
+   但 Course Schedule II 的順序會整個倒過來。
+   規律：DFS 用反向、BFS 用正向，才不用 [::-1]。
+
+4. adj[crs] = [] / state=2 這行不能省
+   它是 memoization，不是清資料，是蓋「確認安全」章。
+   圖上只要有匯合點（某個節點能從起點經多條路抵達）就會重複展開整棵子樹。
+   正向的匯合點 = 有多個先修課的課；反向的匯合點 = 被多門課依賴的課。
+   兩個方向都躲不掉。沒這行 → 指數級 → TLE。
+   它同時也讓外層 for i 的重複呼叫變成 O(1) 秒回。
+
+5. visiting 走完一定要 remove
+   visiting = 現在腳下這條路（走完立刻清）
+   state==2 = 永久確認安全（永不清）
+   兩個標記生命週期相反。少了 remove，兩條路經過同一個安全節點會被誤判成環。
