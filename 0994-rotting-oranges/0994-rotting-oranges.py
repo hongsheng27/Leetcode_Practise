@@ -5,7 +5,7 @@ class Solution:
         visit = set()
         q = deque()
         neighbors = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-        minute = 0
+        minutes = 0
 
         for r in range(ROWS):
             for c in range(COLS):
@@ -19,13 +19,11 @@ class Solution:
                 row, col = q.popleft()
                 for dr, dc in neighbors:
                     nr, nc = row + dr, col + dc
-                    if (nr < 0 or nc < 0 or nr == ROWS or
-                        nc == COLS or grid[nr][nc] == 0 or
-                        (nr, nc) in visit): continue
+                    if (nr < 0 or nc < 0 or nr == ROWS or nc == COLS or
+                        grid[nr][nc] == 0 or (nr, nc) in visit): continue
+                    freshAmount -= 1
                     visit.add((nr, nc))
                     q.append((nr, nc))
-                    freshAmount -= 1
-            minute += 1
-        
-        return minute if not freshAmount else -1
+            minutes += 1
+        return -1 if freshAmount > 0 else minutes
         
