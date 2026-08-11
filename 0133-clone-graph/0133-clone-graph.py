@@ -18,7 +18,7 @@ class Solution:
             oldToNew[n] = Node(n.val)
             for nei in n.neighbors:
                 if nei not in seen:
-                    seen.add(n)
+                    seen.add(nei)
                     q.append(nei)
 
         q = deque([node])
@@ -29,7 +29,7 @@ class Solution:
             for nei in n.neighbors:
                 newNei.append(oldToNew[nei])
                 if nei not in seen:
-                    seen.add(n)
+                    seen.add(nei)
                     q.append(nei)
             oldToNew[n].neighbors = newNei
         return oldToNew[node]
