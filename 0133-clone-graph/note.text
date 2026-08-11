@@ -1,0 +1,257 @@
+Clone Graph
+
+題目概述
+
+給一個 connected graph 的起始 node，建立一份完全獨立的 deep copy。
+
+每個 cloned node：
+
+* val 要一樣
+* neighbors 關係也要一樣
+* 不能直接使用原本的 node
+
+這題本質是：
+用 BFS / DFS traverse 整張 graph，並用 HashMap 記錄：
+
+old node -> cloned node
+
+解題邏輯
+
+1. 用 BFS / DFS traverse graph
+
+Graph 可能有 cycle，所以不能一直重複走同一個 node。
+
+一般 graph traversal 會用：
+
+```python
+visited = set()
+```
+
+但這題可以直接用：
+
+```python
+oldToNew = {}
+```
+
+同時處理：
+
+* 這個 node 有沒有走過
+* 這個 old node 對應哪個 cloned node
+
+2. 先建立起始 node 的 clone
+
+```python
+oldToNew[node] = Node(node.val)
+```
+
+然後把原本的 node 放進 queue。
+
+3. 遍歷每個 neighbor
+
+如果 neighbor 還沒有 clone：
+
+```python
+if nei not in oldToNew:
+    oldToNew[nei] = Node(nei.val)
+    q.append(nei)
+```
+
+代表：
+
+* 第一次遇到這個 node
+* 建立它的 clone
+* 之後再 BFS 處理它的 neighbors
+
+4. Clone edge
+
+不只要 clone node，也要把 graph 的 connection 複製過去：
+
+```python
+oldToNew[n].neighbors.append(oldToNew[nei])
+```
+
+也就是：
+
+```text
+Original:
+A -> B
+
+Clone:
+A' -> B'
+```
+
+最後回傳：
+
+```python
+oldToNew[node]
+```
+
+核心概念
+
+這題可以拆成：
+
+```text
+Graph traversal
++
+old node -> new node mapping
+```
+
+其中：
+
+```python
+q.append(nei)
+```
+
+負責 traverse graph。
+
+```python
+oldToNew[nei] = Node(nei.val)
+```
+
+負責 clone vertex。
+
+```python
+oldToNew[n].neighbors.append(oldToNew[nei])
+```
+
+負責 clone edge。
+
+踩過的坑
+
+1. Graph 不需要一定 two-pass
+
+Two-pass：
+
+```text
+Pass 1:
+建立所有 cloned nodes
+
+Pass 2:
+連接所有 neighbors
+```
+
+這樣可以做，而且正確。
+
+但 one-pass 也可以。
+
+當需要某個 neighbor 的 clone，但它還不存在時：
+
+```python
+if nei not in oldToNew:
+    oldToNew[nei] = Node(nei.val)
+```
+
+先建立它，再馬上建立 connection。
+
+重點是：
+
+```text
+建立 Node
+和
+處理 Node 的 neighbors
+是兩件不同的事。
+```
+
+一個 node 可以先被 clone，但之後才從 queue pop 出來處理。
+
+2. 不需要額外 seen
+
+原本可以寫：
+
+```python
+seen = set()
+oldToNew = {}
+```
+
+但其實：
+
+```python
+if nei not in oldToNew:
+```
+
+就已經代表這個 node 還沒有被 visit / clone。
+
+所以 `oldToNew` 可以同時當：
+
+```text
+visited
++
+old -> new mapping
+```
+
+3. neighbors 可以直接 append
+
+Node constructor：
+
+```python
+self.neighbors = neighbors if neighbors is not None else []
+```
+
+所以：
+
+```python
+Node(val)
+```
+
+建立之後：
+
+```python
+node.neighbors == []
+```
+
+因此可以直接：
+
+```python
+node.neighbors.append(...)
+```
+
+4. Graph 和 Linked List 的差別
+
+不是 Linked List 一定要 two-pass，而 Graph 不需要。
+
+兩者都可以 one-pass 或 two-pass。
+
+One-pass 的核心技巧都是：
+
+```text
+需要 target clone
+→ 如果不存在就先 create
+→ 再 connect
+```
+
+5. Graph traversal 必須防止重複拜訪
+
+Graph 可能有：
+
+* cycle
+* 多個 node 指向同一個 node
+
+所以不能像單純 linked list 一樣只一路往前。
+
+需要透過：
+
+```python
+oldToNew
+```
+
+判斷是否已經處理過。
+
+Time: O(V + E)
+
+每個 vertex 最多處理一次，每條 edge 最多檢查一次。
+
+Space: O(V)
+
+主要來自：
+
+* oldToNew HashMap
+* BFS queue
+
+如果用 DFS，則主要是：
+
+* oldToNew
+* recursion stack
+
+這題可以記成：
+
+Clone Graph = BFS / DFS Graph Traversal + HashMap old -> new
