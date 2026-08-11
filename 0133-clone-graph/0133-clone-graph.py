@@ -25,11 +25,11 @@ class Solution:
         seen = set([node])
         while q:
             n = q.popleft()
-            seen.add(n)
             newNei = []
             for nei in n.neighbors:
                 newNei.append(oldToNew[nei])
                 if nei not in seen:
+                    seen.add(n)
                     q.append(nei)
             oldToNew[n].neighbors = newNei
         return oldToNew[node]
