@@ -1,0 +1,193 @@
+1914.Cyclically Rotating a Grid
+=================================
+
+題目概述：
+給定一個 m x n 的矩陣，將矩陣每一層的 border 分別逆時針旋轉 k 次，最後回傳旋轉後的矩陣。
+
+解題邏輯：
+Matrix 可以看成一圈一圈的 layer，每一層都可以獨立處理。
+
+使用四個 boundary：
+
+top
+bottom
+left
+right
+
+對每一層：
+
+按照順時針方向把整個 border 收集到 deque
+上 → 
+右 ↓
+下 ←
+左 ↑
+
+收集時要避免四個 corner 被重複加入，因此每一條邊只取到下一個 corner 之前。
+
+例如：
+
+A B C
+H   D
+G F E
+
+收集結果：
+
+[A, B, C, D, E, F, G, H]
+將一維 border 逆時針 rotate k 次
+
+因為轉完整整一圈後會回到原本狀態，所以實際只需要：
+
+shift = k % border_length
+
+例如：
+
+[A, B, C, D]
+
+
+rotate 1：
+
+
+[B, C, D, A]
+
+使用 deque 時，可以把左邊元素取出後放到右邊：
+
+popleft → append
+按照相同的 traversal 順序，把 deque 的元素寫回 matrix。
+
+寫回時直接使用：
+
+popleft()
+
+每寫一格就消耗 queue 最左邊的元素。
+
+完成一層後，縮小 boundary：
+top += 1
+bottom -= 1
+left += 1
+right -= 1
+
+繼續處理下一個內圈。
+
+核心技巧：
+
+2D Matrix border
+        ↓
+轉成 1D circular sequence
+        ↓
+做 rotation
+        ↓
+按照相同 traversal 寫回 2D Matrix
+
+Matrix 題可以把：
+
+Traversal
+
+和：
+
+Operation
+
+分開思考。
+
+上一題 Spiral Matrix II 是：
+
+border traversal
+→ 填入數字
+
+這題則是：
+
+border traversal
+→ 收集
+→ rotate
+→ 寫回
+
+另一個重要的 Circular Array 技巧：
+
+真正需要 rotate 的次數
+= k % length
+
+因為：
+
+rotate length 次
+= 回到原本位置
+
+踩過的坑：
+
+一開始寫：
+k %= len(grid)
+
+但 rotate 的週期不是 matrix 的 row 數，而是目前這一圈 border 的長度。
+
+應該對每一圈分別計算：
+
+shift = k % len(q)
+一開始直接修改原本的 k：
+k %= len(q)
+
+這會影響後面的 layer。
+
+因為每一層 border 長度不同，例如：
+
+外圈 length = 20
+內圈 length = 12
+k = 25
+
+外圈：
+
+25 % 20 = 5
+
+但內圈仍然應該：
+
+25 % 12 = 1
+
+不能拿已經變成 5 的 k 繼續算。
+
+因此要保留原本 k：
+
+shift = k % len(q)
+一開始用：
+q[index]
+
+讀取 deque。
+
+deque 不適合做 random access，中間 index 的存取不是 O(1)。
+
+既然使用 queue，寫回時直接：
+
+q.popleft()
+
+每次都是 O(1)，也不需要另外維護 index。
+
+Border traversal 時四個 corner 很容易重複加入。
+
+因此收集時不是四條邊都完整包含兩端，而是：
+
+上：left → right-1
+右：top → bottom-1
+下：right → left+1
+左：bottom → top+1
+
+確保每個位置只收集一次。
+
+複雜度：
+
+時間複雜度：O(m × n)
+
+每一個 matrix cell：
+
+被收集一次
+rotate 過程總共最多處理一次量級
+被寫回一次
+
+所有 layer 的 border 長度總和就是 m × n。
+
+空間複雜度：O(m + n)
+
+一次只需要保存目前的一圈，最大的外圈長度約為：
+
+2m + 2n - 4
+
+因此額外空間為：
+
+O(m + n)
+
+如果是 n x n matrix，則為 O(n)。
