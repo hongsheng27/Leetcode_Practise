@@ -29,6 +29,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0055-jump-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0055-jump-game) |
 | [0056-merge-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0056-merge-intervals) |
 | [0057-insert-interval](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0057-insert-interval) |
+| [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
 | [0075-sort-colors](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0075-sort-colors) |
 | [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
@@ -316,6 +317,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
+| [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
 | [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
@@ -812,6 +814,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Simulation
 |  |
 | ------- |
+| [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
