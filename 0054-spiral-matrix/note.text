@@ -1,0 +1,126 @@
+54. Spiral Matrix
+    =================
+
+題目概述：
+給定一個 `m x n` 矩陣，按照順時針螺旋順序讀取所有元素，並依序回傳結果。
+
+解題邏輯：
+使用四個 boundary 表示目前還沒有處理的矩形範圍：
+
+```text
+top
+bottom
+left
+right
+```
+
+每一圈按照固定四個方向讀取：
+
+```text
+1. 上邊：left → right
+2. 右邊：top → bottom
+3. 下邊：right → left
+4. 左邊：bottom → top
+```
+
+每走完一條邊，就把該 boundary 往內縮：
+
+```text
+走完上邊 → top += 1
+走完右邊 → right -= 1
+走完下邊 → bottom -= 1
+走完左邊 → left += 1
+```
+
+持續處理直到：
+
+```text
+top > bottom
+或
+left > right
+```
+
+因為矩陣不一定是正方形，在走「下邊」與「左邊」之前，要再次確認對應的 row / column 是否仍然存在：
+
+```text
+走下邊之前：
+top <= bottom
+
+走左邊之前：
+left <= right
+```
+
+這可以避免只有一個 row 或一個 column 時，重複加入已經走過的元素。
+
+核心技巧：
+
+```text
+用 top / bottom / left / right
+表示「尚未處理的矩形」。
+
+每處理完一條邊，
+就把那條邊從未處理區域中排除。
+```
+
+Spiral traversal 可以記成：
+
+```text
+上 → 右 ↓ 下 ← 左 ↑
+```
+
+這題和 Spiral Matrix II 的核心 traversal 相同，差別只是：
+
+```text
+Spiral Matrix II：
+Traversal + Write
+
+Spiral Matrix：
+Traversal + Read
+```
+
+Matrix 題可以先將兩件事分開思考：
+
+```text
+1. 怎麼走？
+2. 走到每個 cell 時要做什麼？
+```
+
+這題走到每個 cell 時：
+
+```text
+將 matrix[row][col] 加入結果。
+```
+
+Boundary Protection：
+
+```text
+while top <= bottom and left <= right
+
+上 →
+top += 1
+
+右 ↓
+right -= 1
+
+if top <= bottom:
+    下 ←
+    bottom -= 1
+
+if left <= right:
+    左 ↑
+    left += 1
+```
+
+複雜度：
+
+時間複雜度：`O(m × n)`
+每個 matrix cell 剛好被讀取一次。
+
+空間複雜度：`O(1)`
+若不計算題目要求回傳的結果陣列，只使用四個 boundary 變數。
+
+若將輸出的 result 計入空間，則為：
+
+```text
+O(m × n)
+```
