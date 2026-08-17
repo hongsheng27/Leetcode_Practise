@@ -4,8 +4,7 @@ class Allocator:
         self.count = defaultdict(list)
 
     def allocate(self, size: int, mID: int) -> int:
-        print(size)
-        index = self.getConseqEmptyIndex(size)
+        index = self.findConsecutiveFreeIndex(size)
         if index >= 0:
             for i in range(size):
                 self.lst[index + i] = mID
@@ -13,13 +12,14 @@ class Allocator:
         return index
         
     def freeMemory(self, mID: int) -> int:
-        res = len(self.count[mID])
-        for i in self.count[mID]:
+        indices = self.count.get(mID, [])
+        for i in indices:
             self.lst[i] = -1
-        del self.count[mID]
-        return res
+        if mID in self.count:
+            del self.count[mID]
+        return len(indices)
     
-    def getConseqEmptyIndex(self, size):
+    def findConsecutiveFreeIndex(self, size):
         r = 0
         while r < len(self.lst):
             total = 0
