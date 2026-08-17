@@ -1,0 +1,393 @@
+2250. Count Number of Rectangles Containing Each Point
+      ======================================================
+
+題目概述：
+給定多個 rectangles `[length, height]` 和 points `[x, y]`，對每個 point 計算有多少 rectangle 同時滿足 `length >= x` 且 `height >= y`。
+
+解題邏輯：
+最直覺的暴力解是：
+
+```text
+每個 point
+→ 掃過所有 rectangles
+→ 判斷：
+
+length >= x
+AND
+height >= y
+```
+
+如果：
+
+```text
+R = rectangles 數量
+P = points 數量
+```
+
+暴力時間複雜度為：
+
+```text
+O(P × R)
+```
+
+當 `P`、`R` 都很大時，接近 `O(n²)`，容易超時。
+
+這題的關鍵 constraint 是：
+
+```text
+height <= 100
+```
+
+因為 height 只有固定 100 種可能，因此可以利用 bucket 把其中一個維度直接分組。
+
+先建立：
+
+```text
+bucket[height]
+```
+
+每個 bucket 儲存該高度所有 rectangle 的 `length`。
+
+例如：
+
+```text
+height = 1 → [5, 2]
+height = 2 → [3, 4]
+height = 3 → [8]
+```
+
+接著將每個 bucket 裡的 length 排序：
+
+```text
+height = 1 → [2, 5]
+height = 2 → [3, 4]
+height = 3 → [8]
+```
+
+對一個 point：
+
+```text
+(x, y)
+```
+
+只需要考慮：
+
+```text
+height >= y
+```
+
+因此檢查：
+
+```text
+bucket[y]
+bucket[y + 1]
+...
+bucket[100]
+```
+
+每個 bucket 已經按照 length 排序，所以可以用 Binary Search 找：
+
+```text
+第一個 length >= x 的位置
+```
+
+如果找到 index：
+
+```text
+index
+```
+
+則該 bucket 中符合條件的 rectangle 數量為：
+
+```text
+len(bucket) - index
+```
+
+核心技巧：
+
+```text
+2D 條件：
+
+length >= x
+AND
+height >= y
+
+↓
+
+利用 height <= 100
+
+↓
+
+height 用 bucket 分組
+
+↓
+
+每個 bucket 的 length 排序
+
+↓
+
+對每個 point：
+枚舉 height >= y 的 buckets
++
+Binary Search 找 length >= x
+```
+
+這題屬於：
+
+```text
+Preprocessing
++ Bucket
++ Sorting
++ Binary Search
++ Multiple Queries
+```
+
+其中 query 可以理解成：
+
+```text
+每一個 point 都是在問一次：
+「有多少 rectangle 可以包含我？」
+```
+
+Binary Search Pattern：
+
+要找排序陣列中：
+
+```text
+第一個 >= target 的位置
+```
+
+可以使用 lower bound：
+
+```text
+l = 0
+r = len(arr)
+
+while l < r:
+    m = (l + r) // 2
+
+    if arr[m] < target:
+        l = m + 1
+    else:
+        r = m
+```
+
+最後：
+
+```text
+l
+```
+
+就是第一個：
+
+```text
+>= target
+```
+
+的位置。
+
+因此符合元素數量：
+
+```text
+len(arr) - l
+```
+
+核心 Takeaway：
+
+```text
+如果有很多 query，
+而每個 query 都重新掃全部資料，
+
+先想：
+
+能不能 preprocessing？
+能不能 sort？
+能不能 binary search？
+能不能利用某個特殊 constraint？
+```
+
+這題正是：
+
+```text
+暴力：
+每個 point 掃所有 rectangles
+
+O(P × R)
+
+↓
+
+預處理 rectangles
+
+↓
+
+每個 query 快速查詢
+```
+
+另一個重要觀念：
+
+```text
+只分別對 length 和 height 排序，
+不能直接解決：
+
+length >= x AND height >= y
+
+因為需要的是兩個條件的交集。
+```
+
+2250 能使用簡單 bucket 解法，是因為：
+
+```text
+height <= 100
+```
+
+如果 height 沒有這種小範圍限制，就通常需要更一般的：
+
+```text
+Offline Sorting
++ Fenwick Tree / Segment Tree / Ordered Data Structure
+```
+
+而不能單純依靠 bucket。
+
+踩過的坑：
+
+1. 一開始使用雙層迴圈：
+
+```text
+for point:
+    for rectangle:
+```
+
+邏輯正確，但時間複雜度是：
+
+```text
+O(P × R)
+```
+
+當兩者都很大時會接近 `O(n²)`。
+
+2. 一開始想到先依照 height 排序，再對符合 height 的 subset 重新按照 width 排序。
+
+問題是每個 point 的 subset 都不同，如果每次 query 都重新 sort，成本仍然很高。
+
+真正要做的是：
+
+```text
+先 preprocessing 一次，
+之後每個 query 直接使用已排序好的資料。
+```
+
+3. Binary Search 一開始容易把：
+
+```text
+m
+```
+
+和：
+
+```text
+arr[m]
+```
+
+搞混。
+
+`m` 是 index，真正要跟 `x` 比較的是：
+
+```text
+arr[m]
+```
+
+4. 找第一個 `>= x` 時，可以使用：
+
+```text
+[0, len(arr))
+```
+
+的 half-open binary search。
+
+這樣即使沒有任何元素 `>= x`，最後：
+
+```text
+l == len(arr)
+```
+
+因此：
+
+```text
+len(arr) - l = 0
+```
+
+可以自然處理 edge case。
+
+複雜度：
+
+假設：
+
+```text
+R = rectangles 數量
+P = points 數量
+```
+
+建立 bucket：
+
+```text
+O(R)
+```
+
+排序所有 bucket：
+
+```text
+O(R log R)
+```
+
+因為所有 bucket 加起來總共有 `R` 個 rectangle。
+
+每個 point 最多檢查 100 個 bucket，每個 bucket 做一次 Binary Search：
+
+```text
+O(100 log R)
+```
+
+因為 `100` 是固定常數，可以簡化為：
+
+```text
+O(log R)
+```
+
+因此所有 points：
+
+```text
+O(P log R)
+```
+
+整體時間複雜度：
+
+```text
+O(R log R + P log R)
+```
+
+如果：
+
+```text
+R ≈ P ≈ n
+```
+
+可以近似為：
+
+```text
+O(n log n)
+```
+
+明顯優於暴力的：
+
+```text
+O(n²)
+```
+
+空間複雜度：
+
+```text
+O(R)
+```
+
+所有 bucket 加起來只存一次每個 rectangle 的 length。
