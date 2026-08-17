@@ -1,0 +1,213 @@
+Longest Consecutive Sequence
+
+題目概述
+
+給一個整數陣列，找出最長的連續數字序列長度。
+
+例如：
+
+```text
+[100, 4, 200, 1, 3, 2]
+```
+
+最長連續序列是：
+
+```text
+1, 2, 3, 4
+```
+
+答案是 4。
+
+要求 Time O(n)，所以不能排序。
+
+解題邏輯
+
+1. 先思考需要什麼操作
+
+這題真正需要的是快速判斷：
+
+```text
+num - 1 存不存在？
+num + 1 存不存在？
+```
+
+不在乎數字原本的位置，只在乎「某個 value 是否存在」。
+
+所以適合用 HashSet：
+
+```python
+numsSet = set(nums)
+```
+
+Set 可以平均 O(1) 做 membership lookup。
+
+2. 只有 sequence 起點才開始往後找
+
+如果：
+
+```python
+num - 1 not in numsSet
+```
+
+代表 num 前面沒有連續數字，所以 num 是一段 consecutive sequence 的起點。
+
+例如：
+
+```text
+1, 2, 3, 4
+```
+
+只有 1：
+
+```text
+0 不存在
+→ 1 是起點
+```
+
+2、3、4 都因為前一個數存在，所以直接 skip。
+
+3. 從起點一路往後找
+
+從 num 開始：
+
+```python
+while cur in numsSet:
+    length += 1
+    cur += 1
+```
+
+最後更新 longest。
+
+為什麼是 HashSet，不是 Bucket List
+
+一開始可以想到用 bucket：
+
+```text
+value = index
+```
+
+例如：
+
+```text
+nums = [1, 3, 4]
+
+index:  0 1 2 3 4
+bucket: 0 1 0 1 1
+```
+
+這樣也能 O(1) 判斷某個數字是否存在。
+
+但 bucket 的空間取決於數值範圍，不是 n。
+
+如果：
+
+```text
+nums = [-1000000000, 1000000000]
+```
+
+只有 2 個元素，但 bucket 需要非常大的範圍。
+
+所以：
+
+```text
+Bucket Space:
+O(maxVal - minVal)
+```
+
+而 HashSet：
+
+```text
+Space:
+O(n)
+```
+
+因此當 value range 很大或有負數時，HashSet 更適合。
+
+推理流程
+
+```text
+要求 O(n)
+↓
+Sorting 是 O(n log n)，不能用
+↓
+需要快速查 x - 1 / x + 1 是否存在
+↓
+需要 O(1) membership lookup
+↓
+HashSet
+↓
+不能從每個 num 都重新掃 sequence
+↓
+只從 num - 1 不存在的起點開始
+↓
+O(n)
+```
+
+踩過的坑
+
+1. 一開始想到 Bucket List
+
+Bucket 的概念本身沒錯，也是在做 O(1) lookup。
+
+但要注意：
+
+```text
+1. 有沒有負數
+2. max - min 是否遠大於 n
+```
+
+如果數值範圍很大，bucket 會浪費大量空間。
+
+2. 為什麼不能從每個 num 都開始往後找
+
+如果：
+
+```text
+1, 2, 3, 4, 5
+```
+
+從每個數字都往後找：
+
+```text
+1 → 2 → 3 → 4 → 5
+2 → 3 → 4 → 5
+3 → 4 → 5
+...
+```
+
+會重複掃很多次，最壞可能接近 O(n²)。
+
+所以只從：
+
+```python
+num - 1 not in numsSet
+```
+
+的數字開始。
+
+3. 怎麼判斷 Set / List / HashMap
+
+可以先這樣想：
+
+```text
+在乎 index / position
+→ List / Array
+
+在乎某個 value 存不存在
+→ Set
+
+在乎 key 對應什麼資訊
+→ HashMap
+```
+
+這題只在乎數字是否存在，所以是 Set。
+
+Time: O(n)
+
+建立 set 是 O(n)。
+
+每段 consecutive sequence 只會從真正的起點完整掃一次，所以整體仍然是 O(n)。
+
+Space: O(n)
+
+主要來自 HashSet。
