@@ -1,0 +1,173 @@
+Rotate Function
+====================
+
+題目概述：
+給定一個陣列 nums，每次將陣列向右旋轉一格，計算旋轉後所有 index * value 的總和，並回傳所有 rotation 中的最大值。
+
+解題邏輯：
+最直覺的方法是：
+
+每次 rotate
+→ 建立新的 array
+→ 重新計算整個 F(k)
+
+如果有 n 種 rotation，每次又要掃 n 個元素：
+
+O(n²)
+
+這題的關鍵不是重新計算，而是觀察：
+
+F(k) 和 F(k - 1)
+
+之間的關係。
+
+例如：
+
+nums = [A, B, C, D]
+
+
+F(0)
+= 0A + 1B + 2C + 3D
+
+
+rotate 一次：
+
+
+[D, A, B, C]
+
+
+F(1)
+= 0D + 1A + 2B + 3C
+
+比較兩次的係數：
+
+A：0 → 1
+B：1 → 2
+C：2 → 3
+D：3 → 0
+
+除了被移到最前面的 D 以外，其他元素的係數都增加 1。
+
+因此：
+
+先將所有元素都 +1 個權重
+→ 加上 sum(nums)
+
+
+但 D 原本會從 3 被算成 4，
+實際上應該變成 0，
+所以要扣掉 n * D。
+
+因此可以利用上一個 rotation 的結果，O(1) 算出下一個：
+
+current
+=
+previous
++ sum(nums)
+- n * 被移到最前面的元素
+
+第 shift 次 rotation，被移到最前面的元素是：
+
+nums[n - shift]
+
+所以不需要真的建立 rotated array。
+
+核心技巧：
+
+很多相似狀態
++
+每次只改變一小部分
+→ 不要重新計算全部
+→ 嘗試利用 previous result 更新 current result
+
+這類題可以分類成：
+
+Array
++ Rotation
++ Math / Observation
++ Incremental Update
+
+OA 時看到以下情況要提高警覺：
+
+每個 rotation 都重新算
+每個 window 都重新算
+每個 query 都重新掃
+很多相鄰 state 的計算高度相似
+
+要問自己：
+
+「上一輪的結果能不能 reuse？」
+
+常見對應技巧：
+
+Repeated Sum
+→ Prefix Sum
+
+
+固定 Window 移動
+→ Sliding Window
+
+
+大量 Query
+→ Preprocessing / HashMap
+
+
+相鄰 State 高度相似
+→ Incremental Update / Recurrence
+
+踩過的坑：
+
+一開始直接對每個 rotation 建立：
+nums[shift:] + nums[:shift]
+
+再重新計算所有：
+
+index * value
+
+這樣每個 rotation 都是 O(n)，總共 n 次，因此會變成：
+
+O(n²)
+一開始很難直接想到 recurrence。
+
+這題比較好的推導方式不是硬想公式，而是先寫：
+
+F(0)
+F(1)
+
+再比較每個元素的 coefficient 如何改變。
+
+看到：
+
+大部分係數都 +1
+只有一個元素特殊
+
+就比較容易推出 incremental update。
+
+sum(nums) 不能放在 rotation loop 裡重算。
+
+因為：
+
+sum(nums) = O(n)
+
+如果每輪都重新算，整體又可能回到：
+
+O(n²)
+
+所以應該先算一次：
+
+totalSum = sum(nums)
+
+之後重複使用。
+
+複雜度：
+時間複雜度：O(n)
+
+計算 F(0)        → O(n)
+計算 sum(nums)   → O(n)
+其餘 rotation    → 每次 O(1)，共 O(n)
+
+總共：
+
+O(n)
+
+空間複雜度：O(1)
