@@ -76,6 +76,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
+| [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
 | [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 | [0435-non-overlapping-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0435-non-overlapping-intervals) |
 | [0485-max-consecutive-ones](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0485-max-consecutive-ones) |
@@ -350,6 +351,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
+| [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 | [1281-subtract-the-product-and-sum-of-digits-of-an-integer](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1281-subtract-the-product-and-sum-of-digits-of-an-integer) |
@@ -375,6 +377,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0300-longest-increasing-subsequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0300-longest-increasing-subsequence) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0338-counting-bits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0338-counting-bits) |
+| [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
 | [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 | [0435-non-overlapping-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0435-non-overlapping-intervals) |
 | [0647-palindromic-substrings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0647-palindromic-substrings) |
