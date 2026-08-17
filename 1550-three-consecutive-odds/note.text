@@ -1,0 +1,166 @@
+# 1550. Three Consecutive Odds
+
+## 題目概述
+
+給一個整數陣列 `arr`，判斷其中是否存在 **連續 3 個奇數**。
+
+如果存在回傳 `True`，否則回傳 `False`。
+
+---
+
+## 我的解法
+
+```python
+class Solution:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        for i in range(len(arr) - 2):
+            good = 3
+            for j in range(3):
+                if arr[i + j] % 2:
+                    good -= 1
+            if not good:
+                return True
+        return False
+```
+
+---
+
+## 解題邏輯
+
+題目要找的是 **連續三個元素**，所以直接把每三個元素視為一個固定大小的 window。
+
+```python
+for i in range(len(arr) - 2):
+```
+
+每個 `i` 代表檢查：
+
+```python
+arr[i]
+arr[i + 1]
+arr[i + 2]
+```
+
+接著用：
+
+```python
+good = 3
+```
+
+代表目前還需要找到 3 個奇數。
+
+內層固定檢查三個元素：
+
+```python
+for j in range(3):
+    if arr[i + j] % 2:
+        good -= 1
+```
+
+奇數 `% 2` 會得到 `1`，在 Python 中可以直接當成 `True`。
+
+如果三個元素全部都是奇數：
+
+```text
+good:
+3 → 2 → 1 → 0
+```
+
+所以：
+
+```python
+if not good:
+    return True
+```
+
+等同於：
+
+```python
+if good == 0:
+    return True
+```
+
+只要找到一組就可以直接回傳，不需要繼續檢查。
+
+---
+
+## 踩過的坑
+
+### 1. 看到 consecutive 3，不一定需要真的用 queue 做 sliding window
+
+一開始容易想到：
+
+```text
+left
+right
+queue
+```
+
+但因為 window 大小固定只有 `3`，直接用 index：
+
+```python
+arr[i + j]
+```
+
+會簡單很多。
+
+看到：
+
+```text
+consecutive k elements
+```
+
+可以先想到：
+
+```python
+for i in range(len(arr) - k + 1):
+```
+
+這題 `k = 3`，所以就是：
+
+```python
+for i in range(len(arr) - 2):
+```
+
+### 2. Nested loop 不代表一定是 O(n²)
+
+雖然寫了：
+
+```python
+for i in range(...):
+    for j in range(3):
+```
+
+但內層永遠只執行 `3` 次，是常數。
+
+所以：
+
+```text
+O(n × 3) = O(n)
+```
+
+不是 `O(n²)`。
+
+### 3. `% 2` 可以直接判斷奇數
+
+```python
+if num % 2:
+```
+
+等價於：
+
+```python
+if num % 2 == 1:
+```
+
+---
+
+## 複雜度
+
+**Time:** `O(n)`
+
+外層掃過陣列，內層固定只檢查 3 個元素。
+
+**Space:** `O(1)`
+
+只使用固定數量的變數，沒有額外資料結構。
