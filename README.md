@@ -789,6 +789,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Union-Find
 |  |
 | ------- |
+| [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 | [0200-number-of-islands](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0200-number-of-islands) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
