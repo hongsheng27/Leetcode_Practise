@@ -20,7 +20,7 @@ class Solution:
                     m = (l + r) // 2
                     if lst[m] < x:
                         l = m + 1
-                    elif lst[m] >= x:
+                    else:
                         r = m
                 total += (len(lst) - l)
             res.append(total)
