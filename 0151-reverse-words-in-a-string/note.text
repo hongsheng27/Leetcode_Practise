@@ -1,0 +1,239 @@
+# 151. Reverse Words in a String
+
+## 題目概述
+
+給一個字串 `s`，把其中的**單字順序反轉**。
+
+需要注意：
+
+* 單字之間可能有多個空白
+* 字串前後可能有空白
+* 輸出時單字之間只能保留一個空白
+
+例如：
+
+```text
+Input:
+"  hello   world  "
+
+Output:
+"world hello"
+```
+
+---
+
+## 我的解法
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        lst = s.split()
+        lst.reverse()
+        return " ".join(lst)
+```
+
+---
+
+## 解題邏輯
+
+### 1. `split()` 切出所有單字
+
+```python
+lst = s.split()
+```
+
+Python 的 `split()` 在**沒有指定分隔符**時，會自動：
+
+* 忽略開頭空白
+* 忽略結尾空白
+* 將連續多個空白視為一個分隔
+
+例如：
+
+```python
+s = "  hello   world  "
+
+s.split()
+# ["hello", "world"]
+```
+
+因此不需要另外：
+
+```python
+s.strip()
+```
+
+---
+
+### 2. 反轉單字順序
+
+```python
+lst.reverse()
+```
+
+例如：
+
+```python
+["hello", "world"]
+```
+
+變成：
+
+```python
+["world", "hello"]
+```
+
+`.reverse()` 是 **in-place** 操作，直接修改原本的 list。
+
+---
+
+### 3. 用一個空白重新組合
+
+```python
+return " ".join(lst)
+```
+
+把：
+
+```python
+["world", "hello"]
+```
+
+組成：
+
+```text
+"world hello"
+```
+
+剛好符合題目要求：單字之間只有一個空白。
+
+---
+
+## 複雜度
+
+### Time
+
+```text
+O(n)
+```
+
+需要掃過整個字串來：
+
+* `split`
+* reverse
+* join
+
+整體仍然是 `O(n)`。
+
+### Space
+
+```text
+O(n)
+```
+
+因為 `split()` 會建立一個存放所有單字的 list。
+
+---
+
+## 踩坑 / 要記住的地方
+
+### 1. `split()` 和 `split(" ")` 不一樣
+
+這題應該用：
+
+```python
+s.split()
+```
+
+不要用：
+
+```python
+s.split(" ")
+```
+
+因為：
+
+```python
+"hello   world".split(" ")
+```
+
+可能產生：
+
+```python
+["hello", "", "", "world"]
+```
+
+而：
+
+```python
+"hello   world".split()
+```
+
+直接得到：
+
+```python
+["hello", "world"]
+```
+
+---
+
+### 2. `.reverse()` 沒有 return 新 list
+
+錯誤：
+
+```python
+lst = lst.reverse()
+```
+
+因為：
+
+```python
+lst.reverse()
+```
+
+回傳的是 `None`。
+
+正確：
+
+```python
+lst.reverse()
+```
+
+---
+
+### 3. `[::-1]` 和 `.reverse()` 的差異
+
+```python
+lst[::-1]
+```
+
+會建立一份新的 list。
+
+```python
+lst.reverse()
+```
+
+直接修改原 list。
+
+這題兩種都能 AC，但 `.reverse()` 額外空間更少。
+
+---
+
+## 看到這題要想到
+
+```text
+處理多餘空白
+→ split()
+
+反轉單字順序
+→ reverse()
+
+重新組合字串
+→ join()
+```
+
+也就是：
+
+```python
+split → reverse → join
+```
