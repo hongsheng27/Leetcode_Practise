@@ -5,27 +5,29 @@ class Solution:
         
         def bfs(starts):
             q = deque(starts)
-            visit = set(starts)
+            visited = set(starts)
             while q:
                 row, col = q.popleft()
                 for dr, dc in neighbors:
                     nr, nc = row + dr, col + dc
                     if (nr < 0 or nc < 0 or nr == ROWS or nc == COLS
-                        or (nr, nc) in visit or heights[nr][nc] < heights[row][col]): continue
-                    visit.add((nr, nc))
+                        or (nr, nc) in visited or heights[nr][nc] < heights[row][col]): continue
+                    visited.add((nr, nc))
                     q.append((nr, nc))
-            return visit
+            return visited
 
-        pacific = []
-        atlantic = []
+        pacificStarts = []
+        atlanticStarts = []
         for r in range(ROWS):
             for c in range(COLS):
                 if r == 0 or c == 0:
-                    pacific.append((r, c))
+                    pacificStarts.append((r, c))
 
         for r in range(ROWS):
             for c in range(COLS):
                 if r == ROWS - 1 or c == COLS - 1:
-                    atlantic.append((r, c))
+                    atlanticStarts.append((r, c))
+        pacific = bfs(pacificStarts)
+        atlantic = bfs(atlanticStarts)
         
-        return list(bfs(pacific) & bfs(atlantic))
+        return list(pacific & atlantic)
