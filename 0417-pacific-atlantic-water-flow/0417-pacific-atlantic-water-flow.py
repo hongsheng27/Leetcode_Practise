@@ -39,17 +39,4 @@ class Solution:
                 visit.add((nr, nc))
                 q.append((nr, nc))
         
-        total = set(pacific + atlantic)
-        single = set(pacific)
-        for a in atlantic:
-            if a in single:
-                single.remove(a)
-            else:
-                single.add(a)
-        res = []
-        for t in list(total):
-            if t not in single:
-                res.append(t)
-        return res
-
-
+        return list(set(pacific) & set(atlantic))
