@@ -1,0 +1,251 @@
+Course Schedule II
+
+題目概述
+
+給 `numCourses` 門課和 prerequisite 關係 `[course, pre]`。
+
+代表：
+
+```text
+pre -> course
+```
+
+要回傳一個可以完成所有課程的修課順序。
+
+如果存在 cycle，代表無法完成所有課程，回傳 `[]`。
+
+這題本質是：
+對 directed graph 做 Topological Sort。
+
+解題邏輯
+
+1. 建立 graph 和 indegree
+
+對每個：
+
+```text
+[course, pre]
+```
+
+建立：
+
+```text
+pre -> course
+```
+
+並記錄：
+
+```python
+indegree[course] += 1
+```
+
+`indegree[course]` 可以理解成：
+
+```text
+這門課還有多少 prerequisite 沒完成
+```
+
+2. 把所有 indegree = 0 的 course 放進 queue
+
+```python
+if indegree[course] == 0:
+    q.append(course)
+```
+
+代表這些課目前沒有 prerequisite，可以直接修。
+
+3. 使用 Kahn’s Algorithm 做 BFS
+
+每次從 queue 取出一門 course：
+
+```python
+course = q.popleft()
+order.append(course)
+```
+
+代表這門課已經完成。
+
+接著處理所有依賴它的 course：
+
+```python
+indegree[nextCourse] -= 1
+```
+
+意思是：
+
+```text
+nextCourse 少一個未完成 prerequisite
+```
+
+如果：
+
+```python
+indegree[nextCourse] == 0
+```
+
+代表它所有 prerequisite 都完成了，可以加入 queue。
+
+4. 判斷 cycle
+
+如果 graph 裡有 cycle，cycle 裡的 course 永遠無法讓 indegree 變成 0。
+
+所以最後如果：
+
+```python
+len(order) != numCourses
+```
+
+代表有 course 沒有被處理：
+
+```text
+存在 cycle
+→ 無法完成所有課程
+→ return []
+```
+
+否則回傳 `order`。
+
+核心概念
+
+Topological Sort：
+
+```text
+對每條 edge:
+
+u -> v
+
+u 必須出現在 v 前面
+```
+
+Kahn’s Algorithm 是用：
+
+```text
+BFS + indegree
+```
+
+來完成 Topological Sort。
+
+可以記：
+
+```text
+indegree = remaining prerequisites
+
+indegree == 0
+= ready to process
+```
+
+踩過的坑
+
+1. Topological Sort 和 Kahn’s Algorithm 不是同一個東西
+
+Topological Sort 是目標 / concept。
+
+Kahn’s Algorithm 是其中一種實作方式：
+
+```text
+Topological Sort
+├── Kahn’s Algorithm → BFS + indegree
+└── DFS method → postorder
+```
+
+2. Edge 方向不要寫反
+
+題目：
+
+```text
+[course, pre]
+```
+
+代表：
+
+```text
+pre -> course
+```
+
+所以：
+
+```python
+graph[pre].append(course)
+indegree[course] += 1
+```
+
+不是反過來。
+
+3. indegree 代表的是「進來的 edge 數」
+
+例如：
+
+```text
+A -> C
+B -> C
+```
+
+則：
+
+```text
+indegree[C] = 2
+```
+
+因為 C 有兩個 prerequisite。
+
+4. 為什麼 cycle 會被偵測到
+
+例如：
+
+```text
+0 -> 1
+↑    ↓
+└----2
+```
+
+cycle 裡每個 node 都至少還有一個 prerequisite。
+
+所以：
+
+```text
+indegree 永遠無法變成 0
+```
+
+這些 node 永遠不會進 queue。
+
+因此：
+
+```python
+len(order) != numCourses
+```
+
+就能判斷有 cycle。
+
+5. 為什麼我偏好 Kahn’s Algorithm
+
+DFS 和 Kahn 都是：
+
+```text
+Time: O(V + E)
+```
+
+但這題用 Kahn 很直觀：
+
+```text
+indegree
+=
+還剩幾個 prerequisite
+```
+
+而且 cycle detection 也很簡單。
+
+Time: O(V + E)
+
+V = numCourses
+E = len(prerequisites)
+
+每個 vertex 最多進 queue 一次，每條 edge 最多處理一次。
+
+Space: O(V + E)
+
+主要來自：
+
+* adjacency list
+* indegree array
+* BFS queue
+* result
