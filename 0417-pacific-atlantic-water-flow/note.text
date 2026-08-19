@@ -1,0 +1,201 @@
+Pacific Atlantic Water Flow
+
+題目概述
+
+給一個高度 grid，水只能從高處流到相同或更低的位置。
+
+要找出哪些 cell 的水可以同時流到：
+
+Pacific：上邊界、左邊界
+Atlantic：下邊界、右邊界
+
+這題本質是：
+
+不要從每個 cell 往海洋找，而是從兩個海洋邊界反向 BFS / DFS，找出哪些 cell 可以到達各自海洋，最後取交集。
+
+解題邏輯
+
+反向思考
+
+正常水流方向是：
+
+高 -> 低
+
+如果從每個 cell 出發分別找 Pacific / Atlantic，會做很多重複 traversal。
+
+所以反過來：
+
+Pacific 邊界 -> 往內陸找
+Atlantic 邊界 -> 往內陸找
+
+反向走時，只能從目前高度走到：
+
+next height >= current height
+
+所以如果：
+
+heights[nr][nc] < heights[r][c]
+
+就不能走。
+
+Pacific 的起點
+
+Pacific 接觸：
+
+top row
+left column
+
+把這些 cell 全部當成起點，一次放入 queue。
+
+做 BFS 後得到：
+
+pacific = 所有可以流到 Pacific 的 cell
+Atlantic 的起點
+
+Atlantic 接觸：
+
+bottom row
+right column
+
+同樣做一次 BFS，得到：
+
+atlantic = 所有可以流到 Atlantic 的 cell
+最後取 intersection
+
+題目要的是：
+
+同時可以到 Pacific
+且
+同時可以到 Atlantic
+
+所以直接：
+
+pacific & atlantic
+
+& 是 set intersection。
+
+不用自己手動算 union、symmetric difference。
+
+BFS helper
+
+Pacific 和 Atlantic 的 traversal 邏輯完全一樣，只是起點不同。
+
+所以可以抽成：
+
+def bfs(starts):
+
+傳入不同 ocean 的 boundary cells。
+
+BFS 回傳：
+
+visited
+
+visited 本身就是該 ocean 可以到達的所有 cell。
+
+核心概念
+
+這題最重要的 pattern 是：
+
+從每個 cell 找 target
+↓
+可能大量重複
+
+
+改成從所有 target 反向出發
+↓
+一次 traversal 找到所有可到達 target 的 cell
+
+和 Walls and Gates 的思考方式很像：
+
+不要從每個位置 individually 找目標
+而是從目標反向做 multi-source traversal
+
+踩過的坑
+
+方向條件容易寫反
+
+正常水流：
+
+高 -> 低
+
+但現在是從 ocean 反向走，所以：
+
+低 -> 高
+
+因此只能走到：
+
+heights[nr][nc] >= heights[r][c]
+
+也就是：
+
+if heights[nr][nc] < heights[r][c]:
+    continue
+最後不用自己算交集
+
+一開始手動建立：
+
+union
+symmetric difference
+再相減
+
+太繞。
+
+Set 可以直接：
+
+pacific & atlantic
+
+代表兩邊都有的 cell。
+
+& 只能直接用在 set，不是 list
+a & b
+
+代表 set intersection。
+
+如果是 list，要先：
+
+set(a) & set(b)
+不需要額外建立 pacific / atlantic list
+
+BFS 本來就有：
+
+visited
+
+它已經包含所有可以到達該 ocean 的 cell。
+
+所以直接：
+
+pacific = bfs(...)
+atlantic = bfs(...)
+
+最後：
+
+pacific & atlantic
+Pacific / Atlantic 的 corner 可能重複加入
+
+例如 Pacific 的左上角同時屬於：
+
+top row
+left column
+
+如果用 set 當 visited，就不會有問題。
+
+Time: O(m * n)
+
+Pacific 最多 traverse 整張 grid 一次。
+
+Atlantic 最多 traverse 整張 grid 一次。
+
+所以：
+
+O(mn) + O(mn)
+= O(mn)
+
+Space: O(m * n)
+
+主要來自：
+
+Pacific visited
+Atlantic visited
+BFS queue
+
+最壞都是 O(mn)。
