@@ -11,13 +11,11 @@ class Solution:
                 q.append(i)
         res = []
         while q:
-            pre = q.popleft()
-            res.append(pre)
-            for crs in adj[pre]:
+            course = q.popleft()
+            res.append(course)
+            for crs in adj[course]:
                 indegree[crs] -= 1
                 if not indegree[crs]:
                     q.append(crs)
-        for d in indegree:
-            if d > 0:
-                return []
+        if len(res) != numCourses: return []
         return res
