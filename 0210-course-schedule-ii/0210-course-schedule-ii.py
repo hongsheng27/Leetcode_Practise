@@ -1,27 +1,23 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        adj = { n: [] for n in range(numCourses)}
+        adj = defaultdict(list)
+        indegree = [0] * numCourses
         for crs, pre in prerequisites:
             adj[pre].append(crs)
-        
+            indegree[crs] += 1
+        q = deque()
+        for i in range(len(indegree)):
+            if not indegree[i]:
+                q.append(i)
         res = []
-        visitd, path = set(), set()
-
-        def dfs(courseNum):
-            if courseNum in path: return False
-            if courseNum in visitd: return True
-            
-            path.add(courseNum)
-            for child in adj[courseNum]:
-                if not dfs(child):
-                    return False
-            path.remove(courseNum)
-            visitd.add(courseNum)
-            res.append(courseNum)
-            return True
-            
-        for n in range(numCourses):
-            if not dfs(n): return []
-        res.reverse()
+        while q:
+            pre = q.popleft()
+            res.append(pre)
+            for crs in adj[pre]:
+                indegree[crs] -= 1
+                if not indegree[crs]:
+                    q.append(crs)
+        for d in indegree:
+            if d > 0:
+                return []
         return res
-        
