@@ -5,11 +5,9 @@ class Solution:
         size = [1] * (n + 1)
 
         def find(v):
-            cur = v
-            while cur != parent[cur]:
-                cur = parent[cur]
-            parent[v] = cur
-            return cur
+            while v != parent[v]:
+                v = parent[v]
+            return v
         def union(v1, v2):
             v1Root = find(v1)
             v2Root = find(v2)
