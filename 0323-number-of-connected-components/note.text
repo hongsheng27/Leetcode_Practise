@@ -1,0 +1,218 @@
+323. Number of Connected Components in an Undirected Graph
+題目概述
+給一個有 n 個節點的 undirected graph，以及所有 edges。
+
+要回傳：
+整張 graph 裡總共有幾個 connected components。
+
+例如：
+
+n = 5
+edges = [[0,1], [1,2], [3,4]]
+
+可以分成：
+
+{0,1,2}
+{3,4}
+
+所以答案是：
+
+2
+解題邏輯（含程式碼）
+
+這題可以用 Union Find。
+
+一開始每個 node 都自己是一個 component：
+
+{0} {1} {2} {3} {4}
+
+所以：
+
+count = n
+
+每看到一條 edge：
+
+[a, b]
+
+就嘗試：
+
+union(a, b)
+
+如果 a、b 原本屬於不同 component：
+
+{0,1} + {2,3}
+
+成功 union 後：
+
+{0,1,2,3}
+
+component 數量就會：
+
+count -= 1
+
+但如果：
+
+find(a) == find(b)
+
+代表兩個 node 本來就在同一個 component：
+
+{0,1,2}
+
+即使又看到：
+
+[0,2]
+
+component 數量也不會改變。
+
+Union Find
+
+find(a)：
+
+找出 a 所屬 component 的 root。
+
+def find(a):
+    while a != parent[a]:
+        parent[a] = parent[parent[a]]
+        a = parent[a]
+    return a
+
+這裡同時做 Path Compression，讓 node 更快接近 root。
+
+union(a, b)：
+
+找到兩邊的 root。
+如果 root 相同，不需要合併。
+如果不同，用 Union by Size 把小樹接到大樹。
+成功合併後，component 數量 -1。
+def union(a, b):
+    nonlocal count
+
+
+    rootA = find(a)
+    rootB = find(b)
+
+
+    if rootA == rootB:
+        return False
+
+
+    if size[rootA] < size[rootB]:
+        rootA, rootB = rootB, rootA
+
+
+    parent[rootB] = rootA
+    size[rootA] += size[rootB]
+
+
+    count -= 1
+    return True
+
+完整概念：
+
+初始：
+component = n
+
+
+每成功 union 一次：
+component -= 1
+
+
+最後：
+return component
+踩過的坑
+1. count -= 1 不能每看到一條 edge 就做
+
+錯誤：
+
+for a, b in edges:
+    union(a, b)
+    count -= 1
+
+因為有些 edge 的兩個 node 本來就已經 connected。
+
+只有：
+
+rootA != rootB
+
+真正成功合併兩個 component 時，才能：
+
+count -= 1
+2. Union 操作的是 root，不是原始 node
+
+要寫：
+
+rootA = find(a)
+rootB = find(b)
+
+
+parent[rootB] = rootA
+
+不是：
+
+parent[b] = a
+
+因為我們要合併的是：
+
+兩個完整 component
+
+而不是單純把兩個 node 接起來。
+
+3. Union by Size 要比較 root 的 size
+
+要寫：
+
+if size[rootA] < size[rootB]:
+
+不是：
+
+if size[a] < size[b]:
+
+size 記錄的是整個 component 的大小，因此真正有意義的是 root 的 size。
+
+4. n 和 component count 最好分開
+
+雖然可以直接：
+
+nonlocal n
+n -= 1
+
+但比較清楚的寫法是：
+
+count = n
+
+因為：
+
+n     = node 數量
+count = connected component 數量
+
+語意比較不會混亂。
+
+複雜度
+
+設：
+
+V = node 數量
+E = edge 數量
+
+使用：
+
+Union by Size
++
+Path Compression
+
+每次 find / union 的 amortized complexity 是：
+
+O(α(V))
+
+實務上幾乎可以視為：
+
+O(1)
+
+總共處理 E 條 edge：
+
+Time: O(E α(V))
+≈ O(E)
+
+parent 和 size 各需要長度 V：
+
+Space: O(V)
