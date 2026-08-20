@@ -17,7 +17,7 @@ class Solution:
 
             if size[v1Root] < size[v2Root]:
                 v1Root, v2Root = v2Root, v1Root
-            parent[v2Root] = parent[v1Root]
+            parent[v2Root] = v1Root
             size[v1Root] += size[v2Root]
             return True
         
