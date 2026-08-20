@@ -1,0 +1,177 @@
+Surrounded Regions
+
+題目概述
+
+給一個只包含 "X" 和 "O" 的 board。
+
+如果一塊 "O" 區域完全被 "X" 包圍，就要把這些 "O" 改成 "X"。
+
+但只要 "O" 和 board 邊界相連，就不能被翻轉。
+
+這題本質是：
+
+不要檢查每一塊 "O" 有沒有碰到邊界，而是直接從所有 border "O" 出發，找出所有安全區域。
+
+解題邏輯
+
+從 border 的 "O" 開始 BFS
+
+所有不能被包圍的 "O"，一定和 board 邊界上的 "O" 相連。
+
+所以先掃四個邊界。
+
+如果遇到：
+
+board[r][c] == "O"
+
+就從這裡開始 BFS。
+
+把所有 border-connected "O" 暫時標記成 "S"
+
+BFS 往上下左右走。
+
+只處理：
+
+board[nr][nc] == "O"
+
+找到後直接改成：
+
+board[nr][nc] = "S"
+
+再加入 queue。
+
+"S" 代表 safe：
+
+這個 O 和 border 相連
+→ 不能被翻成 X
+
+這樣也不需要額外 visited set。
+
+為什麼 enqueue 時就標記 "S"
+
+應該在：
+
+q.append((nr, nc))
+
+之前就：
+
+board[nr][nc] = "S"
+
+這等同於 enqueue 時標 visited。
+
+避免同一個 "O" 被不同 neighbor 重複加入 queue。
+
+最後掃一次 board
+
+BFS 結束後：
+
+S = 和 border 相連的安全 O
+O = 沒有和 border 相連，被完全包圍
+
+所以：
+
+if board[r][c] == "O":
+    board[r][c] = "X"
+
+把剩下的 "O" 全部翻掉。
+
+再把：
+
+elif board[r][c] == "S":
+    board[r][c] = "O"
+
+恢復。
+
+核心概念
+
+這題最重要的是反向思考：
+
+原本想法：
+對每一塊 O
+→ 判斷有沒有碰到 border
+
+
+更好的想法：
+從 border O 出發
+→ 找出所有一定不能被包圍的 O
+
+也就是：
+
+Border-connected O
+= Safe O
+
+剩下的 "O" 自然就是 surrounded region。
+
+踩過的坑
+
+一開始可以對每個 connected component 做 BFS
+
+也可以：
+
+每遇到一塊新的 O
+→ BFS 整塊 region
+→ 判斷有沒有碰到邊界
+→ 如果沒有就全部改 X
+
+這個方法也是 O(m * n)。
+
+但實作比較複雜，需要：
+
+收集整個 region
+記錄 isSurrounded
+判斷有沒有碰到 boundary
+
+從 border 反向找 safe region 會更簡單。
+
+不需要額外 visited set
+
+因為可以直接把：
+
+O → S
+
+當成 visited。
+
+之後只走：
+
+board[nr][nc] == "O"
+
+所以不會重複處理。
+
+BFS 最好 enqueue 時就標 visited
+
+不要等：
+
+row, col = q.popleft()
+board[row][col] = "S"
+
+才標。
+
+應該在加入 queue 時：
+
+board[nr][nc] = "S"
+q.append((nr, nc))
+
+避免同一格重複進 queue。
+
+這題和 Pacific Atlantic 有相似的反向思考
+
+不是：
+
+從每個位置出發找 target
+
+而是：
+
+從 target / boundary 出發
+反向找所有能到達的位置
+
+這類題常常可以減少重複 traversal。
+
+Time: O(m * n)
+
+每個 cell 最多被處理常數次。
+
+Space: O(m * n)
+
+主要來自 BFS queue。
+
+如果用 DFS，則主要是 recursion stack。
