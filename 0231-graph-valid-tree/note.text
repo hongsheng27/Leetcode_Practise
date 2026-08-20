@@ -1,0 +1,89 @@
+261. Graph Valid Tree
+題目概述
+
+給 n 個 nodes 和 undirected edges，判斷是不是一棵 valid tree。
+
+Tree 必須同時滿足：
+
+沒有 cycle
+所有 node 都 connected
+解題邏輯
+
+用 Union Find。
+
+一開始：
+
+count = n
+
+每條 edge (a, b)：
+
+找 rootA、rootB
+如果 rootA == rootB
+代表兩點本來已經 connected
+再加這條 edge 會形成 cycle
+return False
+否則 union 兩個 component
+count -= 1
+
+最後：
+
+return count == 1
+
+因為 count == 1 代表整張 graph 全部 connected。
+
+核心：
+
+Valid Tree
+= No Cycle + Connected
+踩過的坑
+1. 沒有 cycle 不代表是 tree
+
+例如：
+
+0 - 1
+
+
+2 - 3
+
+沒有 cycle，但不 connected，所以不是 tree。
+
+2. len(edges) == n - 1 不能單獨判斷
+
+Tree 一定有 n - 1 條 edges，但只有 edge 數正確還不夠，仍可能有 cycle + disconnected。
+
+可以用：
+
+n - 1 edges + no cycle
+
+來判斷 tree。
+
+3. Union 要比較 root
+
+Cycle 判斷是：
+
+find(a) == find(b)
+
+不是 a == b。
+
+複雜度
+
+使用 Union by Size + Path Compression：
+
+Time: O(E α(n))
+Space: O(n)
+
+實務上：
+
+Time ≈ O(E)
+核心記憶
+323:
+成功 union → count -= 1
+
+
+684:
+root 相同 → cycle
+
+
+261:
+兩個一起用
+→ no cycle + count == 1
