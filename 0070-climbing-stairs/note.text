@@ -1,0 +1,102 @@
+70. Climbing Stairs
+題目概述
+
+每次可以爬：
+
+1 階
+2 階
+
+問爬到第 n 階，一共有幾種不同走法。
+
+解題邏輯
+
+定義：
+
+dp[i] = 到第 i 階的方法數
+
+要到第 i 階，最後一步只可能：
+
+從 i - 1 走 1 步
+或
+從 i - 2 走 2 步
+
+所以：
+
+dp[i] = dp[i - 1] + dp[i - 2]
+
+Base case：
+
+dp[1] = 1
+dp[2] = 2
+
+因為每次只需要前兩個 state，所以不需要完整 DP array，可以用 Rolling DP：
+
+prev2 = dp[i - 2]
+prev1 = dp[i - 1]
+cur   = prev2 + prev1
+
+每輪再往前更新。
+
+踩過的坑
+1. n <= 2 要先處理
+if n <= 2:
+    return n
+
+否則後面以 1, 2 當初始值時，小輸入可能出問題。
+
+2. Rolling DP 的更新順序不能錯
+
+要先算：
+
+cur = prev2 + prev1
+
+再：
+
+prev2 = prev1
+prev1 = cur
+
+如果太早覆蓋舊值，就會失去 dp[i - 2]。
+
+3. 兩格陣列其實已經不是完整 DP table
+
+像：
+
+dp = [1, 2]
+
+這兩格實際代表的是：
+
+dp[0] = 前前一個 state
+dp[1] = 前一個 state
+
+所以本質是 space optimized DP。
+
+複雜度
+
+Loop 從 3 跑到 n：
+
+Time: O(n)
+
+只固定保存前兩個 state：
+
+Space: O(1)
+核心記憶
+dp[i]
+= dp[i - 1] + dp[i - 2]
+
+因為到第 i 階只能：
+
+從 i-1 過來
++
+從 i-2 過來
+
+完整 DP：
+
+O(n) space
+
+Rolling DP：
+
+O(1) space
+
+這題就是一維 DP 最基本的：
+
+目前答案只依賴前面少數 state → 可以做 rolling optimization。
