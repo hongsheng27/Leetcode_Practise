@@ -1,0 +1,54 @@
+N-th Tribonacci Number
+
+題目概述：
+Tribonacci 跟 Fibonacci 類似，但每個數字是前 3 個數字相加。
+
+Base case：
+T0 = 0
+T1 = 1
+T2 = 1
+
+Transition：
+Tn = Tn-1 + Tn-2 + Tn-3
+
+解題邏輯：
+因為每個 state 只依賴前 3 個 state，所以不需要完整 dp array，可以用 Rolling DP。
+
+一開始：
+
+dp = [0, 1, 1]
+
+代表目前保留最近 3 個 Tribonacci 值。
+
+每一輪：
+
+cur = dp[0] + dp[1] + dp[2]
+
+接著把 state 往前移：
+
+dp[0] = dp[1]
+dp[1] = dp[2]
+dp[2] = cur
+
+最後 dp[-1] 就是最新算出的答案。
+
+踩過的坑：
+
+n = 0 要回傳 0。
+n = 1 或 n = 2 都回傳 1。
+Rolling DP 要先算 cur，再更新舊 state。
+這題只需要前 3 個 state，不需要開 O(n) 的完整 dp array。
+
+複雜度：
+Time: O(n)
+Space: O(1)
+
+核心記憶：
+
+Tn = Tn-1 + Tn-2 + Tn-3
+
+Climbing Stairs 保留前 2 個 state。
+Tribonacci 保留前 3 個 state。
+
+題型：
+1D DP / Fibonacci Pattern / Rolling DP
