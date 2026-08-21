@@ -1,0 +1,56 @@
+Min Cost Climbing Stairs
+
+題目概述：
+給一個 cost array，cost[i] 代表踩上第 i 階需要付出的費用。
+
+每次可以走 1 階或 2 階，可以從 index 0 或 index 1 開始，目標是到達樓梯頂端，求最小總 cost。
+
+解題邏輯：
+定義：
+
+dp[i] = 踩到第 i 階時的最小總 cost
+
+要到第 i 階，只可能從：
+
+i - 1
+i - 2
+
+過來。
+
+所以 transition：
+
+dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
+
+Base case：
+
+dp[0] = cost[0]
+dp[1] = cost[1]
+
+因為 dp[i] 只依賴前兩個 state，所以可以用 Rolling DP，只保留：
+
+dp[0] = 前前一階的最小 cost
+dp[1] = 前一階的最小 cost
+
+每一輪：
+
+cur = min(dp[0], dp[1]) + cost[i]
+
+然後往前更新：
+
+dp[0] = dp[1]
+dp[1] = cur
+
+最後 top 不需要付 cost，而且可以從最後一階或倒數第二階直接走上去，所以：
+
+return min(dp[0], dp[1])
+
+踩過的坑：
+
+dp[i] 代表的是「踩到第 i 階的最小 cost」，不是到達 top 的 cost。
+top 本身沒有 cost，所以最後不能直接 return dp[-1]。
+最後要比較最後兩個 state，因為兩者都可以直接走到 top。
+Rolling DP 要先算 cur，再更新舊 state，否則會把需要的值覆蓋掉。
+
+複雜度：
+Time: O(n)
+Space: O(1)
