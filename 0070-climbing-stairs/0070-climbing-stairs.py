@@ -4,7 +4,7 @@ class Solution:
         dp = [1, 2]
 
         for i in range(3, n + 1):
-            cur = sum(dp)
+            cur = dp[0] + dp[1]
             dp[0] = dp[1]
             dp[1] = cur
         return dp[-1]
