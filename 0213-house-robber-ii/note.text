@@ -1,0 +1,84 @@
+House Robber II
+
+題目概述：
+房子排成一個環，所以第 0 間和最後一間相鄰，不能同時偷。
+
+解題邏輯：
+House Robber I 的 transition 不變：
+
+dp[i] = max(
+dp[i - 1],
+nums[i] + dp[i - 2]
+)
+
+差別只在環狀結構。
+
+因為第一間和最後一間不能同時選，所以拆成兩個 case：
+
+Case 1：
+只考慮 0 到 n - 2
+→ 不考慮最後一間
+
+Case 2：
+只考慮 1 到 n - 1
+→ 不考慮第一間
+
+兩個 case 各跑一次 House Robber I，最後取：
+
+max(case1, case2)
+
+Helper rob(l, r)：
+代表只在區間 l 到 r 裡做普通 House Robber。
+
+Rolling DP：
+
+dp[0] = 前前一個最佳答案
+dp[1] = 前一個最佳答案
+
+每一輪：
+
+cur = max(dp[1], nums[i] + dp[0])
+
+更新：
+
+dp[0] = dp[1]
+dp[1] = cur
+
+如果區間只有一間房：
+
+l == r
+
+直接回傳：
+
+nums[l]
+
+踩過的坑：
+
+不能直接對整個 nums 跑 House Robber I，因為第一間和最後一間相鄰。
+拆區間時是：
+0 ~ n - 2
+1 ~ n - 1
+helper 的 loop 要從 l + 2 開始，不能固定從 2 開始。
+helper 可能收到只有一間房的區間，所以要處理 l == r。
+這題真正的新觀念不是新的 DP transition，而是「把環拆成兩條線」。
+
+複雜度：
+Time: O(n)
+Space: O(1)
+
+核心記憶：
+
+Circular House Robber
+= max(
+rob(0, n - 2),
+rob(1, n - 1)
+)
+
+House Robber I：
+線性 DP
+
+House Robber II：
+把環拆成兩個線性區間，再各跑一次 House Robber I
+
+題型：
+1D DP / Circular DP / Rolling DP
