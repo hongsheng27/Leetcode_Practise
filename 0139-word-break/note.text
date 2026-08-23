@@ -1,0 +1,93 @@
+Word Break
+
+題目概述：
+給字串 s 和 wordDict，判斷 s 能不能被切成 dictionary 裡的單字。
+
+解題邏輯：
+定義：
+
+dp[i] = s[:i] 能不能成功被 wordDict 組成
+
+Base case：
+
+dp[0] = True
+
+因為空字串可以視為已經成功組成。
+
+對每個位置 i，嘗試所有可能的切點 j。
+
+如果：
+
+dp[j] == True
+
+而且：
+
+s[j:i] in wordSet
+
+代表：
+
+前半段 s[:j] 已經合法
++
+最後一段 s[j:i] 也是合法單字
+
+所以：
+
+dp[i] = True
+
+可以直接 break，不需要繼續找其他 j。
+
+為了讓查找更快，先把：
+
+wordDict
+
+轉成：
+
+set(wordDict)
+
+臨場推導：
+
+dp[i] = 前 i 個字元能不能組成
+dp[0] = True
+想「最後一刀切在哪裡」→ j
+如果 dp[j] 是 True，而且 s[j:i] 是合法 word
+dp[i] = True
+
+踩過的坑：
+
+j 不是固定找上一個 True，而是嘗試所有可能切點。
+dp[0] 必須是 True，否則第一個 word 無法被建立。
+wordDict 用 list 查找比較慢，轉成 set 比較適合。
+dp[i] 一旦變成 True，就可以 break。
+這題的關鍵不是單字本身，而是「prefix 是否能由更小的 prefix 推出」。
+
+複雜度：
+常見面試分析：
+
+Time: O(n²)
+Space: O(n + W)
+
+其中 W 是 wordDict 的額外儲存空間。
+
+核心記憶：
+
+dp[i] = 是否存在某個 j，使得：
+
+dp[j] == True
+and
+s[j:i] in wordSet
+
+直覺：
+
+最後一刀切在 j。
+
+Alternative：
+也可以定義：
+
+dp[i] = s[i:] 能不能成功組成
+
+然後從右往左做 suffix DP。
+
+但面試優先推薦 Prefix DP，因為比較容易現場推導和解釋。
+
+題型：
+1D DP / String DP / Prefix DP / Boolean DP
