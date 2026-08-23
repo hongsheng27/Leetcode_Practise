@@ -1,0 +1,69 @@
+Coin Change
+
+題目概述：
+給 coins 和 amount，求湊出 amount 最少需要幾枚硬幣。每種硬幣可以重複使用。
+
+解題邏輯：
+定義：
+
+dp[i] = 湊出金額 i 最少需要幾枚 coin
+
+Base case：
+
+dp[0] = 0
+
+因為湊出 0 元不需要任何硬幣。
+
+其他位置先設成：
+
+inf
+
+代表目前還不知道能不能湊出來。
+
+如果最後一枚硬幣選 c，那前面需要先湊出：
+
+i - c
+
+所以：
+
+dp[i] = dp[i - c] + 1
+
+因為可以選不同 coin，取最小值：
+
+dp[i] = min(dp[i], dp[i - c] + 1)
+
+條件是：
+
+i >= c
+
+臨場推導：
+
+dp[i] = 湊出 i 的最少硬幣數
+dp[0] = 0
+最後一枚如果是 c → dp[i - c] + 1
+試所有 coin，取 min
+
+踩過的坑：
+
+不需要額外把 dp[c] 設成 1。
+當 i == c 時也要允許，所以條件是 i >= c，不是 i > c。
+其他 dp 初始值不能用 0，因為 0 會和「真的需要 0 枚」混淆。
+用 inf 初始化，最後如果 dp[amount] 還是 inf，代表無法湊出，要回傳 -1。
+這題不像 House Robber，只保留前兩格不夠，因為 dp[i] 可能需要 dp[i-c] 的很多不同位置。
+
+複雜度：
+設 A = amount，C = len(coins)
+
+Time: O(A × C)
+Space: O(A)
+
+核心記憶：
+
+dp[i] = min(dp[i], dp[i - coin] + 1)
+
+意思是：
+
+「假設最後一枚硬幣是 coin，那前面先用最佳方式湊出 i - coin，再加這 1 枚。」
+
+題型：
+1D DP / Minimum DP / Unbounded Coin Change
