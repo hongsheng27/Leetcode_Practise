@@ -2,8 +2,8 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
         if n == 1: return nums[0]
-        if n <= 2: return max(nums[0], nums[1])
         def rob(l, r):
+            if l == r: return nums[l]
             dp = [0, 0]
             dp[0] = nums[l]
             dp[1] = max(nums[l], nums[l + 1])
