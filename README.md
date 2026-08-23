@@ -880,4 +880,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
+## Knapsack Problem
+|  |
+| ------- |
+| [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
+## Complete Knapsack
+|  |
+| ------- |
+| [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 <!---LeetCode Topics End-->
