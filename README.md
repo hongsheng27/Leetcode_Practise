@@ -111,6 +111,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
+| [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
@@ -341,6 +342,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
+| [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
 ## Math
@@ -845,6 +847,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
+| [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
