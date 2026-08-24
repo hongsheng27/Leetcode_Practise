@@ -3,21 +3,19 @@ class Solution:
         ROWS, COLS = len(mat), len(mat[0])
         d = ROWS + COLS - 1
         res = []
-
-        evenDirections = [(-1, 1)]
-        oddDirections = [(1, -1)]
         for _d in range(d):
             if not _d % 2: 
                 startR = min(_d, ROWS - 1) 
                 startC = _d - startR
                 res.append(mat[startR][startC])
+                # even
                 dr, dc = -1, 1
 
-                
             else:
                 startC = min(_d, COLS - 1) 
                 startR = _d - startC
                 res.append(mat[startR][startC])
+                # odd
                 dr, dc = 1, -1
                 
             nr, nc = startR + dr, startC + dc
