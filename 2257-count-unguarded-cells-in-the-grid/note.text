@@ -1,0 +1,164 @@
+# 2257. Count Unguarded Cells in the Grid
+
+## 題目概述
+
+給一個 `m x n` grid，裡面有 guards 和 walls。
+
+Guard 可以往上下左右看，直到遇到另一個 Guard 或 Wall。
+
+最後計算沒有被任何 Guard 看到的空格數量。
+
+本質是 **Grid Simulation + Directional Sweep**。
+
+## 解題邏輯
+
+1. 先建立 board，標記 Guard 和 Wall。
+
+```python
+board = [["."] * COLS for _ in range(ROWS)]
+
+for r, c in guards:
+    board[r][c] = "G"
+
+for r, c in walls:
+    board[r][c] = "W"
+```
+
+2. 對整張 board 做四次 sweep：
+
+```text
+左 → 右
+右 → 左
+上 → 下
+下 → 上
+```
+
+3. 每次 sweep 維護一個 `active`。
+
+```text
+active = True
+```
+
+代表目前這個方向前面有一個 Guard，而且中間沒有被 Wall 擋住。
+
+4. 遇到 Guard：
+
+```python
+if board[r][c] == "G":
+    active = True
+```
+
+代表從這裡開始，後面的格子會被看到。
+
+5. 遇到 Wall：
+
+```python
+elif board[r][c] == "W":
+    active = False
+```
+
+Wall 會阻擋 Guard 的視線。
+
+6. 如果 `active` 且目前是空格：
+
+```python
+elif active and board[r][c] == ".":
+    board[r][c] = "guarded"
+    res -= 1
+```
+
+只在第一次被看到時扣一次。
+
+如果已經是 `"guarded"`，不用再扣，但它不會阻擋視線。
+
+### 核心概念
+
+```text
+很多 source 各自往外掃
+↓
+可能有重複 traversal
+↓
+改成整張 grid 做 directional sweep
+↓
+把前面的狀態一路傳下去
+```
+
+這類思考和 `prefix / suffix` 很像。
+
+## 踩過的坑
+
+1. Guard 和 Wall 都會阻擋視線。
+
+```text
+G . . G
+      ↑
+遇到另一個 Guard 就停止
+```
+
+不是只有 Wall 才會擋。
+
+2. `"guarded"` 不會阻擋視線。
+
+```text
+G . guarded . .
+```
+
+即使某格已經被其他 Guard 看過，現在這個 Guard 還是可以繼續往後看。
+
+3. 不需要額外使用 `guardedSet`。
+
+既然已經有 `board`，可以直接：
+
+```python
+board[r][c] = "guarded"
+```
+
+利用 board 本身避免同一格被重複計算。
+
+4. `directions` 在 sweep 版本中是冗餘的。
+
+```python
+directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+```
+
+只有從每個 Guard 做 ray casting 時才需要。
+
+Directional Sweep 已經直接用四個 loop 指定方向。
+
+5. `isGuard` 命名容易誤解。
+
+它不是代表「目前這格是不是 Guard」，而是：
+
+```text
+目前這個方向是否有有效的 Guard 正在看過來
+```
+
+所以用：
+
+```python
+active
+```
+
+會更清楚。
+
+## Complexity
+
+```text
+Time: O(mn)
+
+Space: O(mn)
+```
+
+四個方向各掃整張 grid 一次：
+
+```text
+4 × mn = O(mn)
+```
+
+board 需要：
+
+```text
+O(mn)
+```
+
+額外變數只有常數空間。
