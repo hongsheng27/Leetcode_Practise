@@ -10,7 +10,7 @@ class Solution:
         
         capture = 0
 
-        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
         for dr, dc in directions:
             nr, nc = rookR + dr, rookC + dc
