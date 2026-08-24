@@ -1,0 +1,110 @@
+Diagonal Traverse
+題目概述
+
+給一個矩陣，按照對角線順序走訪所有元素。
+
+每條 diagonal 的方向交替：
+
+even → 右上
+odd  → 左下
+
+本質是 Matrix Simulation + Diagonal Traversal。
+
+解題邏輯
+同一條 diagonal 上的座標都有相同的：
+r + c = d
+
+所以總共有：
+
+ROWS + COLS - 1
+
+條 diagonal。
+
+偶數 diagonal 從左下端開始，往右上走：
+startR = min(d, ROWS - 1)
+startC = d - startR
+
+dr, dc = -1, 1
+
+min() 是為了避免 startR 超過矩陣底部。
+
+奇數 diagonal 從右上端開始，往左下走：
+startC = min(d, COLS - 1)
+startR = d - startC
+
+dr, dc = 1, -1
+起點加入答案後，沿著方向持續走到出界。
+nr, nc = startR + dr, startC + dc
+
+while 0 <= nr < ROWS and 0 <= nc < COLS:
+    res.append(mat[nr][nc])
+    nr += dr
+    nc += dc
+核心概念
+同一 diagonal
+→ r + c 相同
+
+even diagonal
+→ 左下開始
+→ (-1, +1)
+
+odd diagonal
+→ 右上開始
+→ (+1, -1)
+踩過的坑
+不能只用 d < COLS 判斷起點。
+
+對非正方形矩陣，例如：
+
+2 x 5
+
+d < COLS 時，d 仍然可能已經超過合法 row。
+
+所以要用：
+
+startR = min(d, ROWS - 1)
+
+或：
+
+startC = min(d, COLS - 1)
+
+確保起點合法。
+
+while 裡一定要更新座標。
+nr += dr
+nc += dc
+
+否則會一直停在同一格，造成 infinite loop。
+
+算出 nr, nc 後，要 append 新位置。
+
+不能又寫：
+
+res.append(mat[startR][startC])
+
+否則會一直重複加入起點。
+
+不需要：
+evenDirections = [(-1, 1)]
+oddDirections = [(1, -1)]
+
+因為每種情況只有一個方向。
+
+直接：
+
+dr, dc = -1, 1
+
+或：
+
+dr, dc = 1, -1
+
+更簡單。
+
+Complexity
+Time: O(ROWS × COLS)
+
+Space: O(1)
+
+每個 element 只被走訪一次。
+
+res 是題目要求的 output，所以通常不計入額外空間。
