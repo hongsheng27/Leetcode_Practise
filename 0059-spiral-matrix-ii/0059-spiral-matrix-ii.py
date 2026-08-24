@@ -1,26 +1,24 @@
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
-        grid = [[0] * n for _ in range(n)]
-        top = 0
-        bottom = n - 1
-        left = 0
-        right = n - 1
-        num = 0
-        while top <= bottom and left <= right:
+        top = left = 0
+        bottom = right = n - 1
+        board = [[0] * n for _ in range(n)]
+        start = 1
+        while left <= right and top <= bottom:
             for col in range(left, right + 1):
-                num += 1
-                grid[top][col] = num
+               board[top][col] = start
+               start += 1
             top += 1
             for row in range(top, bottom + 1):
-                num += 1
-                grid[row][right] = num
+                board[row][right] = start
+                start += 1
             right -= 1
             for col in range(right, left - 1, -1):
-                num += 1
-                grid[bottom][col] = num
+                board[bottom][col] = start
+                start += 1
             bottom -= 1
             for row in range(bottom, top - 1, -1):
-                num += 1
-                grid[row][left] = num
+                board[row][left] = start
+                start += 1
             left += 1
-        return grid
+        return board
