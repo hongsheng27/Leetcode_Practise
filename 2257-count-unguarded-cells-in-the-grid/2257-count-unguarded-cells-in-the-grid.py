@@ -3,6 +3,7 @@ class Solution:
         ROWS, COLS = m, n
         board = [["."] * COLS for _ in range(ROWS)]
         res = ROWS * COLS
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         
         for r, c in guards:
             board[r][c] = "G"
@@ -10,22 +11,48 @@ class Solution:
         for r, c in walls:
             board[r][c] = "W"
             res -= 1
-        
-        def helper(r, c):
-            nonlocal res
-            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-            for dr, dc in directions:
-                nr, nc = r + dr, c + dc
-                while 0 <= nr < ROWS and 0 <= nc < COLS:
-                    if board[nr][nc] == 'W' or board[nr][nc] == "G":
-                        break
-                    if board[nr][nc] == ".":
-                        board[nr][nc] = "guarded"
-                        res -= 1
-                    nr += dr
-                    nc += dc
+        guardedSet = set()
 
-        for r, c in guards:
-            helper(r, c)
-        return res
+        for r in range(ROWS):
+            isGuard = False
+            for c in range(COLS):
+                if board[r][c] == "G": 
+                    isGuard = True
+                    continue
+                if board[r][c] == "W":
+                    isGuard = False
+                    continue
+                if isGuard: guardedSet.add((r, c))
+
+        for r in range(ROWS):
+            isGuard = False
+            for c in range(COLS - 1, -1, -1):
+                if board[r][c] == "G": 
+                    isGuard = True
+                    continue
+                if board[r][c] == "W":
+                    isGuard = False
+                    continue
+                if isGuard: guardedSet.add((r, c))
+        for c in range(COLS):
+            isGuard = False
+            for r in range(ROWS):
+                if board[r][c] == "G": 
+                    isGuard = True
+                    continue
+                if board[r][c] == "W":
+                    isGuard = False
+                    continue
+                if isGuard: guardedSet.add((r, c))
+        for c in range(COLS):
+            isGuard = False
+            for r in range(ROWS - 1, -1, -1):
+                if board[r][c] == "G": 
+                    isGuard = True
+                    continue
+                if board[r][c] == "W":
+                    isGuard = False
+                    continue
+                if isGuard: guardedSet.add((r, c))
+        return res - len(guardedSet)
         
