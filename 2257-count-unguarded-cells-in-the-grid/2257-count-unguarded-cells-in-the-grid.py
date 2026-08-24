@@ -11,48 +11,32 @@ class Solution:
         for r, c in walls:
             board[r][c] = "W"
             res -= 1
+
         guardedSet = set()
+        def helper(r, c, isGuard):
+            if board[r][c] == "G": 
+                isGuard = True
+            elif board[r][c] == "W":
+                isGuard = False
+            elif isGuard and board[r][c] == ".": 
+                guardedSet.add((r, c))
+            return isGuard
 
         for r in range(ROWS):
             isGuard = False
             for c in range(COLS):
-                if board[r][c] == "G": 
-                    isGuard = True
-                    continue
-                if board[r][c] == "W":
-                    isGuard = False
-                    continue
-                if isGuard: guardedSet.add((r, c))
-
+                isGuard = helper(r, c, isGuard)
         for r in range(ROWS):
             isGuard = False
             for c in range(COLS - 1, -1, -1):
-                if board[r][c] == "G": 
-                    isGuard = True
-                    continue
-                if board[r][c] == "W":
-                    isGuard = False
-                    continue
-                if isGuard: guardedSet.add((r, c))
+                isGuard = helper(r, c, isGuard)
         for c in range(COLS):
             isGuard = False
             for r in range(ROWS):
-                if board[r][c] == "G": 
-                    isGuard = True
-                    continue
-                if board[r][c] == "W":
-                    isGuard = False
-                    continue
-                if isGuard: guardedSet.add((r, c))
+                isGuard = helper(r, c, isGuard)
         for c in range(COLS):
             isGuard = False
             for r in range(ROWS - 1, -1, -1):
-                if board[r][c] == "G": 
-                    isGuard = True
-                    continue
-                if board[r][c] == "W":
-                    isGuard = False
-                    continue
-                if isGuard: guardedSet.add((r, c))
+                isGuard = helper(r, c, isGuard)
         return res - len(guardedSet)
         
