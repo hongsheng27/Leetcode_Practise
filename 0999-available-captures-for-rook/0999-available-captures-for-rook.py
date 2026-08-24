@@ -4,8 +4,8 @@ class Solution:
         def helper(r, c):
             count = 0
             top = left = 0
-            bottom = len(board) - 1
-            right = len(board[0]) - 1
+            bottom = ROWS - 1
+            right = COLS - 1
             for col in range(c + 1, right + 1):
                 if board[r][col] == "B": break
                 if board[r][col] == "p": 
