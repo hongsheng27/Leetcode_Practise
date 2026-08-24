@@ -1,0 +1,73 @@
+Available Captures for Rook
+題目概述
+
+給一個棋盤和一隻 Rook，計算它往上下左右四個方向能吃到幾個 pawn。
+
+遇到 Bishop 或第一個 pawn 就停止該方向。
+
+本質是四方向的 Directional Scan。
+
+解題邏輯
+先掃 board，找到 Rook 的位置。
+if board[r][c] == "R":
+    rookR = r
+    rookC = c
+定義上下左右四個方向。
+directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+每個方向都從 Rook 的下一格開始。
+nr, nc = rookR + dr, rookC + dc
+沿著同一方向持續往前走。
+nr += dr
+nc += dc
+遇到 Bishop，代表被擋住，直接停止。
+if board[nr][nc] == "B":
+    break
+遇到 pawn，代表可以吃到，capture += 1，然後停止這個方向。
+if board[nr][nc] == "p":
+    capture += 1
+    break
+核心概念
+
+看到：
+
+從某個位置出發
+→ 沿固定方向一直走
+→ 直到碰到 obstacle / target / boundary
+
+想到：
+
+Directional Scan
+
+常見在 Rook、Queen、Laser、Camera、Guard Vision 這類題目。
+
+踩過的坑
+break 只會跳出目前這一層 loop。
+
+找 Rook 時：
+
+for r in range(ROWS):
+    for c in range(COLS):
+        if board[r][c] == "R":
+            rookR = r
+            rookC = c
+            break
+
+這個 break 只會跳出內層 for c。
+
+但題目只有一個 Rook，所以外層繼續掃不影響答案，可以不特別處理。
+
+每個方向遇到第一個 pawn 後要停止。
+R . p . p
+
+只能吃到第一個 pawn，不能繼續往後找。
+
+directions + while 比四個方向各寫一段更通用。
+
+這個 pattern 可以直接重複用在其他 Laser Grid / Line of Sight 類型題目。
+
+Complexity
+Time: O(ROWS × COLS)
+
+Space: O(1)
+
+找 Rook 最多掃整個 board；四方向額外最多掃一個 row 和一個 column，所以整體仍是 O(ROWS × COLS)。
