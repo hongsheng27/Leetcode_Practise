@@ -1,0 +1,138 @@
+Walking Robot Simulation
+題目概述
+
+機器人從 (0, 0) 出發，依照指令左轉、右轉或往前走。
+
+遇到 obstacle 不能前進。
+
+回傳過程中距離原點最遠的平方距離。
+
+本質是 Simulation + Direction Array + HashSet。
+
+解題邏輯
+用 d 表示目前方向，搭配固定方向陣列。
+directions = [
+    (0, 1),   # North
+    (1, 0),   # East
+    (0, -1),  # South
+    (-1, 0)   # West
+]
+
+方向按照順時針排列：
+
+North → East → South → West → North
+右轉就是 direction index +1：
+d = (d + 1) % 4
+
+左轉就是 -1：
+
+d = (d - 1) % 4
+
+% 4 讓 direction index 保持在 0 ~ 3。
+
+把 obstacles 放進 set：
+blocked = {(x, y) for x, y in obstacles}
+
+因為每走一步都要判斷下一格是不是 obstacle，set lookup 平均是 O(1)。
+
+正數 command 代表前進數步。
+dx, dy = directions[d]
+
+每一步先計算下一個位置：
+
+nx, ny = x + dx, y + dy
+
+如果是 obstacle：
+
+if (nx, ny) in blocked:
+    break
+
+否則才真正移動：
+
+x, y = nx, ny
+每個 command 執行完後更新最遠距離：
+best = max(best, x ** 2 + y ** 2)
+
+題目要的是平方距離，所以不需要 sqrt()。
+
+核心概念
+
+看到：
+
+角色有方向
++
+左轉 / 右轉
++
+往前移動
+
+可以想到：
+
+Direction Array + Direction Index
+
+常見 pattern：
+
+right: (d + 1) % 4
+left:  (d - 1) % 4
+踩過的坑
+不需要為左轉、右轉各建立一個 dictionary。
+
+原本可以寫成：
+
+direction tuple
+→ 查 dictionary
+→ 得到新方向
+
+但四個方向本身就是循環順序，所以用：
+
+d = (d + 1) % 4
+d = (d - 1) % 4
+
+更簡潔。
+
+obstacle 應該用 set。
+
+如果每一步都去掃整個 obstacles list，lookup 會變慢。
+
+用：
+
+blocked = {(x, y) for x, y in obstacles}
+
+可以做到平均 O(1) membership check。
+
+必須一步一步走。
+
+不能直接：
+
+x += dx * command
+y += dy * command
+
+因為中間可能遇到 obstacle。
+
+所以必須：
+
+每一步
+→ 先檢查下一格
+→ 沒被擋才移動
+start 不適合拿來當目前位置名稱。
+
+因為位置會一直改變，直接用：
+
+x, y
+
+更清楚。
+
+walk() helper 在這題不是必要的。
+
+移動邏輯很短，直接寫在 command loop 裡可讀性更高，也避免傳入太多 state。
+
+Complexity
+
+假設 obstacles 數量是 O，總共嘗試走的步數是 S：
+
+Time: O(O + S)
+
+Space: O(O)
+
+建立 obstacle set 需要 O(O)。
+
+每一步只做一次平均 O(1) 的 set lookup。
