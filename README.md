@@ -103,6 +103,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
 | [0860-lemonade-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0860-lemonade-change) |
+| [0874-walking-robot-simulation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0874-walking-robot-simulation) |
 | [0875-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0875-koko-eating-bananas) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
@@ -169,6 +170,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
+| [0874-walking-robot-simulation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0874-walking-robot-simulation) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 | [0981-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0981-time-based-key-value-store) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
@@ -852,6 +854,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0498-diagonal-traverse](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0498-diagonal-traverse) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
+| [0874-walking-robot-simulation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0874-walking-robot-simulation) |
 | [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
