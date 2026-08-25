@@ -1,0 +1,48 @@
+Group Anagrams
+題目概述
+
+給一組字串，把互為 anagram 的字串分到同一組。
+
+本質是用每個字母的出現次數當作 group key。
+
+解題邏輯
+用 defaultdict(list) 儲存每一組 anagram。
+group = defaultdict(list)
+對每個字串建立長度 26 的 frequency array。
+freq = [0] * 26
+統計每個小寫字母出現次數。
+freq[ord(s[i]) - ord('a')] += 1
+
+例如：
+
+"eat" → [1,0,0,0,1,...,1,...]
+"tea" → 相同 frequency
+
+所以它們會得到相同的 key。
+
+list 不能當 dictionary key，所以轉成 tuple。
+group[tuple(freq)].append(s)
+最後回傳所有 group。
+return list(group.values())
+核心概念
+Anagram
+→ 字母種類相同
+→ 每個字母出現次數相同
+→ Frequency Array 可以當唯一 signature
+
+Pattern：
+
+HashMap Grouping
++
+Frequency Counting
+Complexity
+
+假設總共有 N 個字元：
+
+Time: O(N)
+
+Space: O(N)
+
+每個字元只被統計一次。
+
+HashMap 最多需要存下所有輸入字串與對應的 frequency key。
