@@ -218,6 +218,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
+| [0796-rotate-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0796-rotate-string) |
 | [0981-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0981-time-based-key-value-store) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
@@ -773,6 +774,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0572-subtree-of-another-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0572-subtree-of-another-tree) |
+| [0796-rotate-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0796-rotate-string) |
 ## Hash Function
 |  |
 | ------- |
