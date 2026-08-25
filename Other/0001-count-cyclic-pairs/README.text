@@ -1,0 +1,127 @@
+## Count Cyclic Pairs
+
+# 給你一個非負整數陣列 nums。
+
+# 如果兩個數字的十進位字串滿足以下條件，則稱它們為一組 cyclic pair：
+
+# 1. 字串長度相同。
+# 2. 將其中一個字串循環左移零次或多次，可以得到另一個字串。
+
+# 循環移動時產生的 leading zeros 必須保留。
+
+# 請回傳符合條件的 index pairs (i, j) 數量，其中：
+
+# 0 <= i < j < len(nums)
+
+### Example 1
+
+# Input: nums = [1001, 1100, 110, 11]
+# Output: 1
+
+# 解釋：
+
+# 1001 的 rotations：
+
+# 1001
+# 0011
+# 0110
+# 1100
+
+# 因此 1001 和 1100 是一組。
+
+# 110 和 11 長度不同，所以不是一組。
+
+# ### Example 2
+
+# Input: nums = [1234, 3412, 4123, 1234]
+# Output: 6
+
+# 四個元素都屬於同一個 rotation group，所以答案是：
+
+# C(4, 2) = 6
+
+# ### Example 3
+
+# Input: nums = [10, 1, 100]
+# Output: 0
+
+# 雖然 "10" 可以旋轉成 "01"，但不能將 "01" 當成長度為 1 的 "1"。
+
+# ## Constraints
+
+# 1 <= nums.length <= 200,000
+# 0 <= nums[i] <= 1,000,000,000
+
+# 答案可能超過 32-bit integer。
+
+# 目標複雜度：
+
+# O(n × d²) 或更好
+
+# 其中 d 是數字的位數，本題最多為 10。
+
+# O(n²) 枚舉所有 pairs 會超時。
+
+# ## Test cases
+
+# tests = [
+#     # 題目範例
+#     ([1001, 1100, 110, 11], 1),
+
+#     # 四個元素屬於同一組
+#     ([1234, 3412, 4123, 1234], 6),
+
+#     # 長度不同不能配對
+#     ([10, 1, 100], 0),
+
+#     # 兩個不同的 rotation groups
+#     ([12, 21, 34, 43, 56], 2),
+
+#     # rotation 中可能出現 leading zero
+#     ([101, 110, 11], 1),
+
+#     # 三個相同元素，零次 rotation 也合法
+#     ([0, 0, 0], 3),
+
+#     # 只有前兩個互為 rotation
+#     ([1212, 2121, 1221], 1),
+
+#     # 兩組各有三個元素
+#     ([123, 231, 312, 132, 321, 213], 6),
+
+#     # 同一組有重複數值
+#     ([1001, 1100, 11, 110, 1001], 3),
+
+#     # 沒有任何合法 pair
+#     ([1, 22, 333, 4444], 0),
+
+#     # 單一元素
+#     ([12345], 0),
+# ]
+
+# 測試程式：
+
+# solution = Solution()
+
+# for nums, expected in tests:
+#     actual = solution.countCyclicPairs(nums)
+#     assert actual == expected, (
+#         f"nums={nums}, expected={expected}, actual={actual}"
+#     )
+
+# print("All tests passed!")
+
+# 大型測試，用來檢查是否使用 64-bit pair count：
+
+# nums = [1] * 100_000
+# expected = 4_999_950_000
+
+# assert Solution().countCyclicPairs(nums) == expected
+
+# 特別注意這幾個容易錯的地方：
+
+# - 相同數字也能形成 pair，因為允許旋轉零次。
+# - Pair 是按 index 計算，不是只算不同數值。
+# - "01" 不能和 "1" 配對。
+# - canonical representation 中的 leading zeros 不能刪除。
+# - 不要兩兩呼叫 796 的 b in a + a，那仍然是 O(n²)。

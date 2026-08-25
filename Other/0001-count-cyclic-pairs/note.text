@@ -1,0 +1,82 @@
+Count Rotation-Equivalent Pairs
+
+題目概述：
+
+給非負整數陣列 nums，統計互為「十進位字串循環移位」的 index pair (i, j) 數量，其中 0 <= i < j < len(nums)。
+
+兩數配對的條件：
+
+字串長度相同
+其中一個循環左移零次或多次可得到另一個
+
+循環時產生的 leading zeros 必須保留。
+
+n 最多 200,000，數值最多 10^9（位數 d <= 10）。要求 O(n × d²)，O(n²) 枚舉會 TLE。
+
+解題邏輯：
+
+不要兩兩比對。改成：
+
+為每個數字算出一個 canonical form，使得「互為 rotation」⟺「canonical form 完全相同」
+
+這樣就不用比對，直接把 canonical form 當 dict 的 key。
+
+canonical form 怎麼取：
+
+s + s 包含了全部的循環移位結果
+
+從 doubled = s + s 取出 d 個長度為 d 的滑動視窗，就是全部的 rotation。取字典序最小的那個當代表元。
+
+為什麼一致：
+
+互為 rotation 的兩個數字，它們的 rotation 集合是同一個集合，所以 min 必然相同。
+
+長度問題自動解決：
+
+全程用 str(num) 且不轉回 int，"11" 和 "011" 本來就是不同字串，dict 自然分開。
+
+分組後計數：
+
+一組有 k 個元素，組內任兩個都合法 → C(k, 2) = k * (k - 1) // 2
+
+全部組加總即答案。
+
+臨場推導：
+
+兩兩比對是 O(n²) → 要換成分組
+分組的 key 是什麼？rotation 的代表元
+所有 rotation 藏在 s + s 裡
+取字典序最小當代表元
+互為 rotation ⟺ rotation 集合相同 ⟺ min 相同
+每組 k 個 → C(k, 2)
+
+踩過的坑：
+
+用 digit 頻率陣列當 key 是錯的，那是 anagram 條件不是 rotation 條件。[1212, 2121, 1221] 三者頻率相同會誤判成 3，正確是 1。Rotation 比 anagram 嚴格：順序也要對，只是允許環狀偏移。
+
+不能 int() 之後才取 min。int("0011") 變成 11，長度資訊全毀，[1001, 1100, 110, 11] 四個擠進同一桶回傳 6，正確是 1。長度相同的字串直接用 min 比字典序即可。
+
+for bucket in buckets 迭代 dict 拿到的是 key 不是 value，len(bucket) 會算成 key 的字串長度。要用 .values()。
+
+freq / counts 陣列要開在迴圈裡面，開在外面沒有 reset 會互相污染。
+
+s + s 那招是對字串用的。套在 list 上時 bucketsList[i] + bucketsList[i] 變成兩個 list 相接，且 x in [list] 檢查元素相等而非子字串。
+
+需要保留格式時，任何經過數值型別的轉換都是危險的。同類坑：電話號碼、郵遞區號、學號存成 int 後開頭的 0 會消失。
+
+複雜度：
+
+常見面試分析：
+
+Time:  O(n × d²)
+Space: O(n × d)
+
+兩個 d 的來源不同：一次來自「有 d 個旋轉」（迴圈次數），一次來自「每個旋轉長度是 d」（切片複製 + 字串比較成本）。
+
+字串當 dict key 不是 O(1)，算 hash 要掃過 d 個字元。這題被 O(d²) 吸收掉，但別的題目可能是主導項。
+
+同類題：
+
+Group Anagrams（同樣是 canonical form 分組，key 換成排序後字串 / digit 計數）
+
+Rotate String（同樣用 s + s 涵蓋所有循環移位）
