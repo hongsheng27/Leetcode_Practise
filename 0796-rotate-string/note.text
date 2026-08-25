@@ -1,0 +1,47 @@
+Rotate String
+題目概述
+
+給兩個字串 s 和 goal，判斷 s 經過 rotation 後能不能變成 goal。
+
+本質是 String Rotation + Substring Check。
+
+解題邏輯
+Rotation 不會改變字串長度，所以先確認：
+len(s) == len(goal)
+s 的所有 rotation，都會出現在：
+s + s
+
+例如：
+
+s = "abcde"
+
+s + s = "abcdeabcde"
+
+rotation = "cdeab"
+
+"cdeab" 就是 s + s 裡的一段 substring。
+
+因此直接判斷：
+return len(s) == len(goal) and goal in s + s
+核心概念
+看到 String Rotation
+→ 想到 s + s
+
+因為把字串接兩次後，所有 cyclic rotation 都會成為其中一段長度相同的 substring。
+
+踩過的坑
+
+原本可以枚舉所有 shift：
+
+s[shift:] + s[:shift]
+
+雖然正確，但會重複建立新字串，寫法也比較冗長。
+
+這題更值得記住 s + s 的 observation。
+
+Complexity
+Time: O(n)
+
+Space: O(n)
+
+s + s 會建立長度 2n 的新字串。
