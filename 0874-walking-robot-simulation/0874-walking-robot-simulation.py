@@ -1,6 +1,6 @@
 class Solution:
     def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
-        x = y = d = maxDistance = 0
+        x = y = d = best = 0
         directions = [
             (0, 1), # North
             (1, 0), # East
@@ -21,8 +21,8 @@ class Solution:
                     if (nx, ny) in blocked:
                         break
                     x, y = nx, ny
-                maxDistance = max(maxDistance, x ** 2 + y ** 2)
-        return maxDistance
+                best = max(best, x ** 2 + y ** 2)
+        return best
 
 
 
