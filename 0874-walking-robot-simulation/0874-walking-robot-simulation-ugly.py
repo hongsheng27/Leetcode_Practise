@@ -1,47 +1,28 @@
 class Solution:
     def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
-        start = (0, 0)
-        direction = (0, 1)
-        maxDistance = 0
-        turnRight = {
-            (0, 1): (1, 0),
-            (1, 0): (0, -1),
-            (0, -1): (-1, 0),
-            (-1, 0): (0, 1)
-        }
-        turnLeft = {
-            (0, 1): (-1, 0),
-            (-1, 0): (0, -1),
-            (0, -1): (1, 0),
-            (1, 0): (0, 1)
-        }
-        obstacleSet = set()
-        for x, y in obstacles:
-            obstacleSet.add((x, y))
-
-        def walk(x, y, direction, step):
-            nx = x
-            ny = y
-            while step:
-                x = x + direction[0]
-                y = y + direction[1]
-                if (x, y) in obstacleSet:
-                    return (nx, ny)
-                nx = x
-                ny = y
-                step -= 1
-            return (nx, ny)
+        x = y = d = best = 0
+        directions = [
+            (0, 1), # North
+            (1, 0), # East
+            (0, -1), # South
+            (-1, 0) # West
+        ]
+        blocked = {(x, y) for x, y in obstacles}
         
         for command in commands:
             if command == -1: 
-                direction = turnRight[direction]
+                d = (d + 1) % 4
             elif command == -2:
-                direction = turnLeft[direction]
+                d = (d - 1) % 4
             else:
-                start = walk(start[0], start[1], direction, command)
-                print(start)
-                maxDistance = max(maxDistance, start[0]**2 + start[1]**2)
-        return maxDistance
+                dx, dy = directions[d]
+                for _ in range(command):
+                    nx, ny = x + dx, y + dy
+                    if (nx, ny) in blocked:
+                        break
+                    x, y = nx, ny
+                best = max(best, x ** 2 + y ** 2)
+        return best
 
 
 
