@@ -1,13 +1,13 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        prefix = [0]
+        count = {0: 1}
         res = 0
-        prefixSum = 0
-        freq = {0: 1}
-        for num in nums:
-            prefixSum += num
-
-            if prefixSum - k in freq:
-                res += freq[prefixSum - k]
-            
-            freq[prefixSum] = freq.get(prefixSum, 0) + 1
+        for r in range(len(nums)):
+            curSum = prefix[-1] + nums[r]
+            prefix.append(curSum)
+            if prefix[r + 1] - k in count:
+                res += count[prefix[r + 1] - k]
+            count[curSum] = count.get(curSum, 0) + 1
         return res
+            
