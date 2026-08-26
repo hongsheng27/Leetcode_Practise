@@ -13,15 +13,14 @@ class Solution:
                     grid[r][c] = 2
                     landAmount -= 1
         while q:
-            for _ in range(len(q)):
-                row, col = q.popleft()
-                for dr, dc in directions:
-                    nr, nc = row + dr, col + dc
-                    if (nr < 0 or nr == ROWS or nc < 0 or nc == COLS or
-                        grid[nr][nc] != 1): continue
-                    grid[nr][nc] = 2
-                    q.append((nr, nc))
-                    landAmount -= 1
+            row, col = q.popleft()
+            for dr, dc in directions:
+                nr, nc = row + dr, col + dc
+                if (nr < 0 or nr == ROWS or nc < 0 or nc == COLS or
+                    grid[nr][nc] != 1): continue
+                grid[nr][nc] = 2
+                q.append((nr, nc))
+                landAmount -= 1
         return landAmount
 
                 
