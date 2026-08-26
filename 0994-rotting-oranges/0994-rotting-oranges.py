@@ -12,7 +12,7 @@ class Solution:
                     visited.add((r, c))
                 if grid[r][c] == 1:
                     freshAmount += 1
-        while q:
+        while q and freshAmount > 0:
             for _ in range(len(q)):
                 row, col = q.popleft()
                 for dr, dc in directions:
@@ -22,7 +22,7 @@ class Solution:
                     q.append((nr, nc))
                     visited.add((nr, nc))
                     freshAmount -= 1
-            if q: res += 1 
+            res += 1 
         return -1 if freshAmount > 0 else res
 
 
