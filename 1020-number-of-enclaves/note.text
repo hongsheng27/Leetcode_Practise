@@ -1,0 +1,60 @@
+1020. Number of Enclaves
+題目概述
+
+給一個 0/1 grid，找出無法走到邊界的 land 數量。
+
+從所有邊界 land 出發，把能連到邊界的 land 全部排除。
+
+本質是 Multi-source BFS + Boundary Flood Fill。
+
+解題邏輯
+先統計所有 land 數量。
+if grid[r][c] == 1:
+    landAmount += 1
+把所有邊界上的 land 加進 queue，並先標記成 visited。
+if (r in (0, ROWS - 1) or c in (0, COLS - 1)) and grid[r][c] == 1:
+    q.append((r, c))
+    grid[r][c] = 2
+    landAmount -= 1
+從所有邊界 land 同時做 BFS。
+while q:
+    row, col = q.popleft()
+往上下左右擴散。
+
+如果鄰居是 land：
+
+grid[nr][nc] = 2
+q.append((nr, nc))
+landAmount -= 1
+
+代表這塊 land 可以連到邊界，因此不是 enclave。
+
+核心概念
+
+不要：
+
+從每塊 land 出發
+→ 判斷能不能走到邊界
+
+改成：
+
+從所有邊界 land 出發
+→ 把所有能逃出去的 land 找出來
+→ 剩下的就是 enclave
+
+這是很常見的 Reverse Thinking / Boundary Flood Fill。
+
+踩過的坑
+1.最右邊界是：COLS - 1
+所以：c in (0, COLS - 1)
+2.這題不需要：
+for _ in range(len(q)):
+因為不需要計算 BFS 的回合數或距離。
+3. == 跟 = 很常在bfs炸裂，切記
+4. nr nc 跟 n r 切記不要搞混
+
+
+Complexity
+Time: O(ROWS × COLS)
+Space: O(ROWS × COLS)
+每個 cell 最多處理一次；queue 最壞可能存放 O(mn) 個 land。
