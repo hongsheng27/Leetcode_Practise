@@ -6,28 +6,23 @@
 整張 graph 裡總共有幾個 connected components。
 
 例如：
-
 n = 5
 edges = [[0,1], [1,2], [3,4]]
 
 可以分成：
-
 {0,1,2}
 {3,4}
 
 所以答案是：
-
 2
-解題邏輯（含程式碼）
 
+解題邏輯
 這題可以用 Union Find。
 
 一開始每個 node 都自己是一個 component：
-
 {0} {1} {2} {3} {4}
 
 所以：
-
 count = n
 
 每看到一條 edge：
