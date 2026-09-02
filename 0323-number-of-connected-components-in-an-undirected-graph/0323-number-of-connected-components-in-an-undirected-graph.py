@@ -6,6 +6,7 @@ class Solution:
 
         def find(num):
             while num != parents[num]:
+                parents[num] = parents[parents[num]]
                 num = parents[num]
             return num
         def union(x, y):
