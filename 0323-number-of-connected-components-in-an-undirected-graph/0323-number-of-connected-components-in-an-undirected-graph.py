@@ -1,14 +1,14 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        parents = [i for i in range(n)]
+        parent = [i for i in range(n)]
         size = [1] * n
         res = n
 
-        def find(num):
-            while num != parents[num]:
-                parents[num] = parents[parents[num]]
-                num = parents[num]
-            return num
+        def find(x):
+            while x != parent[x]:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
         def union(x, y):
             nonlocal res
             rootX = find(x)
@@ -20,10 +20,9 @@ class Solution:
             if size[rootX] < size[rootY]:
                 rootX, rootY = rootY, rootX
             
-            parents[rootY] = rootX
+            parent[rootY] = rootX
             size[rootX] += size[rootY]
             res -= 1
-            return True
            
         for x, y in edges:
             union(x, y)
