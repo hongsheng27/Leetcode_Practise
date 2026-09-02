@@ -4,10 +4,10 @@ class Solution:
         # O(R)
         for l, h in rectangles:
             bucket[h].append(l)
-        # 100 * log R
+        # O(R log R)
         for h in range(1, 101):
             bucket[h].sort()
-        # O(P)
+        # O(P log R)
         res = []
         for x, y in points:
             arr = bucket[y:]
@@ -24,4 +24,5 @@ class Solution:
                         r = m
                 total += (len(lst) - l)
             res.append(total)
+        # O(R) + O(R log R) + O(P log R) = O(R log R + P log R)
         return res
