@@ -130,6 +130,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Hash Table
 |  |
 | ------- |
@@ -256,6 +257,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Divide and Conquer
 |  |
 | ------- |
@@ -331,6 +333,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Matrix
 |  |
 | ------- |
@@ -493,6 +496,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Sliding Window
 |  |
 | ------- |
@@ -510,6 +514,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Greedy
 |  |
 | ------- |
@@ -528,6 +533,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0860-lemonade-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0860-lemonade-change) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
+| [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Stack
 |  |
 | ------- |
