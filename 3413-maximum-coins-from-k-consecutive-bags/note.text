@@ -1,0 +1,298 @@
+LeetCode 3413 - Maximum Coins From K Consecutive Bags
+
+題目：給多個不重疊區間 `[l, r, coin]`，代表從 l 到 r 每個位置都有 coin 枚硬幣，要找長度固定為 k 的連續區間最多可以拿到多少硬幣。
+
+核心問題：
+座標可能非常大，所以不能建立：
+
+line = [0] * maxCoordinate
+
+也不能真的把每個 `[l, r]` 展開。
+
+一個區間的總價值可以直接算：
+
+(r - l + 1) * coin
+
+核心思路：Sort + Interval Sliding Window
+
+先依照 l 排序：
+
+coins.sort()
+
+最佳 window 一定可以找到一個版本，使得：
+
+1.某個 interval 的 r 貼著 window 最右邊
+
+window = [r - k + 1, r]
+
+或
+
+2.某個 interval 的 l 貼著 window 最左邊
+
+window = [l, l + k - 1]
+
+所以需要從兩個方向各做一次 sliding window。
+
+Pass 1：r 貼著 window 右邊
+
+window：
+
+[r - k + 1, r]
+
+所以：
+
+windowStart = r - k + 1
+
+每遇到一個新 interval，先把整段加入 bag：
+
+bag += (r - l + 1) * coin
+
+bag 可以理解成：
+目前 sliding window 相關 interval 的「完整總價值」。
+
+如果最左邊 interval 已經完全離開 window：
+
+y < windowStart
+
+就可以整段從 bag 移除：
+
+bag -= (y - x + 1) * coin
+
+left += 1
+
+如果最左邊 interval 只有一部分超出 window：
+
+interval：
+[x -------- y]
+
+window：
+[windowStart -------- r]
+
+條件：
+
+x < windowStart
+
+超出去的長度：
+
+windowStart - x
+
+所以真正答案：
+
+current = bag - outsideLength * coin
+
+注意：
+partial interval 不要直接從 bag 移掉。
+
+bag 保持完整 interval，
+只在 current 裡扣掉超出去的部分。
+
+Pass 2：l 貼著 window 左邊
+
+完全是 Pass 1 的鏡像。
+
+window：
+
+[l, l + k - 1]
+
+所以：
+
+windowEnd = l + k - 1
+
+從右往左掃。
+
+如果最右邊 interval 已經完全離開 window：
+
+x > windowEnd
+
+就整段移除。
+
+如果最右邊 interval 只有一部分超出 window：
+
+window：
+[l -------- windowEnd]
+
+interval：
+[x -------- y]
+
+條件：
+
+y > windowEnd
+
+超出去的長度：
+
+y - windowEnd
+
+所以：
+
+current -= outsideLength * coin
+
+可以這樣對稱記：
+
+左邊完全出去：
+y < windowStart
+
+左邊 partial：
+x < windowStart
+
+右邊完全出去：
+x > windowEnd
+
+右邊 partial：
+y > windowEnd
+
+為什麼 sliding window 是 O(n)：
+
+雖然裡面有 while，但 pointer 不會回頭。
+
+Pass 1：
+left 只會一直往右。
+
+Pass 2：
+right 只會一直往左。
+
+每個 interval 最多被加入、移除一次。
+
+所以每一趟 sliding window 都是：
+
+O(n)
+
+面試推薦：
+
+推薦 Sort + Interval Sliding Window。
+
+推導方式：
+
+最直覺先想到把每個位置展開
+→ 發現 coordinate 太大
+→ 改成直接處理 interval
+→ interval 不重疊，可以排序
+→ 用 sliding window 重複利用前一次計算結果
+→ 最後處理 window 邊界的 partial interval
+
+整體時間複雜度已經是 O(n log n)，瓶頸是 sorting。
+
+踩過的坑：
+
+1.不能只考慮 r 貼著 window 最右邊。
+
+最佳答案也可能是：
+
+window = [l, l + k - 1]
+
+也就是 l 貼著 window 最左邊。
+
+所以需要處理兩個方向。
+
+2.partial 判斷的：
+
+if left <= right
+
+不能改成：
+
+if left < right
+
+因為 left == right 時，代表只剩目前自己這個 interval，但自己仍然可能只有一部分落在 window 裡。
+
+例如：
+
+interval = [1, 10]
+window = [8, 10]
+
+即使 left == right，仍然需要扣掉 [1, 7]。
+
+3.移除完整 interval 的 while 可以使用：
+
+while left < right
+
+不一定需要：
+
+left <= right
+
+因為 left == right 時，它就是目前用來決定 window 邊界的 interval。
+
+Pass 1 中：
+
+windowStart = r - k + 1
+
+目前 interval 的 end 就是 r，所以它不可能：
+
+r < windowStart
+
+因此自己不可能被「整段移除」。
+
+但自己可能是 partial，所以後面的 partial 判斷仍然需要 left <= right。
+
+4.左側 partial 要判斷：
+
+x < windowStart
+
+不是：
+
+y >= windowStart
+
+因為前面的 while 已經把所有：
+
+y < windowStart
+
+的 interval 移除了。
+
+所以走到 partial 判斷時，y >= windowStart 本來就已經成立。
+
+真正需要知道的是 interval 的左端 x 有沒有超出 window：
+
+x < windowStart
+
+如果成立，才需要扣：
+
+windowStart - x
+
+5.left / right 和 l / r 很容易混淆。
+
+left、right：
+是 array index / pointer。
+
+l、r：
+是 interval 的座標。
+
+例如：
+
+coins[left]
+
+和：
+
+r -= 1
+
+很容易因為命名相似寫錯。
+
+面試時可以考慮使用：
+
+start, end, coin
+
+取代：
+
+l, r, coin
+
+複雜度：
+
+排序：
+O(n log n)
+
+第一次 sliding window：
+O(n)
+
+第二次 sliding window：
+O(n)
+
+總時間複雜度：
+
+O(n log n)
+
+瓶頸是 sorting。
+
+空間複雜度：
+
+演算法本身額外空間：
+
+O(1)
+
+如果嚴格計算 Python sort 的實作額外空間，則需要另外考慮 sorting 使用的空間。
