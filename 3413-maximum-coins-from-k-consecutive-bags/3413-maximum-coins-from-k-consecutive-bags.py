@@ -30,7 +30,7 @@ class Solution:
             bag += (r - l + 1) * coin
             windowEnd = l + k - 1
 
-            while left <= right and coins[right][0] > windowEnd:
+            while left < right and coins[right][0] > windowEnd:
                 x, y, c = coins[right]
                 bag -= (y - x + 1) * c
                 right -= 1
