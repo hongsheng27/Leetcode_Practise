@@ -13,7 +13,7 @@ class Solution:
                     visited.add((r, c))
                 if grid[r][c] == 1:
                     freshAmount += 1
-        phrase = 0
+        phase = 0
         while q and freshAmount:
             for _ in range(len(q)):
                 row, col = q.popleft()
@@ -24,5 +24,5 @@ class Solution:
                     q.append((nr, nc))
                     visited.add((nr, nc))
                     freshAmount -= 1
-            phrase += 1
-        return -1 if freshAmount > 0 else phrase
+            phase += 1
+        return -1 if freshAmount > 0 else phase
