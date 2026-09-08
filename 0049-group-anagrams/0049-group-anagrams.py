@@ -6,5 +6,5 @@ class Solution:
             for c in word:
                 freq[ord(c) - ord('a')] += 1
             anagrams[tuple(freq)].append(word)
-        return [anagram for anagram in anagrams.values()]
+        return list(anagrams.values())
            
