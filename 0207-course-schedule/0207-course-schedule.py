@@ -9,13 +9,15 @@ class Solution:
         for i in range(len(indegree)):
             if indegree[i] == 0:
                 q.append(i)
+        finish = 0
         while q:
             course = q.popleft()
+            finish += 1
             for crs in adj[course]:
                 indegree[crs] -= 1
                 if not indegree[crs]:
                     q.append(crs)
-        return max(indegree) == 0
+        return finish == numCourses
 
 
 
