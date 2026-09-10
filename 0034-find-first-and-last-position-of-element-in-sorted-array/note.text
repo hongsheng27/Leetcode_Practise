@@ -1,0 +1,38 @@
+34. Find First and Last Position of Element in Sorted Array
+
+題目概述：
+給定一個已排序的 nums 和 target，
+找出 target 第一次出現和最後一次出現的 index。
+如果 target 不存在，回傳 [-1, -1]。
+
+解題邏輯：
+使用 Binary Search。
+
+建立一個 binarySearch helper，
+透過 leftBias 決定要找左邊界還是右邊界。
+
+當 nums[m] < target：
+往右找。
+
+當 nums[m] > target：
+往左找。
+
+當 nums[m] == target：
+先把目前 index 記錄下來。
+
+如果 leftBias = True：
+繼續往左搜尋，尋找更小的 target index。
+
+如果 leftBias = False：
+繼續往右搜尋，尋找更大的 target index。
+
+因此：
+第一次 binary search 找最左 target。
+第二次 binary search 找最右 target。
+
+即使已經找到 target 也不能直接停止，
+因為目前的位置不一定是 boundary。
+
+複雜度：
+Time: O(log n)
+Space: O(1)
