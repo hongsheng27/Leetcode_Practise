@@ -4,7 +4,7 @@ class Solution:
         res = []
         for start, end in intervals:
             if res and res[-1][1] >= start:
-                res[-1][1] = max(end, res[-1][1])
+                res[-1][1] = max(res[-1][1], end)
             else:
                 res.append([start, end])
         return res
