@@ -1,8 +1,8 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         l = max(weights)
-        minWeight = r = sum(weights)
-        while l <= r:
+        r = sum(weights)
+        while l < r:
             m = (l + r) // 2
             total = 0
             d = 0
@@ -13,9 +13,8 @@ class Solution:
                     total = 0
             d = d + 1 if total > 0 else d
             if d <= days:
-                minWeight = min(minWeight, m)
-                r = m - 1
+                r = m
             else:
                 l = m + 1
-        return minWeight
+        return l
             
