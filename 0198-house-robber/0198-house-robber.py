@@ -1,10 +1,12 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def recursion(i, total, cache):
+        cache = {}
+        def recursion(i):
             if i >= len(nums): 
-                return total
-            if (i, total) in cache: return cache[(i, total)]
-            cache[(i, total)] = max(recursion(i + 2, total + nums[i], cache),
-                                    recursion(i + 1, total, cache))
-            return cache[(i, total)]
-        return recursion(0, 0, {})
+                return 0
+            if i in cache: return cache[i]
+            cache[i] = max(nums[i] + recursion(i + 2),
+                           recursion(i + 1))
+            return cache[i]
+            
+        return recursion(0)
