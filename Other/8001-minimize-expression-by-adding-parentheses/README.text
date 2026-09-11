@@ -1,0 +1,171 @@
+# ============================================================
+# Minimize Expression by Adding Parentheses
+#
+# 給你一個字串 expression，格式固定為：
+#
+#     num1+num2
+#
+# expression 中只會有一個 '+'。
+#
+# 你必須：
+#
+# 1. 在 '+' 左邊的某個位置加入 '('
+# 2. 在 '+' 右邊的某個位置加入 ')'
+#
+# 括號內的部分先做加法。
+# 括號外如果還有數字，則視為乘數。
+#
+#
+# Example:
+#
+# expression = "158+454"
+#
+# 可以選擇：
+#
+#     1(58+45)4
+#
+# 計算方式：
+#
+#     1 * (58 + 45) * 4
+#     = 412
+#
+#
+# 如果括號左邊沒有數字，左側乘數視為 1。
+#
+# Example:
+#
+#     (12+3)4
+#
+# 等同：
+#
+#     1 * (12 + 3) * 4
+#
+#
+# 如果括號右邊沒有數字，右側乘數也視為 1。
+#
+# Example:
+#
+#     2(47+38)
+#
+# 等同：
+#
+#     2 * (47 + 38) * 1
+#
+#
+# 回傳所有合法括號位置中，
+# 可以得到的最小整數結果。
+#
+#
+# Constraints:
+#
+# 3 <= len(expression) <= 21
+# expression 只包含數字與一個 '+'
+# '+' 左右至少各有一個 digit
+# num1 與 num2 不會有 leading zero
+#
+#
+# Target:
+#
+# O(m * n)
+#
+# m = '+' 左側數字長度
+# n = '+' 右側數字長度
+#
+# ============================================================
+
+
+class Solution:
+    def minimizeExpression(self, expression: str) -> int:
+        # ==============================
+        # WRITE YOUR SOLUTION HERE
+        # ==============================
+
+        pass
+
+
+# ============================================================
+# TEST CASES
+# 不需要修改下面
+# ============================================================
+
+tests = [
+    # Example 1
+    # 1(58+45)4
+    # 1 * 103 * 4 = 412
+    ("158+454", 412),
+
+    # 2(47+38)
+    # 2 * 85 = 170
+    ("247+38", 170),
+
+    # 1(2+3)4
+    # 1 * 5 * 4 = 20
+    ("12+34", 20),
+
+    # 9(99+1)
+    # 9 * 100 = 900
+    ("999+1", 900),
+
+    # (1+99)9
+    # 100 * 9 = 900
+    ("1+999", 900),
+
+    # 1(23+45)6
+    # 1 * 68 * 6 = 408
+    ("123+456", 408),
+
+    # 只有一種合法放法
+    # (5+6)
+    ("5+6", 11),
+
+    # 最佳答案可能直接把整個 expression 包起來
+    # (81+19)
+    ("81+19", 100),
+
+    # (999+999)
+    ("999+999", 1998),
+
+    # 1(11+11)1
+    # 22
+    ("111+111", 22),
+
+    # 最佳答案是整體相加
+    ("9123+4567", 13690),
+
+    # 括號外可能包含 0
+    # (105+2)0
+    # 107 * 0 = 0
+    ("105+20", 0),
+]
+
+
+solution = Solution()
+
+for i, (expression, expected) in enumerate(tests, 1):
+    actual = solution.minimizeExpression(expression)
+
+    if actual == expected:
+        print(f"Test {i}: PASS")
+    else:
+        print(f"Test {i}: FAIL")
+        print(f"  expression = {expression}")
+        print(f"  expected   = {expected}")
+        print(f"  actual     = {actual}")
+
+
+# ============================================================
+# EXTRA TEST
+# ============================================================
+
+expression = "12345+67890"
+expected = 0
+
+actual = Solution().minimizeExpression(expression)
+
+if actual == expected:
+    print("Extra Test: PASS")
+else:
+    print("Extra Test: FAIL")
+    print(f"expression = {expression}")
+    print(f"expected   = {expected}")
+    print(f"actual     = {actual}")
