@@ -13,7 +13,7 @@ class Solution:
             rootX = find(x)
             rootY = find(y)
 
-            if rootX == rootY: return False
+            if rootX == rootY: return
 
             if size[rootX] < size[rootY]:
                 rootX, rootY = rootY, rootX
