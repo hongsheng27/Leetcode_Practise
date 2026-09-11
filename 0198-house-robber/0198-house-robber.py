@@ -5,4 +5,4 @@ class Solution:
             tmp = max(nums[i] + dp[0], dp[1])
             dp[0] = dp[1]
             dp[1] = tmp
-        return dp[-1]
+        return dp[1]
