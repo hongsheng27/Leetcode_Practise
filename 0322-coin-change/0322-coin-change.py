@@ -7,6 +7,6 @@ class Solution:
                 if coin == i:
                     dp[i] = 1
                 elif i - coin > 0:
-                    dp[i] = min(dp[i], dp[coin] + dp[i - coin])
+                    dp[i] = min(dp[i], 1 + dp[i - coin])
         return -1 if dp[-1] == float('inf') else dp[-1]
 
