@@ -5,6 +5,7 @@ class Solution:
         res = n
         def find(x):
             while x != parent[x]:
+                parent[x] = parent[parent[x]]
                 x = parent[x]
             return x
         def union(x, y):
