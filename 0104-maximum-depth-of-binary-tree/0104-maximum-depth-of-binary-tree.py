@@ -13,8 +13,8 @@ class Solution:
         while q:
             for _ in range(len(q)):
                 node = q.popleft()
-                if node and node.left: q.append(node.left)
-                if node and node.right: q.append(node.right)
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
             res += 1
         return res
 
