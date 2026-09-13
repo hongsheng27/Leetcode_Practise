@@ -3,7 +3,7 @@ class Solution:
         stack = []
         for a in asteroids:
             alive = True
-            while stack and (stack[-1] > 0 and a < 0) and alive:
+            while stack and stack[-1] > 0 and a < 0 and alive:
                 if stack[-1] < -a:
                     stack.pop()
                 elif stack[-1] == -a:
