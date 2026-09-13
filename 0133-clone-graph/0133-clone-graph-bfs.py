@@ -12,13 +12,14 @@ class Solution:
         if not node: return None
         q = deque([node])
         oldToNew = {node: Node(node.val)}
+
         while q:
             n = q.popleft()
-            for nei in n.neighbors:
-                if nei not in oldToNew:
-                    oldToNew[nei] = Node(nei.val)
-                    q.append(nei)
-                oldToNew[n].neighbors.append(oldToNew[nei])
+            for neighbor in n.neighbors:
+                if neighbor not in oldToNew:
+                    oldToNew[neighbor] = Node(neighbor.val)
+                    q.append(neighbor)
+                oldToNew[n].neighbors.append(oldToNew[neighbor])
+                
         return oldToNew[node]
-
-            
+     

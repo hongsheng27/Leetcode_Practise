@@ -16,4 +16,4 @@ class Solution:
                 if node.right: q.append(node.right)
             res += 1
         return res
-            
+
