@@ -11,14 +11,18 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node: return None
         q = deque([node])
-        oldToNew = {node: Node(node.val)}
+        oldToNew = {}
+        oldToNew[node] = Node(node.val)
+        visited = set() # val
+        visited.add(node.val)
+
         while q:
             n = q.popleft()
-            for nei in n.neighbors:
-                if nei not in oldToNew:
-                    oldToNew[nei] = Node(nei.val)
-                    q.append(nei)
-                oldToNew[n].neighbors.append(oldToNew[nei])
+            for neighbor in n.neighbors:
+                if neighbor not in oldToNew:
+                    oldToNew[neighbor] = Node(neighbor.val)
+                oldToNew[n].neighbors.append(oldToNew[neighbor])
+                if neighbor.val not in visited: q.append(neighbor)
+                visited.add(neighbor.val)
         return oldToNew[node]
-
-            
+     
