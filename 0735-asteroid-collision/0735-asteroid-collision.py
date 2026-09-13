@@ -3,16 +3,15 @@ class Solution:
         stack = []
         for a in asteroids:
             alive = True
-            while stack and (stack[-1] > 0 and a < 0):
+            while stack and (stack[-1] > 0 and a < 0) and alive:
                 if stack[-1] < -a:
                     stack.pop()
                 elif stack[-1] == -a:
                     alive = False
-                    stack.pop()
-                    break
+                    stack.pop()    
                 else:
                     alive = False
-                    break
+                   
             if alive: stack.append(a)
         return stack
                     
