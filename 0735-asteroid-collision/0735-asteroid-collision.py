@@ -4,9 +4,9 @@ class Solution:
         for a in asteroids:
             alive = True
             while stack and (stack[-1] > 0 and a < 0):
-                if abs(stack[-1]) < abs(a):
+                if stack[-1] < -a:
                     stack.pop()
-                elif abs(stack[-1]) == abs(a):
+                elif stack[-1] == -a:
                     alive = False
                     stack.pop()
                     break
