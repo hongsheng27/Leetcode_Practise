@@ -1,0 +1,53 @@
+Minimize Expression by Adding Parentheses
+
+題目概述：
+
+給一個只包含一個 + 的 expression，在 + 左右各選一個位置放括號，括號內先相加，括號外數字視為乘數，找所有合法放法中的最小結果。
+
+解題邏輯：
+
+Brute Force 枚舉所有括號位置。
+
+先找到 + 的位置 plusIndex。
+
+左括號可以放在 + 左邊任一 digit 前面，
+右括號可以放在 + 右邊任一 digit 後面。
+
+對每組 (x, y)：
+
+left = 括號左側的數字
+right = 括號右側的數字
+middle = 括號內左半部 + 右半部
+
+若 left 為空，乘數視為 1。
+若 right 為空，乘數視為 1。
+
+計算：
+
+leftMultiplier * middle * rightMultiplier
+
+枚舉所有組合後取最小值。
+
+踩過的坑：
+
+Python string slicing 不是 O(1)。
+
+每一組括號位置中，左右相關的 slicing 與 int conversion 加起來大約會處理 O(m + n) 個字元。
+
+因此嚴格分析 Python implementation：
+
+O(m * n * (m + n))
+
+但題目限制 expression 長度最多只有 21，所以這個複雜度完全可以接受，不需要為 slicing 額外優化。
+
+複雜度：
+
+若忽略極小字串的 slicing / int conversion 成本：
+
+O(m * n) time
+
+嚴格計算 Python slicing 與 int conversion：
+
+O(m * n * (m + n)) time
+
+Space: O(m + n)，來自暫時建立的 substring。
