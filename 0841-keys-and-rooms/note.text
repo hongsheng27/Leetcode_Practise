@@ -1,0 +1,78 @@
+841. Keys and Rooms
+
+題目概述：
+
+給一組 rooms，每個 room 裡面有可以打開其他 rooms 的 keys。從 room 0 開始，判斷是否能拜訪所有 rooms。
+
+解題邏輯：
+
+使用 DFS / BFS + visited。
+
+把 room 當成 graph node，
+room 裡的 key 當成 edge。
+
+從 room 0 開始 DFS。
+
+第一次進入某個 room 時：
+
+visited.add(room)
+
+然後對裡面的每把 key 繼續 DFS。
+
+最後判斷：
+
+len(visited) == len(rooms)
+
+如果 visited 數量等於總 room 數，就代表所有房間都能從 room 0 到達。
+
+踩過的坑：
+
+1. 不能寫：
+
+if i == n - 1:
+return True
+
+因為走到最後一個 room，只能證明「最後一個 room reachable」，
+不能證明中間所有 rooms 都拜訪過。
+
+例如：
+
+0 -> 3
+
+即使能到 room 3，
+room 1、2 仍然可能完全沒有拜訪。
+
+所以這題不是：
+
+Can I reach a target?
+
+而是：
+
+Can I reach ALL nodes?
+
+必須最後檢查 visited 數量。
+
+2. visited 要在 recurse neighbors 之前加入。
+
+先：
+
+visited.add(i)
+
+再：
+
+dfs(neighbor)
+
+避免 graph 有 cycle 時重複走同一個 room。
+
+3. 不需要額外維護 available 數量。
+
+可以用 available 每拜訪一個 room 就減 1，
+但直接：
+
+len(visited) == len(rooms)
+
+會更簡單。
+
+複雜度：
+
+O(V + E) time / O(V) space
