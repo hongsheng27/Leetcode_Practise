@@ -1,8 +1,55 @@
 680. Valid Palindrome II
-題目概述： 給一個字串，最多刪除一個字元，判斷是否能成為回文。
-解題邏輯： 左右雙指標往中間靠，相同就繼續。遇到 s[l] != s[r] 時，不猜方向，直接用 helper 驗證 (l+1, r) 和 (l, r-1) 兩段，任一個是回文就 return True。helper 就是標準雙指標判斷回文。
+
+題目概述：
+
+給一個字串，最多刪除一個字元，判斷是否能成為回文。
+
+解題邏輯：
+
+左右雙指標往中間靠，相同就繼續。
+
+遇到 s[l] != s[r] 時，不猜方向，直接用 helper 驗證：
+
+(l + 1, r)：刪左邊
+(l, r - 1)：刪右邊
+
+任一段是回文就 return True。
+
+helper 就是標準 Two Pointers 判斷回文。
+
+第一次 mismatch 時，decision tree 其實只有兩條：
+
+```
+        mismatch
+       /        \
+  delete L    delete R
+     |           |
+deterministic deterministic
+```
+
+因為題目只允許刪除一次，這次選擇用掉後，後面就不能再 branch，只需要正常判斷 palindrome。
+
+所以不會形成：
+
+```
+   branch
+  /      \
+```
+
+branch    branch
+/  \       /  
+...        ...
+
+因此不需要 DP，直接把兩種可能都試完即可。
+
 踩過的坑：
 
-一開始想貪心 peek 下一格決定刪左或刪右，但局部資訊不夠判斷（如 eceec 兩邊都能 match 下一格，只有一邊是正解）。正確做法是兩條路都完整跑完再判斷。
+一開始想到 Two Pointers + 一次刪除，但卡在 mismatch 時不知道該刪左還是右，因此開始往 Greedy / DP 想。
 
-複雜度： O(n) time / O(1) space
+其實不需要找出「正確方向」，因為第一次 mismatch 時只有兩個 candidate，而且刪除機會只有一次，直接兩邊都試即可。
+
+也不能只靠 peek 下一格做 greedy 決定刪左或刪右，局部資訊可能不足，例如 eceec 可能出現兩邊下一格都能 match，但只有其中一條最後成立。
+
+複雜度：
+
+O(n) time / O(1) space
