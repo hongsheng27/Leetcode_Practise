@@ -1,0 +1,71 @@
+797. All Paths From Source to Target
+
+題目概述：
+
+給一個 DAG，從 node 0 出發，找出所有可以走到最後一個 node 的路徑。
+
+解題邏輯：
+
+使用 DFS + Backtracking。
+
+用 path 記錄目前走過的路徑。
+
+每次選一個 neighbor：
+
+path.append(neighbor)
+
+dfs(neighbor, path)
+
+path.pop()
+
+也就是：
+
+choose
+→ explore
+→ unchoose
+
+當走到 target：
+
+res.append(path.copy())
+
+要用 path.copy()，因為 path 之後還會繼續 append / pop，如果直接存 path reference，之前存進 res 的結果也會被改掉。
+
+這題不需要 visited，因為題目保證 graph 是 DAG。
+
+DAG = Directed Acyclic Graph，
+代表 graph 是有向圖，而且不存在 cycle。
+
+但不同 path 可以走到同一個 node，例如：
+
+0 -> 1 -> 3
+\       ^
+-> 2 --|
+
+所以不能用全域 visited 跳過已經出現過的 node，否則會漏掉合法路徑。
+
+踩過的坑：
+
+1. DAG 本身就保證沒有 cycle。
+
+因此 DFS 不需要額外 visited 來避免無限 recursion。
+
+2. 沒有 cycle 不代表每個 node 只能走一次。
+
+不同 path 可以匯到同一個 node，
+而這題要收集所有路徑，所以同一個 node 可以在不同 DFS branch 中再次出現。
+
+3. 存答案時要用 path.copy()。
+
+path 是同一個 mutable list，
+後面 backtracking 還會繼續修改它。
+
+複雜度：
+
+最壞 path 數量可能是 exponential。
+
+O(2^V * V) time
+
+O(V) recursion / current path space
+
+若把輸出的所有 paths 也算進 space，
+最壞為 O(2^V * V)。
