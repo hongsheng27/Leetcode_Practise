@@ -1,0 +1,116 @@
+443. String Compression
+
+題目概述：
+
+給一個字元陣列 chars，把連續相同字元壓縮成「字元 + 次數」，並直接修改原陣列，最後回傳壓縮後長度。
+
+解題邏輯：
+
+使用 Two Pointers / Read-Write Pointer + Grouping。
+
+l：
+目前 group 的起點。
+
+r：
+往右掃描，找到目前 group 的結尾。
+
+tail：
+下一個 compressed result 要寫回 chars 的位置。
+
+當：
+
+chars[r] != chars[r + 1]
+
+或 r 已經是最後一個位置時，
+代表目前 group 結束。
+
+group 長度：
+
+length = r - l + 1
+
+先把字元寫到 chars[tail]。
+
+如果 length > 1，
+把 length 轉成字串後，每個 digit 分別寫回 chars。
+
+例如：
+
+aaaa -> a4
+
+aaaaaaaaaaaa -> a12
+
+處理完後：
+
+l = r + 1
+
+開始下一個 group。
+
+核心概念：
+
+Read pointer 負責讀原資料，
+Write pointer 負責把結果直接覆寫回原 array。
+
+這題的 pattern 是：
+
+Two Pointers
++
+Read / Write Pointer
++
+In-place Compression
++
+Run-Length Encoding
+
+踩過的坑：
+
+1. 要先確認 tail 不會超出原 array。
+
+對每個 group：
+
+length = 1：
+原本 1 格，壓縮後也是 1 格。
+
+length = 2：
+例如 aa -> a2，
+原本 2 格，壓縮後也是 2 格。
+
+length >= 3：
+壓縮後占用空間一定小於原本 group 長度。
+
+因此每個 group 壓縮後都不會比原本更長，
+所以 processed prefix 的 compressed length 永遠 <= 原本長度，
+tail 不會超出 chars。
+
+2. 要確認 tail 不會覆蓋還沒讀到的資料。
+
+因為前面每個 group 壓縮後都不會變長，
+所以 write pointer 不會跑到 read pointer 前面。
+
+也就是寫回 chars[tail] 時，
+只會覆蓋已經處理過的區域，
+不會破壞後面 r 還沒讀到的原始資料。
+
+這是判斷 in-place read/write pointer 解法是否安全的重要方式。
+
+3. 不需要把 chars 截成 chars[:tail]。
+
+題目只要求：
+
+chars 前 tail 個位置是正確 compressed result，
+並回傳 tail。
+
+重新 slicing 會建立新的 list，
+也不是真正修改原本 chars 的長度。
+
+4. and / or 混用時加括號比較安全。
+
+判斷 group 結尾時，可以清楚寫成：
+
+(current 和 next 不同)
+or
+(current 是最後一格)
+
+避免 precedence 看錯。
+
+複雜度：
+
+O(n) time / O(1) extra space
