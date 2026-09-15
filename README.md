@@ -213,6 +213,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0394-decode-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0394-decode-string) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
+| [0443-string-compression](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0443-string-compression) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 | [0557-reverse-words-in-a-string-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0557-reverse-words-in-a-string-iii) |
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
@@ -452,6 +453,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0295-find-median-from-data-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0295-find-median-from-data-stream) |
 | [0344-reverse-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0344-reverse-string) |
+| [0443-string-compression](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0443-string-compression) |
 | [0557-reverse-words-in-a-string-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0557-reverse-words-in-a-string-iii) |
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
 | [0647-palindromic-substrings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0647-palindromic-substrings) |
