@@ -16,5 +16,4 @@ class Solution:
                     for i in str(length):
                         chars[tail] = i
                         tail += 1
-        chars = chars[:tail]
-        return len(chars)
+        return tail
