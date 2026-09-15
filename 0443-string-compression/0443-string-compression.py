@@ -9,9 +9,6 @@ class Solution:
                 tail += 1
                 if length == 1:
                     continue
-                elif length < 10:
-                    chars[tail] = str(length)
-                    tail += 1
                 else:
                     for i in str(length):
                         chars[tail] = i
