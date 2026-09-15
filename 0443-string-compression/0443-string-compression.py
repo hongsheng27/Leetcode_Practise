@@ -7,9 +7,7 @@ class Solution:
                 l = r + 1
                 chars[tail] = chars[r]
                 tail += 1
-                if length == 1:
-                    continue
-                else:
+                if length > 1:
                     for i in str(length):
                         chars[tail] = i
                         tail += 1
