@@ -9,11 +9,12 @@ class Solution:
         for i, ind in enumerate(indegree):
             if ind == 0:
                 q.append(i)
+        finish = 0
         while q:
             crs = q.popleft()
-            numCourses -= 1
+            finish += 1
             for course in adj[crs]:
                 indegree[course] -= 1
                 if indegree[course] == 0:
                     q.append(course)
-        return numCourses == 0
+        return numCourses == finish
