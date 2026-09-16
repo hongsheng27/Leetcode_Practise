@@ -1,24 +1,19 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj = defaultdict(list)
+        adj = [[] for _ in range(numCourses)]
         indegree = [0] * numCourses
         for crs, pre in prerequisites:
-            indegree[crs] += 1
             adj[pre].append(crs)
+            indegree[crs] += 1
         q = deque()
-        for i in range(len(indegree)):
-            if indegree[i] == 0:
+        for i, ind in enumerate(indegree):
+            if ind == 0:
                 q.append(i)
-        finish = 0
         while q:
-            course = q.popleft()
-            finish += 1
-            for crs in adj[course]:
-                indegree[crs] -= 1
-                if not indegree[crs]:
-                    q.append(crs)
-        return finish == numCourses
-
-
-
-        
+            crs = q.popleft()
+            numCourses -= 1
+            for course in adj[crs]:
+                indegree[course] -= 1
+                if indegree[course] == 0:
+                    q.append(course)
+        return numCourses == 0
