@@ -1,0 +1,91 @@
+80. Remove Duplicates from Sorted Array II
+
+題目概述：
+
+給一個已排序陣列 nums，原地修改陣列，讓每個數字最多保留 2 次，並回傳合法 prefix 的長度。
+
+解題邏輯：
+
+使用 Read Pointer + Write Pointer。
+
+定義：
+
+write = 下一個合法元素要寫入的位置。
+
+nums[:write] = 目前已經整理好的合法 prefix。
+
+因為每個數最多可以出現 2 次，所以判斷目前數字能不能放進去時，只需要看合法 prefix 的倒數第 2 個元素。
+
+如果：
+
+current == nums[write - 2]
+
+代表前面已經有兩個相同數字。
+
+例如：
+
+[1, 1, current = 1]
+
+如果再放進去就會變成：
+
+[1, 1, 1]
+
+所以必須跳過。
+
+如果：
+
+current != nums[write - 2]
+
+代表目前數字還沒有出現 2 次，可以寫入：
+
+nums[write] = current
+write += 1
+
+前兩個元素一定合法，所以可以用：
+
+write < 2
+
+讓前兩個元素直接寫入。
+
+核心條件：
+
+if write < 2 or current != nums[write - 2]:
+nums[write] = current
+write += 1
+
+和 26 題的關係：
+
+26. Remove Duplicates：
+    每個數最多留 1 次
+    → 新數字不能等於 valid prefix 的倒數第 1 個。
+
+27. Remove Duplicates II：
+    每個數最多留 2 次
+    → 新數字不能等於 valid prefix 的倒數第 2 個。
+
+可以泛化成：
+
+每個數最多保留 k 次
+→ current 不能等於 nums[write - k]
+
+核心概念：
+
+write 永遠代表：
+
+下一個合法元素要寫入的位置。
+
+nums[:write] 永遠保持合法。
+
+踩過的坑：
+
+一開始用 group length 的方式計算每一段 duplicate，再手動搬動元素，邏輯比較繞，而且 repeated shifting 最壞可能變成 O(n²)。
+
+後來改成 write pointer 後，不需要先知道一整組 duplicate 有多長，只要每看到一個數就當下判斷「放進去會不會變成第 3 次」。
+
+另外一開始不理解為什麼要看 nums[write - 2]。
+
+原因是 nums[:write] 已經是合法答案，如果 current 和倒數第 2 個一樣，因為陣列已排序，代表最後兩個合法元素一定也都是 current，再放就會成為第 3 次。
+
+複雜度：
+
+O(n) time / O(1) space
