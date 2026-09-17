@@ -1,7 +1,7 @@
 class Solution:
     def openLock(self, deadends: list[str], target: str) -> int:
         if "0000" in deadends: return -1
-        if "0000" in target: return 0
+        if target == '0000': return 0
         start = (0, 0, 0, 0)
         directions = [(1, 0, 0, 0), (-1, 0, 0, 0), (0, 1, 0, 0), (0, -1, 0, 0), (0, 0, 1, 0),  (0, 0, -1, 0),  (0, 0, 0, 1), (0, 0, 0, -1)]
         q = deque([start])
@@ -16,7 +16,8 @@ class Solution:
                     cur = str(nf) + str(ns) + str(nt) + str(nfo)
                     if cur in visited: continue
                     if cur in deadends: continue
-                    if cur == target: findTarget = True
+                    if cur == target: 
+                        return res + 1
                     visited.add(cur)
                     q.append((nf, ns, nt, nfo))
             res += 1
