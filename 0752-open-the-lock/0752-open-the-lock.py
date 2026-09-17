@@ -5,7 +5,7 @@ class Solution:
         start = (0, 0, 0, 0)
         directions = [(1, 0, 0, 0), (-1, 0, 0, 0), (0, 1, 0, 0), (0, -1, 0, 0), (0, 0, 1, 0),  (0, 0, -1, 0),  (0, 0, 0, 1), (0, 0, 0, -1)]
         q = deque([start])
-        visited = set([start])
+        visited = {"0000"}
         res = 0
         findTarget = False
         while q and not findTarget:
