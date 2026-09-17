@@ -1,0 +1,70 @@
+692. Top K Frequent Words
+
+題目概述：
+給一個 words 陣列，找出出現頻率最高的前 k 個單字。
+
+排序規則：
+
+1. frequency 越高，排名越前面。
+2. 如果 frequency 一樣，依 lexicographical order 排序，也就是字典序較小的 word 在前面。
+
+例如：
+apple: 3
+banana: 3
+
+因為 apple < banana，所以 apple 排在 banana 前面。
+
+解題邏輯：
+
+方法一：Counter + Sort
+
+先使用 Counter 計算每個 word 的 frequency。
+
+接著將所有 unique words 排序：
+
+主要排序條件：
+frequency descending
+
+次要排序條件：
+lexicographical ascending
+
+排序 key 可以理解成：
+
+(-frequency, word)
+
+因為 Python sort 預設由小到大：
+-frequency 越小代表原本 frequency 越大；
+frequency 相同時，再直接比較 word，字典序較小的排前面。
+
+最後取前 k 個。
+
+複雜度：
+設 n = words 總數，u = unique words 數量。
+
+Time:
+O(n + u log u)
+
+最壞情況 u = n：
+O(n log n)
+
+Space:
+O(u)
+
+Follow-up：O(n log k)
+
+如果要求 O(n log k)，可以使用 size-k min heap。
+
+核心想法：
+heap 中只保留目前最好的 k 個候選。
+
+當 heap size > k 時：
+pop 掉「目前最差」的候選。
+
+因此 min heap 的 top 必須代表：
+
+frequency 最小 → 最差
+
+如果 frequency 一樣：
+lexicographical 最大 → 最差
+
+這和最後答案的排序方向
