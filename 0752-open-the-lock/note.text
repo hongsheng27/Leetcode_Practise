@@ -1,0 +1,122 @@
+752. Open the Lock
+
+題目概述：
+
+四位數字鎖從 "0000" 開始，每次可以把其中一位 +1 或 -1，避開 deadends，找轉到 target 的最少步數。
+
+解題邏輯：
+
+把每個 lock state 當成 graph node。
+
+每個 state 有：
+
+4 個 digit
+×
+每個 digit 可以 +1 / -1
+
+所以最多有 8 個 neighbors。
+
+每次轉動 cost 都是 1，因此這題是：
+
+Unweighted Graph + Shortest Path
+→ BFS
+
+從 "0000" 開始 BFS。
+
+第一次 discover 新 state 時：
+
+visited.add(nextState)
+q.append(nextState)
+
+因為 BFS 是一層一層擴展：
+
+Level 0 = 0 steps
+Level 1 = 1 step
+Level 2 = 2 steps
+...
+
+所以第一次遇到 target，就一定是 shortest path。
+
+digit rotation 可以用：
+
+(digit + move) % 10
+
+其中 move 為 -1 或 1。
+
+因此：
+
+9 + 1 → 0
+0 - 1 → 9
+
+踩過的坑：
+
+1. 一開始想用 DFS + Memoization：
+
+dfs(state)
+= 1 + min(dfs(neighbor))
+
+但 graph 有 cycle，例如：
+
+0000 → 1000 → 0000
+
+cache 必須等 recursive call 算完後才能存答案，所以：
+
+dfs(A) 等 dfs(B)
+dfs(B) 又等 dfs(A)
+
+會形成 cyclic dependency。
+
+Memoization 不等於 visited。
+
+visited：
+只代表 node 是否已經被 discover，可以立即標記。
+
+cache：
+代表 state 的完整答案，必須答案算完後才能存。
+
+2. 加 global visited 雖然可以阻止 DFS 無限 recursion，但不適合直接求 shortest path。
+
+DFS 第一次走到某個 state，不代表那條路是 shortest。
+
+BFS 則因為按照 distance 分層搜尋，所以第一次 discover state 就已經是最短距離。
+
+3. Deadend 不能在 DFS 裡 return 0。
+
+如果外面是在取 min，0 反而會被當成最佳答案。
+
+不合法路徑概念上應該是 inf。
+
+4. 如果已經在 target：
+
+remaining distance 應該是 0，不是 1。
+
+5. visited 要在 enqueue 時立刻加入。
+
+discover
+→ mark visited
+→ enqueue
+
+不能等 dequeue 才 mark，否則同一個 state 可能在 queue 裡被重複加入。
+
+複雜度：
+
+每個 digit 有 10 種可能，
+總共有 4 個 digit：
+
+10^4 = 10000 個 states。
+
+每個 state 最多檢查 8 個 neighbors：
+
+10000 * 8
+
+8 是常數，因此：
+
+O(10^4) time
+
+visited 和 queue 最壞都可能存大量 states：
+
+O(10^4) space
+
+一般 graph 表示：
+
+O(V + E) time / O(V) space
