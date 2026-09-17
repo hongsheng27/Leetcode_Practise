@@ -7,8 +7,7 @@ class Solution:
         q = deque([start])
         visited = {"0000"}
         res = 0
-        findTarget = False
-        while q and not findTarget:
+        while q:
             for _ in range(len(q)):
                 f, s, t, fo = q.popleft()
                 for df, ds, dt, dfo in directions:
@@ -21,7 +20,7 @@ class Solution:
                     visited.add(cur)
                     q.append((nf, ns, nt, nfo))
             res += 1
-        return res if findTarget else -1
+        return -1
                 
     def transfer(self, number):
         number = 0 if number == 10 else number
