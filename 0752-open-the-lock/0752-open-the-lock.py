@@ -4,7 +4,10 @@ class Solution:
         if target == '0000': return 0
         deadends = set(deadends)
         start = (0, 0, 0, 0)
-        directions = [(1, 0, 0, 0), (-1, 0, 0, 0), (0, 1, 0, 0), (0, -1, 0, 0), (0, 0, 1, 0),  (0, 0, -1, 0),  (0, 0, 0, 1), (0, 0, 0, -1)]
+        directions = [(1, 0, 0, 0), (-1, 0, 0, 0), 
+                      (0, 1, 0, 0), (0, -1, 0, 0), 
+                      (0, 0, 1, 0),  (0, 0, -1, 0),  
+                      (0, 0, 0, 1), (0, 0, 0, -1)]
         q = deque([start])
         visited = {"0000"}
         res = 0
@@ -13,9 +16,8 @@ class Solution:
                 f, s, t, fo = q.popleft()
                 for df, ds, dt, dfo in directions:
                     nf, ns, nt, nfo = self.transfer(f + df), self.transfer(s + ds), self.transfer(t + dt), self.transfer(fo + dfo)
-                    cur = str(nf) + str(ns) + str(nt) + str(nfo)
-                    if cur in visited: continue
-                    if cur in deadends: continue
+                    cur = f"{nf}{ns}{nt}{nfo}"
+                    if cur in visited or cur in deadends: continue
                     if cur == target: 
                         return res + 1
                     visited.add(cur)
