@@ -100,6 +100,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
 | [0746-min-cost-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0746-min-cost-climbing-stairs) |
+| [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0792-binary-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0792-binary-search) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
@@ -171,6 +172,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
+| [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
@@ -221,6 +223,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0647-palindromic-substrings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0647-palindromic-substrings) |
 | [0678-valid-parenthesis-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0678-valid-parenthesis-string) |
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
+| [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0796-rotate-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0796-rotate-string) |
@@ -744,6 +747,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
+| [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
@@ -946,4 +950,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0062-unique-paths](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0062-unique-paths) |
+## Bidirectional Search
+|  |
+| ------- |
+| [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 <!---LeetCode Topics End-->
