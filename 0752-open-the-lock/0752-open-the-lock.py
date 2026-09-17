@@ -2,6 +2,7 @@ class Solution:
     def openLock(self, deadends: list[str], target: str) -> int:
         if "0000" in deadends: return -1
         if target == '0000': return 0
+        deadends = set(deadends)
         start = (0, 0, 0, 0)
         directions = [(1, 0, 0, 0), (-1, 0, 0, 0), (0, 1, 0, 0), (0, -1, 0, 0), (0, 0, 1, 0),  (0, 0, -1, 0),  (0, 0, 0, 1), (0, 0, 0, -1)]
         q = deque([start])
