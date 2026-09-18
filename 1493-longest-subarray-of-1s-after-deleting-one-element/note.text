@@ -1,0 +1,177 @@
+1493. Longest Subarray of 1's After Deleting One Element
+
+題目概述：
+給一個只包含 `0` 和 `1` 的陣列，必須刪除一個元素，求刪除後最長的連續 `1` 長度。
+
+解題邏輯：
+使用 Variable-Size Sliding Window。
+
+把問題改寫成：
+
+```text
+找最長的 contiguous subarray，
+使得其中最多只有一個 0。
+```
+
+因為最多只有一個 `0`，最後把那個 `0` 刪掉即可。
+
+如果 window 裡完全沒有 `0`，題目又規定一定要刪一個元素，所以還是必須刪掉一個 `1`。
+
+因此對任何合法 window：
+
+```text
+答案 = window length - 1
+```
+
+而：
+
+```text
+window length = r - l + 1
+```
+
+所以可以直接更新：
+
+```text
+res = max(res, r - l)
+```
+
+Sliding Window 維護：
+
+```text
+zeroCount = 目前 window 裡 0 的數量
+```
+
+右邊加入新元素：
+
+```text
+如果 nums[r] == 0
+→ zeroCount += 1
+```
+
+如果：
+
+```text
+zeroCount > 1
+```
+
+代表 window 不合法，就持續移動 `l`，直到重新變成：
+
+```text
+zeroCount <= 1
+```
+
+核心 pattern：
+
+```text
+Longest subarray
++
+at most K bad elements
+```
+
+這題：
+
+```text
+bad element = 0
+K = 1
+```
+
+看到這種：
+
+```text
+longest contiguous subarray / substring
+with at most K ...
+```
+
+要優先想到 Sliding Window。
+
+為什麼縮掉左邊是安全的：
+例如：
+
+```text
+1 1 1 0 1 1 0
+```
+
+當第二個 `0` 出現時，window 裡有兩個 `0`，但只能刪一個元素，所以目前 window 一定不合法。
+
+如果想保留右邊新的 `0`，就必須把舊的 `0` 移出 window。
+
+而因為 subarray 必須連續，所以舊 `0` 左邊的那些 `1` 也不可能單獨保留下來再接右半段。
+
+之前更長的合法答案已經存在 `res` 裡，因此可以安全讓 `l` 只往右、不需要回頭。
+
+演算法選擇：
+這題不代表「只能」用 Sliding Window。
+
+DP 也可以。
+
+例如定義：
+
+```text
+keep
+= 還沒刪除元素時，目前連續 1 的長度
+
+deleted
+= 已經刪除一個元素後，目前能得到的連續 1 長度
+```
+
+遇到 `1` 時可以延續狀態；遇到 `0` 時可以選擇把目前的 `0` 刪掉。
+
+因此 DP 也能做到 O(n)。
+
+也可以枚舉每個 `0`，計算：
+
+```text
+左側 consecutive 1
++
+右側 consecutive 1
+```
+
+再找最大值。
+
+但單純 Greedy 地「看到某個 0 就直接決定刪它」不安全，因為後面的 `0` 可能產生更長的答案。
+
+所以更準確的分類是：
+
+```text
+Sliding Window       ✅ 最自然
+DP                   ✅ 可以
+枚舉每個 0 / runs     ✅ 可以
+直接 greedy 選一個 0  ❌ 不容易證明
+```
+
+為什麼面試優先 Sliding Window：
+不是因為其他方法錯，而是 Sliding Window 的 state 最少：
+
+```text
+只需要知道目前 window 裡有幾個 0。
+```
+
+不需要真的決定刪哪個 `0`，也不需要額外 DP state。
+
+踩過的坑：
+一開始雖然有想到 Sliding Window，但還額外維護了 window 裡 `1` 的數量 `total`。
+
+其實不需要。
+
+因為合法 window 裡最多只有一個 `0`，而題目一定要求刪除一個元素，所以答案永遠可以直接寫成：
+
+```text
+window length - 1
+= r - l
+```
+
+另外，這題可以用 DP 或枚舉刪哪個 `0`，因此演算法辨識不能理解成「看到某個題型就只有唯一解法」。
+
+更重要的是：
+
+```text
+哪種 formulation
+可以用最少 state、
+最好證明、
+最好寫出最佳複雜度。
+```
+
+這題 Sliding Window 最符合這三點。
+
+複雜度：
+O(n) time / O(1) space
