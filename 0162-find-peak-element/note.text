@@ -1,0 +1,133 @@
+162. Find Peak Element
+
+題目概述：
+給一個陣列 `nums`，找任意一個 peak element 的 index。Peak 代表它嚴格大於左右鄰居；陣列外側可以想像成 `-∞`，所以最左或最右元素也可能是 peak。
+
+解題邏輯：
+使用 Binary Search。
+
+這題不是在找「唯一答案」，而是利用坡度判斷哪一邊保證至少有一個 peak。
+
+比較：
+
+```text
+nums[m] 和 nums[m + 1]
+```
+
+如果：
+
+```text
+nums[m] < nums[m + 1]
+```
+
+代表往右是上坡。
+
+右邊一定存在 peak：
+
+* 如果之後開始下降，轉折點就是 peak
+* 如果一路上升到最右邊，最右邊因為外側視為 `-∞`，本身就是 peak
+
+所以可以：
+
+```text
+l = m + 1
+```
+
+反之，如果：
+
+```text
+nums[m] > nums[m + 1]
+```
+
+代表往右是下坡，因此 `m` 或左半邊一定存在 peak。
+
+所以：
+
+```text
+r = m
+```
+
+注意這裡不能直接 `r = m - 1`，因為 `m` 自己可能就是 peak。
+
+Binary Search Template：
+
+```text
+while l < r:
+    m = (l + r) // 2
+
+    if nums[m] < nums[m + 1]:
+        l = m + 1
+    else:
+        r = m
+
+return l
+```
+
+為什麼 `r = m` 不會 infinite loop：
+
+當：
+
+```text
+while l < r
+```
+
+並且：
+
+```text
+m = (l + r) // 2
+```
+
+一定有：
+
+```text
+l <= m < r
+```
+
+所以：
+
+```text
+r = m
+```
+
+一定會讓 `r` 變小。
+
+而：
+
+```text
+l = m + 1
+```
+
+也一定會讓 `l` 變大。
+
+因此每一輪 `[l, r]` 都會縮小。
+
+踩過的坑：
+一開始用 DFS 同時搜尋左右兩半：
+
+```text
+helper(m + 1, r)
+helper(l, m - 1)
+```
+
+雖然每次都有切半，但最壞情況左右都會搜，因此：
+
+```text
+T(n) = 2T(n/2)
+```
+
+是 `O(n)`，不是 `O(log n)`。
+
+Binary Search 真正關鍵是：
+
+```text
+每次必須能確定至少有一半可以完全丟掉
+```
+
+另外，左右兩邊都可能有 peak 沒關係。題目只要求找任意一個；只要能證明保留的那一半一定存在 peak，就可以捨棄另一半。
+
+`nums[-1] = nums[n] = -∞` 是數學上的虛擬邊界，不是 Python 的 negative indexing。意思只是：
+
+```text
+陣列左邊外側 = -∞
+陣列右邊外側 = -∞
+```
