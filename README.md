@@ -967,6 +967,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0056-merge-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0056-merge-intervals) |
+| [0252-meeting-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0252-meeting-rooms) |
 ## Combinatorics
 |  |
 | ------- |
