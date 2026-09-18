@@ -1,0 +1,201 @@
+1052. Grumpy Bookstore Owner
+
+題目概述：
+給 `customers`、`grumpy` 和固定長度 `minutes`。老闆可以選一段連續 `minutes` 時間不 grumpy，求最多能讓多少 customers 滿意。
+
+解題邏輯：
+這題是 Fixed-Size Sliding Window。
+
+先把答案拆成兩部分：
+
+```text
+最終答案
+=
+原本就滿意的 customers
++
+技巧可以額外救回的 customers
+```
+
+原本就滿意：
+
+```text
+grumpy[i] == 0
+```
+
+這些 customers 不管技巧用在哪裡都會滿意，所以先全部加到：
+
+```text
+base
+```
+
+接著 sliding window 只需要計算：
+
+```text
+這個 minutes window 裡
+原本 grumpy == 1 的 customers 有多少
+```
+
+因為這些人才是使用技巧後「額外增加」的滿意 customers。
+
+所以：
+
+```text
+answer = base + maxExtra
+```
+
+Fixed-Size Sliding Window Template：
+
+先算第一個長度 `k` 的 window：
+
+```text
+index:
+0 ... k-1
+```
+
+接著固定讓 `r` 從 `k` 開始：
+
+```text
+for r in range(k, n):
+```
+
+每一輪做：
+
+```text
+1. 加入新的右邊元素 r
+
+2. 找到剛離開 window 的位置：
+   l = r - k
+
+3. 移除 l
+
+4. 更新答案
+```
+
+可以直接記成：
+
+```text
+初始：
+[0 ... k-1]
+
+接著每輪：
+
+add(r)
+
+l = r - k
+remove(l)
+
+update()
+```
+
+例如 `k = 3`：
+
+```text
+初始：
+[0, 1, 2]
+
+r = 3
+加入 3
+移除 0
+→ [1, 2, 3]
+
+r = 4
+加入 4
+移除 1
+→ [2, 3, 4]
+```
+
+這個模板比每輪自己重新算：
+
+```text
+l
+r = l + k - 1
+```
+
+更不容易有 off-by-one error。
+
+這題 window 裡維護的值：
+
+```text
+extra
+=
+window 中 grumpy == 1 的 customers 總和
+```
+
+加入新元素時：
+
+```text
+如果 grumpy[r] == 1
+→ extra += customers[r]
+```
+
+移除舊元素時：
+
+```text
+l = r - minutes
+
+如果 grumpy[l] == 1
+→ extra -= customers[l]
+```
+
+最後持續更新：
+
+```text
+maxExtra = max(maxExtra, extra)
+```
+
+踩過的坑：
+一開始雖然有想到 Sliding Window，但把問題設計成：
+
+```text
+找最佳 (l, r)
+→ 記錄最佳區間
+→ 修改 grumpy
+→ 最後重新掃一次計算答案
+```
+
+這個方向可以做，但增加很多不必要的狀態，導致容易卡在：
+
+```text
+range 到哪裡
+r 到底是哪一格
+移出去的是 l 還是 l-1
+最後一個 window 有沒有漏
+```
+
+更好的做法是先拆：
+
+```text
+base + extra
+```
+
+不需要記最佳 `(l, r)`，也不需要修改 `grumpy`。
+
+這次真正需要補強的 pattern 是：
+
+```text
+Fixed Window 不只是會移 l / r，
+而是要先想清楚 window 裡到底要維護什麼值。
+```
+
+這題維護的是：
+
+```text
+這個 window 能額外增加多少收益
+```
+
+之後看到：
+
+```text
+原本有固定收益
++
+可以選一段長度 k 的區間獲得額外收益
+```
+
+可以優先想到：
+
+```text
+base + best fixed-size window gain
+```
+
+複雜度：
+O(n) time / O(1) space
