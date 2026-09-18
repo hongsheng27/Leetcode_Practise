@@ -4,11 +4,11 @@ class Solution:
         r = len(nums) - 1
         while l <= r:
             m = (l + r) // 2
-            left = float('-inf') if m == len(nums) - 1 else nums[m + 1]
-            right = float('-inf') if m == 0 else nums[m - 1]
-            if nums[m] > left and nums[m] > right:
+            right = float('-inf') if m == len(nums) - 1 else nums[m + 1]
+            left = float('-inf') if m == 0 else nums[m - 1]
+            if left < nums[m] > right:
                 return m
-            elif nums[m] < nums[m + 1]:
+            elif nums[m] < right:
                 l = m + 1
             else:
                 r = m - 1
