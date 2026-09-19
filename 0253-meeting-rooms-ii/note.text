@@ -1,0 +1,219 @@
+253. Meeting Rooms II
+
+題目概述：
+給一組 meeting intervals `[start, end]`，求至少需要多少間 meeting room，才能讓所有 meeting 都不衝突。
+
+解題邏輯：
+這題可以用 Min Heap，也可以用 Sweep Line。
+
+Min Heap 思路：
+
+先按照 meeting 的 `start time` 排序。
+
+接著處理每一場 meeting 時，我們真正需要知道的是：
+
+```text
+目前所有正在使用中的 room 裡，
+哪一間最早結束？
+```
+
+所以使用 Min Heap 維護：
+
+```text
+每間正在使用中的 room 的 end time
+```
+
+Heap top：
+
+```text
+minHeap[0]
+= 目前最早結束的 meeting
+```
+
+如果：
+
+```text
+minHeap[0] <= current start
+```
+
+代表最早結束的 room 已經空出來，可以重用。
+
+所以：
+
+```text
+pop 最早結束時間
+push current end
+```
+
+如果：
+
+```text
+minHeap[0] > current start
+```
+
+代表連最早結束的 room 都還沒空，其他 room 更不可能空，所以需要新增一間 room。
+
+核心 Heap Pattern：
+
+```text
+先按照一個 dimension 排序
++
+Heap 動態維護另一個 dimension
+```
+
+這題：
+
+```text
+sort by start time
++
+min heap of end times
+```
+
+更泛化的 Heap 訊號：
+
+```text
+目前有一群 active items
++
+每次需要快速取得其中的 min / max
+```
+
+例如：
+
+```text
+earliest available
+earliest finishing
+smallest / largest active item
+next finishing resource
+resource reuse
+```
+
+看到：
+
+```text
+active set + dynamic min/max query
+```
+
+要對 Heap 敏感。
+
+Sweep Line 解法：
+
+也可以不管是哪一間 room，只關心：
+
+```text
+某個時間點同時有多少 meeting 正在進行
+```
+
+把 interval 拆成事件：
+
+```text
+start → +1
+end   → -1
+```
+
+按照時間排序後做 running sum。
+
+```text
+room += change
+maxRoom = max(maxRoom, room)
+```
+
+最大 running sum 就是需要的最少 room 數量。
+
+如果 start 和 end 發生在同一時間，要先處理：
+
+```text
+end = -1
+```
+
+再處理：
+
+```text
+start = +1
+```
+
+因為前一場 meeting 結束後，room 可以立刻給下一場使用。
+
+Python tuple：
+
+```text
+(time, -1)
+(time, 1)
+```
+
+直接排序時 `-1` 會自然排在 `1` 前面。
+
+Heap vs Sweep Line：
+
+```text
+需要知道：
+「哪個 active item 最早結束？」
+→ Min Heap
+
+只需要知道：
+「目前有多少 active items？」
+→ Sweep Line
+```
+
+踩過的坑：
+一開始使用 Stack，方向其實不是完全錯。
+
+原本已經意識到：
+
+```text
+依 start time 處理 meetings
++
+維護目前還沒有結束的 meetings
+```
+
+真正錯的是資料結構。
+
+Stack：
+
+```text
+stack[-1]
+```
+
+只能取得：
+
+```text
+最後加入的 meeting
+```
+
+但這題需要的是：
+
+```text
+所有 active meetings 中
+最早結束的 meeting
+```
+
+所以 Stack 不符合需求，應該改用 Min Heap。
+
+這題真正應該記住的不是：
+
+```text
+Meeting Rooms = Heap
+```
+
+而是：
+
+```text
+我正在依序處理事件，
+而且每次都需要從目前 active 的一群元素裡，
+快速取得最小值或最大值
+→ Heap
+```
+
+另外，之前做過 Car Pooling 但沒有立刻想到 Sweep Line，代表需要加強把 interval 轉換成 event stream 的敏感度：
+
+```text
+interval start → +delta
+interval end   → -delta
+sort events
+running sum
+```
+
+如果 interval identity 不重要，只在乎某時間點累積了多少東西，就要考慮 Sweep Line。
+
+複雜度：
+Min Heap：O(n log n) time / O(n) space
+Sweep Line：O(n log n) time / O(n) space
