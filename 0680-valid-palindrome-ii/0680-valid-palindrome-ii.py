@@ -1,20 +1,20 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        def palindrome(l, r):
+        l = 0
+        r = len(s) - 1
+        def helper(l, r):
             while l < r:
                 if s[l] != s[r]:
                     return False
-                r -= 1
                 l += 1
+                r -= 1
             return True
-
-        l = 0
-        r = len(s) - 1
         while l < r:
             if s[l] != s[r]:
-                return palindrome(l + 1, r) or palindrome(l, r - 1)
+                return helper(l + 1, r) or helper(l, r - 1)
             l += 1
             r -= 1
         return True
         
-        
+
+                
