@@ -139,6 +139,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 | [3028-ant-on-the-boundary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3028-ant-on-the-boundary) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Hash Table
@@ -193,6 +194,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 ## String
 |  |
 | ------- |
@@ -550,6 +552,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1052-grumpy-bookstore-owner](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1052-grumpy-bookstore-owner) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
+| [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Greedy
 |  |
