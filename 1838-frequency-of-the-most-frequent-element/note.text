@@ -1,0 +1,226 @@
+1838. Frequency of the Most Frequent Element
+
+題目概述：
+給一個整數陣列 `nums` 和操作次數 `k`。每次操作可以把某個元素加 1，求最多可以讓多少個元素變成相同值。
+
+解題邏輯：
+使用 Sort + Variable-Size Sliding Window。
+
+先排序：
+
+```text
+nums.sort()
+```
+
+排序後，如果我們考慮 window：
+
+```text
+nums[l ... r]
+```
+
+因為題目只能「增加」，不能減少，所以這個 window 最自然的 target 是：
+
+```text
+nums[r]
+```
+
+也就是把 window 裡所有比較小的數都補到右端最大值。
+
+如果 window 長度是：
+
+```text
+r - l + 1
+```
+
+那全部變成 `nums[r]` 之後，理想總和是：
+
+```text
+nums[r] * (r - l + 1)
+```
+
+目前 window 的總和是：
+
+```text
+windowSum
+```
+
+所以需要的操作次數：
+
+```text
+cost
+=
+nums[r] * (r - l + 1)
+- windowSum
+```
+
+如果：
+
+```text
+cost <= k
+```
+
+代表目前 window 合法，可以把全部元素補成 `nums[r]`。
+
+如果：
+
+```text
+cost > k
+```
+
+代表 budget 不夠，就持續縮左邊：
+
+```text
+windowSum -= nums[l]
+l += 1
+```
+
+直到 window 再次合法。
+
+最後：
+
+```text
+res = max(res, r - l + 1)
+```
+
+核心 Sliding Window Pattern：
+
+```text
+右邊加入：
+windowSum += nums[r]
+
+如果 window cost > k：
+    左邊縮
+    windowSum -= nums[l]
+
+合法後：
+    更新最大 window
+```
+
+為什麼要先排序：
+排序後才能保證：
+
+```text
+nums[l] <= ... <= nums[r]
+```
+
+而題目只能增加，因此可以把整個 window 統一補到最右邊的 `nums[r]`。
+
+如果沒有排序，就無法用右端元素當統一 target，也無法形成這種單調 sliding window。
+
+Brute Force 思路：
+先排序，枚舉每個 `r` 當 target，然後往左一個一個算：
+
+```text
+nums[r] - nums[l]
+```
+
+累積 cost，直到超過 `k`。
+
+這樣是：
+
+```text
+O(n²)
+```
+
+Optimal 解法則把重複計算改成維護：
+
+```text
+windowSum
+```
+
+於是每個 `l`、`r` 都只移動一次。
+
+踩過的坑：
+一開始有想到 `gap`：
+
+```text
+nums[i] - nums[i - 1]
+```
+
+以及「target 變大時，前面的元素都需要一起補差值」。
+
+這個方向有碰到正確概念，但當 budget 超過時，不能直接 reset cost，而應該：
+
+```text
+shrink left
+```
+
+直到重新合法。
+
+另外，一開始把：
+
+```text
+prefix += nums[r]
+```
+
+當作 window sum，但當 `l` 往右移後，這個 prefix 還包含已經離開 window 的元素。
+
+Sliding Window 裡真正要維護的是：
+
+```text
+windowSum = nums[l] + ... + nums[r]
+```
+
+所以：
+
+```text
+r 加入 → windowSum += nums[r]
+l 移出 → windowSum -= nums[l]
+```
+
+不能只累加不移除。
+
+另一個錯誤是嘗試：
+
+```text
+cost -= nums[l + 1] - nums[l]
+```
+
+當左邊元素移出時，cost 減少的並不是相鄰 gap，而是：
+
+```text
+nums[r] - nums[l]
+```
+
+所以直接維護 `windowSum` 會更穩、更容易推導。
+
+還有：
+
+```text
+window length = r - l + 1
+```
+
+不是：
+
+```text
+r - l
+```
+
+這題真正值得記的 pattern：
+
+```text
+Sort
++
+Sliding Window
++
+Cost Formula
+```
+
+尤其當題目是：
+
+```text
+把一段數值往同一個 target 增加
++
+有總 budget k
++
+求最大可涵蓋數量
+```
+
+可以優先想到：
+
+```text
+target * window_size - window_sum
+```
+
+複雜度：
+O(n log n) time / O(1) extra sliding-window space
