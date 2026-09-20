@@ -243,6 +243,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
+| [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 ## Sorting
 |  |
 | ------- |
@@ -492,6 +493,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
+| [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 ## Bit Manipulation
 |  |
 | ------- |
@@ -579,6 +581,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
+| [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Stack
 |  |
