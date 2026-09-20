@@ -2,7 +2,6 @@ class Solution:
     def maxFrequency(self, nums: list[int], k: int) -> int:
         nums.sort()
         l = 0
-        cost = 0
         res = 1
         windowSum = 0
         for r in range(len(nums)):
