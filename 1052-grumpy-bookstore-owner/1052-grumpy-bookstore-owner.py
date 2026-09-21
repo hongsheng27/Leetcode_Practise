@@ -1,24 +1,19 @@
 class Solution:
     def maxSatisfied(self, customers: list[int], grumpy: list[int], minutes: int) -> int:
-        n = len(customers)
         base = 0
-        extra = 0
-
-        for i in range(n):
-            if grumpy[i] == 0:
+        extra = maxExtra = 0
+        for i in range(len(customers)):
+            if grumpy[i] == 0: 
                 base += customers[i]
         for i in range(minutes):
             if grumpy[i] == 1:
-                extra += customers[i]
-        maxExtra = extra
-
-        for r in range(minutes, n):
-            l = r - minutes + 1
+                extra += customers[i]    
+                maxExtra = max(maxExtra, extra)
+        for r in range(minutes, len(customers)):
+            l = r - minutes
             if grumpy[r] == 1:
                 extra += customers[r]
-            if grumpy[l - 1] == 1:
-                extra -= customers[l - 1]
+            if grumpy[l] == 1:
+                extra -= customers[l]
             maxExtra = max(maxExtra, extra)
         return base + maxExtra
-            
-
