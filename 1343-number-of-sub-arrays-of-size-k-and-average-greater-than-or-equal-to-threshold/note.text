@@ -1,0 +1,172 @@
+1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+
+題目概述：
+給一個整數陣列 `arr`、固定長度 `k` 和 `threshold`，找出有多少個長度為 `k` 的 contiguous subarray，其平均值大於等於 `threshold`。
+
+解題邏輯：
+使用 Fixed-Size Sliding Window。
+
+因為每個合法 subarray 長度固定為 `k`，所以不需要每次重新計算整段總和，只需要：
+
+```text
+右邊加入一個
+左邊移除一個
+```
+
+先算第一個 window：
+
+```text
+arr[0 ... k-1]
+```
+
+得到：
+
+```text
+windowSum
+```
+
+接著讓右指標 `r` 從 `k` 開始：
+
+```text
+for r in range(k, len(arr))
+```
+
+每一輪：
+
+```text
+加入：
+windowSum += arr[r]
+
+移除：
+windowSum -= arr[r-k]
+```
+
+為什麼移除的是：
+
+```text
+r - k
+```
+
+例如 `k = 3`：
+
+```text
+初始：
+[0,1,2]
+
+r = 3
+加入 index 3
+移除 index 0 = 3-3
+→ [1,2,3]
+
+r = 4
+加入 index 4
+移除 index 1 = 4-3
+→ [2,3,4]
+```
+
+Fixed Window Template：
+
+```text
+先算 [0 ... k-1]
+
+for r in range(k, n):
+    add(r)
+    remove(r-k)
+    update()
+```
+
+平均值條件：
+
+原本：
+
+```text
+windowSum / k >= threshold
+```
+
+可以改寫成：
+
+```text
+windowSum >= threshold * k
+```
+
+因此可以先：
+
+```text
+threshold = threshold * k
+```
+
+之後每個 window 只比較：
+
+```text
+windowSum >= threshold
+```
+
+這樣不用做浮點除法。
+
+核心 Pattern：
+
+```text
+固定長度 k 的 contiguous subarray
++
+每個 window 要計算某個 aggregate
+→ Fixed-Size Sliding Window
+```
+
+如果 aggregate 是 sum：
+
+```text
+新元素進來 → 加
+舊元素出去 → 減
+```
+
+不用每個 window 重新 O(k) 計算。
+
+踩過的坑：
+一開始習慣用 `l` 當主要 loop：
+
+```text
+l 往右
+r = l + k - 1
+```
+
+這樣雖然正確，但比較容易遇到：
+
+```text
+r 到底是哪一格
+移出去的是 l 還是 l-1
+range 最後一格有沒有漏
+```
+
+Fixed-Size Sliding Window 建議統一用：
+
+```text
+r 當主 loop
+```
+
+這樣可以固定記成：
+
+```text
+add r
+remove r-k
+```
+
+和 Variable-Size Sliding Window 的寫法也比較一致：
+
+```text
+for r:
+    加入右邊
+
+    while invalid:
+        移除左邊
+        l += 1
+```
+
+所以之後 Sliding Window 可以統一形成：
+
+```text
+r 負責擴張
+l 負責離開 / shrink
+```
+
+複雜度：
+O(n) time / O(1) space
