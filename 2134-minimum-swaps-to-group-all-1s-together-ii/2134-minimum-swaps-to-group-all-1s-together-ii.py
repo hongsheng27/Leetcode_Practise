@@ -13,6 +13,5 @@ class Solution:
             r = l + amount - 1
             windowSum += nums[r] 
             windowSum -= nums[l - 1]
-            l += 1
             res = min(res, amount - windowSum)
         return res
