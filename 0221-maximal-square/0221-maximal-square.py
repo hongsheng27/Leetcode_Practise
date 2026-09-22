@@ -1,12 +1,22 @@
 class Solution:
     def maximalSquare(self, matrix: list[list[str]]) -> int:
         ROWS, COLS = len(matrix), len(matrix[0])
-        dp = [[0] * (COLS + 1) for _ in range((ROWS + 1))]
-        maxSide = 0
-
-        for r in range(1, ROWS + 1):
-            for c in range(1, COLS + 1):
-                if matrix[r - 1][c - 1] == "1":
-                    dp[r][c] = 1 + min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1])
-                    maxSide = max(maxSide, dp[r][c])
-        return maxSide ** 2
+        dp = [[0] * COLS for _ in range(ROWS)]
+        res = 0
+        for r in range(ROWS):
+            dp[r][0] = int(matrix[r][0])
+            res = max(res, dp[r][0])
+        for c in range(1, COLS):
+            dp[0][c] = int(matrix[0][c])
+            res = max(res, dp[0][c])
+        
+        for r in range(1, ROWS):
+            for c in range(1, COLS):
+                if matrix[r][c] == "1":
+                    dp[r][c] = 1 + min(
+                        dp[r - 1][c],
+                        dp[r][c - 1],
+                        dp[r - 1][c - 1]
+                    )
+                    res = max(res, dp[r][c])
+        return res ** 2
