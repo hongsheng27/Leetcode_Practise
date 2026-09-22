@@ -1,0 +1,218 @@
+2134. Minimum Swaps to Group All 1's Together II
+
+題目概述：
+給一個 circular binary array，要用最少 swaps 把所有 `1` 聚集在一起，回傳最少交換次數。
+
+解題邏輯：
+使用 Circular Array + Fixed-Size Sliding Window。
+
+先算：
+
+```text
+amount = nums 裡 1 的總數
+```
+
+如果最後所有 `1` 都聚在一起，那最終一定形成：
+
+```text
+[1, 1, 1, ..., 1]
+```
+
+而這段的長度一定就是：
+
+```text
+amount
+```
+
+所以問題可以改寫成：
+
+```text
+所有長度為 amount 的 circular window 中，
+哪一個本來就包含最多的 1？
+```
+
+假設：
+
+```text
+amount = 4
+```
+
+某個 window：
+
+```text
+[1, 1, 0, 1]
+```
+
+裡面已經有：
+
+```text
+3 個 1
+```
+
+代表只缺：
+
+```text
+4 - 3 = 1
+```
+
+個 `1`。
+
+所以只需要把外面一個 `1` swap 進來。
+
+因此：
+
+```text
+swaps
+=
+window size - ones inside window
+=
+amount - windowSum
+```
+
+我們要找：
+
+```text
+min(amount - windowSum)
+```
+
+等價於：
+
+```text
+maximize windowSum
+```
+
+Circular Array：
+
+因為 window 可能跨過 array 尾端和開頭，例如：
+
+```text
+[..., 1, 1] + [1, ...]
+```
+
+最簡單的處理方式：
+
+```text
+nums = nums + nums
+```
+
+這樣 circular window 就可以直接當普通 contiguous window 處理。
+
+Fixed Window：
+
+window 長度固定為：
+
+```text
+amount
+```
+
+先計算第一個：
+
+```text
+[0 ... amount-1]
+```
+
+如果用 `l` 當主迴圈：
+
+```text
+新的 window：
+[l ... l + amount - 1]
+
+加入：
+nums[l + amount - 1]
+
+移除：
+nums[l - 1]
+```
+
+核心：
+
+```text
+windowSum += new right
+windowSum -= old left
+
+res = min(res, amount - windowSum)
+```
+
+核心 Pattern：
+
+```text
+Group all X together
+→ 先 count X
+→ 最終 block size 已知
+→ fixed-size window
+→ maximize X inside window
+→ minimize non-X inside window
+```
+
+這題：
+
+```text
+X = 1
+window size = number of 1s
+```
+
+Circular 額外再加：
+
+```text
+circular array
+→ duplicate array / modulo indexing
+```
+
+踩過的坑：
+一開始想到：
+
+```text
+先找目前最大的 1 cluster，
+再把剩下的 1 搬到它左右。
+```
+
+這個直覺合理，但最佳答案不一定以「目前最大的 cluster」為中心。
+
+真正應該從最終狀態反推：
+
+```text
+最後所有 1 聚在一起
+→ 那段長度一定固定為 #ones
+```
+
+一旦發現目標區間長度固定，就應該對 Fixed-Size Sliding Window 敏感。
+
+這題真正需要補強的不是 Sliding Window 本身，而是：
+
+```text
+從 final arrangement
+反推出 fixed window size
+```
+
+之後遇到：
+
+```text
+把所有某類元素聚集在一起
+```
+
+優先問：
+
+```text
+最後那個連續 block 的長度是不是已知？
+```
+
+如果已知，就很可能可以轉成 Fixed Window。
+
+另外一開始 circular array 只把最後一格接到前面：
+
+```text
+[nums[-1]] + nums
+```
+
+不夠涵蓋所有跨邊界 window。
+
+完整展開應該使用：
+
+```text
+nums + nums
+```
+
+複雜度：
+O(n) time / O(n) extra space
+
+如果使用 modulo index，可以進一步做到 O(1) extra space。
