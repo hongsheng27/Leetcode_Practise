@@ -10,5 +10,6 @@ class Solution:
                 print(i, j, dp[j], s[j: i])
                 if dp[j] and s[j: i] in wordSet:
                     dp[i] = True
+                    break
         return dp[-1]
         
