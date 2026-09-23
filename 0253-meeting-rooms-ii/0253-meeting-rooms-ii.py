@@ -1,13 +1,13 @@
 class Solution:
     def minMeetingRooms(self, intervals: list[list[int]]) -> int:
-        group = []
+        events = []
         for start, end in intervals:
-            group.append((start, 1))
-            group.append((end, -1))
-        group.sort()
+            events.append((start, 1))
+            events.append((end, -1))
+        events.sort()
         room = maxRoom = 0
-        for _, degree in group:
-            room += degree
+        for _, change in events:
+            room += change
             maxRoom = max(room, maxRoom)
         return maxRoom
 
