@@ -1,9 +1,9 @@
 class Solution:
     def minimumSteps(self, s: str) -> int:
-        count = res = 0
+        res = amount1 = 0
         for c in s:
-            if c == '1':
-                count += 1
-            if c == '0':
-                res += count
+            if c == "1":
+                amount1 += 1
+            else:
+                res += amount1
         return res
