@@ -18,9 +18,9 @@ class Solution:
                 count1 -= 1
                 count2 -= 1
         res = []
-        if nums.count(candidate1) > len(nums) / 3:
+        if nums.count(candidate1) > len(nums) // 3:
             res.append(candidate1)
-        if nums.count(candidate2) > len(nums) / 3:
+        if nums.count(candidate2) > len(nums) // 3:
             res.append(candidate2)
         return res
         
