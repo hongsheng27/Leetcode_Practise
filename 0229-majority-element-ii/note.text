@@ -1,0 +1,52 @@
+229. Majority Element II
+
+題目概述：
+給一個整數陣列 `nums`，找出所有出現次數大於 `n / 3` 的元素。
+
+解題邏輯：
+使用 Generalized Boyer-Moore Voting Algorithm。
+
+最重要的數學觀察：
+
+```text
+出現次數 > n/3 的元素
+最多只能有 2 個
+```
+
+因為如果有 3 個不同元素都滿足：
+
+```text
+count(A) > n/3
+count(B) > n/3
+count(C) > n/3
+```
+
+那：
+
+```text
+count(A) + count(B) + count(C) > n
+```
+
+但整個 array 明明只有 `n` 個元素，不可能。
+
+因此不需要 HashMap 記錄所有元素，只需要維護兩組：
+
+```text
+candidate1 + count1
+candidate2 + count2
+```
+
+第一輪不是在計算真正 frequency，而是在做 candidate selection。
+
+處理每個 `num` 時，順序：
+
+```text
+1. num == candidate1
+   → count1 + 1
+
+2. num == candidate2
+   → count2 + 1
+
+3. count1 == 0
+   →
+```
