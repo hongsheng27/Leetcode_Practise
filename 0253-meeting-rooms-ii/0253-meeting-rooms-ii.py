@@ -1,13 +1,11 @@
 class Solution:
     def minMeetingRooms(self, intervals: list[list[int]]) -> int:
-        events = []
+        minHeap = []
+        intervals.sort()
         for start, end in intervals:
-            events.append((start, 1))
-            events.append((end, -1))
-        events.sort()
-        room = maxRoom = 0
-        for _, change in events:
-            room += change
-            maxRoom = max(room, maxRoom)
-        return maxRoom
+            if minHeap and minHeap[0] <= start:
+                heapq.heappop(minHeap)
+            heapq.heappush(minHeap, end)
+        return len(minHeap)
+            
 
