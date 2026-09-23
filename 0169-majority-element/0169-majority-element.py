@@ -3,15 +3,11 @@ class Solution:
         candidate =  None
         count = 0
         for n in nums:
-            if candidate == None:
+            if count == 0:
                 candidate = n
+            if candidate == n:
                 count += 1
-            elif candidate != n:
-                count -= 1
-                if count == 0:
-                    candidate = None
-                    count = 0
             else:
-                count += 1
+                count -= 1
         return candidate
                 
