@@ -1,17 +1,17 @@
 class Solution:
     def majorityElement(self, nums: list[int]) -> int:
-        dominant =  None
-        dominantCount = 0
+        candidate =  None
+        count = 0
         for n in nums:
-            if dominant == None:
-                dominant = n
-                dominantCount += 1
-            elif dominant != n:
-                dominantCount -= 1
-                if dominantCount == 0:
-                    dominant = None
-                    dominantCount = 0
+            if candidate == None:
+                candidate = n
+                count += 1
+            elif candidate != n:
+                count -= 1
+                if count == 0:
+                    candidate = None
+                    count = 0
             else:
-                dominantCount += 1
-        return dominant
+                count += 1
+        return candidate
                 
