@@ -1,0 +1,223 @@
+455. Assign Cookies
+
+題目概述：
+給兩個陣列：
+
+```text
+g[i] = 第 i 個 child 的 greed factor
+s[j] = 第 j 塊 cookie 的 size
+```
+
+如果：
+
+```text
+s[j] >= g[i]
+```
+
+就可以用這塊 cookie 滿足這個 child。
+
+每個 child 最多拿一塊 cookie，每塊 cookie 也只能使用一次，求最多可以滿足多少 child。
+
+解題邏輯：
+使用 Sort + Greedy + Two Pointers。
+
+先排序：
+
+```text
+g.sort()
+s.sort()
+```
+
+讓：
+
+```text
+g = requirements，從小到大
+s = resources，從小到大
+```
+
+定義兩個 pointer：
+
+```text
+i = 目前最小、尚未被滿足的 child
+j = 目前最小、尚未使用的 cookie
+```
+
+每次比較：
+
+```text
+s[j] >= g[i]
+```
+
+如果成立：
+
+```text
+這塊 cookie 可以滿足目前 child
+
+→ 配對成功
+→ child 往後
+→ cookie 也往後
+
+i += 1
+j += 1
+```
+
+如果：
+
+```text
+s[j] < g[i]
+```
+
+代表這塊 cookie 連目前 greed 最小的 child 都無法滿足。
+
+因為後面的 child greed 只會更大，所以這塊 cookie 已經不可能再有用途。
+
+因此：
+
+```text
+只移動 cookie pointer
+
+j += 1
+```
+
+最後：
+
+```text
+i
+```
+
+就是成功滿足的 child 數量。
+
+核心 Greedy：
+
+```text
+用目前「最小但足夠」的 resource
+滿足目前「最小的 requirement」
+```
+
+這樣可以避免把大 cookie 浪費在小需求上。
+
+Two Pointers Pattern：
+
+```text
+兩個 sorted arrays 做配對
+
+如果可以 match：
+→ 兩邊都移動
+
+如果 resource 太小：
+→ resource 移動
+
+requirement 不動
+→ 等下一個更大的 resource
+```
+
+可以泛化成：
+
+```text
+requirements.sort()
+resources.sort()
+
+i = j = 0
+
+while i < len(requirements) and j < len(resources):
+    if resources[j] >= requirements[i]:
+        i += 1
+        j += 1
+    else:
+        j += 1
+```
+
+為什麼 Greedy 安全：
+假設目前：
+
+```text
+requirement = 2
+resource = 3
+```
+
+既然 `3` 已經可以滿足目前最小 requirement，就直接配給它。
+
+沒有必要保留 `3`，再拿更大的 resource 來滿足 `2`，因為那只會浪費更大的資源。
+
+反過來，如果：
+
+```text
+resource = 1
+requirement = 2
+```
+
+那 `1` 連最小 requirement 都不夠，後面 requirement 又只會更大，所以可以直接淘汰 `1`。
+
+踩過的坑：
+一開始使用：
+
+```text
+for cookie in s
+```
+
+並只維護 child pointer，這個版本也是正確的。
+
+但改成：
+
+```text
+i = requirement pointer
+j = resource pointer
+```
+
+的 while 版本後，可以更清楚看出這是一個通用的：
+
+```text
+Sorted Two Pointers Matching
+```
+
+pattern。
+
+也不需要額外維護 `res`，因為：
+
+```text
+i = 已成功配對的 requirement 數量
+```
+
+最後直接：
+
+```text
+return i
+```
+
+即可。
+
+Brute Force：
+如果每個 child 都重新掃 cookies 找可用資源：
+
+```text
+O(g * s)
+```
+
+如果兩邊大小都約為 `n`：
+
+```text
+O(n²)
+```
+
+排序 + Two Pointers：
+
+```text
+sort g → O(g log g)
+sort s → O(s log s)
+雙指標 → O(g + s)
+```
+
+所以總體：
+
+```text
+O(g log g + s log s)
+```
+
+若兩邊都約為 `n`：
+
+```text
+O(n log n)
+```
+
+複雜度：
+O(g log g + s log s) time / 額外空間取決於 sorting implementation
