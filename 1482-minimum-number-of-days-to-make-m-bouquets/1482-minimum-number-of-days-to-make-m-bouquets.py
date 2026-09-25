@@ -7,7 +7,6 @@ class Solution:
             mid = (l + r) // 2
             # judge if success
             consecutive = res = 0
-            isSuccess = False
             for b in bloomDay:
                 if b <= mid:
                     consecutive += 1
@@ -16,12 +15,11 @@ class Solution:
                         consecutive = 0
                 else:
                     consecutive = 0
-            if res >= m:
-                isSuccess = True
+            
             # BS
-            if isSuccess:
+            if res >= m:
                 r = mid
-            if not isSuccess:
+            else:
                 l = mid + 1
         return r
 
