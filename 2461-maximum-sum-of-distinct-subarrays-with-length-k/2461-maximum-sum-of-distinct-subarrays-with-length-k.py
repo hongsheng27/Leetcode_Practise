@@ -9,7 +9,7 @@ class Solution:
             if r >= k:
                 l = r - k
                 total -= nums[l]
-                count[nums[l]] = count.get(nums[l], 0) - 1
+                count[nums[l]] -= 1
                 if count[nums[l]] == 0:
                     del count[nums[l]]
             if len(count) == k:
