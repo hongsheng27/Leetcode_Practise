@@ -1,0 +1,281 @@
+622. Design Circular Queue
+
+題目概述：
+實作固定容量 `k` 的 Circular Queue，支援：
+
+```text
+enQueue
+deQueue
+Front
+Rear
+isEmpty
+isFull
+```
+
+不能真的一直移動 array 裡的元素，而是利用 index 循環使用固定空間。
+
+解題邏輯：
+使用 Fixed Array + `front` + `size`。
+
+維護：
+
+```text
+q
+= 固定長度 k 的 array
+
+front
+= queue 第一個元素所在 index
+
+size
+= queue 目前有多少元素
+
+k
+= queue capacity
+```
+
+核心觀念是：
+
+```text
+index 到 array 尾端後
+利用 % k 繞回 index 0
+```
+
+例如：
+
+```text
+k = 5
+
+0 → 1 → 2 → 3 → 4 → 0 → 1 ...
+```
+
+所以 Circular Queue 最重要的 pattern 是：
+
+```text
+(index + offset) % k
+```
+
+---
+
+enQueue：
+
+新元素應該放在目前 queue 的尾端下一格。
+
+已知：
+
+```text
+front = 第一個元素
+size = 已經有幾個元素
+```
+
+所以新的 insertion position：
+
+```text
+(front + size) % k
+```
+
+例如：
+
+```text
+k = 5
+front = 3
+size = 3
+```
+
+目前 queue 使用：
+
+```text
+index 3, 4, 0
+```
+
+下一個位置：
+
+```text
+(3 + 3) % 5
+= 1
+```
+
+所以新元素放 index 1。
+
+成功 enqueue 後：
+
+```text
+size += 1
+```
+
+---
+
+deQueue：
+
+刪除 queue 最前面的元素，不需要真的把 array 往前搬。
+
+只需要：
+
+```text
+front = (front + 1) % k
+size -= 1
+```
+
+例如：
+
+```text
+front = 4
+k = 5
+```
+
+deQueue 後：
+
+```text
+front = (4 + 1) % 5
+      = 0
+```
+
+直接繞回 array 開頭。
+
+---
+
+Front：
+
+第一個元素永遠就是：
+
+```text
+q[front]
+```
+
+如果 queue empty：
+
+```text
+return -1
+```
+
+---
+
+Rear：
+
+最後一個元素的位置不是單獨維護，而是利用：
+
+```text
+front + size - 1
+```
+
+所以：
+
+```text
+rear index
+= (front + size - 1) % k
+```
+
+例如：
+
+```text
+front = 3
+size = 3
+k = 5
+```
+
+queue 佔用：
+
+```text
+3, 4, 0
+```
+
+Rear：
+
+```text
+(3 + 3 - 1) % 5
+= 0
+```
+
+---
+
+isEmpty：
+
+```text
+size == 0
+```
+
+isFull：
+
+```text
+size == k
+```
+
+使用 `size` 的好處是不用靠：
+
+```text
+front == rear
+```
+
+判斷 empty / full。
+
+因為 circular queue 中：
+
+```text
+front == rear
+```
+
+可能代表 empty，也可能代表 full，容易混淆。
+
+加入 `size` 後：
+
+```text
+empty → size == 0
+full  → size == k
+```
+
+非常直接。
+
+核心公式：
+
+```text
+enqueue position:
+(front + size) % k
+
+dequeue:
+front = (front + 1) % k
+
+rear:
+(front + size - 1) % k
+```
+
+核心 Pattern：
+
+```text
+Fixed Array
++
+Pointer / Index
++
+Modulo
+```
+
+看到：
+
+```text
+circular buffer
+ring buffer
+fixed-size queue
+index 超過尾端後回到開頭
+```
+
+可以想到：
+
+```text
+% capacity
+```
+
+複雜度：
+所有操作：
+
+```text
+enQueue  O(1)
+deQueue  O(1)
+Front    O(1)
+Rear     O(1)
+isEmpty  O(1)
+isFull   O(1)
+```
+
+Space：
+
+```text
+O(k)
+```
