@@ -20,7 +20,8 @@ class MyCircularQueue:
         return True
 
     def Front(self) -> int:
-        return self.q[self.front] if self.q[self.front] != None else -1
+        if self.size == 0: return -1
+        return self.q[self.front]
 
     def Rear(self) -> int:
         if self.size == 0: return -1
