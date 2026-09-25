@@ -94,6 +94,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
 | [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
+| [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 | [0643-maximum-average-subarray-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0643-maximum-average-subarray-i) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
@@ -642,6 +643,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0359-logger-rate-limiter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0359-logger-rate-limiter) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
+| [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 | [0703-kth-largest-element-in-a-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0703-kth-largest-element-in-a-stream) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
@@ -687,6 +689,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0225-implement-stack-using-queues](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0225-implement-stack-using-queues) |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
+| [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 ## Monotonic Queue
 |  |
 | ------- |
@@ -707,6 +710,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0146-lru-cache](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0146-lru-cache) |
 | [0206-reverse-linked-list](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0206-reverse-linked-list) |
 | [0355-design-twitter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0355-design-twitter) |
+| [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 ## Tree
