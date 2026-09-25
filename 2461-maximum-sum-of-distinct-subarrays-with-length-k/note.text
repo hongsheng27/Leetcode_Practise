@@ -1,0 +1,193 @@
+2461. Maximum Sum of Distinct Subarrays With Length K
+
+題目概述：
+給一個整數陣列 `nums` 和整數 `k`，找所有長度固定為 `k` 的 contiguous subarray，要求其中所有元素都 distinct，回傳其中最大的 sum。
+
+解題邏輯：
+使用 Fixed-Size Sliding Window + HashMap。
+
+維護兩個資訊：
+
+```text
+total
+= 目前 window 的總和
+
+count[x]
+= x 在目前 window 中出現幾次
+```
+
+先計算第一個長度 `k` 的 window：
+
+```text
+[0 ... k-1]
+```
+
+同時計算：
+
+```text
+total
+count
+```
+
+接著每次 window 往右滑一格。
+
+如果目前新的右端是：
+
+```text
+r
+```
+
+那被移出去的舊左端是：
+
+```text
+l = r - k
+```
+
+所以更新：
+
+```text
+total += nums[r]
+total -= nums[l]
+```
+
+frequency 也同步更新：
+
+```text
+count[nums[r]] += 1
+count[nums[l]] -= 1
+```
+
+如果某個元素 frequency 變成 0：
+
+```text
+count[nums[l]] == 0
+```
+
+就把這個 key 從 HashMap 刪掉：
+
+```text
+del count[nums[l]]
+```
+
+這樣：
+
+```text
+len(count)
+```
+
+才能一直代表目前 window 裡真正的 distinct elements 數量。
+
+判斷 window 是否全部 distinct：
+
+因為 window 長度固定就是：
+
+```text
+k
+```
+
+如果：
+
+```text
+len(count) == k
+```
+
+代表：
+
+```text
+k 個位置
++
+k 個 distinct values
+```
+
+所以每個元素必然只出現一次。
+
+因此這個 window 合法，可以更新：
+
+```text
+maxTotal = max(maxTotal, total)
+```
+
+Fixed Window Pattern：
+
+```text
+先算第一個 [0 ... k-1]
+
+接著：
+
+for r in range(k, n):
+    l = r - k
+
+    add nums[r]
+    remove nums[l]
+
+    update window information
+    check answer
+```
+
+這題除了 sum 之外，還要同步維護 frequency map。
+
+核心 Pattern：
+
+```text
+Fixed-size window
++
+要求所有元素 distinct
+```
+
+可以想到：
+
+```text
+Sliding Window
++
+Frequency Map
++
+len(count) == window size
+```
+
+這裡不需要每次做：
+
+```text
+max(count.values())
+```
+
+去確認最大 frequency 是否為 1。
+
+因為：
+
+```text
+window size = k
+distinct count = k
+```
+
+已經足以證明全部 distinct。
+
+這也是更好的 O(1) window validity check：
+
+```text
+len(count) == k
+```
+
+踩過的坑：
+一開始使用：
+
+```text
+max(count.values()) < 2
+```
+
+判斷所有元素是否只出現一次。
+
+邏輯正確，但：
+
+```text
+max(count.values())
+```
+
+需要掃過 HashMap 裡所有 frequency，最壞是 O(k)。
+
+如果每個 window 都做一次，總時間可能變成：
+
+```text
+O(n * k)
+```
+
+在 `n`、`k` 很大時可
