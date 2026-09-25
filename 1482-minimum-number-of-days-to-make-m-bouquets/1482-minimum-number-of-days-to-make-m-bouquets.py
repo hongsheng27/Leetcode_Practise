@@ -18,7 +18,6 @@ class Solution:
                     consecutive = 0
             if res >= m:
                 isSuccess = True
-            print(mid, isSuccess)
             # BS
             if isSuccess:
                 r = mid
