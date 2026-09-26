@@ -999,6 +999,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
+| [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 ## Complete Knapsack
 |  |
 | ------- |
@@ -1034,4 +1035,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [2659-make-array-empty](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2659-make-array-empty) |
+## 0-1 Knapsack
+|  |
+| ------- |
+| [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 <!---LeetCode Topics End-->
