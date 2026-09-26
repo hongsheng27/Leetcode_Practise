@@ -1,0 +1,117 @@
+**1642. Furthest Building You Can Reach**
+
+**題目概述：**  
+給一排建築高度 `heights`，往下一棟時如果變高，需要使用 bricks 補高度差，或使用一個 ladder；往下或同高度不需要資源。給定有限的 bricks 和 ladders，找最遠能到達哪一棟 building。
+
+**解題邏輯：**  
+使用 **Greedy + Min Heap**。
+
+每遇到一個正的 `gap`，先假設這個 gap 使用 ladder，將 gap 放進 min heap。
+
+```python
+heapq.heappush(minHeap, gap)
+```
+
+因為 ladder 不管 gap 多大都只消耗一個，所以 ladder 應該優先留給較大的 gap。
+
+如果 heap 裡的 gap 數量超過 `ladders`：
+
+```python
+if len(minHeap) > ladders:
+```
+
+代表不可能全部使用 ladder，因此從 min heap 取出目前最小的 gap：
+
+```python
+bricks -= heapq.heappop(minHeap)
+```
+
+讓這個較小的 gap 改用 bricks。
+
+因此 heap 中會一直保留：
+
+```text
+目前遇過的最大 ladders 個 gap
+```
+
+這些 gap 使用 ladder，其餘較小的 gap 使用 bricks。
+
+如果：
+
+```python
+bricks < 0
+```
+
+表示連目前最省 bricks 的分配方式都無法繼續，因此目前的 `i` 就是最遠可以到達的 building。
+
+---
+
+**踩過的坑：**
+
+一開始用 DFS，遇到上坡時寫成：
+
+```python
+if bricks 夠:
+    用 bricks
+elif 有 ladder:
+    用 ladder
+```
+
+這是不正確的，因為不能固定優先使用 bricks。
+
+例如前面較大的 gap 如果用了 bricks，之後可能反而沒有足夠 bricks 處理其他 gap；最佳策略應該讓 ladder 保留給最大的 gap。
+
+如果用 DFS 正確暴力搜尋，當 bricks 和 ladder 都可以用時，兩種選擇都必須嘗試：
+
+```text
+用 bricks
+或
+用 ladder
+```
+
+這會產生大量分支，最差接近 `O(2^n)`，所以會 TLE。
+
+這題也不是單純把 DFS 加 memo 就能漂亮解決，因為 state 會包含：
+
+```text
+(i, bricks_left, ladders_left)
+```
+
+`bricks_left` 可能有非常多不同數值，state 數量仍然很大。
+
+真正的突破點是 Greedy：
+
+```text
+ladder 的成本與 gap 大小無關
+bricks 的成本與 gap 大小成正比
+```
+
+所以 ladder 應該留給最大的 gap，而 min heap 可以讓我們在之後遇到更大的 gap 時「反悔」，把之前較小的 gap 改成使用 bricks。
+
+---
+
+**複雜度：**
+
+`minHeap` 最多維持約 `ladders + 1` 個元素。
+
+```text
+Time: O(n log ladders)
+Space: O(ladders)
+```
+
+**Pattern：**
+
+```text
+有限的免費資源要留給成本最大的項目
+→ Min Heap 保存目前最大的 k 個
+```
+
+例如：
+
+```text
+k 次免費
+k 張 coupon
+k 個 ladders
+```
+
+都可以考慮類似的 Greedy + Heap 思路。
