@@ -1,0 +1,122 @@
+# 1482. Minimum Number of Days to Make m Bouquets
+
+## 題目概述
+
+給一個 `bloomDay`，每個值代表花開的日期。要製作 `m` 束花，每束需要 `k` 朵相鄰且已開的花，同一朵花不能重複使用。求最少要等到第幾天才能完成；如果花的總數不足 `m * k`，回傳 `-1`。
+
+## 解題邏輯
+
+直接決定要選哪 `m` 組相鄰花很複雜，因此把問題從「求最小天數」轉成：
+
+> 給定 `day`，判斷這一天能不能做出至少 `m` 束花。
+
+對某個 `day` 掃一次 `bloomDay`：
+
+* `bloomDay[i] <= day`：代表這朵花可以使用，累加連續花數。
+* 連續花數達到 `k`：完成一束，bouquet 數量 `+1`，並把連續花數歸零，避免重複使用。
+* 遇到還沒開的花：連續被中斷，歸零。
+
+`canMake(day)` 具有單調性：
+
+```text
+F F F F T T T T
+```
+
+如果某一天已經能完成 `m` 束，之後更晚的日期也一定能完成。
+
+因此可以在：
+
+```text
+min(bloomDay) ~ max(bloomDay)
+```
+
+之間做 Binary Search，找第一個可行的天數。
+
+Pattern：
+
+```text
+Binary Search on Answer
+Minimum Feasible Value
+```
+
+## 踩過的坑
+
+1. 一開始看到每束需要 `k` 朵相鄰花，以為是 Fixed Sliding Window。
+
+   但每個長度 `k` 的 window 可能互相 overlap，而同一朵花不能重複使用，所以不能單純計算每個 fixed window。
+
+2. 後來想到 Fixed Window + Greedy，想直接挑出最適合的 `m` 個 windows。
+
+   這會同時需要處理：
+
+   * 哪些 windows 要選
+   * windows 不能 overlap
+   * 如何讓最後日期最小
+
+   問題變得很複雜。
+
+3. 真正比較簡單的轉換是先固定一個 `day`，再判斷能不能完成。
+
+   原本的 Optimization Problem：
+
+```text
+最少需要幾天？
+```
+
+轉成 Decision Problem：
+
+```text
+給我 day，能不能完成 m 束？
+```
+
+4. Binary Search 可以使用，不只是因為 `canMake(day)` 可以在 `O(n)` 完成。
+
+   更重要的是：
+
+```text
+canMake(day) 有單調性
+```
+
+`O(n)` 是讓整體速度夠快；單調性才是 Binary Search 成立的原因。
+
+## 複雜度
+
+`canMake(day)` 每次掃完整個 array：
+
+```text
+O(n)
+```
+
+Binary Search 搜尋天數範圍：
+
+```text
+O(log(maxBloomDay - minBloomDay))
+```
+
+總時間複雜度：
+
+```text
+O(n log V)
+```
+
+其中 `V` 是 bloomDay 的數值範圍。
+
+因為：
+
+```text
+bloomDay[i] <= 10^9
+```
+
+Binary Search 最多約進行 30 次，因此最壞大約掃：
+
+```text
+30 * 10^5
+```
+
+可以接受。
+
+空間複雜度：
+
+```text
+O(1)
+```
