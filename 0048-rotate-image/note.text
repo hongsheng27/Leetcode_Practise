@@ -1,0 +1,252 @@
+# 48. Rotate Image
+
+## 題目概述
+
+給一個 `n x n` matrix，將整個 matrix 順時針旋轉 90 度。
+
+要求：
+
+```text
+modify matrix in-place
+```
+
+也就是不能建立另一個完整 matrix。
+
+---
+
+## 解題邏輯
+
+可以把 matrix 看成一圈一圈的 ring。
+
+每一圈使用：
+
+```python
+TOP = LEFT = 0
+BOTTOM = RIGHT = len(matrix) - 1
+```
+
+處理完一圈後往內縮：
+
+```python
+TOP += 1
+BOTTOM -= 1
+LEFT += 1
+RIGHT -= 1
+```
+
+### Ring Traversal Template
+
+如果只是走完整一圈：
+
+```text
+TOP:
+LEFT → RIGHT
+
+RIGHT:
+TOP + 1 → BOTTOM
+
+BOTTOM:
+RIGHT - 1 → LEFT
+
+LEFT:
+BOTTOM - 1 → TOP + 1
+```
+
+也就是：
+
+```python
+for c in range(LEFT, RIGHT + 1):
+    ...
+
+for r in range(TOP + 1, BOTTOM + 1):
+    ...
+
+for c in range(RIGHT - 1, LEFT - 1, -1):
+    ...
+
+for r in range(BOTTOM - 1, TOP, -1):
+    ...
+```
+
+---
+
+## In-place 4-way Swap
+
+不需要把整圈存進 `deque`。
+
+每次同時處理四個會互相旋轉的位置。
+
+對目前 ring：
+
+```python
+for i in range(RIGHT - LEFT):
+```
+
+四個位置：
+
+```text
+LEFT:
+(TOP + i, LEFT)
+
+BOTTOM:
+(BOTTOM, LEFT + i)
+
+RIGHT:
+(BOTTOM - i, RIGHT)
+
+TOP:
+(TOP, RIGHT - i)
+```
+
+順時針旋轉的資料流：
+
+```text
+BOTTOM → LEFT
+RIGHT  → BOTTOM
+TOP    → RIGHT
+LEFT   → TOP
+```
+
+所以先保存 LEFT：
+
+```python
+tmp = matrix[TOP + i][LEFT]
+```
+
+然後：
+
+```python
+matrix[TOP + i][LEFT] = matrix[BOTTOM][LEFT + i]
+
+matrix[BOTTOM][LEFT + i] = matrix[BOTTOM - i][RIGHT]
+
+matrix[BOTTOM - i][RIGHT] = matrix[TOP][RIGHT - i]
+
+matrix[TOP][RIGHT - i] = tmp
+```
+
+完整骨架：
+
+```python
+TOP = LEFT = 0
+BOTTOM = RIGHT = len(matrix) - 1
+
+while LEFT < RIGHT and TOP < BOTTOM:
+    for i in range(RIGHT - LEFT):
+        tmp = matrix[TOP + i][LEFT]
+
+        matrix[TOP + i][LEFT] = matrix[BOTTOM][LEFT + i]
+        matrix[BOTTOM][LEFT + i] = matrix[BOTTOM - i][RIGHT]
+        matrix[BOTTOM - i][RIGHT] = matrix[TOP][RIGHT - i]
+        matrix[TOP][RIGHT - i] = tmp
+
+    TOP += 1
+    RIGHT -= 1
+    LEFT += 1
+    BOTTOM -= 1
+```
+
+---
+
+## 踩過的坑
+
+1. 一開始用 `deque` 把整個 ring 取出，再 rotate 後寫回。
+
+這個方法邏輯正確，但：
+
+```text
+Space = O(n)
+```
+
+不符合題目真正想要的 in-place `O(1)` extra space。
+
+2. 原本寫回 ring 時，在處理同一圈途中就修改：
+
+```python
+TOP += 1
+RIGHT -= 1
+BOTTOM -= 1
+```
+
+這樣 boundary 很容易混亂。
+
+比較穩定的方式是：
+
+```text
+整圈處理完
+→ 四個 boundary 一起縮
+```
+
+3. `deque` 版本中曾經寫：
+
+```python
+list(q)[i]
+```
+
+每次都重新把 `deque` 轉成 list，會額外增加很多成本。
+
+如果用 queue 版本，應該直接：
+
+```python
+q.popleft()
+```
+
+或只轉成 list 一次。
+
+4. In-place 不需要走完整 perimeter。
+
+只需要：
+
+```python
+for i in range(RIGHT - LEFT):
+```
+
+每個 `i` 同時控制四個方向的位置，做一次 4-way swap。
+
+---
+
+## Pattern
+
+Matrix ring 類型可以固定兩個 template：
+
+```text
+走完整 ring
+→ TOP / RIGHT / BOTTOM / LEFT traversal
+
+In-place Rotate
+→ 4-way swap
+```
+
+4-way swap 固定記：
+
+```text
+LEFT:   (TOP + i, LEFT)
+BOTTOM: (BOTTOM, LEFT + i)
+RIGHT:  (BOTTOM - i, RIGHT)
+TOP:    (TOP, RIGHT - i)
+```
+
+Clockwise：
+
+```text
+BOTTOM → LEFT
+RIGHT  → BOTTOM
+TOP    → RIGHT
+LEFT   → TOP
+```
+
+---
+
+## 複雜度
+
+每個 matrix element 最多被處理一次：
+
+```text
+Time: O(n²)
+```
+
+只使用一個 `tmp` 儲存元素：
+
+```text
+Space: O(1)
+```
