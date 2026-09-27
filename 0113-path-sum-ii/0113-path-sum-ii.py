@@ -9,11 +9,9 @@ class Solution:
         if not root: return []
         res = []
         def backtrack(node, path, total):
-            print(path, total)
             if not node.left and not node.right and total == targetSum:
                 res.append(path.copy())
                 return
-            # if total > targetSum: return
 
             if node.left:
                 path.append(node.left.val)
