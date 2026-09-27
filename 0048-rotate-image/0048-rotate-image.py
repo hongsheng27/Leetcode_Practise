@@ -23,21 +23,17 @@ class Solution:
             for _ in range(RIGHT - LEFT):
                 q.appendleft(q.pop())
             
-            i = 0
+            lst = list(q)
             for c in range(LEFT, RIGHT + 1):
-                matrix[TOP][c] = list(q)[i]
-                i += 1
+                matrix[TOP][c] = q.popleft()
             TOP += 1
             for r in range(TOP, BOTTOM + 1):
-                matrix[r][RIGHT] = list(q)[i]
-                i += 1
+                matrix[r][RIGHT] = q.popleft()
             RIGHT -= 1
             for c in range(RIGHT, LEFT - 1, -1):
-                matrix[BOTTOM][c] = list(q)[i]
-                i += 1
+                matrix[BOTTOM][c] = q.popleft()
             BOTTOM -= 1
             for r in range(BOTTOM, TOP - 1, -1):
-                matrix[r][LEFT] = list(q)[i]
-                i += 1
+                matrix[r][LEFT] = q.popleft()
             LEFT += 1
                 
