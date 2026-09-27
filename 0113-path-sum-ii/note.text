@@ -1,0 +1,159 @@
+**113. Path Sum II**
+
+**題目概述：**  
+給一棵 binary tree 和 `targetSum`，找出所有從 root 到 leaf，且路徑總和等於 `targetSum` 的路徑。
+
+**解題邏輯：**  
+使用 **DFS + Backtracking**，一路維護目前的：
+
+```text
+path
+total
+```
+
+每走到一個 child：
+
+```python
+path.append(child.val)
+backtrack(child, path, total + child.val)
+path.pop()
+```
+
+也就是標準 Backtracking：
+
+```text
+Choose
+→ Explore
+→ Undo
+```
+
+只有走到 **leaf node** 時才檢查：
+
+```python
+not node.left and not node.right
+```
+
+如果此時：
+
+```python
+total == targetSum
+```
+
+就把目前路徑加入答案：
+
+```python
+res.append(path.copy())
+```
+
+使用 `path.copy()` 保存當下路徑，因為 `path` 後續還會繼續被 `append()`、`pop()` 修改。
+
+---
+
+**踩過的坑：**  
+
+看到：
+
+```python
+backtrack(node.left, ...)
+backtrack(node.right, ...)
+```
+
+不能因為有兩個 recursive call 就直接判斷成：
+
+```text
+O(2^n)
+```
+
+`O(2^n)` 常見於 Subsets 這類 decision tree：
+
+```text
+每個元素都有：
+選 / 不選
+```
+
+每一層都會產生新的組合，因此：
+
+```text
+2 × 2 × ... × 2 = 2^n
+```
+
+但這題不是自己產生 `2^n` 個 decision states。
+
+這題只是 traverse input 原本就存在的 binary tree：
+
+```text
+每個 node 最多被 visit 一次
+```
+
+如果 tree 有 `n` 個 nodes，DFS traversal 就是：
+
+```text
+O(n)
+```
+
+所以判斷 recursion complexity 時，不要只看「有幾個 recursive calls」，而要看：
+
+```text
+總共會產生 / visit 多少個 states？
+```
+
+---
+
+**複雜度：**
+
+單純 traverse tree：
+
+```text
+O(n)
+```
+
+但每找到一條 valid path 時，需要：
+
+```python
+path.copy()
+```
+
+假設：
+
+```text
+n = node 數量
+h = tree height
+k = valid paths 數量
+```
+
+每次 copy 最多需要：
+
+```text
+O(h)
+```
+
+因此更完整的時間複雜度：
+
+```text
+Time: O(n + k * h)
+```
+
+如果只討論 tree traversal，則是：
+
+```text
+O(n)
+```
+
+Recursion stack 最深為 tree height，`path` 最長也為 tree height：
+
+```text
+Auxiliary Space: O(h)
+```
+
+如果包含輸出答案：
+
+```text
+Space: O(h + k * h)
+```
+
+通常面試可說：
+
+```text
+Time: O(n + k * h)
+Space: O(h) excluding output
+```
