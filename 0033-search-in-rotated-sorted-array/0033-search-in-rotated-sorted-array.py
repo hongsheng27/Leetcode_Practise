@@ -4,7 +4,6 @@ class Solution:
         r = len(nums) - 1
         while l <= r:
             m = (l + r) // 2
-            print(m, l , r)
             if nums[m] == target: return m
             # left is in oreder
             if nums[l] <= nums[m]:
