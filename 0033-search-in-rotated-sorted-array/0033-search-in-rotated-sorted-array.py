@@ -1,18 +1,19 @@
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums: list[int], target: int) -> int:
         l = 0
         r = len(nums) - 1
         while l <= r:
             m = (l + r) // 2
+            print(m, l , r)
             if nums[m] == target: return m
+            # left is in oreder
             if nums[l] <= nums[m]:
-                # left sorted portion
                 if nums[l] <= target < nums[m]:
                     r = m - 1
                 else:
                     l = m + 1
+            # right is in order
             else:
-                # right sorted portion
                 if nums[m] < target <= nums[r]:
                     l = m + 1
                 else:
