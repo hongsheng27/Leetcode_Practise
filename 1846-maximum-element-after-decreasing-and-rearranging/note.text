@@ -1,0 +1,207 @@
+1846. Maximum Element After Decreasing and Rearranging
+
+題目概述：
+可以任意 rearrange 陣列，也可以把元素 decrement。最後要讓：
+
+```text
+arr[0] = 1
+相鄰元素差 <= 1
+```
+
+求最後能得到的最大元素。
+
+解題邏輯：
+使用 **Sort + Greedy**。
+
+題目允許：
+
+```text
+rearrange
+```
+
+代表原本的 index / 順序沒有意義，我們可以自己選最方便處理的順序。
+
+但不是：
+
+```text
+rearrange → 一定 sort
+```
+
+而是：
+
+```text
+rearrange
+→ 可以自由決定處理順序
+→ 再根據操作限制選最適合的順序
+```
+
+這題只能：
+
+```text
+decrement
+```
+
+不能 increment。
+
+因此小的數字限制比較大。
+
+例如：
+
+```text
+2
+```
+
+只能變成：
+
+```text
+1 或 2
+```
+
+但：
+
+```text
+100
+```
+
+可以變成：
+
+```text
+1 ~ 100
+```
+
+所以應該先處理限制比較大的小數字：
+
+```text
+sort ascending
+```
+
+接著維護：
+
+```text
+res = 目前最多可以合法建立到的最大值
+```
+
+可以想成目前已經能形成：
+
+```text
+1, 2, 3, ..., res
+```
+
+對排序後的每個 `num`：
+
+```text
+如果 num > res
+```
+
+代表它至少可以 decrement 成：
+
+```text
+res + 1
+```
+
+所以：
+
+```text
+res += 1
+```
+
+如果：
+
+```text
+num <= res
+```
+
+它無法幫助我們建立 `res + 1`，因為不能 increment，所以直接略過。
+
+核心：
+
+```python
+arr.sort()
+
+res = 0
+
+for num in arr:
+    if num > res:
+        res += 1
+
+return res
+```
+
+例如：
+
+```text
+arr = [100, 1, 3, 2]
+```
+
+排序：
+
+```text
+[1, 2, 3, 100]
+```
+
+Greedy：
+
+```text
+1   → 建立 1
+2   → 建立 2
+3   → 建立 3
+100 → decrement 成 4
+```
+
+答案：
+
+```text
+4
+```
+
+Pattern：
+
+```text
+可以 rearrange
+→ 原始順序不重要
+→ 可以自行選處理順序
+
+只能往一個方向修改（這題只能 decrease）
+→ 小值限制更強
+
+要最大化能建立到多大的連續合法值
+→ Sort + Greedy
+```
+
+也可以用 min heap 每次取最小值，但沒有優勢：
+
+```text
+heapify + n 次 heappop
+→ O(n log n)
+```
+
+而 sorting 一樣是 O(n log n)，但更簡單、更好解釋。
+
+踩過的坑：
+一開始用 `Counter`，想從 duplicate 數量推答案：
+
+```text
+count[i] > 1
+→ res -= duplicate
+```
+
+但 duplicate 不代表浪費，因為多出來的元素可以 decrement 去補其他合法值。
+
+例如：
+
+```text
+[2,2,2,2,2]
+```
+
+雖然都是 duplicate，仍然可以建立：
+
+```text
+1,2
+```
+
+所以答案是 2。
+
+也嘗試過 min heap，邏輯正確，但這題所有元素都只是單純從小到大處理一次，因此 sort 比 heap 更自然。
+
+複雜度：
+O(n log n) time / O(1) extra space（忽略排序實作的額外空間）
