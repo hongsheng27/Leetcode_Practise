@@ -1,0 +1,238 @@
+542. 01 Matrix
+
+題目概述：
+給一個只包含 `0` 和 `1` 的矩陣。對每個 cell，求它到最近 `0` 的最短距離，只能上下左右移動。
+
+解題邏輯：
+使用 **Multi-Source BFS**。
+
+這題如果對每個 `1` 各自跑一次 BFS 去找最近的 `0`，會非常慢。
+
+真正的觀察是：
+
+```text
+與其讓每個 1 去找最近的 0
+不如讓所有 0 同時往外擴散
+```
+
+所以一開始先把所有 `0` 都放進 queue：
+
+```python
+for r in range(ROWS):
+    for c in range(COLS):
+        if mat[r][c] == 0:
+            res[r][c] = 0
+            q.append((r, c))
+```
+
+這些 `0` 都是 BFS 的 source：
+
+```text
+distance = 0
+```
+
+其他位置先設成：
+
+```text
+inf
+```
+
+表示還沒有找到更短距離。
+
+接著開始 BFS。
+
+對目前位置：
+
+```text
+(row, col)
+```
+
+它旁邊的 neighbor：
+
+```text
+(nr, nc)
+```
+
+如果從目前位置走過去，可以得到更短距離：
+
+```text
+res[row][col] + 1 < res[nr][nc]
+```
+
+就更新：
+
+```python
+res[nr][nc] = res[row][col] + 1
+```
+
+並把 neighbor 加入 queue：
+
+```python
+q.append((nr, nc))
+```
+
+因為 BFS 是由所有 `0` 同時往外擴散，所以一個位置第一次被更新到較短距離時，就是目前找到的最佳距離。
+
+核心公式：
+
+```text
+neighbor distance
+=
+current distance + 1
+```
+
+也就是：
+
+```python
+res[nr][nc] = res[row][col] + 1
+```
+
+這題的核心 Pattern：
+
+```text
+Grid
++
+求每個位置到最近某一類 source 的最短距離
++
+可以上下左右移動
+```
+
+想到：
+
+```text
+Multi-Source BFS
+```
+
+辨認方式：
+
+```text
+「每個位置到最近的 X」
+「最近的 0」
+「最近的 gate」
+「最近的 hospital」
+「多個感染源 / 火源往外擴散」
+```
+
+通常都是 Multi-Source BFS。
+
+和普通 BFS 的差別：
+
+```text
+普通 BFS：
+queue 一開始只有一個 source
+
+Multi-Source BFS：
+queue 一開始放入所有 source
+```
+
+這題：
+
+```text
+所有 0
+→ 同時作為起點
+```
+
+和 Rotting Oranges 很像：
+
+```text
+所有一開始腐爛的橘子
+→ 同時作為起點
+```
+
+你的 BFS 中：
+
+```python
+for _ in range(len(q)):
+```
+
+其實不是必要的。
+
+因為你沒有用單獨的 `distance` 變數，而是直接用：
+
+```python
+res[row][col] + 1
+```
+
+推 neighbor 的距離。
+
+所以也可以簡化成：
+
+```python
+while q:
+    row, col = q.popleft()
+
+    for dr, dc in directions:
+        ...
+```
+
+不過你現在的版本仍然是正確的。
+
+踩過的坑：
+一開始如果想到：
+
+```text
+每個 1 各自 BFS 找最近 0
+```
+
+會造成大量重複搜尋。
+
+假設總共有：
+
+```text
+R * C
+```
+
+個 cell。
+
+如果每個 cell 都重新 BFS 一次，最壞可能接近：
+
+```text
+O((R*C)^2)
+```
+
+Multi-Source BFS 可以一次完成所有 cell 的距離。
+
+另一個重要觀察是，不需要額外維護：
+
+```text
+distance = 0,1,2,...
+```
+
+因為距離可以直接從 parent 推：
+
+```text
+res[nr][nc]
+=
+res[row][col] + 1
+```
+
+另外這個判斷：
+
+```python
+mat[nr][nc] == 0
+```
+
+其實可以省略。
+
+因為 `0` 的：
+
+```text
+res[nr][nc] = 0
+```
+
+而新的距離一定至少是：
+
+```text
+1
+```
+
+所以：
+
+```text
+1 >= 0
+```
+
+會被你後面的距離判斷自動擋掉。
+
+複雜度：
+O(R * C) time / O(R * C) space
