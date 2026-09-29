@@ -123,6 +123,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
+| [0974-subarray-sums-divisible-by-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0974-subarray-sums-divisible-by-k) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
@@ -201,6 +202,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0874-walking-robot-simulation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0874-walking-robot-simulation) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
+| [0974-subarray-sums-divisible-by-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0974-subarray-sums-divisible-by-k) |
 | [0981-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0981-time-based-key-value-store) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
@@ -378,6 +380,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
+| [0974-subarray-sums-divisible-by-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0974-subarray-sums-divisible-by-k) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
