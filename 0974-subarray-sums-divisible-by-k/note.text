@@ -1,0 +1,205 @@
+974. Subarray Sums Divisible by K
+
+題目概述：
+給一個整數陣列 `nums` 和整數 `k`，求有多少個 contiguous subarray 的總和可以被 `k` 整除。
+
+解題邏輯：
+使用 **Prefix Sum + HashMap + Remainder**。
+
+如果一段 subarray：
+
+```text
+[j ... i]
+```
+
+的總和可以被 `k` 整除，那：
+
+```text
+prefix[i] - prefix[j] = k * x
+```
+
+也就是：
+
+```text
+(prefix[i] - prefix[j]) % k == 0
+```
+
+可以進一步轉成：
+
+```text
+prefix[i] % k == prefix[j] % k
+```
+
+所以這題不用找某個固定的 prefix 值，而是找：
+
+```text
+以前有多少個 prefix
+跟現在的 remainder 一樣
+```
+
+因此 HashMap 存：
+
+```text
+count[remainder]
+```
+
+代表：
+
+```text
+過去有多少個 prefix sum
+除以 k 後餘數等於 remainder
+```
+
+每次得到新的 prefix：
+
+```python
+prefix += num
+remainder = prefix % k
+```
+
+如果以前已經有：
+
+```text
+count[remainder] = x
+```
+
+代表目前這個 prefix 可以和那 `x` 個舊 prefix 分別形成：
+
+```text
+x 個可以被 k 整除的 subarray
+```
+
+所以：
+
+```python
+res += count.get(remainder, 0)
+```
+
+接著再把目前 remainder 加進 HashMap：
+
+```python
+count[remainder] = count.get(remainder, 0) + 1
+```
+
+初始化：
+
+```python
+count = {0: 1}
+```
+
+代表在開始之前有一個：
+
+```text
+prefix = 0
+remainder = 0
+```
+
+的空 prefix。
+
+這樣如果從 index 0 開始的 subarray 本身就可以被 `k` 整除，也能被正確計算。
+
+例如：
+
+```text
+nums = [5]
+k = 5
+
+prefix = 5
+remainder = 0
+```
+
+因為：
+
+```text
+count[0] = 1
+```
+
+所以答案加 1，代表：
+
+```text
+[5]
+```
+
+本身就是合法 subarray。
+
+核心 Pattern：
+
+```text
+Subarray Sum
+→ Prefix Sum
+
+要求 sum == target
+→ 找特定 prefix 差值
+
+要求 sum divisible by k
+→ 比較 prefix remainder
+```
+
+和 560. Subarray Sum Equals K 的差別：
+
+```text
+560:
+
+prefix[i] - prefix[j] = target
+
+→ prefix[j] = prefix[i] - target
+
+→ HashMap 存完整 prefix sum
+```
+
+這題：
+
+```text
+974:
+
+(prefix[i] - prefix[j]) % k == 0
+
+→ prefix[i] % k == prefix[j] % k
+
+→ HashMap 存 remainder frequency
+```
+
+踩過的坑：
+一開始直接檢查所有以前出現過的 prefix：
+
+```python
+for key in count:
+    if (prefix - key) % k == 0:
+        ...
+```
+
+數學上方向正確，但每個新 prefix 都要掃以前所有 prefix，最壞會變成：
+
+```text
+O(n²)
+```
+
+真正的優化是把所有「效果相同」的 prefix 分組。
+
+例如 `k = 5`：
+
+```text
+4, 9, 14, -1
+```
+
+在 Python 裡：
+
+```text
+4 % 5  = 4
+9 % 5  = 4
+14 % 5 = 4
+-1 % 5 = 4
+```
+
+它們全部屬於同一個 remainder group。
+
+所以不需要逐一檢查，只要：
+
+```text
+count[4]
+```
+
+就能一次知道有多少合法起點。
+
+複雜度：
+O(n) time / O(k) space
