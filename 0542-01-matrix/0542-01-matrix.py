@@ -2,15 +2,14 @@ class Solution:
     def updateMatrix(self, mat: list[list[int]]) -> list[list[int]]:
         ROWS, COLS = len(mat), len(mat[0])
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-        res = [[0] * COLS for _ in range(ROWS)] 
+        res = [[float('inf')] * COLS for _ in range(ROWS)] 
         q = deque()
         for r in range(ROWS):
             for c in range(COLS):
                 if mat[r][c] == 0:
+                    res[r][c] = 0
                     q.append((r, c))
-                else:
-                    res[r][c] = float('inf')
-        
+                
         while q:
             for _ in range(len(q)):
                 row, col = q.popleft()
