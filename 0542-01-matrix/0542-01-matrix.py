@@ -19,6 +19,5 @@ class Solution:
                         mat[nr][nc] == 0 or res[row][col] + 1 >= res[nr][nc]): continue
                     q.append((nr, nc))
                     res[nr][nc] = res[row][col] + 1
-           
         return res
             
