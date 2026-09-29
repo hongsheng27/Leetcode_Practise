@@ -4,9 +4,10 @@ class Solution:
         res = prefix = 0
         for num in nums:
             prefix += num
-            if prefix % k in count:
-                res += count[prefix % k]
-            count[prefix % k] = count.get(prefix % k, 0) + 1
+            remainder = prefix % k
+            if remainder in count:
+                res += count[remainder]
+            count[remainder] = count.get(remainder, 0) + 1
         return res
         
         # (prefix[i] - prefix[j]) % k = 0
