@@ -138,6 +138,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold) |
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
+| [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1550-three-consecutive-odds](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1550-three-consecutive-odds) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1642-furthest-building-you-can-reach](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1642-furthest-building-you-can-reach) |
@@ -294,6 +295,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
@@ -521,6 +523,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0881-boats-to-save-people](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0881-boats-to-save-people) |
+| [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 ## Bit Manipulation
 |  |
@@ -564,6 +567,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
+| [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
