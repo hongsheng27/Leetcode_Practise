@@ -7,7 +7,7 @@ class Solution:
         r = len(nums) - 1
         while l <= r:
             if nums[l] + nums[r] <= target:
-                res += 2 ** (r - l) % MOD
+                res += pow(2, (r - l), MOD)
                 l += 1
             else:
                 r -= 1
