@@ -1,0 +1,97 @@
+**1498. Number of Subsequences That Satisfy the Given Sum Condition**
+
+**題目概述：**  
+給一個 nums 和 target，計算有多少個 non-empty subsequence 滿足 `minimum + maximum <= target`，最後答案要 modulo `10^9 + 7`。
+
+**解題邏輯：**  
+先 sort，使用 two pointers + counting。
+
+subsequence 最直覺可以用 DFS，每個元素都有「選 / 不選」兩種可能，因此會有 `2^n` 種，太慢。
+
+這題只在乎 subsequence 的 minimum 和 maximum，所以排序後可以用左右指標：
+
+`l` 代表目前固定的 minimum。  
+`r` 代表目前考慮的 maximum。
+
+如果：
+
+`nums[l] + nums[r] > target`
+
+代表 `r` 太大，要：
+
+`r -= 1`
+
+不能移動 `l`，因為 `l` 往右只會讓 minimum 更大，更不可能滿足條件。
+
+如果：
+
+`nums[l] + nums[r] <= target`
+
+代表固定 `nums[l]` 為 minimum 時，`l + 1 ~ r` 的所有元素都可以自由「選 / 不選」。
+
+共有 `r - l` 個自由元素，所以：
+
+`2^(r-l)`
+
+個合法 subsequences。
+
+加入答案後：
+
+`l += 1`
+
+繼續計算下一個 minimum。
+
+**為什麼是 `2^(r-l)`：**  
+例如 `[3, 5, 6]`，且 `3 + 6 <= target`。
+
+固定 `3` 一定選：
+
+`5`：選 / 不選  
+`6`：選 / 不選
+
+所以共有：
+
+`2^2 = 4`
+
+種：
+
+`[3]`  
+`[3,5]`  
+`[3,6]`  
+`[3,5,6]`
+
+本質上就是把原本 DFS 的一整棵合法 subtree，直接用 `2^k` 算掉，不需要真的 enumerate。
+
+**踩過的坑：**  
+subsequence 不要求連續，可以跳著選，但原本的相對順序不能改；和 subarray 不同，subarray 必須連續。
+
+這題不是在算 distinct subsequences，所以即使 nums 有重複值，不需要去重。不同 index 的選擇仍然算不同 subsequence。
+
+看到 subsequence 可以先想到 DFS / Backtracking 的「選 / 不選」，但這題 `n` 很大，`O(2^n)` 不可行；要進一步思考能不能一次算出整批 subsequences。
+
+只要 `nums[l] + nums[r] <= target`，中間元素不管選不選，都不會讓 minimum 小於 `nums[l]` 或 maximum 大於 `nums[r]`，所以整批都合法。
+
+題目要求 modulo `10^9 + 7`，是因為 subsequence 數量可能非常巨大。不要真的先算完整的 `2^(r-l)`。
+
+可以使用：
+
+`pow(2, r - l, MOD)`
+
+直接計算：
+
+`2^(r-l) % MOD`
+
+最後 `res` 也要 modulo `MOD`，因為即使每一項都小於 MOD，加總後仍可能超過 MOD。
+
+**Pattern：**  
+Subsequence → DFS baseline → `O(2^n)` 太慢  
+→ 條件只看 min / max  
+→ Sort  
+→ 有單調性  
+→ Two Pointers  
+→ 一次 count 整批答案 `2^(r-l)`
+
+**複雜度：**  
+`O(n log n)` time，主要來自 sorting。  
+Two pointers 本身為 `O(n)`。  
+額外空間主要取決於 sorting implementation。
