@@ -8,7 +8,7 @@ class Solution:
             right = nums[m + 1] if m < len(nums) - 1 else float('-inf')
             if left < nums[m] > right:
                 return m
-            if right >= nums[m]:
+            if right > nums[m]:
                 l = m + 1
             else:
                 r = m - 1
