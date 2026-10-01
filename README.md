@@ -1075,4 +1075,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0236-lowest-common-ancestor-of-a-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0236-lowest-common-ancestor-of-a-binary-tree) |
+## Dijkstra's Algorithm
+|  |
+| ------- |
+| [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 <!---LeetCode Topics End-->
