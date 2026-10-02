@@ -1,0 +1,115 @@
+
+**1768. Merge Strings Alternately**
+
+**題目概述：**  
+給兩個字串 `word1`、`word2`，從兩邊依序交替取一個字元加入結果；如果其中一個字串先用完，就把另一個剩餘部分全部接到最後。
+
+**解題邏輯：**  
+使用 **Two Pointers**。
+
+分別用：
+
+```text
+p1 → word1
+p2 → word2
+```
+
+當兩個 pointer 都還沒走到底時：
+
+```python
+res.append(word1[p1])
+p1 += 1
+
+res.append(word2[p2])
+p2 += 1
+```
+
+也就是：
+
+```text
+word1 取一個
+→ word2 取一個
+→ 重複
+```
+
+當其中一個 word 走完後，找出另一個尚未處理的部分：
+
+```python
+remaining = word1[p1:] or word2[p2:]
+```
+
+再加入結果：
+
+```python
+res.extend(remaining)
+```
+
+最後：
+
+```python
+return "".join(res)
+```
+
+Python 中使用 list 收集字元，最後再 `"".join()` 成字串。
+
+---
+
+**踩過的坑：**
+
+高階思考寫的是「建立新的 String」，但實際實作用：
+
+```python
+res = []
+```
+
+最後：
+
+```python
+"".join(res)
+```
+
+這並不代表高階思考和實作不一致。
+
+高階思考描述的是：
+
+```text
+建立結果
+→ 兩個 pointer 交替加入字元
+→ 加入剩餘部分
+```
+
+實作使用 list 只是 Python 中較自然的方式，核心 algorithm 完全相同。
+
+高階思考不需要和 code 每一行完全一致，只要：
+
+```text
+algorithm
+pointer movement
+停止條件
+剩餘資料處理
+```
+
+能對應到實作即可。
+
+---
+
+**複雜度：**
+
+假設：
+
+```text
+n = len(word1)
+m = len(word2)
+```
+
+每個字元最多處理一次：
+
+```text
+Time: O(n + m)
+```
+
+結果需要存放全部字元：
+
+```text
+Space: O(n + m)
+```
