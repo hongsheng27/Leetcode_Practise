@@ -261,6 +261,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
+| [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 | [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 ## Sorting
 |  |
@@ -623,6 +624,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
+| [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 | [2659-make-array-empty](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2659-make-array-empty) |
 | [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
@@ -652,6 +654,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
+| [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 ## Design
 |  |
 | ------- |
@@ -1083,4 +1086,5 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0020-valid-parentheses) |
+| [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 <!---LeetCode Topics End-->
