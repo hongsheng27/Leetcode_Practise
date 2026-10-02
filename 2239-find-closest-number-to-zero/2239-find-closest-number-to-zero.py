@@ -1,12 +1,15 @@
 class Solution:
     def findClosestNumber(self, nums: list[int]) -> int:
-        # brute force: travese and find element that abs(i) minimal, push nums[i]to res, 
-        # find num in map
+        # travese and find element minimal abs(i) , maintain smallest abs(i) to minValue, 
+        # find num in map, find the maximual
         minValue = float('inf')
-        map = defaultdict(list)
+        res = float('-inf')
         for num in nums:
-            minValue = min(minValue, abs(num))
-            map[abs(num)].append(num)
-        return max(map[minValue])
+            if abs(num) < minValue:
+                minValue = abs(num)
+                res = num
+            elif abs(num) == minValue:
+                res = max(res, num)
+        return res
 
 
