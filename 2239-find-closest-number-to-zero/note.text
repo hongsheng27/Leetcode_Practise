@@ -1,0 +1,99 @@
+**2239. Find Closest Number to Zero**
+
+**題目概述：**  
+給一個整數陣列 `nums`，找出距離 0 最近的數字；如果有兩個數距離 0 一樣，回傳數值較大的那一個。
+
+**解題邏輯：**  
+從左到右 traverse 一次，維護目前最佳答案 `closest`。
+
+如果目前：
+
+```python
+abs(num) < abs(closest)
+```
+
+代表 `num` 距離 0 更近，所以：
+
+```python
+closest = num
+```
+
+如果距離一樣：
+
+```python
+abs(num) == abs(closest)
+```
+
+則依題目要求選數值比較大的：
+
+```python
+if num > closest:
+    closest = num
+```
+
+核心判斷：
+
+```python
+if abs(num) < abs(closest):
+    closest = num
+elif abs(num) == abs(closest) and num > closest:
+    closest = num
+```
+
+不需要把所有相同距離的數字存在 map 裡，因為最後只需要保留目前最好的 candidate。
+
+---
+
+**踩過的坑：**  
+
+一開始使用：
+
+```python
+map[abs(num)].append(num)
+```
+
+先記錄每個距離有哪些數，再找最小距離對應的最大值。
+
+這個方法是正確的，但會額外使用：
+
+```text
+O(n) space
+```
+
+其實 traverse 過程中直接維護 `closest` 就夠了，不需要保存所有數字。
+
+Tie case 要記得：
+
+```text
+-2 和 2
+```
+
+兩者：
+
+```text
+abs(-2) == abs(2)
+```
+
+距離相同時要回傳：
+
+```text
+2
+```
+
+也就是數值較大的那個。
+
+---
+
+**複雜度：**
+
+每個 element traverse 一次：
+
+```text
+Time: O(n)
+```
+
+只維護一個 `closest`：
+
+```text
+Space: O(1)
+```
