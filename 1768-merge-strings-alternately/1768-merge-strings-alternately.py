@@ -10,7 +10,5 @@ class Solution:
             res.append(word2[p2])
             p2 += 1
         remaining = word1[p1:] or word2[p2:]
-        for r in remaining:
-            res.append(r)
-        print(res)
+        res.extend(remaining)
         return "".join(res)
