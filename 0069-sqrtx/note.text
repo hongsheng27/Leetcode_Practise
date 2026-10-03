@@ -1,0 +1,145 @@
+**69. Sqrt(x)**
+
+**題目概述：**  
+給一個非負整數 `x`，回傳 `sqrt(x)` 向下取整後的整數結果，不能使用內建次方函數。
+
+**解題邏輯：**  
+使用 **Binary Search**，在：
+
+```text
+1 ~ x
+```
+
+之間尋找最大的 `m`，使：
+
+```text
+m * m <= x
+```
+
+也就是找 **rightmost valid value**。
+
+如果：
+
+```python
+m * m <= x
+```
+
+代表 `m` 是一個可能答案，但右邊可能還有更大的合法值，因此：
+
+```python
+res = m
+l = m + 1
+```
+
+如果：
+
+```python
+m * m > x
+```
+
+代表 `m` 太大，要往左找：
+
+```python
+r = m - 1
+```
+
+核心 Binary Search pattern：
+
+```python
+if valid(m):
+    res = m
+    l = m + 1
+else:
+    r = m - 1
+```
+
+這個 pattern 用於：
+
+```text
+找最大的 valid value
+```
+
+例如：
+
+```text
+x = 8
+
+m = 4
+4² > 8
+→ 往左
+
+m = 2
+2² <= 8
+→ res = 2，繼續往右
+
+m = 3
+3² > 8
+→ 往左
+
+答案 = 2
+```
+
+---
+
+**踩過的坑：**
+
+看到 constraint：
+
+```text
+0 <= x <= 2^31 - 1
+```
+
+代表如果從 `1` 一路 linear search 到 `x`：
+
+```text
+O(x)
+```
+
+最差可能超過 20 億次，不可行。
+
+Binary Search 每次把搜尋範圍砍半：
+
+```text
+O(log x)
+```
+
+當：
+
+```text
+x <= 2^31
+```
+
+最多大約只需要：
+
+```text
+log₂(2^31) = 31
+```
+
+次搜尋。
+
+---
+
+**複雜度：**
+
+每次 Binary Search 都將搜尋範圍縮小一半：
+
+```text
+Time: O(log x)
+```
+
+只使用固定數量的變數：
+
+```text
+Space: O(1)
+```
+
+**Pattern：**
+
+```text
+Binary Search on Answer
+
+找最大的 valid value：
+valid(mid)
+→ 記錄答案
+→ 繼續往右找
+```
