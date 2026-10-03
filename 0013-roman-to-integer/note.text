@@ -1,0 +1,125 @@
+**13. Roman to Integer**
+
+**題目概述：**  
+給一個 Roman numeral 字串 `s`，依照羅馬數字規則轉成整數；一般情況是由大到小直接相加，但若較小數字出現在較大數字前面，則要做減法。
+
+**解題邏輯：**  
+使用一次 traversal，維護目前 index `r` 和累積答案 `res`。
+
+一般情況：
+
+```text
+current >= next
+```
+
+代表順序正常，直接把目前數值加進答案：
+
+```python
+res += romanToNumber[s[r]]
+```
+
+例如：
+
+```text
+VI = 5 + 1
+```
+
+如果：
+
+```text
+current < next
+```
+
+代表這兩個 Roman numeral 要一起處理：
+
+```python
+value = romanToNumber[s[r + 1]] - romanToNumber[s[r]]
+res += value
+```
+
+例如：
+
+```text
+IV = 5 - 1 = 4
+IX = 10 - 1 = 9
+CM = 1000 - 100 = 900
+```
+
+因為這次同時處理了兩個字元，所以要額外：
+
+```python
+r += 1
+```
+
+跳過下一個 Roman numeral。
+
+最後每一輪正常再：
+
+```python
+r += 1
+```
+
+移到下一個尚未處理的位置。
+
+最後一個字元沒有 `next` 可以比較，因此直接相加：
+
+```python
+if r == len(s) - 1:
+```
+
+---
+
+**踩過的坑：**
+
+一開始使用 stack 的方向本身可以成立，但 implementation 花太久。
+
+主要卡在 pop 之後需要使用「剛剛被 pop 出來的值」，卻一度寫成：
+
+```python
+stack[-1][1]
+```
+
+但 `pop()` 之後 `stack[-1]` 已經代表另一個 element。
+
+這次的問題比較偏向 **state management**：
+
+```text
+mutation 前的 stack
+被 pop 出來的 value
+mutation 後的 stack
+```
+
+沒有清楚區分，導致思路開始模糊後繼續 coding，再透過 print 反覆重新 dry run。
+
+改善方式：
+
+```text
+先確認每個 variable 代表什麼
+再寫下一步 mutation
+```
+
+這版只需要維護：
+
+```text
+r   = current index
+res = accumulated result
+value = 當下這組 Roman numeral 的結果
+```
+
+state 更少，因此 implementation 比 stack 版本穩定。
+
+---
+
+**複雜度：**
+
+每個 Roman numeral 最多處理一次：
+
+```text
+Time: O(n)
+```
+
+只維護少數變數：
+
+```text
+Space: O(1)
+```
