@@ -1,0 +1,376 @@
+**28. Find the Index of the First Occurrence in a String**
+
+**題目概述：**  
+給 `haystack` 和 `needle`，找出 `needle` 第一次出現在 `haystack` 的起始 index；不存在則回傳 `-1`。
+
+**解題邏輯：**  
+使用 **KMP（Knuth-Morris-Pratt）**，分成兩部分：
+
+### 1. 建立 needle 的 LPS
+
+```text
+LPS = Longest Prefix which is also Suffix
+```
+
+`lps[i]` 代表：
+
+```text
+needle[0:i+1]
+```
+
+這段字串中，最長的「proper prefix = suffix」長度。
+
+例如：
+
+```text
+needle: a b a b a c a
+index:  0 1 2 3 4 5 6
+lps:    0 0 1 2 3 0 1
+```
+
+例如：
+
+```text
+"ababa"
+```
+
+有：
+
+```text
+prefix = "aba"
+suffix = "aba"
+```
+
+所以：
+
+```text
+lps[4] = 3
+```
+
+建立 LPS 時：
+
+```text
+i      = 現在正在計算哪一格 lps
+length = 目前已知 prefix = suffix 的長度
+```
+
+如果：
+
+```python
+needle[i] == needle[length]
+```
+
+代表目前 prefix/suffix 可以再延長一格：
+
+```python
+length += 1
+lps[i] = length
+i += 1
+```
+
+如果 mismatch，但：
+
+```python
+length > 0
+```
+
+代表目前最長候選失敗，但可能還有更短的 prefix/suffix 可以使用：
+
+```python
+length = lps[length - 1]
+```
+
+這時：
+
+```text
+i 不動
+```
+
+用同一個 `needle[i]` 再嘗試較短的候選。
+
+如果：
+
+```text
+length == 0
+```
+
+仍然 mismatch，代表沒有任何 prefix 可以使用：
+
+```python
+lps[i] = 0
+i += 1
+```
+
+---
+
+### 2. 使用 LPS 搜尋 haystack
+
+使用兩個 pointer：
+
+```text
+i → haystack
+j → needle
+```
+
+如果 match：
+
+```python
+haystack[i] == needle[j]
+```
+
+兩邊一起往右：
+
+```python
+i += 1
+j += 1
+```
+
+如果：
+
+```python
+j == len(needle)
+```
+
+代表整個 needle 都找到：
+
+```python
+return i - j
+```
+
+如果 mismatch，而且：
+
+```python
+j > 0
+```
+
+不讓 haystack pointer `i` 回頭，而是利用 LPS：
+
+```python
+j = lps[j - 1]
+```
+
+`lps[j - 1]` 告訴我們：
+
+```text
+前面已經 match 的部分中，
+有多少 prefix/suffix 可以直接重用，不需要重新比較。
+```
+
+如果：
+
+```text
+j == 0
+```
+
+還 mismatch，代表目前 `haystack[i]` 連 needle 第一個字元都配不上：
+
+```python
+i += 1
+```
+
+---
+
+**踩過的坑：**
+
+一開始不理解：
+
+```text
+lps[i]
+```
+
+是怎麼算出來的。
+
+`lps[i]` 是看：
+
+```text
+needle[0:i+1]
+```
+
+找最長的：
+
+```text
+proper prefix == suffix
+```
+
+例如：
+
+```text
+"abab"
+
+prefix = "ab"
+suffix = "ab"
+
+lps[3] = 2
+```
+
+---
+
+不理解為什麼建立 LPS 時，只比較：
+
+```python
+needle[i] == needle[length]
+```
+
+就可以判斷整段 prefix/suffix。
+
+原因是前面的 `length` 個字元已經知道相等：
+
+```text
+prefix == suffix
+```
+
+現在只是想把兩段各延長一個字元，所以只需要比較新加入的：
+
+```text
+needle[length]
+needle[i]
+```
+
+是否相同。
+
+---
+
+不理解：
+
+```python
+length = lps[length - 1]
+```
+
+為什麼成立。
+
+這不是單純倒退一格，而是：
+
+```text
+目前最長的 prefix/suffix 延長失敗
+→ 改試它裡面下一個可能成立的較短 prefix/suffix
+```
+
+例如目前候選長度是 `2`：
+
+```text
+"aa"
+```
+
+延長失敗後：
+
+```python
+length = lps[1]
+```
+
+如果：
+
+```text
+lps[1] = 1
+```
+
+代表 `"aa"` 裡還有更短的 `"a"` 可以繼續嘗試。
+
+這時 `i` 不動，繼續使用同一個字元比較。
+
+---
+
+不理解 LPS 建立在 `needle` 還是 `haystack`。
+
+LPS 只建立在：
+
+```text
+needle
+```
+
+因為它描述的是 needle 自己的 prefix / suffix 結構。
+
+---
+
+KMP 搜尋時 mismatch 可能不只 fallback 一次。
+
+可能出現：
+
+```text
+mismatch
+→ j fallback
+→ mismatch
+→ j 再 fallback
+→ 最後才 match
+```
+
+這時：
+
+```text
+i 不動
+```
+
+因為同一個 `haystack[i]` 還可能和 needle 更前面的某個位置配對成功。
+
+---
+
+建立 LPS 時曾誤寫：
+
+```python
+lps[length]
+```
+
+但現在正在計算的是：
+
+```text
+lps[i]
+```
+
+所以 match 後應該：
+
+```python
+length += 1
+lps[i] = length
+```
+
+---
+
+**複雜度：**
+
+假設：
+
+```text
+H = len(haystack)
+N = len(needle)
+```
+
+建立 LPS：
+
+```text
+O(N)
+```
+
+KMP 搜尋：
+
+```text
+O(H)
+```
+
+所以：
+
+```text
+Time: O(H + N)
+Space: O(N)
+```
+
+**Pattern：**
+
+```text
+String Matching + Prefix/Suffix Reuse
+```
+
+核心：
+
+```text
+Mismatch 時：
+
+haystack pointer 不回頭
+needle pointer 用 LPS fallback
+```
+
+LPS 可以理解成：
+
+```text
+如果現在 mismatch，
+前面已經 match 的內容中，
+有多少可以保留下來不用重新比較。
+```
