@@ -33,7 +33,6 @@ class Solution:
             rec1, rec2 = rec2, rec1
         if rec2[1] < rec1[3]:
             isYOverlap = True
-        print(isXOverlap, isYOverlap)
       
         return isXOverlap and isYOverlap
 
