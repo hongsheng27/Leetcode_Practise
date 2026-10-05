@@ -1,0 +1,111 @@
+**1200. Minimum Absolute Difference**
+
+**題目概述：**  
+給一個整數陣列 `arr`，找出所有 absolute difference 最小的數字 pair，並依照遞增順序回傳。
+
+**解題邏輯：**  
+先排序：
+
+```python
+arr.sort()
+```
+
+Brute force 需要比較所有 pair：
+
+```text
+O(n²)
+```
+
+但 `n <= 10^5`，無法接受，因此要利用排序降低搜尋範圍。
+
+排序後，minimum difference 一定會出現在相鄰元素：
+
+```text
+arr[i], arr[i + 1]
+```
+
+因為若：
+
+```text
+a <= b <= c
+```
+
+則：
+
+```text
+c - a >= b - a
+c - a >= c - b
+```
+
+所以不相鄰的 pair 不可能比中間的 adjacent pair 差距更小。
+
+因此只需要 traverse 所有 adjacent pairs：
+
+```python
+difference = arr[i + 1] - arr[i]
+```
+
+如果找到更小的 difference：
+
+```python
+minDifference = difference
+res = [[arr[i], arr[i + 1]]]
+```
+
+代表之前的答案全部失效，重新建立 `res`。
+
+如果 difference 和目前 minimum 相同：
+
+```python
+res.append([arr[i], arr[i + 1]])
+```
+
+保留所有同樣具有 minimum difference 的 pair。
+
+**踩過的坑：**  
+一開始想到 brute force，用 double loop 比較所有 pair，但 `n <= 10^5`，`O(n²)` 無法接受，所以需要尋找 `O(n log n)` 的方法。
+
+不太理解解題時說的 **property** 是什麼。
+
+Property 可以理解成：
+
+```text
+「一個正確答案一定需要滿足什麼條件？」
+```
+
+這題原本的答案 property 是：
+
+```text
+pair 的 difference 必須是所有 pair 中最小的。
+```
+
+排序後可以得到更強的 property：
+
+```text
+minimum difference 一定存在於 adjacent elements。
+```
+
+找到這個 property 後，才可以把原本「比較所有 pair」縮小成「只比較相鄰 pair」。
+
+**複雜度：**
+
+排序：
+
+```text
+O(n log n)
+```
+
+Traverse：
+
+```text
+O(n)
+```
+
+所以：
+
+```text
+O(n log n) time
+O(n) space including output
+```
+
+如果不計 output，額外空間取決於 sorting implementation。
