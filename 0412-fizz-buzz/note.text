@@ -1,0 +1,83 @@
+**412. Fizz Buzz**
+
+**題目概述：**  
+給整數 `n`，從 `1` 到 `n` 依序產生結果：3 的倍數輸出 `"Fizz"`、5 的倍數輸出 `"Buzz"`、同時是 3 和 5 的倍數輸出 `"FizzBuzz"`，其他輸出原本數字字串。
+
+**解題邏輯：**  
+從 `1` traverse 到 `n`，依照條件加入結果。
+
+因為條件會重疊，所以要先判斷最 specific 的情況：
+
+```python
+if i % 3 == 0 and i % 5 == 0:
+    res.append("FizzBuzz")
+elif i % 3 == 0:
+    res.append("Fizz")
+elif i % 5 == 0:
+    res.append("Buzz")
+else:
+    res.append(str(i))
+```
+
+判斷順序：
+
+```text
+同時符合 3 和 5
+→ 只符合 3
+→ 只符合 5
+→ 其他
+```
+
+這題主要考：
+
+```text
+Loop
+Conditional branching
+Modulo %
+Condition priority
+```
+
+---
+
+**踩過的坑：**
+
+這題沒有遇到明顯 implementation bug。
+
+需要注意條件順序。
+
+如果先判斷：
+
+```python
+if i % 3 == 0:
+```
+
+那像 `15` 這種同時被 3 和 5 整除的數，會先進入 `"Fizz"`，無法得到 `"FizzBuzz"`。
+
+所以有 overlapping conditions 時：
+
+```text
+先判斷最具體 / 最嚴格的條件
+再判斷較一般的條件
+```
+
+---
+
+**複雜度：**
+
+從 `1` 到 `n` 每個數處理一次：
+
+```text
+Time: O(n)
+```
+
+結果陣列需要存 `n` 個元素：
+
+```text
+Space: O(n)
+```
+
+如果不計 output：
+
+```text
+Auxiliary Space: O(1)
+```
