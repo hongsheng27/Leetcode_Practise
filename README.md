@@ -249,6 +249,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0394-decode-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0394-decode-string) |
 | [0402-remove-k-digits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0402-remove-k-digits) |
+| [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
 | [0443-string-compression](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0443-string-compression) |
@@ -442,6 +443,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
+| [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0836-rectangle-overlap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0836-rectangle-overlap) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
@@ -999,6 +1001,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0054-spiral-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0054-spiral-matrix) |
 | [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0348-design-tic-tac-toe](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0348-design-tic-tac-toe) |
+| [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0498-diagonal-traverse](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0498-diagonal-traverse) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
