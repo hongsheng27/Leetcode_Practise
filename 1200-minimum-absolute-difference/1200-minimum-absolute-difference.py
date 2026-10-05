@@ -6,12 +6,13 @@ class Solution:
         # solution 2: sort first, answer only exist between n & n + 1, then we can use previous way
         # 10: 17
         arr.sort()
-        minDifference = arr[1] - arr[0]
-        res = [[arr[0], arr[1]]]
-        for i in range(1, len(arr) - 1):
+        minDifference = float('inf')
+        res = []
+        for i in range(len(arr) - 1):
             if arr[i + 1] - arr[i] < minDifference:
                 minDifference = arr[i + 1] - arr[i]
                 res = [[arr[i], arr[i + 1]]]
             elif arr[i + 1] - arr[i] == minDifference:
                 res.append([arr[i], arr[i + 1]])
         return res
+        # 21:22
