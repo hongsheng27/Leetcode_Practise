@@ -4,7 +4,6 @@ class Solution:
         # i is 3n and 5n => FizzBuzz
         # i is 3n => Fizz
         # i is 5n => Buzz
-        # 4:22 done
         res = []
         for i in range(1, n + 1):
             if i % 3 == 0 and i % 5 == 0:
@@ -16,4 +15,3 @@ class Solution:
             else:
                 res.append(str(i))
         return res
-        
