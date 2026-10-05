@@ -19,7 +19,6 @@ class Solution:
             isYOverlap = True
       
         return isXOverlap and isYOverlap
-        # (54:09 done)
 
         
         
