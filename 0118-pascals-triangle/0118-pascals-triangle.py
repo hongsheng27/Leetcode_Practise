@@ -3,8 +3,7 @@ class Solution:
         # need return list of row
         # each row can generate by previous one, traverse from 0 - numRows
         # i.g. i = 3, [1, 2, 1] => [1, 3, 3, 1], to get i = 3 row, I need to traverse i = 2 row
-        # complecity will be 1 + 2 + 3 + ..n = n (n + 1) / 2
-        # 7: 00 
+        # complecity will be 1 + 2 + 3 + ..n = n (n + 1) / 2 O(n ^ 2)
         res = [[1]]
         for _ in range(numRows - 1):
             level = [1]
