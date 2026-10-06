@@ -1,0 +1,217 @@
+**1971. Find if Path Exists in Graph**
+
+**題目概述：**  
+給一個 undirected graph、`source` 和 `destination`，判斷是否存在一條 path 可以從 `source` 走到 `destination`。
+
+**解題邏輯：**  
+先建立 undirected adjacency list：
+
+```python
+for start, end in edges:
+    adj[start].append(end)
+    adj[end].append(start)
+```
+
+因為題目只需要判斷：
+
+```text
+source 和 destination
+是否在同一個 connected component
+```
+
+所以可以從 `source` 做 BFS。
+
+初始化：
+
+```python
+q = deque([source])
+visited = {source}
+```
+
+每次從 queue 取出一個 node：
+
+```python
+node = q.popleft()
+```
+
+如果：
+
+```python
+node == destination
+```
+
+代表找到 path，直接：
+
+```python
+return True
+```
+
+否則把所有還沒拜訪過的 neighbors 加進 queue：
+
+```python
+for nei in adj[node]:
+    if nei not in visited:
+        visited.add(nei)
+        q.append(nei)
+```
+
+最後 queue 清空仍沒找到 destination：
+
+```python
+return False
+```
+
+`visited` 在 enqueue 時就加入，可以避免同一個 node 被不同 neighbor 重複塞進 queue。
+
+---
+
+**踩過的坑：**  
+一開始忘記這題是 **undirected graph**，只建立：
+
+```python
+adj[start].append(end)
+```
+
+是不夠的。
+
+必須雙向加入：
+
+```python
+adj[start].append(end)
+adj[end].append(start)
+```
+
+---
+
+一開始使用 recursive DFS，後來注意到 constraint：
+
+```text
+n <= 2 * 10^5
+```
+
+Python 預設 recursion depth 大約只有 1000 左右。
+
+真正影響 `RecursionError` 的不是 `n > 1000`，而是：
+
+```text
+DFS recursion depth 是否可能超過約 1000
+```
+
+例如 graph 是長 chain：
+
+```text
+0 - 1 - 2 - 3 - ... - 199999
+```
+
+recursive DFS 最壞可能遞迴到 `O(V)` 層，因此有風險。
+
+這題 DFS 和 BFS 都是：
+
+```text
+O(V + E)
+```
+
+但 Python 中 BFS 不使用 recursion stack，因此這題使用 BFS 更安全。
+
+---
+
+不太記得為什麼 graph traversal 是：
+
+```text
+O(V + E)
+```
+
+其中：
+
+```text
+V = number of vertices = n
+E = number of edges = len(edges)
+```
+
+每個 node 最多被拜訪一次：
+
+```text
+O(V)
+```
+
+所有 adjacency lists 加起來，undirected graph 共有 `2E` 個 neighbor entries：
+
+```text
+O(2E) = O(E)
+```
+
+所以：
+
+```text
+O(V) + O(E)
+= O(V + E)
+```
+
+不是 `O(V * E)`，因為不是每個 node 都重新掃全部 edges。
+
+---
+
+Constraint：
+
+```text
+V <= 2 * 10^5
+E <= 2 * 10^5
+```
+
+代表：
+
+```text
+O(V + E)
+≈ 4 * 10^5
+```
+
+是合理的。
+
+但：
+
+```text
+O(V²)
+O(V * E)
+```
+
+最壞可能到約：
+
+```text
+4 * 10^10
+```
+
+無法接受。
+
+**複雜度：**
+
+建立 adjacency list：
+
+```text
+O(E)
+```
+
+BFS：
+
+```text
+O(V + E)
+```
+
+總計：
+
+```text
+Time: O(V + E)
+```
+
+Space：
+
+```text
+adj     → O(V + E)
+visited → O(V)
+queue   → O(V)
+```
+
+所以：
+
+```text
+Space: O(V + E)
+```
