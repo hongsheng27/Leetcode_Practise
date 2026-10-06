@@ -1,16 +1,19 @@
 class Logger:
+    # structure
+    # {
+    #     "foo": 1,
+    #     "bar": 2
+    # }
     def __init__(self):
-        self.count = {}
-    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message in self.count:
-            status = timestamp - self.count[message] >= 10
-            if status: self.count[message] = timestamp
-            return status
-        else:
-            self.count[message] = timestamp
-        return True
+        self.messages = {}
 
-        
+    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
+        if (message not in self.messages or 
+            (message in self.messages and timestamp - 10 >= self.messages[message])):
+            self.messages[message] = timestamp
+            return True
+        else:
+            return False
 
 
 # Your Logger object will be instantiated and called as such:
