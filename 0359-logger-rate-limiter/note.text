@@ -1,0 +1,102 @@
+**359. Logger Rate Limiter**
+
+**題目概述：**  
+每個 `message` 在成功輸出後，接下來 10 秒內不能再次輸出；判斷每次輸入的 `(timestamp, message)` 是否可以 print。
+
+**解題邏輯：**  
+使用 hash map 記錄每個 message 上一次成功輸出的時間：
+
+```text
+messages[message] = last printed timestamp
+```
+
+每次收到新的 message 時，只需要判斷：
+
+```text
+1. message 從來沒有成功輸出過
+2. 距離上次成功輸出已經 >= 10 秒
+```
+
+條件可以寫成：
+
+```python
+if message not in self.messages or \
+   timestamp >= self.messages[message] + 10:
+```
+
+如果可以輸出，就更新：
+
+```python
+self.messages[message] = timestamp
+return True
+```
+
+否則：
+
+```python
+return False
+```
+
+重要 property：
+
+```text
+只有成功 print 時，才更新 timestamp。
+```
+
+例如：
+
+```text
+foo @ 1  → True，記錄 1
+foo @ 5  → False，不更新
+foo @ 11 → True
+```
+
+如果 `foo @ 5` 被拒絕時也更新 timestamp，`foo @ 11` 就會被錯誤擋掉。
+
+**踩過的坑：**  
+原本條件寫成：
+
+```python
+message not in self.messages or
+(message in self.messages and ...)
+```
+
+第二個：
+
+```python
+message in self.messages
+```
+
+是 redundant 的。
+
+因為如果 `or` 左邊：
+
+```python
+message not in self.messages
+```
+
+是 False，代表 message 一定已經存在，所以右邊可以直接：
+
+```python
+timestamp >= self.messages[message] + 10
+```
+
+**複雜度：**
+
+Hash map 查詢與更新平均都是：
+
+```text
+O(1)
+```
+
+所以每次 call：
+
+```text
+Time: O(1) average
+```
+
+若共有 `M` 種不同 message：
+
+```text
+Space: O(M)
+```
