@@ -1,0 +1,156 @@
+**118. Pascal's Triangle**
+
+**題目概述：**  
+給 `numRows`，產生 Pascal's Triangle 前 `numRows` 列。每一列開頭和結尾都是 `1`，中間元素等於上一列相鄰兩個數字的總和。
+
+**解題邏輯：**  
+每一列都可以由上一列產生。
+
+例如：
+
+```text
+[1, 2, 1]
+↓
+[1, 3, 3, 1]
+```
+
+新的一列先放：
+
+```python
+level = [1]
+```
+
+中間元素由上一列相鄰兩個元素相加：
+
+```python
+for j in range(len(prev) - 1):
+    level.append(prev[j] + prev[j + 1])
+```
+
+最後再補上一個 `1`：
+
+```python
+level.append(1)
+```
+
+因此每次只需要利用：
+
+```text
+previous row
+→ generate current row
+```
+
+不需要重新計算前面的 row。
+
+`range(len(prev) - 1)` 直接代表所有 adjacent pairs 的起始位置，因此不需要額外判斷：
+
+```python
+if j + 1 < len(prev)
+```
+
+**踩過的坑：**  
+不太理解：
+
+```text
+1 + 2 + 3 + ... + n
+= n(n + 1) / 2
+= O(n²)
+```
+
+前 `n` 列總共有：
+
+```text
+1 + 2 + ... + n
+```
+
+個元素。
+
+公式可以用首尾配對理解：
+
+```text
+1 + 2 + ... + n
+n + ... + 2 + 1
+```
+
+每組都是：
+
+```text
+n + 1
+```
+
+共有 `n` 組，但原本的總和被算了兩次，因此：
+
+```text
+1 + 2 + ... + n
+= n(n + 1) / 2
+```
+
+展開：
+
+```text
+n(n + 1) / 2
+= (n² + n) / 2
+= 0.5n² + 0.5n
+```
+
+Big O 忽略常數和低次項，因此：
+
+```text
+O(n²)
+```
+
+也曾疑惑：output space 是 `O(n²)`，不代表 time complexity 就可以是 `O(n²)`。
+
+這兩件事要分開判斷：
+
+```text
+Constraint
+→ 判斷 complexity 能不能實際跑得動
+
+Output size
+→ 判斷 complexity 是否還有可能進一步優化
+```
+
+這題 `numRows <= 30`，所以：
+
+```text
+O(n²)
+```
+
+實際上非常可以接受。
+
+另一方面，題目要求完整回傳 Pascal's Triangle，而 output 本身就有：
+
+```text
+1 + 2 + ... + n
+= Θ(n²)
+```
+
+個元素。
+
+因此要完整產生答案，至少就需要處理 `Θ(n²)` 個元素，所以 `O(n²)` 也已經是 asymptotically optimal。
+
+**複雜度：**
+
+總元素數：
+
+```text
+1 + 2 + ... + n
+= n(n + 1) / 2
+= O(n²)
+```
+
+因此：
+
+```text
+Time: O(n²)
+Space: O(n²)
+```
+
+Space 主要來自題目要求回傳整個 Pascal's Triangle。
+
+如果不計 output，正在建立的 `level` 最多有 `n` 個元素：
+
+```text
+Auxiliary Space: O(n)
+```
