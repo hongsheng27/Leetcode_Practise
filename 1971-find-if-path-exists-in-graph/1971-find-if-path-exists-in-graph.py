@@ -1,6 +1,6 @@
 class Solution:
     def validPath(self, n: int, edges: list[list[int]], source: int, destination: int) -> bool:
-        # from source to destination, the tuition way is dfs, I forget the compevity
+        # from source to destination, the tuition way is dfs, I forget the compecity
         # second solution will be bfs
         # 7 : 24
         # 20: 47 realize it is non-directed graph
@@ -12,7 +12,7 @@ class Solution:
         visited = set()
         def dfs(n):
             if n in visited: return None
-            if n == destination: return destination
+            if n == destination: return True
 
             visited.add(n)
             result = None
