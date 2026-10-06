@@ -7,10 +7,9 @@ class Solution:
         res = [[1]]
         for _ in range(numRows - 1):
             level = [1]
-            if len(res[-1]) > 1:
-                for j in range(len(res[-1])):
-                    if j + 1 < len(res[-1]):
-                        level += [res[-1][j] + res[-1][j + 1]]
+            for j in range(len(res[-1])):
+                if j + 1 < len(res[-1]):
+                    level += [res[-1][j] + res[-1][j + 1]]
             level += [1]
             res.append(level)
         return res
