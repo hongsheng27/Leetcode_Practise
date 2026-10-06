@@ -1,0 +1,23 @@
+class Solution:
+    def validPath(self, n: int, edges: list[list[int]], source: int, destination: int) -> bool:
+        # from source to destination, the tuition way is dfs, I forget the compevity
+        # second solution will be bfs
+        # 7 : 24
+        # 20: 47 realize it is non-directed graph
+        # add visit and 來回
+        adj = defaultdict(list)
+        for start, end in edges:
+            adj[start].append(end)
+            adj[end].append(start)
+        visited = set()
+        def dfs(n):
+            if n in visited: return None
+            if n == destination: return True
+            print(n)
+            visited.add(n)
+            result = None
+            for elem in adj[n]:
+                result = result or dfs(elem)
+            return result
+        return False if not dfs(source) else True
+        
