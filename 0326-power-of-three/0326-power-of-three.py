@@ -10,6 +10,9 @@ class Solution:
                 return False
             n = n // 3 
         return n == 1
+        # things I didn't think of
+        # power of three shouldn't include negitive, so negitive can skip first
+        # 1 can be accepted
       
     
      
