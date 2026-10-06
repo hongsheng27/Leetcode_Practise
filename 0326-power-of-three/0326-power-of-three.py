@@ -4,7 +4,7 @@ class Solution:
         # -1 is exception
         # -2^31 <= n <= 2^31 - 1, around 10^ 9, but O(logn) should be fine
         # 07:00
-        if n == -1: return False
+        # if n == -1: return False
         while abs(n // 3) >= 1:
             if n % 3:
                 return False
