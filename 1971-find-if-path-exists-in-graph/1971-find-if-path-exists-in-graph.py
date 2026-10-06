@@ -11,13 +11,13 @@ class Solution:
             adj[end].append(start)
         visited = set()
         def dfs(n):
-            if n in visited: return None
+            if n in visited: return False
             if n == destination: return True
 
             visited.add(n)
-            result = None
-            for elem in adj[n]:
-                result = result or dfs(elem)
-            return result
-        return True if dfs(source) != None else False
+            for nei in adj[n]:
+                if dfs(nei):
+                    return True
+            return False
+        return dfs(source)
         # 23:36 done
