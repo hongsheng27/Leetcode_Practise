@@ -1,0 +1,140 @@
+**933. Number of Recent Calls**
+
+**題目概述：**  
+設計 `RecentCounter`，每次收到 `ping(t)` 時，回傳最近 3000 ms 內，也就是 `[t - 3000, t]` 範圍中的 request 數量。`t` 會嚴格遞增。
+
+**解題邏輯：**  
+使用 queue 維護目前仍然有效的 request timestamp。
+
+Queue 的 state 定義：
+
+```text
+q = 所有仍落在 [t - 3000, t] 範圍內的 request timestamps
+```
+
+每次收到新的 `ping(t)`：
+
+先把新的 timestamp 加進 queue：
+
+```python
+self.q.append(t)
+```
+
+因為 `t` 嚴格遞增，所以 queue 中的 timestamp 天然由小到大排列。
+
+接著從 queue 左側移除所有已經過期的 request：
+
+```python
+while self.q and self.q[0] < t - 3000:
+    self.q.popleft()
+```
+
+最後 queue 中剩下的全部都是有效 request：
+
+```python
+return len(self.q)
+```
+
+注意條件是：
+
+```python
+self.q[0] < t - 3000
+```
+
+不能寫成 `<=`。
+
+因為有效範圍是：
+
+```text
+[t - 3000, t]
+```
+
+左邊界也包含在內。
+
+例如：
+
+```text
+t = 3001
+
+有效範圍 = [1, 3001]
+```
+
+所以 timestamp `1` 仍然有效。
+
+**踩過的坑：**  
+一開始想維護固定 3001 格的 window，用 `0 / 1` 表示每個 millisecond 是否有 request。
+
+這樣會需要額外維護上一個 timestamp，並根據：
+
+```text
+gap = t - previousT
+```
+
+逐格移動 window。
+
+後來發現其實不需要存所有沒有 request 的 timestamp。
+
+真正需要保存的 state 只有：
+
+```text
+目前仍有效的 request timestamps
+```
+
+因此 queue 只需要存發生過 request 的時間。
+
+也曾經嘗試：
+
+```python
+gap = (t - previousT) % 3001
+```
+
+但這會把「已經完整跨過整個 window」的資訊消掉。
+
+例如：
+
+```text
+ping(1)
+ping(3002)
+```
+
+兩次相差 3001，但：
+
+```text
+3001 % 3001 = 0
+```
+
+會錯誤地認為 window 不需要移動。
+
+另外在固定 window 版本中，要注意 `[t - 3000, t]` 包含兩端，因此共有 3001 個 timestamp 位置。
+
+**複雜度：**  
+每個 timestamp：
+
+```text
+append 一次
+popleft 最多一次
+```
+
+所以雖然單次 `ping()` 的 `while` 可能移除很多元素，但所有操作攤平後：
+
+```text
+Amortized Time: O(1) per ping
+```
+
+Space：
+
+```text
+O(k)
+```
+
+其中 `k` 是目前最近 3000 ms 內的 request 數量。
+
+**Pattern：**
+
+```text
+Sliding Window + Queue
+
+新增新元素
+→ 從左邊移除所有過期元素
+→ queue 中保留的就是目前 window 內的有效元素
+```
