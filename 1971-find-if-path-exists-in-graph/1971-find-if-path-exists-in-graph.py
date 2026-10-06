@@ -4,7 +4,7 @@ class Solution:
         # second solution will be bfs
         # 7 : 24
         # 20: 47 realize it is non-directed graph
-        # add visit and 來回
+        # add visited and adj[end].append(start)
         adj = defaultdict(list)
         for start, end in edges:
             adj[start].append(end)
@@ -12,12 +12,12 @@ class Solution:
         visited = set()
         def dfs(n):
             if n in visited: return None
-            if n == destination: return True
-            print(n)
+            if n == destination: return destination
+
             visited.add(n)
             result = None
             for elem in adj[n]:
                 result = result or dfs(elem)
             return result
-        return False if not dfs(source) else True
-        
+        return True if dfs(source) != None else False
+        # 23:36 done
