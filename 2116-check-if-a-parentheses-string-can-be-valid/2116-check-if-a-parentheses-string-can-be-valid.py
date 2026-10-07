@@ -15,7 +15,6 @@ class Solution:
                         return False
             else:
                 free.append(i)
-        print(openStack, free)
         while openStack and free:
             if openStack[-1] < free[-1]:
                 openStack.pop()
