@@ -1,5 +1,6 @@
 class Solution:
     def canBeValid(self, s: str, locked: str) -> bool:
+        if len(s) % 2: return False
         openStack = []
         free = []
         for i in range(len(s)):
@@ -21,7 +22,6 @@ class Solution:
                 free.pop()
             else:
                 return False
-        if len(openStack): return False
-        return len(free) % 2 == 0
+        return not len(openStack)
         
        
