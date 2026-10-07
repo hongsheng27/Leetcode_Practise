@@ -1,9 +1,13 @@
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = Counter(nums)
-        heap = [(-freq, val)for val, freq in count.items()]
-        heapq.heapify(heap)
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        # solution 1: heap, save (count, number) tc n log k
+        # solution 2: bucket list: 1 - len(n) bucket,o(n)
+        minHeap = []
+        for number, cnt in Counter(nums).items():
+            heapq.heappush(minHeap, (cnt, number))
+            if len(minHeap) > k:
+                heapq.heappop(minHeap)
         res = []
-        for i in range(k):
-            res.append(heapq.heappop(heap)[1])
+        while minHeap:
+            res.append(heapq.heappop(minHeap)[1])
         return res
