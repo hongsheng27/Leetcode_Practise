@@ -1,0 +1,491 @@
+# ============================================================
+
+# Top K IDs from Record Stream
+
+#
+
+# 系統會一筆一筆收到 record：
+
+#
+
+# (id, count)
+
+#
+
+# 每筆 record 表示：
+
+# 該 id 的累積 count 增加 count。
+
+#
+
+# 同一個 id 可能會出現很多次。
+
+#
+
+# 例如：
+
+#
+
+# records:
+
+# (1, 3)
+
+# (2, 5)
+
+# (1, 4)
+
+# (3, 10)
+
+# (2, 1)
+
+#
+
+# 最後的總 count：
+
+#
+
+# id 1 -> 7
+
+# id 2 -> 6
+
+# id 3 -> 10
+
+#
+
+# 如果 k = 2：
+
+#
+
+# return [3, 1]
+
+#
+
+#
+
+# ------------------------------------------------------------
+
+# 排序規則
+
+#
+
+# 1. total count 大的 id 排前面
+
+# 2. 如果 total count 相同，id 小的排前面
+
+#
+
+#
+
+# ------------------------------------------------------------
+
+# 注意
+
+#
+
+# records 是 stream / iterable。
+
+#
+
+# 你應該假設：
+
+# - records 可能非常大
+
+# - 不能依賴 len(records)
+
+# - 不應該把所有原始 records 存進另一個 list
+
+# - 每筆資料只需要處理一次
+
+#
+
+#
+
+# Constraints:
+
+#
+
+# 1 <= number of records <= 10^7
+
+# 1 <= id <= 10^9
+
+# 1 <= count <= 10^9
+
+# 1 <= k <= number of unique ids
+
+#
+
+#
+
+# Target:
+
+#
+
+# 設：
+
+# n = number of records
+
+# u = number of unique ids
+
+#
+
+# 希望做到：
+
+#
+
+# O(n + u log k + k log k)
+
+#
+
+# Space:
+
+# O(u + k)
+
+#
+
+# ============================================================
+
+class Node:
+def **init**(self, id = None, count = None):
+self.id = id
+self.count = count
+self.next = None
+self.prev = None
+class Recorder:
+
+# head = Node = tail
+
+def **init**(self, k):
+self.head = Node()
+self.tail = Node()
+self.head.next = self.tail
+self.tail.prev = self.head
+self.map = {} # id: count
+self.k = k
+def addRecord(self, id, cnt): # O(1 + n) # if exist in map: add cnt and order # if not: # add Node to tail of linkedlist # add to Map # sort
+if id in self.map:
+node = self.map[id]
+node.count += cnt
+self.sort(node)
+else:
+node = Node(id, cnt)
+self.addToTail(node)
+self.map[id] = node
+self.sort(node)
+
+def addToTail(self, node):
+before = self.tail.prev
+
+    node.next = self.tail
+    node.prev = before
+
+    before.next = node
+    self.tail.prev = node
+
+def swap(self, a, b): # O(1)
+after = b.next
+before = a.prev
+
+    b.next = a
+    a.prev = b
+
+    before.next = b
+    b.prev = before
+    a.next = after
+    after.prev = a
+
+def sort(self, node): # O(n)
+cur = node
+while cur.prev != self.head:
+before = cur.prev
+if (before.count < cur.count or
+before.count == cur.count and before.id > cur.id):
+self.swap(before, cur)
+else:
+break
+def returnK(self): # O(k)
+res = []
+cur = self.head
+for \_ in range(self.k):
+cur = cur.next
+res.append(cur.id)
+return res
+
+class Solution:
+def topKIDs(self, records, k):
+recorder = Recorder(k)
+for id, cnt in records:
+recorder.addRecord(id, cnt)
+return recorder.returnK()
+
+# ============================================================
+
+# TEST CASES
+
+# 不需要修改下面
+
+# ============================================================
+
+tests = [ # Example 1
+(
+[
+(1, 3),
+(2, 5),
+(1, 4),
+(3, 10),
+(2, 1),
+],
+2,
+[3, 1],
+),
+
+    # 所有 id 只出現一次
+    (
+        [
+            (1, 10),
+            (2, 30),
+            (3, 20),
+        ],
+        2,
+        [2, 3],
+    ),
+
+    # 同一個 id 出現很多次
+    (
+        [
+            (1, 5),
+            (1, 5),
+            (1, 5),
+            (2, 14),
+            (3, 1),
+        ],
+        2,
+        [1, 2],
+    ),
+
+    # k = 1
+    (
+        [
+            (10, 3),
+            (20, 8),
+            (10, 10),
+            (30, 12),
+        ],
+        1,
+        [10],
+    ),
+
+    # k 等於 unique id 數量
+    (
+        [
+            (1, 5),
+            (2, 3),
+            (3, 8),
+        ],
+        3,
+        [3, 1, 2],
+    ),
+
+    # count 相同時，id 小的排前面
+    (
+        [
+            (3, 10),
+            (1, 10),
+            (2, 10),
+        ],
+        3,
+        [1, 2, 3],
+    ),
+
+    # aggregate 後才產生 tie
+    (
+        [
+            (1, 5),
+            (2, 3),
+            (2, 2),
+            (3, 4),
+        ],
+        2,
+        [1, 2],
+    ),
+
+    # 前面看起來很小，但後面累積成最大
+    (
+        [
+            (1, 100),
+            (2, 50),
+            (3, 1),
+            (3, 50),
+            (3, 50),
+        ],
+        2,
+        [3, 1],
+    ),
+
+    # k 只取部分
+    (
+        [
+            (5, 5),
+            (4, 4),
+            (3, 3),
+            (2, 2),
+            (1, 1),
+        ],
+        3,
+        [5, 4, 3],
+    ),
+
+    # 單一 id
+    (
+        [
+            (100, 5),
+            (100, 10),
+            (100, 20),
+        ],
+        1,
+        [100],
+    ),
+
+]
+
+solution = Solution()
+
+for i, (records, k, expected) in enumerate(tests, 1):
+actual = solution.topKIDs(iter(records), k)
+
+    if actual == expected:
+        print(f"Test {i}: PASS")
+    else:
+        print(f"Test {i}: FAIL")
+        print(f"  records  = {records}")
+        print(f"  k        = {k}")
+        print(f"  expected = {expected}")
+        print(f"  actual   = {actual}")
+
+# ============================================================
+
+# STREAM TEST
+
+#
+
+# 用 generator 模擬真正一筆一筆進來的 stream。
+
+#
+
+# 如果你的程式依賴：
+
+#
+
+# len(records)
+
+# records[i]
+
+#
+
+# 這個 test 就會出問題。
+
+# ============================================================
+
+def recordStream():
+yield (1, 10)
+yield (2, 20)
+yield (3, 5)
+yield (1, 15)
+yield (4, 30)
+yield (2, 10)
+
+# final:
+
+#
+
+# id 1 = 25
+
+# id 2 = 30
+
+# id 3 = 5
+
+# id 4 = 30
+
+#
+
+# count 相同時 id 小的在前
+
+#
+
+# => [2, 4, 1]
+
+expected = [2, 4, 1]
+
+actual = Solution().topKIDs(recordStream(), 3)
+
+if actual == expected:
+print("Stream Test: PASS")
+else:
+print("Stream Test: FAIL")
+print(f"expected = {expected}")
+print(f"actual = {actual}")
+
+# ============================================================
+
+# LARGE TEST
+
+#
+
+# 100,000 個 unique IDs
+
+# 每個 id 之後再出現一次，因此共 200,000 records。
+
+#
+
+# 用來檢查：
+
+#
+
+# 1. 是否能處理大量 stream data
+
+# 2. 是否真的只留下 Top K
+
+# 3. output 是否有按照 count descending 排序
+
+# ============================================================
+
+def largeStream():
+for i in range(1, 100_001):
+yield (i, i)
+
+    for i in range(1, 100_001):
+        yield (i, i)
+
+# 每個 id 的 total = 2 \* id
+
+#
+
+# 最大：
+
+# 100000
+
+# 99999
+
+# 99998
+
+# ...
+
+#
+
+# Top 5:
+
+expected = [
+100000,
+99999,
+99998,
+99997,
+99996,
+]
+
+actual = Solution().topKIDs(largeStream(), 5)
+
+if actual == expected:
+print("Large Test: PASS")
+else:
+print("Large Test: FAIL")
+print(f"expected = {expected}")
+print(f"actual = {actual}")
