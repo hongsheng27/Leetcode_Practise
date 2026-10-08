@@ -1,0 +1,251 @@
+**Top K IDs from Record Stream**
+
+**題目概述：**  
+系統會一筆一筆收到 `(id, count)`，同一個 `id` 的 count 需要持續累加；最後回傳累積 count 最高的前 `k` 個 id，並依 count 由大到小排序，若 count 相同則 id 小的排前面。
+
+**解題邏輯：**  
+用 `HashMap + Doubly Linked List`。
+
+`map` 保存所有出現過的 id：
+
+```text
+id -> Node
+```
+
+每個 Node 記錄：
+
+```text
+id
+count
+inTopK
+```
+
+Linked List 不保存所有 id，只維護目前的 Top K，並保持：
+
+```text
+head -> count 最大 -> ... -> count 最小 -> tail
+```
+
+收到新的 record 時：
+
+```text
+如果 id 已存在：
+    更新 node.count
+
+    如果 node 已經在 Top K：
+        往左 bubble，直到重新符合排序
+
+    如果 node 不在 Top K：
+        和目前第 K 名 tail.prev 比較
+        如果更大，取代第 K 名，再往左排序
+```
+
+如果是第一次出現的 id：
+
+```text
+建立 Node 並加入 map
+
+如果 Top K 還沒滿：
+    加到 tail 前面
+    再往左排序
+
+如果 Top K 已滿：
+    和 tail.prev 比較
+    更大才進入 Top K
+```
+
+比較規則統一：
+
+```text
+count 大的優先
+
+count 相同：
+id 小的優先
+```
+
+`swap(a, b)` 的前提是：
+
+```text
+a 一定緊接在 b 前面
+
+before <-> a <-> b <-> after
+```
+
+交換後：
+
+```text
+before <-> b <-> a <-> after
+```
+
+**踩過的坑：**
+
+`swap()` 的參數順序不能反。
+
+原本 list 是：
+
+```text
+before <-> cur
+```
+
+要呼叫：
+
+```text
+swap(before, cur)
+```
+
+不能寫：
+
+```text
+swap(cur, before)
+```
+
+否則可能造成 node 指向自己，破壞 linked list。
+
+---
+
+`sort()` 裡如果不需要 swap，要記得 `break`。
+
+否則：
+
+```text
+cur 沒變
+cur.prev 沒變
+條件永遠不變
+```
+
+會造成 infinite loop。
+
+---
+
+swap 之後不需要手動：
+
+```text
+cur = cur.prev
+```
+
+`cur` 指的是 Node object，不是 linked list 的位置。
+
+Node 被 swap 到前面後，`cur` 還是指向同一個 Node；下一輪直接重新讀：
+
+```text
+cur.prev
+```
+
+即可。
+
+---
+
+新增 Node 時也要做排序。
+
+不能只在既有 id 更新 count 時呼叫 `sort()`，因為新 id 一開始的 count 就可能直接是最大值。
+
+---
+
+如果 linked list 只保存 Top K，但 map 保存所有 Node，要額外知道：
+
+```text
+node.inTopK
+```
+
+否則會把一個根本不在 linked list 裡的 Node 拿去 `sort()`。
+
+---
+
+不在 Top K 的 Node 更新後，不能直接 `replaceTail()`。
+
+必須先和目前第 K 名比較：
+
+```text
+candidate > kth
+```
+
+才可以進 Top K。
+
+---
+
+`addToTail()` 插入 doubly linked list 時要完成四條連線：
+
+```text
+before.next = node
+node.prev = before
+
+node.next = tail
+tail.prev = node
+```
+
+曾漏掉：
+
+```text
+tail.prev = node
+```
+
+會讓下一次插入時仍然從舊的 tail.prev 開始，導致 list 斷掉。
+
+---
+
+Top K 的比較和 linked list 排序必須使用同一套規則。
+
+不能一邊只比較：
+
+```text
+count
+```
+
+另一邊才處理：
+
+```text
+count 相同時 id 小的優先
+```
+
+否則 tie case 會出錯。
+
+**複雜度：**
+
+第一版如果 linked list 保存全部 `u` 個 unique ids：
+
+```text
+單筆 addRecord：O(u)
+全部 n 筆：O(nu)
+returnK：O(k)
+space：O(u)
+```
+
+第二版只讓 linked list 保存 Top K：
+
+```text
+單筆 addRecord：O(k)
+全部 n 筆：O(nk)
+returnK：O(k)
+space：O(u)
+```
+
+第二版的優化核心是：
+
+```text
+不需要維護所有 id 的完整排序，
+只維護目前 Top K 的排序。
+```
+
+所以排序範圍從：
+
+```text
+u 個 unique ids
+```
+
+降成：
+
+```text
+k 個 Top ids
+```
+
+但如果題目目標是：
+
+```text
+O(n + u log k + k log k)
+```
+
+則更適合：
+
+```text
+stream -> HashMap aggregate -> size-k min heap -> 最後排序 K 個
+```
