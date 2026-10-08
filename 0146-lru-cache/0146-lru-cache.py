@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self):
-        self.value = None
-        self.key = None
+    def __init__(self, key = None, value = None):
+        self.value = value
+        self.key = key
         self.next = None
         self.prev = None
 
@@ -26,9 +26,6 @@ class LRUCache:
         before.next = after
         after.prev = before
 
-        self.capacity += 1
-        del self.map[node.key]
-
     def addToTail(self, node):
         before = self.tail.prev
 
@@ -36,8 +33,6 @@ class LRUCache:
         node.prev = before
         self.tail.prev = node
         before.next = node
-        self.capacity -= 1
-        self.map[node.key] = node
 
     def get(self, key: int) -> int:
         if key in self.map:
@@ -55,14 +50,15 @@ class LRUCache:
             self.remove(node)
             self.addToTail(node)
         else:
-            newNode = Node()
-            newNode.key = key
-            newNode.value = value
+            newNode = Node(key, value)
             self.addToTail(newNode)
+            self.map[key] = newNode
        
             # if over capacity, remove front
-            if self.capacity < 0:
-                self.remove(self.head.next)
+            if len(self.map) > self.capacity:
+                first = self.head.next
+                self.remove(first)
+                del self.map[first.key]
     # 22:18 done
     # 25:22
     # 52 done: fix bug: doesn't handle repeated put, Big error, using remobeHead, so get will have err, make removeHead to remove head to unify all behaviour
