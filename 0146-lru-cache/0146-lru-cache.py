@@ -56,9 +56,9 @@ class LRUCache:
        
             # if over capacity, remove front
             if len(self.map) > self.capacity:
-                first = self.head.next
-                self.remove(first)
-                del self.map[first.key]
+                lur = self.head.next
+                self.remove(lur)
+                del self.map[lur.key]
     # 22:18 done
     # 25:22
     # 52 done: fix bug: doesn't handle repeated put, Big error, using remobeHead, so get will have err, make removeHead to remove head to unify all behaviour
