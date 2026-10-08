@@ -65,7 +65,7 @@ class LRUCache:
                 self.remove(self.head.next)
     # 22:18 done
     # 25:22
-   
+    # 52 done: fix bug: doesn't handle repeated put, Big error, using remobeHead, so get will have err, make removeHead to remove head to unify all behaviour
 
 
         
