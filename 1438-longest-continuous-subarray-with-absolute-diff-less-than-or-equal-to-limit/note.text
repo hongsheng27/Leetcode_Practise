@@ -1,0 +1,196 @@
+**1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit**
+
+**題目概述：**  
+給一個整數陣列 `nums` 和 `limit`，找最長的 contiguous subarray，使得 window 裡的最大值與最小值差不超過 `limit`。
+
+**解題邏輯：**  
+用 Variable Sliding Window + 兩個 Monotonic Deque。
+
+維護：
+
+```text
+maxQ：
+對應 value 由大到小
+maxQ[0] = window 最大值
+
+minQ：
+對應 value 由小到大
+minQ[0] = window 最小值
+```
+
+新元素 `nums[r]` 進來時：
+
+```text
+maxQ：
+把右邊所有比 nums[r] 小的元素 pop
+再加入 r
+
+minQ：
+把右邊所有比 nums[r] 大的元素 pop
+再加入 r
+```
+
+因此可以 O(1) 取得：
+
+```text
+window max = nums[maxQ[0]]
+window min = nums[minQ[0]]
+```
+
+如果：
+
+```text
+nums[maxQ[0]] - nums[minQ[0]] > limit
+```
+
+代表 window 不合法。
+
+持續移動左邊界：
+
+```text
+l += 1
+```
+
+並把已經離開 window 的 index 從 deque 左邊移除：
+
+```text
+maxQ[0] < l -> popleft
+minQ[0] < l -> popleft
+```
+
+window 恢復合法後：
+
+```text
+res = max(res, r - l + 1)
+```
+
+**踩過的坑：**
+
+Monotonic deque 不一定只能用在 fixed window。
+
+239 是：
+
+```text
+fixed window
+l = r - k + 1
+```
+
+這題則是 variable window：
+
+```text
+while max - min > limit:
+    l += 1
+```
+
+Monotonic deque 只負責快速維護目前 window 的 max / min，window 大小可以是動態的。
+
+---
+
+`maxQ` 與 `minQ` 裡存 index，不只存 value。
+
+因為除了需要取得：
+
+```text
+nums[maxQ[0]]
+nums[minQ[0]]
+```
+
+還要能判斷 candidate 是否已經離開 window：
+
+```text
+deque[0] < l
+```
+
+---
+
+這題不需要：
+
+```text
+abs(max - min)
+```
+
+因為：
+
+```text
+max >= min
+```
+
+所以直接：
+
+```text
+max - min
+```
+
+即可。
+
+---
+
+這題雖然是 Medium，而 239 是 Hard，但如果完全不知道 Monotonic Deque，1438 可能反而更難。
+
+因為它同時需要：
+
+```text
+維護 window maximum
++
+維護 window minimum
++
+variable sliding window
+```
+
+如果已經先學會 239 的 Monotonic Deque pattern，1438 就會變成：
+
+```text
+Sliding Window
++
+Max Deque
++
+Min Deque
+```
+
+因此比較自然。
+
+**複雜度：**
+
+每個 index：
+
+```text
+最多進 maxQ 一次
+最多出 maxQ 一次
+
+最多進 minQ 一次
+最多出 minQ 一次
+```
+
+`l` 和 `r` 也都只會單向往右移。
+
+所以：
+
+```text
+O(n) time
+```
+
+Variable window 最壞可能包含整個 array，因此：
+
+```text
+O(n) space
+```
+
+**核心記憶：**
+
+```text
+window condition 跟 max / min 有關
++
+左右邊界都只會單向移動
+
+=> Sliding Window + Monotonic Deque
+```
+
+這題可以記成：
+
+```text
+maxQ[0] = window max
+minQ[0] = window min
+
+max - min > limit
+=> shrink left
+```
