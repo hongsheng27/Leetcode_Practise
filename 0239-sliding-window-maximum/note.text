@@ -1,0 +1,180 @@
+**239. Sliding Window Maximum**
+
+**題目概述：**  
+給一個整數陣列 `nums` 和固定大小 `k`，window 從左到右滑動，每次回傳目前 window 裡的最大值。
+
+**解題邏輯：**  
+用 Monotonic Deque，deque 裡存 index，並維持對應的 `nums[index]` 由大到小。
+
+新元素 `nums[r]` 進來時：
+
+```text
+while deque 不為空
+and nums[deque[-1]] < nums[r]:
+
+    deque.pop()
+```
+
+右邊比新元素小的舊元素可以直接刪掉，因為新元素：
+
+```text
+1. value 比它大
+2. index 比它新，會更晚離開 window
+```
+
+所以舊元素之後永遠不可能成為 window maximum。
+
+接著把目前 index `r` 加到 deque 右邊。
+
+因此 deque 永遠維持：
+
+```text
+index：
+由舊到新
+
+value：
+由大到小
+```
+
+所以：
+
+```text
+deque[0]
+```
+
+永遠是目前最有資格成為 maximum 的 index。
+
+當 window 左邊界移動後，如果：
+
+```text
+deque[0] < l
+```
+
+表示最左邊的 candidate 已經離開 window，使用：
+
+```text
+popleft()
+```
+
+移除。
+
+當 window size 達到 `k` 後：
+
+```text
+nums[deque[0]]
+```
+
+就是目前 window maximum。
+
+**踩過的坑：**
+
+一開始想到可以用 max heap + lazy deletion，這可以做，但 heap 裡離開 window 的 stale elements 不一定能立刻刪除，因此 heap size 最壞可能成長到 `O(n)`，整體是 `O(n log n)`，不是 `O(n log k)`。
+
+---
+
+Monotonic deque 的關鍵不是「max 左邊的元素可以刪掉」。
+
+真正可以刪的是：
+
+```text
+新元素進來時，
+deque 右邊所有比新元素小的元素。
+```
+
+因為這些元素：
+
+```text
+比新元素小
++
+比新元素更早過期
+```
+
+所以之後永遠沒有機會成為 maximum。
+
+---
+
+deque 裡最好存 index，不是只存 value。
+
+因為除了需要比較：
+
+```text
+nums[deque[-1]]
+```
+
+還需要判斷 candidate 是否已經離開 window：
+
+```text
+deque[0] < l
+```
+
+---
+
+Monotonic deque 不一定只能用在 fixed window。
+
+Fixed window 可以直接：
+
+```text
+l = r - k + 1
+```
+
+但 variable sliding window 也可以使用，只要：
+
+```text
+左右邊界都是單向往右移
++
+需要快速維護 window max / min
+```
+
+就可以考慮 monotonic deque。
+
+**複雜度：**
+
+每個 index：
+
+```text
+最多進 deque 一次
+最多離開 deque 一次
+```
+
+所以雖然有 `while`：
+
+```text
+總 push 次數 <= n
+總 pop 次數 <= n
+```
+
+因此：
+
+```text
+O(n) time
+```
+
+deque 最多保存 window 裡仍有資格成為 maximum 的 candidates：
+
+```text
+O(k) space
+```
+
+**核心記憶：**
+
+```text
+Sliding Window
++
+每個 window 都要快速取得 max / min
+
+=> Monotonic Deque
+```
+
+Max deque：
+
+```text
+右邊刪掉比新元素小的 candidate
+左邊刪掉已經過期的 candidate
+deque[0] 永遠是目前 maximum
+```
+
+Monotonic deque 保存的不是 window 裡所有元素，而是：
+
+```text
+「未來仍有資格成為答案的候選人」
+```
