@@ -2,7 +2,6 @@ class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         # brute force: each window to calculate max(window), O(nk), 10^10 won't pass
         # heap solution might be work, n log n might align with 10 ^ 5
-        # 10:11
         res = []
         maxHeap = []
         for i in range(k):
@@ -21,7 +20,6 @@ class Solution:
                 if not invisible[-elem]: del invisible[-elem]
             if maxHeap: res.append(-maxHeap[0])
         return res
-            
             
 
 
