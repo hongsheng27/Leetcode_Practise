@@ -1,14 +1,18 @@
 class Solution:
     def longestSubarray(self, nums: list[int]) -> int:
-        zeroAmount = total = maxTotal = 0
-        l = 0
+        # solution1: sliding window
+        # condition: over one zero and shrink
+        # window size = window size - 1
+        # 03:00
+        res = []
+        l = res = 0
+        count = {0: 0, 1: 0}
         for r in range(len(nums)):
-            if nums[r] == 0: zeroAmount += 1
-           
-            while zeroAmount > 1:
-                if nums[l] == 0: zeroAmount -= 1
+            count[nums[r]] += 1
+            while count[0] > 1:
+                count[nums[l]] -= 1
                 l += 1
-   
-            maxTotal = max(r - l, maxTotal)
-        return maxTotal
+            res = max(res, r - l)
+        return res
 
+        
