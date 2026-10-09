@@ -6,7 +6,7 @@ class Solution:
         dp[ROWS - 1][COLS - 1] = 1
         for r in range(ROWS - 1, -1, -1):
             for c in range(COLS - 1, -1, -1):
-                if dp[r][c] == 1: continue
+                if r == (ROWS - 1) and c == (COLS - 1): continue
                 if obstacleGrid[r][c] == 0:
                     bottom = 0 if r + 1 >= ROWS else dp[r + 1][c]
                     right = 0 if c + 1 >= COLS else dp[r][c + 1]
