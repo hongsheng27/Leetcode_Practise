@@ -1,0 +1,247 @@
+**63. Unique Paths II**
+
+**題目概述：**  
+給一個有障礙物的 `m x n` grid，從左上角走到右下角，每次只能往右或往下，回傳所有合法路徑數量。
+
+**解題邏輯：**  
+可以用 DFS、DFS + Memo、Bottom-up DP。
+
+**DFS：**  
+從 `(r, c)` 出發，只能往下或往右：
+
+```text
+dfs(r, c)
+= dfs(r + 1, c)
++ dfs(r, c + 1)
+```
+
+如果超出邊界或遇到 obstacle，return 0。
+
+如果走到右下角終點，return 1。
+
+純 DFS 會重複計算同一個位置，所以複雜度是 exponential。
+
+---
+
+**DFS + Memo：**  
+每個 `(r, c)` 代表一個 state：
+
+```text
+從 (r, c) 到終點有幾條路？
+```
+
+第一次算完後存進：
+
+```text
+memo[(r, c)]
+```
+
+之後再次走到同一格時，直接 return memo，不再重算。
+
+因為 grid 總共只有 `m * n` 個 state，所以每個 state 最多真正計算一次。
+
+---
+
+**Bottom-up DP：**  
+定義：
+
+```text
+dp[r][c]
+= 從 (r, c) 到右下角終點的路徑數
+```
+
+終點：
+
+```text
+dp[m - 1][n - 1] = 1
+```
+
+從右下角往左上角計算：
+
+```text
+dp[r][c]
+= dp[r + 1][c]
++ dp[r][c + 1]
+```
+
+如果該格是 obstacle：
+
+```text
+dp[r][c] = 0
+```
+
+所以每一格的答案，都是：
+
+```text
+下面的路徑數 + 右邊的路徑數
+```
+
+Memo DFS 雖然是從左上角開始呼叫，但答案會從接近終點的位置往回傳；Bottom-up DP 則是真的從終點附近開始建立答案。
+
+**踩過的坑：**
+
+題目只能：
+
+```text
+Right
+Down
+```
+
+不能寫成四方向 DFS：
+
+```text
+Up
+Down
+Left
+Right
+```
+
+否則會算到大量原題不合法的繞路。
+
+---
+
+到達終點的條件必須是：
+
+```text
+r == ROWS - 1
+and
+c == COLS - 1
+```
+
+不能用 `or`。
+
+到最後一 row 或最後一 column，不代表已經走到右下角終點。
+
+---
+
+`m, n <= 100` 對 exponential DFS 並不小。
+
+純 DFS 會重複計算大量相同 state，因此需要 Memo 或 DP。
+
+---
+
+Bottom-up DP 裡：
+
+```text
+r + 1
+```
+
+代表往下：
+
+```text
+bottom = dp[r + 1][c]
+```
+
+而：
+
+```text
+c + 1
+```
+
+代表往右：
+
+```text
+right = dp[r][c + 1]
+```
+
+不要把變數名稱寫反。
+
+---
+
+不要用：
+
+```text
+if dp[r][c] == 1:
+    continue
+```
+
+來代表「這格是終點」。
+
+比較清楚的寫法是直接判斷：
+
+```text
+if r == ROWS - 1 and c == COLS - 1:
+    continue
+```
+
+因為 `dp[r][c] == 1` 的真正語意只是「這格目前有一條合法路徑」。
+
+**複雜度：**
+
+純 DFS：
+
+```text
+Time:
+O(2^(m+n)) 級別
+
+Space:
+O(m+n)
+```
+
+因為 recursion depth 最多是從左上角走到右下角的步數。
+
+---
+
+DFS + Memo：
+
+```text
+Time:
+O(m * n)
+
+Space:
+O(m * n)
+```
+
+原因是每個 `(r, c)` state 最多真正計算一次。
+
+---
+
+Bottom-up DP：
+
+```text
+Time:
+O(m * n)
+
+Space:
+O(m * n)
+```
+
+每個 cell 只計算一次。
+
+---
+
+如果進一步做 1D DP space optimization：
+
+```text
+Time:
+O(m * n)
+
+Space:
+O(n)
+```
+
+甚至可以根據較短維度壓到：
+
+```text
+O(min(m, n))
+```
+
+**核心記憶：**
+
+```text
+純 DFS：
+重複算同一個 state很多次
+
+DFS + Memo：
+每個 state 只算一次
+
+Bottom-up DP：
+直接從 base case 開始，把每個 state 建出來
+```
+
+Memoization 的本質就是：
+
+```text
+把 exponential DFS 裡的重複 subproblem 消掉，
+讓複雜度降成 state 數量 O(m * n)。
+```
