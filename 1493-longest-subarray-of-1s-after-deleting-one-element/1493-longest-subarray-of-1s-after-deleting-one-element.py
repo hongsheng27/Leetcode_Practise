@@ -3,8 +3,6 @@ class Solution:
         # solution1: sliding window
         # condition: over one zero and shrink
         # window size = window size - 1
-        # 03:00
-        res = []
         l = res = 0
         count = {0: 0, 1: 0}
         for r in range(len(nums)):
