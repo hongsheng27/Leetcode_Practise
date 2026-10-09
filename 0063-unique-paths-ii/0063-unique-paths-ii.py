@@ -8,7 +8,7 @@ class Solution:
             for c in range(COLS - 1, -1, -1):
                 if dp[r][c] == 1: continue
                 if obstacleGrid[r][c] == 0:
-                    right = 0 if r + 1 >= ROWS else dp[r + 1][c]
-                    bottom = 0 if c + 1 >= COLS else dp[r][c + 1]
+                    bottom = 0 if r + 1 >= ROWS else dp[r + 1][c]
+                    right = 0 if c + 1 >= COLS else dp[r][c + 1]
                     dp[r][c] = right + bottom
         return dp[0][0]
