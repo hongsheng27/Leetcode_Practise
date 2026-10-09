@@ -141,6 +141,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold) |
 | [1423-maximum-points-you-can-obtain-from-cards](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1423-maximum-points-you-can-obtain-from-cards) |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
@@ -355,6 +356,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 | [1642-furthest-building-you-can-reach](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1642-furthest-building-you-can-reach) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 ## Bucket Sort
@@ -623,6 +625,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1052-grumpy-bookstore-owner](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1052-grumpy-bookstore-owner) |
 | [1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold) |
 | [1423-maximum-points-you-can-obtain-from-cards](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1423-maximum-points-you-can-obtain-from-cards) |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [2134-minimum-swaps-to-group-all-1s-together-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2134-minimum-swaps-to-group-all-1s-together-ii) |
@@ -753,10 +756,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 | [0933-number-of-recent-calls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0933-number-of-recent-calls) |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 ## Monotonic Queue
 |  |
 | ------- |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 ## Linked List
 |  |
 | ------- |
@@ -1105,6 +1110,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Ordered Set
 |  |
 | ------- |
+| [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 | [2659-make-array-empty](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2659-make-array-empty) |
 ## 0-1 Knapsack
 |  |
