@@ -1,0 +1,347 @@
+**1552. Magnetic Force Between Two Balls**
+
+**題目概述：**  
+給一組 basket positions，要放 `m` 顆球，使任兩顆相鄰球的最小距離盡可能大，回傳這個最大 possible minimum distance。
+
+**解題邏輯：**  
+用 Binary Search on Answer + Greedy。
+
+先排序：
+
+```text
+position.sort()
+```
+
+Binary Search 的不是 position，而是：
+
+```text
+force / minimum distance
+```
+
+假設猜一個距離 `force`，檢查：
+
+```text
+是否可以放滿 m 顆球，
+而且每兩顆相鄰球距離都 >= force？
+```
+
+用 Greedy 做 feasibility check：
+
+```text
+第一顆放 position[0]
+
+從左到右掃 position：
+
+如果：
+position[i] - last >= force
+
+就把球放在 position[i]
+並更新 last
+```
+
+每次都選第一個符合距離條件的位置，因為放得越早，留給後面的空間越大。
+
+如果最後：
+
+```text
+ball >= m
+```
+
+代表這個 `force` 可行。
+
+Binary Search 的 monotonic property：
+
+```text
+force:
+
+1  2  3  4  5  6
+T  T  T  T  F  F
+         ↑
+      最大可行值
+```
+
+如果 `force = mid` 可行：
+
+```text
+更小的一定也可行
+```
+
+所以繼續往右找更大的：
+
+```text
+l = mid
+```
+
+如果 `mid` 不可行：
+
+```text
+更大的也一定不可能
+```
+
+所以：
+
+```text
+r = mid - 1
+```
+
+因為使用：
+
+```text
+l = mid
+```
+
+Binary Search 要使用 upper mid：
+
+```text
+mid = (l + r + 1) // 2
+```
+
+避免 `mid == l` 時造成 infinite loop。
+
+Upper bound 可以設：
+
+```text
+(max(position) - min(position)) // (m - 1)
+```
+
+因為放 `m` 顆球會形成 `m - 1` 個 gaps，因此 minimum gap 不可能大於整段距離平均分配後的值。
+
+**踩過的坑：**
+
+一開始想找：
+
+```text
+first + force
+first + 2 * force
+first + 3 * force
+```
+
+是否剛好存在於 `position`。
+
+這個判斷不對，因為題目要求的是：
+
+```text
+distance >= force
+```
+
+不是：
+
+```text
+distance == force
+```
+
+而且「剛好存在某個間距」沒有 monotonic property，例如某個 force 可能 False，更大的 force 卻反而 True，所以不能拿來做 Binary Search。
+
+---
+
+Binary Search on Answer 必須先確認 condition 是 monotonic。
+
+要能形成：
+
+```text
+T T T T F F F
+```
+
+或：
+
+```text
+F F F T T T T
+```
+
+如果 `isWork(mid)` False 之後無法確定哪一側一定也 False，就不能 binary search。
+
+---
+
+使用：
+
+```text
+while l < r
+```
+
+且更新：
+
+```text
+l = mid
+```
+
+時，如果寫：
+
+```text
+mid = (l + r) // 2
+```
+
+可能 infinite loop。
+
+例如：
+
+```text
+l = 3
+r = 4
+
+mid = 3
+```
+
+如果 condition True：
+
+```text
+l = mid = 3
+```
+
+邊界完全沒有移動。
+
+因此找最大 True 時使用：
+
+```text
+mid = (l + r + 1) // 2
+```
+
+也就是 upper mid。
+
+---
+
+一開始曾想用 `set(position)`，如果 `last + force` 不存在，就從座標上：
+
+```text
+last + force
+last + force + 1
+last + force + 2
+...
+```
+
+一直往後找。
+
+這樣 complexity 會依賴座標範圍：
+
+```text
+D = max(position) - min(position)
+```
+
+而不是只依賴 `n`。
+
+最壞可能接近：
+
+```text
+O(D log D)
+```
+
+而 `D` 可以很大，所以不適合。
+
+正確做法是排序後直接掃真正存在的 `position`：
+
+```text
+O(n)
+```
+
+做一次 feasibility check。
+
+---
+
+看到：
+
+```text
+n <= 10^5
+```
+
+可以大膽考慮：
+
+```text
+O(n log n)
+```
+
+所以先 sort 是合理的。
+
+通常：
+
+```text
+O(n)
+O(n log n)
+```
+
+都可接受，
+
+但：
+
+```text
+O(n^2)
+```
+
+在 `n = 10^5` 時通常不行。
+
+同時要注意：
+
+```text
+log D
+```
+
+通常可以接受，
+
+但：
+
+```text
+D
+```
+
+如果可到 `10^9`，通常不能直接線性掃過座標空間。
+
+**複雜度：**
+
+排序：
+
+```text
+O(n log n)
+```
+
+每次 `isForceWork(force)`：
+
+```text
+O(n)
+```
+
+Binary Search 距離範圍：
+
+```text
+O(log D)
+```
+
+其中：
+
+```text
+D = max(position) - min(position)
+```
+
+總時間：
+
+```text
+O(n log n + n log D)
+```
+
+額外空間：
+
+```text
+O(1)
+```
+
+不計 Python sort 內部空間。
+
+**核心記憶：**
+
+```text
+最大化某個 minimum value
++
+給一個 candidate 可以 O(n) 判斷可不可行
++
+可行性具有 monotonic property
+
+=> Binary Search on Answer
+```
+
+這題就是：
+
+```text
+猜 minimum distance
+↓
+Greedy 檢查能不能放 m 顆
+↓
+True → 試更大
+False → 往小找
+```
