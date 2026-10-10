@@ -146,6 +146,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1550-three-consecutive-odds](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1550-three-consecutive-odds) |
+| [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1642-furthest-building-you-can-reach](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1642-furthest-building-you-can-reach) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
@@ -312,6 +313,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
@@ -600,6 +602,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
