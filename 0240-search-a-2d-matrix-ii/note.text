@@ -1,0 +1,228 @@
+**240. Search a 2D Matrix II**
+
+**題目概述：**  
+給一個 `m x n` matrix 和 `target`，判斷 target 是否存在。每一 row 由左到右遞增，每一 column 由上到下遞增，但整個 matrix 攤平成 1D 後不一定 sorted。
+
+**解題邏輯：**  
+主要解法使用 **2D Monotonicity + Staircase Search**。
+
+從右上角開始：
+
+```text
+row = 0
+col = n - 1
+```
+
+右上角有一個特殊 property：
+
+```text
+左邊全部 <= current
+下面全部 >= current
+```
+
+因此：
+
+```text
+current == target
+→ return True
+
+current > target
+→ 這一整個 column 往下只會更大
+→ col -= 1
+
+current < target
+→ 這一整個 row 左邊只會更小
+→ row += 1
+```
+
+每一步都能安全排除一整個 row 或 column。
+
+核心：
+
+```text
+Start from top-right
+
+too large → move left
+too small → move down
+```
+
+這個方法稱為：
+
+```text
+Staircase Search
+```
+
+---
+
+也可以使用比較直覺的 Binary Search 解法。
+
+因為每一 row 都是 sorted：
+
+```text
+for each row:
+    如果 target 不在 [row[0], row[-1]]
+        skip
+
+    否則對該 row 做 binary search
+```
+
+複雜度是：
+
+```text
+O(m log n)
+```
+
+這個方法也是正確且 interview-ready，只是沒有利用「column 也 sorted」這個額外 property。
+
+---
+
+**踩過的坑：**  
+一開始看到 row、column 都 sorted，就直接想用 Binary Search 找 row / column boundary，再 crop matrix。
+
+這個方向可以做 pruning，但沒有真正解決剩下的 2D search problem，而且把題目想複雜了。
+
+應該先問：
+
+```text
+目前有哪些最直接可以使用的 property？
+```
+
+第一層：
+
+```text
+每一 row 都 sorted
+→ 每 row Binary Search
+→ O(m log n)
+```
+
+再利用更強的 property：
+
+```text
+row sorted + column sorted
+→ 2D monotonicity
+→ Staircase Search
+→ O(m + n)
+```
+
+---
+
+一開始以為這題可能根本不是 Binary Search。
+
+其實 Binary Search 完全可以用：
+
+```text
+每一 row 做 BS
+→ O(m log n)
+```
+
+只是這題還有更經典的 Staircase Search。
+
+---
+
+容易和 **74. Search a 2D Matrix** 混在一起。
+
+74 有更強的條件：
+
+```text
+下一 row 第一個 > 上一 row 最後一個
+```
+
+所以整個 matrix 攤平成 1D 後仍然 sorted，可以直接用 Binary Search。
+
+240 只有：
+
+```text
+每 row sorted
+每 column sorted
+```
+
+整體不一定 globally sorted，因此不能直接把整個 matrix 當成 sorted array。
+
+---
+
+曾疑惑：
+
+```text
+O(m log n)
+vs
+O(m + n)
+
+哪個比較好？
+```
+
+不能無條件說 `O(m+n)` 永遠比較快。
+
+例如：
+
+```text
+m = 1
+n 很大
+```
+
+則：
+
+```text
+O(m log n) = O(log n)
+O(m + n)   = O(n)
+```
+
+Binary Search 反而可能比較好。
+
+但一般這題最經典的解法仍是：
+
+```text
+Staircase Search
+```
+
+因為它完整利用 row + column 的 monotonicity。
+
+---
+
+這次主要不是 Binary Search 不熟，而是太早試圖同時利用所有條件，沒有先建立簡單 baseline solution。
+
+可以固定先問：
+
+```text
+1. 最直接可用的 property 是什麼？
+2. 用它能不能先得到一個正確解？
+3. 題目還多給了什麼 property，可以再優化？
+```
+
+這題：
+
+```text
+row sorted
+→ 每 row BS
+→ O(m log n)
+
+column 也 sorted
+→ Staircase Search
+→ O(m + n)
+```
+
+**複雜度：**
+
+Staircase Search：
+
+```text
+最多往左 n 次
+最多往下 m 次
+
+Time: O(m + n)
+Space: O(1)
+```
+
+Row-by-row Binary Search：
+
+```text
+m rows × O(log n)
+
+Time: O(m log n)
+Space: O(1)
+```
+
+**Pattern：**
+
+```text
+2D Monotonicity + Staircase Search
+```
