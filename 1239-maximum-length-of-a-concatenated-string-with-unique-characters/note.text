@@ -1,0 +1,286 @@
+**1239. Maximum Length of a Concatenated String with Unique Characters**
+
+**題目概述：**  
+給一組字串 `arr`，可以選擇其中任意多個字串串接，要求最後所有 characters 都不能重複，回傳能得到的最大長度。
+
+**解題邏輯：**  
+看到 constraint：
+
+```text
+arr.length <= 16
+```
+
+每個字串只有：
+
+```text
+take
+or
+skip
+```
+
+所以最多：
+
+```text
+2^16 = 65,536
+```
+
+種 subset，可以直接使用 DFS / Backtracking，不需要硬找 Greedy。
+
+DFS state：
+
+```text
+index = 現在考慮哪個 string
+used  = 目前已使用過的 characters
+```
+
+每個 `arr[index]` 有兩個 branch：
+
+```text
+1. take
+2. skip
+```
+
+Take 之前要檢查兩件事：
+
+```text
+1. arr[index] 自己不能有 duplicate characters
+2. arr[index] 不能和 used 有重複 character
+```
+
+可以先：
+
+```python
+chars = set(arr[index])
+```
+
+檢查字串本身：
+
+```python
+len(chars) == len(arr[index])
+```
+
+檢查與目前 state 是否衝突：
+
+```python
+not (used & chars)
+```
+
+其中：
+
+```text
+A & B
+= intersection
+= A、B 共同擁有的元素
+```
+
+所以：
+
+```python
+used & chars
+```
+
+代表：
+
+```text
+目前已使用的 characters
+和
+新字串的 characters
+有哪些重複
+```
+
+若交集為空，才可以 take。
+
+Take branch 可以用：
+
+```python
+used.update(chars)
+dfs(...)
+used.difference_update(chars)
+```
+
+做 backtracking。
+
+Skip branch 則：
+
+```python
+dfs(index + 1, used)
+```
+
+因為 skip current string 不應該改變之前累積的 state。
+
+另一種不需要手動 backtracking 的寫法是：
+
+```python
+dfs(index + 1, used | chars)
+```
+
+其中：
+
+```text
+A | B
+= union
+= 把兩個 set 的元素合併
+```
+
+`used | chars` 會建立新的 set，不會修改原本的 `used`。
+
+---
+
+**踩過的坑：**  
+一開始不確定 `arr.length <= 16` 時是否還需要繼續找 Greedy。
+
+因為：
+
+```text
+2^16 = 65,536
+```
+
+很小，而每個 element 又天然有 `take / skip` 兩個選擇，所以 DFS / Backtracking 就是合理方向，不需要強迫找 Greedy。
+
+---
+
+對 Python set 的：
+
+```python
+A & B
+```
+
+不熟。
+
+`&` 在 set 中代表 intersection：
+
+```python
+{"a", "b"} & {"b", "c"}
+→ {"b"}
+```
+
+所以：
+
+```python
+not (used & chars)
+```
+
+代表：
+
+```text
+used 和 chars 沒有共同 character
+→ 可以選
+```
+
+---
+
+對：
+
+```python
+used | chars
+```
+
+不熟。
+
+`|` 在 set 中代表 union：
+
+```python
+{"a", "b"} | {"c", "d"}
+→ {"a", "b", "c", "d"}
+```
+
+而且它會產生新的 set，因此：
+
+```python
+dfs(index + 1, used | chars)
+```
+
+不需要手動 restore `used`。
+
+---
+
+曾在 skip branch 寫成：
+
+```python
+dfs(index + 1, set())
+```
+
+這會把之前已選擇的 characters 全部清空。
+
+Skip 的正確 state 應該是：
+
+```text
+不選 current string
+但之前的 used 完全保留
+```
+
+所以應該傳：
+
+```python
+dfs(index + 1, used)
+```
+
+---
+
+曾用 `Counter` 寫 `isOverlap()`，但 branch 判斷方向反了。
+
+如果：
+
+```text
+isOverlap(...) == True
+```
+
+代表已經有 duplicate，應該不能 take。
+
+所以要：
+
+```python
+if not isOverlap(...):
+```
+
+才進入 take branch。
+
+---
+
+**複雜度：**  
+共有最多：
+
+```text
+2^n
+```
+
+種選 / 不選組合。
+
+每次處理 characters 的成本最多和字母數量有關，因此可以寫成：
+
+```text
+Time: O(2^n * L)
+```
+
+其中 `L` 是處理字串 characters 的成本。
+
+因為題目只有 lowercase English letters，最多 26 種：
+
+```text
+Time: O(2^n)
+```
+
+通常已足夠描述。
+
+DFS recursion depth 最多為 `n`，`used` 最多存 26 個 characters：
+
+```text
+Space: O(n + 26)
+≈ O(n)
+```
+
+**Pattern：**
+
+```text
+Small n + Take / Skip
+→ DFS / Backtracking
+
+State:
+used = currently selected characters
+
+Conflict check:
+used & chars
+
+Merge state:
+used | chars
+```
