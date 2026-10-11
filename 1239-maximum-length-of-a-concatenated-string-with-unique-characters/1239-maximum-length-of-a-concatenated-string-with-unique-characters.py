@@ -1,13 +1,15 @@
 class Solution:
     def maxLength(self, arr: list[str]) -> int:
         res = 0
+        def isOverlep(used, s):
+            c = Counter(used) + Counter(s)
+            return max(c.values()) > 1
         def dfs(index, used):
             nonlocal res
             if index == len(arr):
                 res = max(res, len(used))
                 return
-            chars = set(arr[index])
-            if len(chars) == len(arr[index]) and not (used & chars):
+            if not isOverlep(used, arr[index]):
                 for c in arr[index]:
                     used.add(c)
                 dfs(index + 1, used)
