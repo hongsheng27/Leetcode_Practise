@@ -140,6 +140,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
+| [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold) |
 | [1423-maximum-points-you-can-obtain-from-cards](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1423-maximum-points-you-can-obtain-from-cards) |
@@ -277,6 +278,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
+| [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 | [1768-merge-strings-alternately](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1768-merge-strings-alternately) |
 | [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 | [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
@@ -576,6 +578,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0338-counting-bits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0338-counting-bits) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
+| [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 ## Binary Search
 |  |
 | ------- |
@@ -759,6 +762,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0131-palindrome-partitioning](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0131-palindrome-partitioning) |
 | [0212-word-search-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0212-word-search-ii) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
+| [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 ## Queue
 |  |
 | ------- |
