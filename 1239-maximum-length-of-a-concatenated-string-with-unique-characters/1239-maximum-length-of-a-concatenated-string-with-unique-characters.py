@@ -8,9 +8,11 @@ class Solution:
                 return
             chars = set(arr[index])
             if len(chars) == len(arr[index]) and not (used & chars):
-                used.update(chars)
+                for c in arr[index]:
+                    used.add(c)
                 dfs(index + 1, used)
-                used.difference_update(chars)
+                for c in arr[index]:
+                    used.remove(c)
            
             dfs(index + 1, used)
         dfs(0, set())
