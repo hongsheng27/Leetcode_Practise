@@ -7,5 +7,4 @@ class Solution:
             if r < 2 or nums[l - 2] != nums[r]:
                 nums[l] = nums[r]
                 l += 1
-        print(nums)
         return l
