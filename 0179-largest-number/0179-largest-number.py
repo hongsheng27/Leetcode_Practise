@@ -7,7 +7,7 @@ class Number:
 class Solution:
     def largestNumber(self, nums: list[int]) -> str:
         nums = [Number(num) for num in nums]
-        nums.sort(key = lambda x: x)
+        nums.sort()
         res = []
         for n in nums:
             res.append(n.num)
