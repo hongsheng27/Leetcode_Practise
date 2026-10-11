@@ -8,11 +8,10 @@ class Solution:
     def largestNumber(self, nums: list[int]) -> str:
         nums = [Number(num) for num in nums]
         nums.sort()
-        res = []
-        for n in nums:
-            res.append(n.num)
         
-        return str(int("".join(res)))
+        if nums[0].num == "0":
+            return "0"
+        return "".join(num.num for num in nums)
         
 
 
