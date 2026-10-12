@@ -6,11 +6,11 @@ class Solution:
             adj[first].append((second, values[i]))
             adj[second].append((first, 1 / values[i]))
             
-        def dfs(start, target, product, visited):
-            if start == target:
+        def dfs(cur, target, product, visited):
+            if cur == target:
                 return product
-            visited.add(start)
-            for nei, w in adj[start]:
+            visited.add(cur)
+            for nei, w in adj[cur]:
                 if nei not in visited:
                     res = dfs(nei, target, product * w, visited)
                     if res != -1: return res
