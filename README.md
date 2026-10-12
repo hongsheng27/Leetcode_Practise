@@ -88,6 +88,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0362-design-hit-counter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0362-design-hit-counter) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 | [0417-pacific-atlantic-water-flow](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0417-pacific-atlantic-water-flow) |
 | [0435-non-overlapping-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0435-non-overlapping-intervals) |
@@ -258,6 +259,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0344-reverse-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0344-reverse-string) |
 | [0383-ransom-note](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0383-ransom-note) |
 | [0394-decode-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0394-decode-string) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0402-remove-k-digits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0402-remove-k-digits) |
 | [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0424-longest-repeating-character-replacement](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0424-longest-repeating-character-replacement) |
@@ -852,6 +854,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0417-pacific-atlantic-water-flow](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0417-pacific-atlantic-water-flow) |
 | [0543-diameter-of-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0543-diameter-of-binary-tree) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
@@ -885,6 +888,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0417-pacific-atlantic-water-flow](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0417-pacific-atlantic-water-flow) |
 | [0542-01-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0542-01-matrix) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
@@ -1002,6 +1006,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
 | [0200-number-of-islands](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0200-number-of-islands) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
@@ -1017,6 +1022,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
@@ -1057,6 +1063,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Shortest Path
 |  |
 | ------- |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 ## Eulerian Circuit
@@ -1168,4 +1175,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0239-sliding-window-maximum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0239-sliding-window-maximum) |
+## Bellman–Ford Algorithm
+|  |
+| ------- |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
+## Floyd–Warshall Algorithm
+|  |
+| ------- |
+| [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 <!---LeetCode Topics End-->
