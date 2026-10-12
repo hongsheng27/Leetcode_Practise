@@ -15,7 +15,7 @@ class Solution:
             nodes[first].neis.append((nodes[second], values[i]))
             nodes[second].neis.append((nodes[first], 1 / values[i]))
         def dfs(node, target, product, visited):
-            if not node: return -1
+
             if node == target:
                 return product
             visited.add(node)
