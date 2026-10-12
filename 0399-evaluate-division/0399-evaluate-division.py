@@ -15,7 +15,6 @@ class Solution:
             nodes[first].neis.append((nodes[second], values[i]))
             nodes[second].neis.append((nodes[first], 1 / values[i]))
         def dfs(node, target, product, visited):
-
             if node == target:
                 return product
             visited.add(node)
@@ -23,7 +22,6 @@ class Solution:
                 if nei not in visited:
                     res = dfs(nei, target, product * w, visited)
                     if res != -1: return res
-            visited.remove(node)
             return -1
         res = []
         for start, end in queries:
