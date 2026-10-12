@@ -2,7 +2,6 @@ class Solution:
     def eraseOverlapIntervals(self, intervals: list[list[int]]) -> int:
         # sort
         # if overlap, keep the one end first, res += 1
-        # 02:50
         intervals.sort()
         stack = []
         res = 0
