@@ -10,9 +10,9 @@ class Solution:
             isAdd = True
             if stack and stack[-1][1] > start:
                 stack[-1][1] = min(stack[-1][1], end)
-                isAdd = False
                 res += 1
-            if isAdd: stack.append([start, end])
+            else: 
+                stack.append([start, end])
         return res
 
         
