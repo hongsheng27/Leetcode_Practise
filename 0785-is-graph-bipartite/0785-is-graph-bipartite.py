@@ -1,31 +1,24 @@
-class Node:
-    def __init__(self, name):
-        self.name = name # 0 unsure, 1 group1, -1 group2
-        self.group = 0
-
 class Solution:
     def isBipartite(self, graph: list[list[int]]) -> bool:
-        # check if graph[u] is all in one set, u in different set
-        # {0} {1, 2, 3}
-        # {1} {0, 2}
-        # traverse graph, union find to check if reach the condition
-        # 12:15
-        # traverse, 1 => group 2 groups, -1 => group 2, if contradict than return False
         n = len(graph)
-        nodes = {i: Node(i) for i in range(n)}
-
+        color = [0] * n # 0 no group, 1 first group, 2 second group
         for i in range(n):
-            if nodes[i].group == 0: 
-                nodes[i].group = 1
-                q = deque([i])
+            if color[i] != 0: continue
 
-                while q:
-                    elem = q.popleft()
-                    for other in graph[elem]:
-                        if nodes[other].group == 0:
-                            nodes[other].group = -nodes[elem].group
-                            q.append(other)
-                        elif nodes[other].group == nodes[elem].group: 
-                            return False
-                        
+            q = deque([i])
+            color[i] = 1
+            
+            while q:
+                elem = q.popleft()
+                for nei in graph[elem]:
+                    if color[nei] == 0:
+                        color[nei] = -color[elem]
+                        q.append(nei)
+                    elif color[nei] == color[elem]:
+                        return False
         return True
+                        
+
+
+
+                        
