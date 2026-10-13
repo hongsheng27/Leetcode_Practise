@@ -1,0 +1,316 @@
+**399. Evaluate Division**
+
+**題目概述：**  
+給一組除法關係，例如 `a / b = 2.0`，以及多個 query，求兩個變數之間的除法結果；可以把每個 variable 當作 graph node、除法比例當作 edge weight。
+
+**解題邏輯：**  
+把 equation：
+
+```text
+a / b = 2.0
+```
+
+轉成 weighted graph：
+
+```text
+a --2.0--> b
+b --0.5--> a
+```
+
+因為：
+
+```text
+a / b = 2
+→ b / a = 1 / 2
+```
+
+所以建 adjacency list：
+
+```python
+adj[a].append((b, value))
+adj[b].append((a, 1 / value))
+```
+
+如果有：
+
+```text
+a / b = 2
+b / c = 3
+```
+
+查：
+
+```text
+a / c
+```
+
+就是沿 graph 找一條：
+
+```text
+a → b → c
+```
+
+把 edge weights 相乘：
+
+```text
+2 × 3 = 6
+```
+
+因此：
+
+```text
+a / c = 6
+```
+
+---
+
+使用 DFS 搜尋 target。
+
+DFS semantic：
+
+```text
+dfs(cur, target, visited)
+
+cur
+= 目前所在 variable
+
+target
+= query 想找的 variable
+
+visited
+= 已拜訪的 nodes，避免雙向 graph 無限循環
+```
+
+如果：
+
+```python
+cur == target
+```
+
+代表已經找到目的地，此時回傳：
+
+```python
+1.0
+```
+
+因為目前 node 到自己的比例是：
+
+```text
+cur / cur = 1
+```
+
+接著在 recursive return 時把 edge weight 乘回來。
+
+例如：
+
+```text
+a --2--> b --3--> c
+```
+
+到 `c`：
+
+```text
+return 1
+```
+
+回到 `b`：
+
+```text
+3 × 1 = 3
+```
+
+回到 `a`：
+
+```text
+2 × 3 = 6
+```
+
+所以：
+
+```python
+return weight * dfs_result
+```
+
+如果所有 path 都找不到 target：
+
+```text
+return -1
+```
+
+query 前也要先確認：
+
+```text
+start 和 end 都存在於 graph
+```
+
+否則直接：
+
+```text
+-1
+```
+
+---
+
+**踩過的坑：**  
+一開始知道 `a` 可以透過 `b` 找到 `c`，但不知道「關係式」應該怎麼存在 graph 裡。
+
+核心是：
+
+```text
+除法比例就是 edge weight
+```
+
+不是把：
+
+```text
+a = 2 * b
+```
+
+存成字串公式，而是直接存：
+
+```text
+a --2--> b
+```
+
+---
+
+一開始想到 Dijkstra。
+
+但 Dijkstra 解的是：
+
+```text
+weighted shortest path
+```
+
+這題不需要找：
+
+```text
+最小 cost / 最短 weighted path
+```
+
+只需要：
+
+```text
+找到一條能從 start 到 target 的 path
+並把沿途 weight 相乘
+```
+
+所以普通 DFS / BFS 就足夠。
+
+---
+
+一開始嘗試讓每個 `Node` 維護一個全域 `weight`：
+
+```text
+a.weight / b.weight
+= a / b
+```
+
+這樣 query 可以直接相除，但不同 connected components 合併時，就需要把整個 component 的 weights 重新 scale。
+
+例如：
+
+```text
+Component 1:
+a, b
+
+Component 2:
+x, y
+```
+
+新增：
+
+```text
+b / x = 3
+```
+
+就必須重新調整其中一整組 weights。
+
+改成：
+
+```text
+weight 屬於 edge
+```
+
+之後，component merge 完全不需要重新計算。
+
+只要新增：
+
+```text
+b --3--> x
+x --1/3--> b
+```
+
+之後 query 時 DFS 自己沿 path 相乘即可。
+
+---
+
+因為 graph 是雙向：
+
+```text
+a → b
+b → a
+```
+
+DFS 必須有 `visited`。
+
+否則可能：
+
+```text
+a → b → a → b → ...
+```
+
+一直循環。
+
+---
+
+**複雜度：**  
+假設：
+
+```text
+V = variables 數量
+E = equations 數量
+Q = queries 數量
+```
+
+建立 graph：
+
+```text
+O(E)
+```
+
+每個 query 最壞可能遍歷整個 graph：
+
+```text
+O(V + E)
+```
+
+所以總時間：
+
+```text
+O(E + Q(V + E))
+```
+
+Graph、visited、recursion stack：
+
+```text
+Space: O(V + E)
+```
+
+**Pattern：**
+
+```text
+Equation / ratio relationships
+→ Weighted Graph
+
+a / b = value
+→ a --value--> b
+→ b --1/value--> a
+
+Query a / c
+→ DFS / BFS 找 path
+→ 沿途 edge weights 相乘
+
+不需要 Dijkstra
+因為不是 shortest path 問題
+```
