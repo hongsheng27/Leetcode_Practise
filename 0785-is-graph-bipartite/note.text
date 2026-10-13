@@ -1,0 +1,285 @@
+**785. Is Graph Bipartite?**
+
+**題目概述：**  
+給一張無向圖，判斷能不能把所有 nodes 分成兩組，使得每條 edge 連接的兩個 nodes 都屬於不同組；等價於判斷這張 graph 能不能做 **2-coloring**。
+
+**解題邏輯：**  
+用 BFS / DFS 做 graph coloring。
+
+用：
+
+```python
+color = [0] * len(graph)
+```
+
+表示每個 node 的狀態：
+
+```text
+0  = 尚未染色
+1  = Group A
+-1 = Group B
+```
+
+如果目前：
+
+```python
+color[node] = 1
+```
+
+那它所有 neighbor 都必須是：
+
+```python
+-1
+```
+
+也就是：
+
+```python
+color[nei] = -color[node]
+```
+
+處理 neighbor 時有兩種情況：
+
+```text
+nei 尚未染色
+→ 染成目前 node 的相反顏色
+→ 加入 queue
+
+nei 已經染色
+→ 檢查 color[nei] 是否和 color[node] 相同
+→ 相同代表 conflict，return False
+```
+
+關鍵判斷：
+
+```python
+if color[nei] == 0:
+    color[nei] = -color[node]
+elif color[nei] == color[node]:
+    return False
+```
+
+Graph 不一定 connected，所以不能只從 node `0` BFS 一次。
+
+需要：
+
+```python
+for i in range(len(graph)):
+```
+
+把所有 nodes 都掃過。
+
+如果：
+
+```python
+color[i] == 0
+```
+
+代表它屬於一個還沒拜訪過的新 connected component，就：
+
+```text
+先隨便染成 1
+再從它開始 BFS
+```
+
+所以整體概念：
+
+```text
+for every node:
+    if 尚未染色:
+        開一個新的 BFS
+
+BFS 中：
+    neighbor 未染色 → 染相反顏色
+    neighbor 已染色 → 檢查有沒有 color conflict
+```
+
+這題其實不一定需要另外的 `visited`。
+
+因為：
+
+```text
+color[node] != 0
+```
+
+本身就代表：
+
+```text
+這個 node 已經拜訪 / 染色過
+```
+
+所以 `color` 可以同時扮演：
+
+```text
+visited + group assignment
+```
+
+---
+
+**踩過的坑：**  
+一開始 implementation 卡住，雖然知道 bipartite 是「相鄰 nodes 要分到不同組」，但不知道怎麼把這個想法轉成 traversal state。
+
+後來把 state 定義成：
+
+```text
+color[node]
+= 這個 node 屬於哪一組
+```
+
+會比較清楚。
+
+---
+
+一開始沒有想到 graph 可能是 disconnected，所以只想從單一 node 開始 traversal。
+
+但：
+
+```text
+0 -- 1
+
+2 -- 3
+```
+
+如果只從 `0` BFS：
+
+```text
+2、3 根本不會被檢查
+```
+
+所以必須：
+
+```python
+for i in range(len(graph)):
+```
+
+遇到尚未染色的 node，就重新開一個 BFS。
+
+---
+
+`color` 的值一直給錯。
+
+最簡單的方式是固定：
+
+```text
+1  = 一組
+-1 = 另一組
+```
+
+那 neighbor 的顏色永遠直接寫成：
+
+```python
+-color[node]
+```
+
+不用自己判斷：
+
+```text
+現在是 1 要給 -1
+現在是 -1 要給 1
+```
+
+---
+
+一開始另外使用 `visited`，而且讓 BFS 不去處理已經 visited 的 neighbor。
+
+但這題即使 neighbor 已經 visited，**還是必須檢查它的 color**。
+
+例如：
+
+```text
+u ---- v
+```
+
+`v` 之前可能已經被另一條 path 染色。
+
+現在再次看到這條 edge 時，必須確認：
+
+```text
+color[u] != color[v]
+```
+
+如果因為：
+
+```python
+if nei in visited:
+    continue
+```
+
+直接跳過，就可能漏掉 bipartite conflict。
+
+所以這題比較自然的是：
+
+```text
+沒有獨立 visited
+
+color == 0
+→ 尚未拜訪
+
+color != 0
+→ 已拜訪，但仍然要檢查顏色
+```
+
+---
+
+這題邏輯本身不算複雜，但 implementation 容易亂掉的原因是同時在想：
+
+```text
+visited
+group
+color
+BFS traversal
+disconnected graph
+```
+
+其實可以把 state 壓縮成只有一個：
+
+```text
+color[node]
+```
+
+它同時回答兩件事：
+
+```text
+這個 node 有沒有拜訪過？
+這個 node 屬於哪一組？
+```
+
+---
+
+**複雜度：**  
+
+每個 node 最多進 queue 一次，每條 edge 最多被檢查兩次：
+
+```text
+Time: O(V + E)
+```
+
+`color`、queue 最多存所有 nodes：
+
+```text
+Space: O(V)
+```
+
+**Pattern：**
+
+```text
+Bipartite
+→ 2 groups
+→ 2-coloring
+→ BFS / DFS
+
+color[node] = 0
+→ unvisited
+
+color[node] = 1 / -1
+→ group assignment
+
+neighbor 未染色
+→ color[nei] = -color[node]
+
+neighbor 已染色
+→ 必須檢查是否與目前 node 同色
+
+Graph 可能 disconnected
+→ for every node 啟動 traversal
+```
