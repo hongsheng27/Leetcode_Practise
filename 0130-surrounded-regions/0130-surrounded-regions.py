@@ -13,25 +13,30 @@ class Solution:
         for c in range(COLS):
             if board[0][c] == "O":
                 q.append((0, c))
+                board[0][c] = '#'
             if board[ROWS - 1][c] == "O":
                 q.append((ROWS - 1, c))
+                board[ROWS - 1][c] = '#'
         for r in range(ROWS):
             if board[r][0] == "O":
                 q.append((r, 0))
+                board[r][0] = '#'
             if board[r][COLS - 1] == "O":
                 q.append((r, COLS - 1))
+                board[r][COLS - 1] = '#'
                 
         while q:
             r, c = q.popleft()
-            board[r][c] = '#'
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
                 if nr < 0 or nc < 0 or nr >= ROWS or nc >= COLS or board[nr][nc] != "O":
                     continue
                 q.append((nr, nc))
+                board[nr][nc] = '#'
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == "O": 
                     board[r][c] = "X"
                 elif board[r][c] == "#":
                     board[r][c] = "O"
+        # 19: 19
