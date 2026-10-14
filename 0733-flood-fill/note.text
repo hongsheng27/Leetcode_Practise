@@ -1,0 +1,183 @@
+**733. Flood Fill**
+
+**題目概述：**  
+給一張 image、起點 `(sr, sc)` 和新顏色 `color`，把從起點出發、四方向相連且與起點原始顏色相同的所有格子改成新顏色。
+
+**解題邏輯：**  
+這題本質是：
+
+```text
+Grid
++ 四方向移動
++ 找 connected component
+```
+
+所以 DFS / BFS 都適合。
+
+先記住起點原始顏色：
+
+```python
+startColor = image[sr][sc]
+```
+
+如果：
+
+```python
+startColor == color
+```
+
+直接 return。
+
+因為 DFS 是利用「改成新顏色」來代表這格已經處理過；如果新舊顏色相同，就無法區分 visited。
+
+DFS semantic：
+
+```text
+dfs(r, c)
+=
+如果 (r, c) 是合法且仍為 startColor，
+就把這格染成 color，
+再繼續處理上下左右所有相連格子。
+```
+
+Base case：
+
+```python
+if (
+    r < 0 or r >= ROWS or
+    c < 0 or c >= COLS or
+    image[r][c] != startColor
+):
+    return
+```
+
+符合條件後先改色：
+
+```python
+image[r][c] = color
+```
+
+再往四方向搜尋：
+
+```python
+dfs(r + 1, c)
+dfs(r - 1, c)
+dfs(r, c + 1)
+dfs(r, c - 1)
+```
+
+這題不需要額外的 `visited`。
+
+因為一個格子被拜訪後：
+
+```python
+image[r][c] = color
+```
+
+之後再走回來：
+
+```python
+image[r][c] != startColor
+```
+
+就會直接 return。
+
+所以：
+
+```text
+修改 image
+=
+同時完成答案
++
+標記 visited
+```
+
+---
+
+**踩過的坑：**  
+
+一開始認為：
+
+```text
+因為要找所有 connected color
+→ DFS 可能不是好選擇
+```
+
+但其實剛好相反。
+
+DFS / BFS 都很適合找：
+
+```text
+connected component
+```
+
+兩者差別只有 traversal order：
+
+```text
+DFS
+→ 一條路深入到底再回來
+
+BFS
+→ 一層一層向外擴散
+```
+
+這題不在乎距離或 traversal order，只需要找到所有相連格子，所以兩個都可以。
+
+---
+
+一開始 BFS 版本額外使用：
+
+```python
+visited = set()
+```
+
+DFS 後來可以不用 `visited`，因為直接把拜訪過的格子改成新顏色：
+
+```python
+image[r][c] = color
+```
+
+就能讓它之後不再符合：
+
+```python
+image[r][c] == startColor
+```
+
+因此 image 本身就可以當作 visited state。
+
+---
+
+**複雜度：**  
+
+最壞情況整張 image 都與起點相連，每個 cell 最多被處理一次：
+
+```text
+Time: O(ROWS * COLS)
+```
+
+Recursive DFS 最壞可能一路深入所有 cells：
+
+```text
+Space: O(ROWS * COLS)
+```
+
+主要來自 recursion stack。
+
+**Pattern：**
+
+```text
+Grid
++ 四方向
++ Connected Component
+→ DFS / BFS
+
+DFS state:
+(r, c)
+
+Valid cell:
+in bounds
+AND image[r][c] == startColor
+
+直接修改原圖
+→ 可以同時當 visited
+```
