@@ -1,0 +1,242 @@
+**463. Island Perimeter**
+
+**題目概述：**  
+給一個由 `0` 和 `1` 組成的 grid，`1` 代表 land、`0` 代表 water；計算島嶼的總 perimeter。每一塊 land 的四個方向，只要碰到 water 或 grid 邊界，就貢獻 `1` perimeter。
+
+**解題邏輯：**  
+這題可以用 DFS / BFS traversal island。
+
+DFS 特別自然，因為每個方向可以直接回傳它對 perimeter 的貢獻。
+
+DFS semantic：
+
+```text
+dfs(r, c)
+=
+從這個位置出發，
+計算它以及後續相連 land 所產生的 perimeter
+```
+
+最重要的是 base case。
+
+如果走到：
+
+```text
+out of bounds
+或
+water
+```
+
+代表目前這條 land edge 暴露在外：
+
+```python
+return 1
+```
+
+如果走到已經拜訪過的 land：
+
+```python
+return 0
+```
+
+因為它只是島嶼內部連接，不是 perimeter。
+
+所以：
+
+```python
+if out_of_bounds or grid[r][c] == 0:
+    return 1
+
+if (r, c) in visited:
+    return 0
+```
+
+拜訪新的 land 後：
+
+```python
+visited.add((r, c))
+```
+
+再把四個方向的 contribution 加起來：
+
+```python
+return (
+    dfs(r + 1, c) +
+    dfs(r - 1, c) +
+    dfs(r, c + 1) +
+    dfs(r, c - 1)
+)
+```
+
+這題很適合記住：
+
+```text
+DFS 不只是 traversal
+
+recursive call 也可以回傳答案 contribution
+```
+
+---
+
+**DFS 與 Flood Fill 的差異：**
+
+兩題 traversal 骨架很像：
+
+```text
+Grid
++ 四方向
++ Connected Component
+```
+
+但 base case 的意義不同。
+
+Flood Fill：
+
+```text
+invalid state
+→ 不需要再走
+→ return
+```
+
+Island Perimeter：
+
+```text
+碰到 water / border
+→ 不需要再走
+→ 但這件事本身就是 perimeter
+→ return 1
+```
+
+所以除了問：
+
+```text
+什麼時候停止 DFS？
+```
+
+還要問：
+
+```text
+停止時要回傳什麼？
+```
+
+---
+
+**BFS 也可以：**
+
+BFS 一樣 traversal 每個 connected land。
+
+處理每一塊 land 時檢查四個方向：
+
+```text
+water / outside
+→ perimeter += 1
+
+unvisited land
+→ enqueue
+
+visited land
+→ 不處理
+```
+
+BFS 不像 recursive DFS 有 child return value，所以 perimeter 通常直接在 traversal 過程中累加：
+
+```python
+if outside_or_water:
+    perimeter += 1
+```
+
+所以兩種解法的核心其實一樣：
+
+```text
+DFS:
+碰到 boundary → return 1
+最後把 child results 相加
+
+BFS:
+碰到 boundary → perimeter += 1
+```
+
+這題 DFS 寫起來更自然，是因為答案可以很好地做：
+
+```text
+child result
+→ parent aggregation
+```
+
+也就是四個方向直接相加。
+
+---
+
+**踩過的坑：**  
+一開始疑問是這題是否因為特性特別適合 DFS，以及 BFS 是否也能做。
+
+答案是兩個都能做，而且複雜度相同。
+
+DFS 比較自然的原因不是因為 BFS 做不到，而是：
+
+```text
+每個方向的 perimeter contribution
+可以直接透過 recursive return 往上加
+```
+
+所以：
+
+```python
+return dfs(...) + dfs(...) + dfs(...) + dfs(...)
+```
+
+非常符合題目結構。
+
+BFS 則需要在 traversal 時直接維護：
+
+```python
+perimeter += 1
+```
+
+---
+
+**複雜度：**  
+每個 land cell 最多真正拜訪一次，每格最多檢查四個方向：
+
+```text
+Time: O(ROWS * COLS)
+```
+
+最壞整張 grid 都是 land。
+
+DFS：
+
+```text
+visited + recursion stack
+→ O(ROWS * COLS)
+```
+
+BFS：
+
+```text
+visited + queue
+→ O(ROWS * COLS)
+```
+
+**Pattern：**
+
+```text
+Grid
++ Connected Component
++ 每個方向對答案有 contribution
+→ DFS 很適合
+
+DFS base case:
+water / outside → return 1
+visited land    → return 0
+
+DFS aggregation:
+四個方向答案相加
+
+BFS equivalent:
+water / outside → perimeter += 1
+unvisited land  → enqueue
+
+如果答案能自然由 child result 往 parent 聚合
+→ 優先考慮 DFS
+```
