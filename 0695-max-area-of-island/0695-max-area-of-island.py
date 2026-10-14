@@ -1,7 +1,6 @@
 class Solution:
     def maxAreaOfIsland(self, grid: list[list[int]]) -> int:
         # dfs: can return value back to start
-        # 1:25
         ROWS, COLS = len(grid), len(grid[0])
         visited = set()
         def dfs(r, c):
