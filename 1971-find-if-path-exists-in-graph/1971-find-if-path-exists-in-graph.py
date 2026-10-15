@@ -3,7 +3,6 @@ class Solution:
         # edges => adjsant list
         # start from source, if node == destination: return True
         # or return False
-        # 5:00
         adj = defaultdict(list)
         for start, end in edges:
             adj[start].append(end)
@@ -11,13 +10,10 @@ class Solution:
         visited = set([source])
         def dfs(elem):
             if elem == destination: return True
-            res = False
             for nei in adj[elem]:
                 if nei in visited: continue
                 visited.add(nei)
-                if dfs(nei): res = True
-            return res
+                if dfs(nei): return True
+            return False
         return dfs(source)
-        # 10: 00 debug
-        # dfs(elme) wrong => dfs(nei)
-        # 20:00 ai debug => add bi-directional graph
+       
