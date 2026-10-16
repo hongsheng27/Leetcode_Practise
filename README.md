@@ -873,6 +873,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -910,6 +911,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
@@ -1022,6 +1024,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0785-is-graph-bipartite](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0785-is-graph-bipartite) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
@@ -1041,6 +1044,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
@@ -1199,8 +1203,10 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0785-is-graph-bipartite](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0785-is-graph-bipartite) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 ## Bipartite Graph
 |  |
 | ------- |
 | [0785-is-graph-bipartite](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0785-is-graph-bipartite) |
+| [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 <!---LeetCode Topics End-->
