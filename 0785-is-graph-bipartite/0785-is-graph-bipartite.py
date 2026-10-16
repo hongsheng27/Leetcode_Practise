@@ -6,7 +6,6 @@ class Solution:
         # if it have group => 1. see if nei group equal itself, if so, return False
         # 2. if nei has not group, it becomes opposite of group
         # visited to make sure go back itself, but need to see visited node
-        # 10:00 
         n = len(graph)
         colors = [0] *  n
 
@@ -28,4 +27,3 @@ class Solution:
                 if not bfs(i):
                     return False
         return True
-        # 28:40 debug
