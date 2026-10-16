@@ -1,0 +1,221 @@
+**886. Possible Bipartition**
+
+**題目概述：**  
+給 `n` 個人與一組 `dislikes`，每筆 `[a, b]` 代表兩人不能分在同一組。判斷能否將所有人分成兩組，使每一對互相討厭的人都屬於不同組。本質上是 **Undirected Graph + Bipartite / 2-Coloring**。
+
+**解題邏輯：**
+
+先將 `dislikes` 建模成 Graph。
+
+```text
+Node = Person
+Edge = 兩個人不能在同一組
+```
+
+例如：
+
+```python
+dislikes = [[1, 2], [2, 3]]
+```
+
+每筆 dislike 是一條 **edge**，不是完整的 path。由多條 edges 才能形成 `1 → 2 → 3` 這樣的 path。
+
+因為 dislike 關係是雙向的，所以建立 undirected adjacency list：
+
+```python
+adj = defaultdict(list)
+
+for a, b in dislikes:
+    adj[a].append(b)
+    adj[b].append(a)
+```
+
+接著用 BFS 做 2-Coloring。
+
+```python
+colors = [0] * (n + 1)
+```
+
+顏色代表：
+
+```text
+0  = Unvisited
+1  = Group A
+-1 = Group B
+```
+
+BFS 的目的：
+
+```text
+從某個 node 出發
+→ 讓所有 neighbors 都分到相反 group
+→ 驗證每條 edge 的兩端顏色不同
+```
+
+核心邏輯：
+
+```python
+for nei in adj[elem]:
+    if colors[nei] == 0:
+        colors[nei] = -colors[elem]
+        q.append(nei)
+    elif colors[nei] == colors[elem]:
+        return False
+```
+
+這裡 `colors` 同時代表 visited 和 group assignment。
+
+- 尚未染色：分配相反顏色並 enqueue。
+- 已染色：即使 visited，仍然要檢查是否同色。
+- 發現同色：違反 Bipartite，立即 `False`。
+
+Graph 可能 disconnected，因此外層必須掃描所有人：
+
+```python
+for i in range(1, n + 1):
+    if colors[i] == 0:
+        if not bfs(i):
+            return False
+
+return True
+```
+
+每個尚未分組的 connected component，都可以從 `color = 1` 重新開始 BFS。
+
+---
+
+**踩過的坑：**
+
+**1. 沒有立即發現 dislikes 就是 Graph Edge List**
+
+一開始把 `dislikes` 理解成需要逐筆檢查的規則，卻沒有想到可以轉換為 adjacency list。
+
+其實：
+
+```text
+dislikes[a, b]
+→ a 和 b 存在一條限制關係
+→ Undirected Edge
+```
+
+Graph 不一定要以 `edges` 或 `graph` 命名，也可能是：
+
+```text
+dislikes / friendships / roads / prerequisites
+```
+
+以後先定義：
+
+```text
+Node 是什麼？
+Edge 代表什麼關係？
+Traversal 要傳播或檢查什麼？
+```
+
+**2. 曾嘗試不用 BFS，直接遍歷 dislikes 並分配 colors**
+
+問題是單次掃描可能先替不同 connected components 各自分組，之後才發現它們互相連接。
+
+例如：
+
+```python
+dislikes = [[1, 2], [3, 4], [1, 3]]
+```
+
+前兩組可能先被染成：
+
+```text
+1 = A, 2 = B
+3 = A, 4 = B
+```
+
+遇到 `[1, 3]` 時，直接判斷會認為 A 與 A 衝突。
+
+但其實可以把第二組顏色整組反轉，仍然存在合法分組。
+
+所以不能依照 input 順序直接決定最終顏色，而應該透過 BFS / DFS 沿 graph 傳播 constraint。
+
+**3. 曾把外層判斷寫成 `colors[i] == 1`**
+
+但：
+
+```text
+colors[i] == 0 → 尚未拜訪，才需要 BFS
+colors[i] == 1 → 已經分組
+```
+
+要根據 state 的定義寫條件，不要憑印象。
+
+**4. 曾把 `if bfs(i): return False` 寫反**
+
+必須先定義 function return semantic：
+
+```text
+bfs(i) == True  → 此 component 合法
+bfs(i) == False → 發現同色 conflict
+```
+
+所以應該是：
+
+```python
+if not bfs(i):
+    return False
+```
+
+---
+
+**與 785. Is Graph Bipartite 橫向比較：**
+
+| | 785 | 886 |
+|---|---|---|
+| Input | Adjacency List | Edge List |
+| Node | `0 ~ n-1` | `1 ~ n` |
+| 建圖 | 不需要 | 需要雙向建圖 |
+| Algorithm | BFS / DFS + Coloring | BFS / DFS + Coloring |
+| State | `colors` | `colors` |
+| 判斷 | 相鄰 nodes 不同色 | Dislike 的兩人不同組 |
+
+**一旦建好 adjacency list，兩題的 BFS 邏輯完全相同。**
+
+---
+
+**複雜度：**
+
+令 `n` 為人數，`E = len(dislikes)`。
+
+建立 adjacency list：`O(E)`
+
+BFS：每個 node 最多 enqueue 一次，每條無向 edge 最多檢查兩次。
+
+```text
+Time: O(n + E)
+```
+
+儲存 adjacency list、colors、queue：
+
+```text
+Space: O(n + E)
+```
+
+**Pattern：**
+
+```text
+Two Groups / Opposite Groups
++ Pairwise Constraints
+→ Undirected Graph
+→ Bipartite / 2-Coloring
+
+Edge List → Adjacency List
+
+Uncolored neighbor
+→ Assign opposite color
+
+Colored neighbor
+→ Check color conflict
+
+Disconnected Graph
+→ BFS / DFS every unvisited component
+```
+
+**核心學習重點：**  
+這題不是重新學一種 BFS，而是學會把題目中的關係資料辨識成 Graph。先完成 Node / Edge 建模，剩下的就是 785 已經學過的 2-Coloring pattern。
