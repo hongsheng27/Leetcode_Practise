@@ -855,6 +855,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0230-kth-smallest-element-in-a-bst](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0230-kth-smallest-element-in-a-bst) |
 | [0235-lowest-common-ancestor-of-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0235-lowest-common-ancestor-of-a-binary-search-tree) |
 | [0236-lowest-common-ancestor-of-a-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0236-lowest-common-ancestor-of-a-binary-tree) |
+| [0261-graph-valid-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0261-graph-valid-tree) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
@@ -893,6 +894,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0207-course-schedule](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0207-course-schedule) |
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
 | [0226-invert-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0226-invert-binary-tree) |
+| [0261-graph-valid-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0261-graph-valid-tree) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
@@ -1017,6 +1019,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0128-longest-consecutive-sequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0128-longest-consecutive-sequence) |
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
 | [0200-number-of-islands](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0200-number-of-islands) |
+| [0261-graph-valid-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0261-graph-valid-tree) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
 | [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
@@ -1034,6 +1037,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0133-clone-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0133-clone-graph) |
 | [0207-course-schedule](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0207-course-schedule) |
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
+| [0261-graph-valid-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0261-graph-valid-tree) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
 | [0332-reconstruct-itinerary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0332-reconstruct-itinerary) |
 | [0399-evaluate-division](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0399-evaluate-division) |
