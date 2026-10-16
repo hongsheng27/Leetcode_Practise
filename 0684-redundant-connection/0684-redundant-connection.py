@@ -2,7 +2,6 @@ class Solution:
     def findRedundantConnection(self, edges: list[list[int]]) -> list[int]:
         # solution1: return the edge breaking tree, mean fund edge can't be union
         # using union find
-        # 4:45
         n = len(edges)
         parents = [i for i in range(n + 1)]
         sizes = [1] * (n + 1)
@@ -27,5 +26,3 @@ class Solution:
         for start, end in edges:
             if not union(start, end):
                 return [start, end]
-        # 18:27 done, optimzie find
-        #
