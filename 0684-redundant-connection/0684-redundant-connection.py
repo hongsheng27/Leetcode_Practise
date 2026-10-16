@@ -1,26 +1,28 @@
 class Solution:
-    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+    def findRedundantConnection(self, edges: list[list[int]]) -> list[int]:
+        # solution1: return the edge breaking tree, mean fund edge can't be union
+        # using union find
+        # 4:45
         n = len(edges)
-        parent = [i for i in range(n + 1)]
-        size = [1] * (n + 1)
+        parents = [i for i in range(n + 1)]
+        sizes = [1] * (n + 1)
+        def find(a):
+            cur = a
+            while cur != parents[cur]:
+                cur = parents[cur]
+            return cur
 
-        def find(v):
-            while v != parent[v]:
-                v = parent[v]
-            return v
-        def union(v1, v2):
-            v1Root = find(v1)
-            v2Root = find(v2)
-            
-            if v1Root == v2Root:
-                return False
+        def union(a, b):
+            headA = find(a)
+            headB = find(b)
+            if headA == headB: return False
 
-            if size[v1Root] < size[v2Root]:
-                v1Root, v2Root = v2Root, v1Root
-            parent[v2Root] = v1Root
-            size[v1Root] += size[v2Root]
+            if sizes[headA] < sizes[headB]:
+                headA, headB = headB, headA
+            parents[headB] = headA
+            sizes[headA] += sizes[headB]
             return True
         
-        for a, b in edges:
-            if not union(a, b):
-                return [a, b]
+        for start, end in edges:
+            if not union(start, end):
+                return [start, end]
