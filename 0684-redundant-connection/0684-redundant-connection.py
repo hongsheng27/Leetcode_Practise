@@ -9,6 +9,7 @@ class Solution:
         def find(a):
             cur = a
             while cur != parents[cur]:
+                parents[cur] = parents[parents[cur]]
                 cur = parents[cur]
             return cur
 
@@ -26,3 +27,5 @@ class Solution:
         for start, end in edges:
             if not union(start, end):
                 return [start, end]
+        # 18:27 done, optimzie find
+        #
