@@ -2,12 +2,11 @@ class Solution:
     def shortestPathBinaryMatrix(self, grid: list[list[int]]) -> int:
         # bfs find shortest path, only zero can pass
         # eight way to traverse
-        # 04: 15
         ROWS, COLS = len(grid), len(grid[0])
         if grid[0][0] or grid[ROWS - 1][COLS - 1] == 1: return -1
         q = deque([(0, 0)])
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, -1), (-1, -1), (1, 1), (-1, 1)]
-        visited = set()
+        visited = {(0, 0)}
         minutes = 0
         while q:
             for _ in range(len(q)):
