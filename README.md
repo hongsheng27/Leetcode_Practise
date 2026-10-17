@@ -161,6 +161,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [1899-merge-triplets-to-form-target-triplet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1899-merge-triplets-to-form-target-triplet) |
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
+| [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [1929-concatenation-of-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1929-concatenation-of-array) |
 | [2134-minimum-swaps-to-group-all-1s-together-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2134-minimum-swaps-to-group-all-1s-together-ii) |
 | [2239-find-closest-number-to-zero](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2239-find-closest-number-to-zero) |
@@ -451,6 +452,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
+| [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
 ## Math
 |  |
@@ -921,6 +923,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
+| [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
 ## Binary Tree
 |  |
