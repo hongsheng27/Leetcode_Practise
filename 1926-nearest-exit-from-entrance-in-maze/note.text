@@ -1,0 +1,37 @@
+1926. Nearest Exit from Entrance in Maze
+題目概述：
+給一個 m × n 的 Maze，從指定 Entrance 出發，只能上下左右移動，找出距離最近的 Exit。Exit 必須是邊界上的 "."，但 Entrance 本身不算 Exit；無法抵達回傳 -1。
+解題邏輯：
+使用 BFS，因為每次移動 cost = 1，第一次找到 Exit 就是最短距離。
+初始化：
+q = deque([tuple(entrance)])visited = {tuple(entrance)}distance = 0
+
+
+
+每次 BFS level 代表移動一步。
+Neighbor 必須符合：
+- In bounds
+- maze[nr][nc] == "."
+- (nr, nc) not in visited
+合法 Neighbor 在 enqueue 時加入 visited：
+visited.add((nr, nc))q.append((nr, nc))
+
+
+
+Exit 不需要事先建立 set，可以直接判斷目前位置是否位於邊界：
+if distance > 0 and (    r == 0 or r == ROWS - 1 or    c == 0 or c == COLS - 1):    return distance
+
+
+
+distance > 0 是為了排除 Entrance 本身。
+使用 Level-order BFS：
+while q:    for _ in range(len(q)):        # Process current level    distance += 1
+
+
+
+Queue 清空仍找不到 Exit，就回傳 -1。
+踩過的坑：
+本題原始 BFS 解法正確，沒有實際遇到 Debug 問題。
+複雜度：
+Time: O(ROWS × COLS)
+Space: O(ROWS × COLS)
