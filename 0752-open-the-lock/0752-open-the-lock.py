@@ -8,7 +8,6 @@ class Solution:
         # if meet set(tuple(deadline)), continue, how doest that change compacity?
         # if meet tuple(target), return shortest distance
         # compancity => tc 10 * 10 / sc 10 * 10
-        # 18:00
         q = deque([list("0000")])
         visited = set([tuple("0000")])
         deadends = {tuple(d) for d in deadends}
@@ -30,9 +29,3 @@ class Solution:
                         q.append(copy)
             distance += 1
         return -1
-        # 42:00 done, debug: 
-        # 1. cur changed by every loop, need copy = cur.copy()
-        # 2. type wrong, res = 0 if res == 10 else res
-        # 3. "0000" in deadends
-        # 58:40 ai-assist
-        
