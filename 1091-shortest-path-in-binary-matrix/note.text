@@ -1,0 +1,237 @@
+**1091. Shortest Path in Binary Matrix**
+
+**題目概述：**  
+給一個 `n × n` 的 binary matrix，`0` 可以通行、`1` 是障礙物。從左上角 `(0, 0)` 出發，可以往八個方向移動，找出到右下角的最短路徑長度（包含起點與終點）；無法抵達則回傳 `-1`。
+
+**解題邏輯：**
+
+這題是標準的 **Unweighted Graph + BFS Shortest Path**。
+
+因為每次移動的 cost 都是 `1`，BFS 保證第一次到達 destination 時，就是最短路徑。
+
+先確認起點和終點可以通行：
+
+```python
+if grid[0][0] == 1 or grid[-1][-1] == 1:
+    return -1
+```
+
+初始化 BFS：
+
+```python
+q = deque([(0, 0)])
+visited = {(0, 0)}
+steps = 0
+```
+
+State 定義：
+
+```text
+(r, c) = Current cell
+steps  = 從起點到目前 BFS level 已移動的步數
+visited = 已經發現並 enqueue 的 cells
+```
+
+與一般 Grid BFS 不同，這題有八個方向：
+
+```python
+directions = [
+    (1, 0), (-1, 0),
+    (0, 1), (0, -1),
+    (1, 1), (1, -1),
+    (-1, 1), (-1, -1)
+]
+```
+
+Neighbor 可以加入 queue 的條件：
+
+```text
+1. In bounds
+2. grid[nr][nc] == 0
+3. (nr, nc) not in visited
+```
+
+發現合法 neighbor：
+
+```python
+visited.add((nr, nc))
+q.append((nr, nc))
+```
+
+BFS 使用 Level-order Traversal：
+
+```python
+while q:
+    for _ in range(len(q)):
+        # Process current level
+    steps += 1
+```
+
+每個 level 代表多移動一步。
+
+找到 destination 時：
+
+```python
+if (r, c) == (ROWS - 1, COLS - 1):
+    return steps + 1
+```
+
+因為題目要求的是 **Path Length（經過的 cells 數量）**，不是移動次數。
+
+例如：
+
+```text
+0 1
+1 0
+```
+
+只需要斜向移動一次：
+
+```text
+Moves = 1
+Path Length = 2
+```
+
+因此 `steps + 1`。
+
+如果 BFS 結束仍未找到 destination：
+
+```python
+return -1
+```
+
+---
+
+**踩過的坑：**
+
+**1. 一開始沒有把起點加入 visited**
+
+原本：
+
+```python
+q = deque([(0, 0)])
+visited = set()
+```
+
+這樣鄰居可能重新把起點 enqueue。
+
+應改成：
+
+```python
+visited = {(0, 0)}
+```
+
+BFS 應該在 enqueue 時就標記 visited，避免重複探索。
+
+**2. 疑問：這題是不是只是方向從四個變成八個？**
+
+基本上是。
+
+與一般 Grid BFS 的骨架完全一樣：
+
+```text
+Queue
+→ Pop current cell
+→ Check neighbors
+→ Mark visited
+→ Enqueue
+```
+
+主要差異是：
+
+```text
+一般 Grid BFS → 4 directions
+1091 → 8 directions
+```
+
+但這題還需要注意 **Single-source BFS、Shortest Path，以及答案包含起點**。
+
+**3. 複雜度該怎麼計算？**
+
+不要只看每個 cell 可以走八個方向，而是依照：
+
+```text
+State 數量
+×
+每個 State 的處理次數
+×
+每次處理的工作量
+```
+
+來計算。
+
+因為有 `visited`，每個 cell 最多完整探索一次，不會因為八個方向就變成指數級搜尋。
+
+---
+
+**複雜度：**
+
+假設 Matrix 大小為 `n × n`。
+
+最多有：
+
+```text
+n² 個 cells
+```
+
+每個 cell 最多 enqueue 一次，每次檢查八個方向：
+
+```text
+O(8 × n²)
+= O(n²)
+```
+
+所以：
+
+**Time: O(n²)**
+
+`visited` 和 BFS queue 最壞都可能使用 O(n²) 空間：
+
+**Space: O(n²)**
+
+---
+
+**Pattern：**
+
+```text
+Grid
++ Shortest Path
++ Equal Edge Cost
+→ BFS
+
+Single-source:
+(0, 0)
+
+State:
+(r, c)
+
+Transition:
+8 directions
++ In bounds
++ Cell == 0
++ Not visited
+
+Visited:
+Mark on enqueue
+
+BFS Level:
+每增加一層 = 多移動一步
+
+First time reaching destination:
+→ Shortest Path
+
+Answer:
+steps + 1
+因為計算的是 cells 數量
+```
+
+**與先前題目橫向比較：**
+
+| 題目 | BFS 起點 | Level 的意義 | Answer |
+|---|---|---|---|
+| 994 Rotting Oranges | 所有 Rotten | 經過一分鐘 | 最後感染時間 |
+| 542 01 Matrix | 所有 Zero | 距離增加一步 | 每格最短距離 |
+| 1091 Shortest Path | 左上角 | 移動一步 | 最短路徑經過的格數 |
+
+**核心觀念：**  
+BFS 的基本骨架不變，真正要根據題目重新定義的是 **Source、Transition、Level 的意義，以及 Answer 計算方式**。
