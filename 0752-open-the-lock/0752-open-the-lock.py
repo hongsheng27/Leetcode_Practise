@@ -23,15 +23,16 @@ class Solution:
                 for i in range(4):
                     for j in [1, -1]:
                         copy = cur.copy()
-                        res = str(int(copy[i]) + j)
-                        res = "0" if res == "10" else res
-                        res = "9" if res == "-1" else res
-                        copy[i] = res
+                        copy[i] = str((int(copy[i]) + j) % 10)
                         _copy = tuple(copy)
                         if _copy in visited or _copy in deadends: continue
                         visited.add(_copy)
                         q.append(copy)
             distance += 1
         return -1
-        # 42:00 done, debug
-        # 58:40 
+        # 42:00 done, debug: 
+        # 1. cur changed by every loop, need copy = cur.copy()
+        # 2. type wrong, res = 0 if res == 10 else res
+        # 3. "0000" in deadends
+        # 58:40 ai-assist
+        
