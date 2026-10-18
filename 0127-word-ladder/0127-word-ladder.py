@@ -20,7 +20,6 @@ class Solution:
                 if word == endWord: return distance
                 for j in range(len(word)):
                     pattern = word[:j] + '*' + word[j + 1:]
-                    if pattern not in neis: continue
                     for nei in neis[pattern]:
                         if nei in visited: continue
                         q.append(nei)
