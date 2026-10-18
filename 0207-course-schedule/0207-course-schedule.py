@@ -4,7 +4,6 @@ class Solution:
         # indegree == 0 to find start, multi source bfs
         # if visited, indegree -= 1, when it become 0, put node into queue
         # return True if max(indegree) == 0
-        # 10: 00
         indegree = [0] * numCourses
         adj = defaultdict(list)
         for crs, pre in prerequisites:
@@ -16,10 +15,12 @@ class Solution:
             if indegree[i] == 0:
                 q.append(i)
                 visited.add(i)
+        finish = 0
         while q:
             course = q.popleft()
+            finish += 1
             for nei in adj[course]:
                 indegree[nei] -= 1
                 if indegree[nei] == 0:
                     q.append(nei)
-        return max(indegree) == 0
+        return finish == numCourses
