@@ -1145,6 +1145,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Bidirectional Search
 |  |
 | ------- |
+| [0127-word-ladder](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0127-word-ladder) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 ## Boyer–Moore Majority Vote Algorithm
 |  |
