@@ -882,6 +882,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
+| [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
 ## Breadth-First Search
@@ -924,6 +925,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
+| [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 | [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
@@ -1022,6 +1024,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0207-course-schedule](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0207-course-schedule) |
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
 | [0802-find-eventual-safe-states](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0802-find-eventual-safe-states) |
+| [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 ## Union-Find
 |  |
 | ------- |
@@ -1060,6 +1063,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
+| [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
 ## Trie
