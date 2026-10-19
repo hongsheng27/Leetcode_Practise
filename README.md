@@ -163,6 +163,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
 | [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [1929-concatenation-of-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1929-concatenation-of-array) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 | [2134-minimum-swaps-to-group-all-1s-together-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2134-minimum-swaps-to-group-all-1s-together-ii) |
 | [2239-find-closest-number-to-zero](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2239-find-closest-number-to-zero) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
@@ -227,6 +228,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
 | [2461-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2461-maximum-sum-of-distinct-subarrays-with-length-k) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
@@ -286,6 +288,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 | [1768-merge-strings-alternately](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1768-merge-strings-alternately) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 | [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
 | [2938-separate-black-and-white-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2938-separate-black-and-white-balls) |
 ## Sorting
@@ -1025,6 +1028,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
 | [0802-find-eventual-safe-states](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0802-find-eventual-safe-states) |
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 ## Union-Find
 |  |
 | ------- |
@@ -1066,6 +1070,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 ## Trie
 |  |
 | ------- |
@@ -1122,6 +1127,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0207-course-schedule](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0207-course-schedule) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
+| [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 ## Binary Indexed Tree
 |  |
 | ------- |
