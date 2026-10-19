@@ -15,13 +15,8 @@ class Solution:
                     return False
             state[node] = 2
             return True
-
-        for i, s in enumerate(state):
-            if s == 0:
-                dfs(i)
         res = []
-        for i, s in enumerate(state):
-            if s == 2:
-                res.append(i)
+        for i in range(n):
+            if dfs(i): res.append(i)
         return res
         
