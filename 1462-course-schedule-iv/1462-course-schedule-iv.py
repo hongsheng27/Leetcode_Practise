@@ -6,8 +6,11 @@ class Solution:
         adj = defaultdict(list)
         for pre, crs in prerequisites:
             adj[pre].append(crs)
+        reachable = defaultdict(set)
         def dfs(course, destination, visited):
-            if course == destination: return True
+            if course == destination: 
+                reachable[destination].update(visited)
+                return True
             visited.add(course)
             for nei in adj[course]:
                 if nei not in visited:
@@ -17,5 +20,9 @@ class Solution:
 
         res = []
         for pre, crs in queries:
-            res.append(dfs(pre, crs, set()))
+            if crs in reachable:
+                res.append(pre in reachable[crs])
+            else:
+                res.append(dfs(pre, crs, set()))
         return res
+        # 17:26
