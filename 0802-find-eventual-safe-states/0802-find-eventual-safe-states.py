@@ -15,8 +15,9 @@ class Solution:
             for nei in graph[node]:
                 if not dfs(nei):
                     state[node] = 3
-            if state[node] != 3: state[node] = 2
-            return state[node] == 2
+                    return False
+            state[node] = 2
+            return True
 
         for i, s in enumerate(state):
             if s == 0:
