@@ -2,9 +2,7 @@ class Solution:
     def findAllRecipes(self, recipes: list[str], ingredients: list[list[str]], supplies: list[str]) -> list[str]:
         # build recipes => ingredients adj list
         # since the point is not idendity cycle, is to find if can make recipes, I think bfs + indegree is better
-        # visisted to prevent go back
         # put value to queue which indegree = 0 and include in supplies
-        # 11: 00
         receipSet = set(recipes)
         supplieSet = set(supplies)
         indegree = defaultdict(int)
@@ -16,10 +14,7 @@ class Solution:
                 indegree[ingredient]
                 indegree[receipt] += 1
                 adj[ingredients[i][j]].append(recipes[i])
-        q = deque()
-        for item, ind in indegree.items():
-            if ind == 0 and item in supplieSet:
-                q.append(item)
+        q = deque(supplies)
         res = []
         while q:
             item = q.popleft()
@@ -29,8 +24,6 @@ class Solution:
                 if indegree[nei] == 0:
                     q.append(nei)
         return res
-        # 25:00 ddebug
-        # not add visited
 
 
         
