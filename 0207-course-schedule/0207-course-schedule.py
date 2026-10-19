@@ -1,26 +1,20 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
-        # directed graph
-        # indegree == 0 to find start, multi source bfs
-        # if visited, indegree -= 1, when it become 0, put node into queue
-        # return True if max(indegree) == 0
-        indegree = [0] * numCourses
         adj = defaultdict(list)
         for crs, pre in prerequisites:
-            indegree[crs] += 1
-            adj[pre].append(crs)
-        q = deque()
-        visited = set()
-        for i in range(len(indegree)):
-            if indegree[i] == 0:
-                q.append(i)
-                visited.add(i)
-        finish = 0
-        while q:
-            course = q.popleft()
-            finish += 1
+            adj[crs].append(pre)
+        
+        def dfs(course, visited):
+            if course in visited: return False
+            visited.add(course)
             for nei in adj[course]:
-                indegree[nei] -= 1
-                if indegree[nei] == 0:
-                    q.append(nei)
-        return finish == numCourses
+                if not dfs(nei, visited): return False
+            visited.remove(course)
+            adj[course] = []
+            return True
+        
+        for i in range(numCourses):
+            if adj[i]:
+                if not dfs(i, set()):
+                    return False
+        return True
