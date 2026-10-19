@@ -1,7 +1,6 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-        # solution1: like course schedule I, just need to save visited node and reutrn it
-        # 02:30
+        # solution1: like course schedule I, just need to save legal course and reutrn it
         indegree = [0] * numCourses
         adj = defaultdict(list)
         for crs, pre in prerequisites:
