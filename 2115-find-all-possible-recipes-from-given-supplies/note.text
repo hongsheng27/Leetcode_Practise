@@ -1,0 +1,75 @@
+2115. Find All Possible Recipes from Given Supplies
+題目概述：
+給定多個 Recipes、每道 Recipe 所需的 Ingredients，以及初始可用的 Supplies。Recipe 製作完成後，也能成為其他 Recipe 的 Ingredient。找出所有能夠製作的 Recipes，允許存在循環依賴。
+解題邏輯：
+使用 Kahn's Algorithm（BFS + Indegree），與 210. Course Schedule II 類似，但這題的初始 Queue 是 Supplies。
+建立 Directed Graph：
+adj = defaultdict(list)indegree = defaultdict(int)for i in range(len(recipes)):    recipe = recipes[i]    for ingredient in ingredients[i]:        adj[ingredient].append(recipe)        indegree[recipe] += 1
+
+
+
+State 定義：
+- adj[ingredient]：依賴該 Ingredient 的 Recipes。
+- indegree[recipe]：該 Recipe 尚未取得的 Ingredients 數量。
+- q：目前已經可以使用的 Supplies / Recipes。
+初始化 Queue：
+q = deque(supplies)recipeSet = set(recipes)
+
+
+
+BFS 每取出一個可用的 Item，就代表依賴它的 Recipes 少缺一個 Ingredient：
+item = q.popleft()if item in recipeSet:    res.append(item)for recipe in adj[item]:    indegree[recipe] -= 1    if indegree[recipe] == 0:        q.append(recipe)
+
+
+
+當 indegree[recipe] == 0，代表所需 Ingredients 全部取得，該 Recipe 可以製作，並成為新的 Supply。
+如果 Recipes 之間形成無法被 Supplies 解開的 Cycle，Indegree 就不會歸零，自然不會加入結果。
+
+踩過的坑：
+1. 一開始考慮使用 Visited，後來發現不需要
+Kahn's Algorithm 使用 Indegree 控制 Queue。
+只有當：
+indegree[recipe] == 0
+
+
+
+才會加入 Queue，每道 Recipe 最多加入一次。
+因此不需要額外的 visited Set。
+2. 一開始需要額外寫 indegree[ingredient]
+原本透過：
+indegree[ingredient]
+
+
+
+在 defaultdict(int) 中建立 Indegree = 0 的 Ingredient，才能在遍歷 Indegree Dictionary 時找到初始 Supplies。
+但可以直接：
+q = deque(supplies)
+
+
+
+因此不需要替每個 Ingredient 建立 Indegree，也不需要掃描 Dictionary 尋找初始 Queue。
+3. Indegree = 0 不一定代表 Item 可以使用
+210. Course Schedule II 可以直接把所有 Indegree = 0 的 Courses 加入 Queue。
+但 2115 不同：
+- Indegree = 0 的 Ingredient，不代表我們擁有它。
+- 初始 Queue 只能放入已提供的 Supplies。
+- Recipe 必須等所有依賴都被解鎖，才能加入 Queue。
+所以這題的 Queue 初始化方式與一般 Topological Sort 不同。
+
+複雜度：
+假設：
+- R = Recipes 數量
+- S = Supplies 數量
+- E = 所有 Ingredients 依賴關係總數
+Time：
+- 建立 Recipe Set：O(R)
+- 建立 AdjList / Indegree：O(E)
+- 初始化 Queue：O(S)
+- BFS：每個可用 Item 最多處理一次，每條 Edge 最多處理一次。
+Time: O(R + S + E)
+Space：
+- AdjList：O(E)
+- Indegree / Recipe Set：O(R)
+- Queue：O(R + S)
+- Result：O(R)
+Space: O(R + S + E)
