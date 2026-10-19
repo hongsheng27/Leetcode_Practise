@@ -7,22 +7,22 @@ class Solution:
         for pre, crs in prerequisites:
             adj[pre].append(crs)
         reachable = defaultdict(set)
-        def dfs(course, destination, visited):
+        def dfs(course, root, destination, visited):
             if course == destination: 
-                reachable[destination].update(visited)
+                reachable[root].update(visited)
                 return True
             visited.add(course)
             for nei in adj[course]:
                 if nei not in visited:
-                    if dfs(nei, destination,visited):
+                    if dfs(nei, root, destination,visited):
                         return True
             return False
 
         res = []
         for pre, crs in queries:
-            if crs in reachable:
-                res.append(pre in reachable[crs])
+            if pre in reachable:
+                res.append(crs in reachable[pre])
             else:
-                res.append(dfs(pre, crs, set()))
+                res.append(dfs(pre, pre, crs, set()))
         return res
         # 17:26
