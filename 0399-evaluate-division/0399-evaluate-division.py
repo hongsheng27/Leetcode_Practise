@@ -26,7 +26,6 @@ class Solution:
                 if product != -1.0:
                     visited.remove(variable)
                     return product * w
-            visited.remove(variable)
             return -1.0
 
         res = []
