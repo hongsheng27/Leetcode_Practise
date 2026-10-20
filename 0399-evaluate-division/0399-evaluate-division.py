@@ -32,9 +32,3 @@ class Solution:
         for first, second in queries:
             res.append(dfs(first, second, set()))
         return res
-        # 32: 45 debug
-        # infinite loop => need visited
-        # edge case => x, y not exist in graph
-        # 36:16 ai debug
-        # first = Variable(u[0])
-        # second = Variable(u[1]), every time create new Node
