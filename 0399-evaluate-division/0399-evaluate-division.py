@@ -1,4 +1,4 @@
-class Variable:
+class Node:
     def __init__(self, name):
         self.name = name
         self.neis = []
@@ -7,28 +7,29 @@ class Solution:
         # build a graph with weight i.g. Class a, neis = [(b, 2.0)] 
         # use a map to find Variable
         # use queries to change a = weight * c, than caluclate
-        variableMap = {}
+        nodes = {}
         for u, v in zip(equations, values):
-            first = Variable(u[0]) if u[0] not in variableMap else variableMap[u[0]]
-            second = Variable(u[1]) if u[1] not in variableMap else variableMap[u[1]]
-            first.neis.append((second.name, v))
-            second.neis.append((first.name, 1 / v))
-            variableMap[first.name] = first
-            variableMap[second.name] = second
+            first, second = u
+            if first not in nodes:
+                nodes[first] = Node(first)
+            if second not in nodes:
+                nodes[second] = Node(second)
+            nodes[first].neis.append((second, v))
+            nodes[second].neis.append((first, 1 / v))
     
-        def dfs(variable, destination, visited):
-            if variable not in variableMap or destination not in variableMap: return -1
-            if variable == destination: return 1.0
-            visited.add(variable)
-            for (nei, w) in variableMap[variable].neis:
+        def dfs(node, target, visited):
+            if node not in nodes or target not in nodes: return -1
+            if node == target: return 1.0
+            visited.add(node)
+            for (nei, w) in nodes[node].neis:
                 if nei in visited: continue
-                product = dfs(nei, destination, visited) 
+                product = dfs(nei, target, visited) 
                 if product != -1.0:
-                    visited.remove(variable)
+                    visited.remove(node)
                     return product * w
             return -1.0
 
         res = []
-        for first, second in queries:
-            res.append(dfs(first, second, set()))
+        for start, end in queries:
+            res.append(dfs(start, end, set()))
         return res
