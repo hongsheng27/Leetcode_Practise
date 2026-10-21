@@ -112,6 +112,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0733-flood-fill](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0733-flood-fill) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
@@ -215,6 +216,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
@@ -278,6 +280,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0678-valid-parenthesis-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0678-valid-parenthesis-string) |
 | [0680-valid-palindrome-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0680-valid-palindrome-ii) |
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
@@ -318,6 +321,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0846-hand-of-straights](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0846-hand-of-straights) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
@@ -874,6 +878,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0572-subtree-of-another-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0572-subtree-of-another-tree) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0733-flood-fill](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0733-flood-fill) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
@@ -914,6 +919,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0733-flood-fill](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0733-flood-fill) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
@@ -1041,6 +1047,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
+| [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
 | [0785-is-graph-bipartite](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0785-is-graph-bipartite) |
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
