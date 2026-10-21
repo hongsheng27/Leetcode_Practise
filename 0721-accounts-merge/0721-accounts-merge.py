@@ -24,13 +24,13 @@ class Solution:
             for nei in node.neis:
                 if nei in visited: continue
                 dfs(nei, emails)
+            return emails
 
         res = []
         for node in nodes.values():
             if node not in visited:
                 emails = []
-                dfs(node, emails)
-                res.append([node.owner] + sorted(emails))
+                res.append([node.owner] + sorted(dfs(node, emails)))
         return res
             
             
