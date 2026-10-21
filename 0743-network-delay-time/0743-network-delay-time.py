@@ -1,21 +1,20 @@
 class Solution:
     def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
+        adj = defaultdict(list) # nth: (nth, t)
+        for (u, v, w) in times:
+            adj[u].append((v, w))
         minHeap = [(0, k)]
-        graph = defaultdict(list)
-        for start, end, cost in times:
-            graph[start].append((cost, end))
+        visitNumber = 0
         visited = set()
-        res = 0
         while minHeap:
-            c, e = heapq.heappop(minHeap)
-
-            if e in visited: continue
-
-            visited.add(e)
-            res = c
+            weight, nth = heapq.heappop(minHeap)
             
-            for cost, end in graph[e]:
-                heapq.heappush(minHeap, (c + cost, end))
-       
-        return res if len(visited) == n else -1
-          
+            if nth in visited: continue
+
+            visited.add(nth)
+            visitNumber += 1
+            if visitNumber == n: return weight
+            for nei, w in adj[nth]:
+                heapq.heappush(minHeap, (weight + w, nei))
+        return -1
+        
