@@ -6,15 +6,15 @@ class Solution:
         minHeap = [(0, k)]
         visitNumber = 0
         visited = set()
+        res = 0
         while minHeap:
             weight, nth = heapq.heappop(minHeap)
             
             if nth in visited: continue
 
             visited.add(nth)
-            visitNumber += 1
-            if visitNumber == n: return weight
+            res = weight
             for nei, w in adj[nth]:
                 heapq.heappush(minHeap, (weight + w, nei))
-        return -1
+        return res if len(visited) == n else -1
         
