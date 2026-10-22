@@ -1,0 +1,94 @@
+631. Path With Minimum Effort
+題目概述：
+給一個 m × n 的高度矩陣 heights，從左上角走到右下角，只能上下左右移動。每條路徑的 Effort 定義為沿途最大的相鄰高度差，求所有可能路徑中，Effort 最小的那條。
+解題邏輯：
+使用 Dijkstra + Min Heap（Minimax Path）。
+這題不是找任意一條 Path，而是找 Minimum Path Cost。因為每條 Edge 的高度差不同，普通 BFS 不能保證最佳答案。
+Path Cost：
+edgeWeight = abs(heights[nr][nc] - heights[r][c])newEffort = max(difference, edgeWeight)
+
+
+
+- difference：從起點到目前 Cell，沿途最大的高度差。
+- edgeWeight：目前這一步的高度差。
+- newEffort：走到 Neighbor 後，整條路徑的最大高度差。
+Dijkstra 使用 Min Heap，優先探索目前 Effort 最小的 State。
+初始化：
+minHeap = [(0, 0, 0)]  # effort, row, colvisited = set()
+
+
+
+Heap Pop 時才標記 Visited：
+difference, r, c = heapq.heappop(minHeap)if (r, c) in visited:    continuevisited.add((r, c))
+
+
+
+因為第一次 Push 只代表找到一條候選路徑，第一次 Pop 才代表該 Cell 的最小 Effort 已經確定。
+找到終點立即回傳：
+if r == ROWS - 1 and c == COLS - 1:    return difference
+
+
+
+對四個方向產生合法 Neighbor，計算新 Effort：
+maxDiff = max(    difference,    abs(heights[nr][nc] - heights[r][c]))heapq.heappush(minHeap, (maxDiff, nr, nc))
+
+
+
+同一個 Cell 可以使用不同 Effort 多次 Push，但只會在第一次 Pop 時正式處理。
+
+踩過的坑：
+1. 一開始看到指定起點、終點，就想到 DFS + Memoization
+但指定 Start / End 不代表應該使用 DFS。
+應先判斷：
+- 任意 Path 即可 → DFS / BFS
+- Minimum Steps，所有 Edge Cost 相同 → BFS
+- Minimum Cost，非負加總權重 → Dijkstra
+- Minimum Maximum Edge Weight → Minimax Dijkstra
+這題的 DFS + Cache 不容易直接成立，因為 Graph 有 Cycle，同一個 Cell 的搜尋結果會受到當前 visited 路徑影響。
+2. 一開始只對四個方向的高度差取 min
+min(abs(nextHeight - curHeight), ...)
+
+
+
+這只比較當下的 Edge，沒有計算整條路徑的 Effort。
+正確邏輯：
+newEffort = max(currentEffort, edgeWeight)
+
+
+
+Heap 再從不同的候選路徑中優先選擇 Effort 最小的。
+3. Visited 時機錯誤，Debug 很久
+原本在 Push Neighbor 時：
+visited.add((nr, nc))heapq.heappush(minHeap, ...)
+
+
+
+會阻止後續更好的路徑更新同一個 Cell。
+正確：
+difference, r, c = heapq.heappop(minHeap)if (r, c) in visited:    continuevisited.add((r, c))
+
+
+
+BFS vs Dijkstra：
+	BFS	Dijkstra
+Data Structure	Queue	Min Heap
+探索順序	最少 Steps	最小 Path Cost
+Visited 時機	Enqueue	Heap Pop
+第一次發現 Node	最短步數已確定	只是候選成本
+第一次正式處理	最短步數	最佳成本已確定
+4. 不確定 Neighbor 是否也要檢查 Visited
+可以加入：
+if (nr, nc) in visited:    continue
+
+
+
+避免 Push 已經確定最佳成本的 Cell。
+但 不能在 Push 時標記 Visited。Neighbor 的 Visited 檢查只是減少不必要的 Heap 操作。
+
+複雜度：
+假設 R = ROWS、C = COLS，總共有 V = R × C 個 Cells。
+每個 Cell 最多正式展開一次，每次檢查四個方向。
+Heap 最多有 O(RC) 個候選項目，Push / Pop 各需要 O(log(RC))。
+Time: O(RC log(RC))
+Visited Set 和 Min Heap 最多使用 O(RC) 空間。
+Space: O(RC)
