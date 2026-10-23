@@ -3,7 +3,6 @@ class Solution:
         # sliding window doesn't work, since r don't know how to stop
         # prefix, save remainer in seen
         # at least two
-        if len(nums) == 1: return False
         seen = {}
         res = prefix = 0
         for num in nums:
