@@ -1,0 +1,123 @@
+523. Continuous Subarray Sum
+
+題目概述：
+給一個非負整數陣列 nums 和正整數 k，判斷是否存在長度至少為 2 的連續 Subarray，其總和可以被 k 整除。
+
+解題邏輯：
+
+使用 Prefix Sum + Remainder + HashMap。
+
+1. Goal 是 Exists，而不是 Count，且需要滿足 Subarray 長度至少為 2。
+
+2. Sliding Window 不適合，因為 Remainder 不具備單調性，無法根據目前餘數決定何時安全移動 left。
+
+3. Prefix Property：
+   (currentPrefix - previousPrefix) % k == 0
+   等價於：
+   currentPrefix % k == previousPrefix % k
+
+   因此只需要尋找相同 Remainder 的歷史 Prefix。
+
+4. State：
+   prefix：目前累積總和。
+   remainder = prefix % k。
+   seen = {remainder: earliest_index}，記錄每個餘數最早出現的位置。
+
+5. 初始化 seen = {0: -1}。
+   代表尚未處理任何元素時，Prefix Sum = 0，對應 index = -1。
+   這樣從 index 0 開始的合法 Subarray 也能被找到。
+
+6. 每次更新 prefix，計算 remainder。
+
+   若 remainder 已出現：
+   檢查 i - seen[remainder] >= 2。
+   若成立，代表找到長度至少 2、總和可被 k 整除的 Subarray，直接 return True。
+
+   若 remainder 未出現：
+   seen[remainder] = i。
+
+7. 保留 Earliest Index，不覆蓋舊值。
+   因為最早的位置能形成最長的候選區間，更容易滿足至少 2 個元素的限制。
+   如果最早的位置都無法達成長度要求，更晚的位置也不可能達成。
+
+關鍵程式碼：
+
+seen = {0: -1}
+
+remainder = prefix % k
+
+if remainder in seen and i - seen[remainder] >= 2:
+    return True
+elif remainder not in seen:
+    seen[remainder] = i
+
+
+踩過的坑：
+
+1. 第一版使用 Frequency + Delayed Insertion，為什麼會錯？
+
+   原本初始化 seen = {0: 1}，但同時使用延遲插入：
+
+   seen[(prefix - num) % k] = seen.get((prefix - num) % k, 0) + 1
+
+   這兩種設計互相衝突。
+
+   例如 nums = [5,1]，k = 5：
+   第一輪就會因為 seen[0] 已存在，把長度只有 1 的 [5] 誤判成合法。
+
+   如果採用 Delayed Insertion，就應該初始化 seen = {}，確保目前只能查詢至少相隔 2 個元素的 Prefix。
+
+2. 為什麼第二版正確，卻仍然可以改善？
+
+   第二版使用 seen = {} + Delayed Insertion，已經能正確排除長度 1 的 Subarray。
+
+   但題目只要求 Exists，不需要記錄 Frequency 或累積 res。
+
+   可以改成 Set + Delayed Insertion，或使用 Earliest Index + Index Distance。
+
+   最終選擇 Earliest Index，因為能直接驗證長度限制，State 語義更清楚。
+
+3. 如果長度要求從至少 2 改成至少 3，需要改哪些地方？
+
+   原本：
+   i - seen[remainder] > 1
+
+   改成：
+   i - seen[remainder] > 2
+
+   seen = {0: -1} 不需要改。
+   Earliest Index 策略也不需要改。
+
+   一般化：
+   長度至少 L → i - seen[remainder] >= L。
+
+
+橫向比較：
+
+974. Subarray Sums Divisible by K：
+Goal 是 Count，使用 Same Remainder Property，seen 儲存 Frequency，每次累加符合條件的歷史 Prefix 數量。
+
+523. Continuous Subarray Sum：
+Goal 是 Exists + Length Constraint，使用相同的 Remainder Property，但 seen 儲存 Earliest Index，檢查距離是否至少為 2。
+
+525. Contiguous Array：
+Goal 是 Longest，使用相同 Balance 的 Property，seen 同樣儲存 Earliest Index，但答案更新為 max(length)。
+
+核心 Pattern：
+
+Subarray Sum Divisible by K
+→ Same Prefix Remainder。
+
+Count → Frequency。
+Exists + Minimum Length Constraint → Earliest Index + Distance。
+Longest → Earliest Index。
+
+HashMap 的 Key 由 Property 決定，Value 由 Goal 決定。
+
+
+複雜度：
+
+O(n) expected time / O(min(n, k)) space
+
+每個元素只處理一次，HashMap 查詢與插入平均 O(1)。
+餘數最多有 k 種，且最多儲存 n + 1 個 Prefix 狀態。
