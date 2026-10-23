@@ -1,7 +1,6 @@
 class Solution:
     def numSubarraysWithSum(self, nums: list[int], goal: int) -> int:
         # pattern observation: subarray, cumulative value => prefix
-        # 05:00
         seen = {0: 1} # blance: amount
         balance = 0
         res = 0
