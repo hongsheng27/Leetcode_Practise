@@ -156,6 +156,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [1524-number-of-sub-arrays-with-odd-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1524-number-of-sub-arrays-with-odd-sum) |
 | [1550-three-consecutive-odds](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1550-three-consecutive-odds) |
 | [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
@@ -436,6 +437,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
 | [1423-maximum-points-you-can-obtain-from-cards](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1423-maximum-points-you-can-obtain-from-cards) |
+| [1524-number-of-sub-arrays-with-odd-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1524-number-of-sub-arrays-with-odd-sum) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
 | [3028-ant-on-the-boundary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3028-ant-on-the-boundary) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
@@ -500,6 +502,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1137-n-th-tribonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1137-n-th-tribonacci-number) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
 | [1281-subtract-the-product-and-sum-of-digits-of-an-integer](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1281-subtract-the-product-and-sum-of-digits-of-an-integer) |
+| [1524-number-of-sub-arrays-with-odd-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1524-number-of-sub-arrays-with-odd-sum) |
 | [2235-add-two-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2235-add-two-integers) |
 | [3870-count-commas-in-range](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3870-count-commas-in-range) |
 ## Dynamic Programming
@@ -540,6 +543,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 | [1137-n-th-tribonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1137-n-th-tribonacci-number) |
 | [1493-longest-subarray-of-1s-after-deleting-one-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1493-longest-subarray-of-1s-after-deleting-one-element) |
+| [1524-number-of-sub-arrays-with-odd-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1524-number-of-sub-arrays-with-odd-sum) |
 ## Recursion
 |  |
 | ------- |
