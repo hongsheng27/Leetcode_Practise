@@ -1,0 +1,153 @@
+1524. Number of Sub-arrays With Odd Sum
+
+題目概述：
+給一個整數陣列 arr，計算有多少個連續 Subarray 的總和為奇數，答案需對 10^9 + 7 取模。
+
+解題邏輯：
+
+使用 Prefix Sum + Parity Frequency。
+
+1. Goal 是 Count Odd Sum，且區間總和可以透過兩個 Prefix 的差值計算，因此使用 Prefix。
+
+2. Sliding Window 不適合，因為 Odd / Even 不具備單調性。Expand 或 Shrink 都可能讓總和在奇數、偶數之間切換，無法安全排除左邊界。
+
+3. Prefix Property：
+
+   (currentPrefix - previousPrefix) % 2 == 1
+
+   奇數 - 偶數 = 奇數
+   偶數 - 奇數 = 奇數
+   奇數 - 奇數 = 偶數
+   偶數 - 偶數 = 偶數
+
+   因此：
+   Current Odd → 尋找 Previous Even。
+   Current Even → 尋找 Previous Odd。
+
+4. State：
+
+   prefix：目前累積總和。
+   seen = {'odd': 0, 'even': 1}：記錄歷史 Prefix 的奇偶出現次數。
+   res：合法 Odd Sum Subarray 總數。
+
+5. 初始化 even = 1，因為空 Prefix Sum = 0，屬於 Even，讓從 index 0 開始的合法 Subarray 也能被計算。
+
+6. 每次先更新 prefix，判斷目前 Prefix 是 Odd 還是 Even。
+
+   如果 Current Prefix 是 Odd：
+   res += seen['even']
+
+   如果 Current Prefix 是 Even：
+   res += seen['odd']
+
+7. 最後才將目前 Prefix 的奇偶狀態加入 seen，避免計算到空 Subarray。
+
+8. 回傳 res % (10**9 + 7)。
+
+關鍵程式碼：
+
+prefix += a
+isOdd = bool(prefix % 2)
+
+if isOdd:
+    res += seen['even']
+    seen['odd'] += 1
+else:
+    res += seen['odd']
+    seen['even'] += 1
+
+return res % MOD
+
+因為只需要 Odd / Even 兩種狀態，也可以使用 seen = [1, 0]，分別代表 Even Count、Odd Count。
+
+簡化後：
+
+parity = (parity + num) % 2
+res += seen[1 - parity]
+seen[parity] += 1
+
+
+踩過的坑：
+
+1. 為什麼這題不用 Sliding Window？
+
+   原本觀察到右指標移動時，Window 可能從合法變不合法，也可能從不合法變合法。
+
+   更精確的原因是 Odd / Even 沒有可利用的單調性，無法根據目前狀態安全決定何時 Shrink。
+
+   例如 arr = [1,1,1]，固定 right = 2：
+
+   [1,1,1] → Odd，合法。
+   [1,1] → Even，不合法。
+   [1] → Odd，合法。
+
+   合法左邊界不是連續範圍，不能像 AtMost Sliding Window 一樣使用 right - left + 1 計數。
+
+2. 為什麼這題要尋找相反的 Parity，而不是相同的 Remainder？
+
+   因為 Goal 是 Odd Sum：
+
+   (currentPrefix - previousPrefix) % 2 == 1
+
+   必須讓兩個 Prefix 一奇一偶，差值才會是奇數。
+
+   與 974 不同，974 要求差值能被 k 整除，因此需要 Same Remainder。
+
+3. 為什麼 seen 只需要記錄 Odd / Even Frequency？
+
+   因為判斷 Subarray Sum 是否為奇數，只取決於兩個 Prefix 的奇偶性，不需要保留完整 Prefix Sum。
+
+   同一種 Parity 可能在多個位置出現，而每個位置都可能形成不同的合法 Subarray，因此需要 Frequency。
+
+   這也讓空間複雜度從一般 Prefix HashMap 的 O(n) 降成 O(1)。
+
+
+橫向比較：
+
+560. Subarray Sum Equals K：
+尋找 Prefix 差值恰好為 k。
+seen = {prefix: frequency}。
+查詢 prefix - k。
+
+974. Subarray Sums Divisible by K：
+尋找 Prefix 差值可以被 k 整除。
+Property：Same Remainder。
+seen = {remainder: frequency}。
+
+523. Continuous Subarray Sum：
+同樣是 Same Remainder，但 Goal 是 Exists + Length >= 2。
+seen = {remainder: earliest_index}。
+
+1524. Number of Sub-arrays With Odd Sum：
+尋找 Prefix 差值為奇數。
+Property：Opposite Parity。
+seen 儲存 Odd / Even Frequency。
+
+核心 Pattern：
+
+Count Subarrays with Modular Condition
+→ 將區間條件轉換成兩個 Prefix Remainder 的關係。
+
+(currentPrefix - previousPrefix) % k == target
+
+等價於：
+
+previousPrefix % k == (currentPrefix - target) % k
+
+當 target = 0：
+尋找 Same Remainder（974）。
+
+當 k = 2、target = 1：
+尋找 Opposite Parity（1524）。
+
+HashMap Key 由 Property 決定，Value 由 Goal 決定。
+
+Count → Frequency。
+Longest → Earliest Index。
+Exists + Length Constraint → Index Distance。
+
+複雜度：
+
+O(n) time / O(1) space
+
+每個元素只遍歷一次，Prefix 只需要追蹤 Odd / Even 兩種狀態，因此額外空間固定為 O(1)。
