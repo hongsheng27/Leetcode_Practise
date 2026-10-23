@@ -1,13 +1,13 @@
 class Solution:
     def numOfSubarrays(self, arr: list[int]) -> int:
         MOD = 10 ** 9 + 7
-        # r move right can be legal can be illegal, so sliding window doesn't work
+        # left shrinking cannot make window become leagal stabley, so sliding window doesn't work
         # prefix can calculate in N
-        # (prefix - seen[prefix]) % 2 => res += 1
+        # currentPrefix - previousPrefix % 2 = 1
         # even - odd == odd
+        # odd - even == odd
         # even - even == even
         # odd - odd == even
-        # odd - even == odd
 
         seen = {'odd': 0, 'even': 1} # 0 as default
         prefix = res = 0
