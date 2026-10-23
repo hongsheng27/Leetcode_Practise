@@ -1,0 +1,137 @@
+1248. Count Number of Nice Subarrays
+
+題目概述：
+給一個整數陣列 nums 和 k，計算有多少個連續 Subarray 恰好包含 k 個奇數。
+
+解題邏輯：
+
+方法一：Prefix Sum + HashMap（面試優先）
+
+1. Goal 是 Count Exactly K，且奇數數量可以轉換成累積值，因此優先考慮 Prefix。
+2. 將奇數視為 1，偶數視為 0，累積 Prefix Odd Count。
+3. Property：
+   currentPrefix - previousPrefix = k
+   因此需要尋找 previousPrefix = currentPrefix - k。
+4. State：
+   prefix：目前累積的奇數數量。
+   seen = {prefix: frequency}，記錄歷史 Prefix 出現次數。
+   res：合法 Subarray 總數。
+5. 初始化 seen = {0: 1}，代表尚未處理任何元素的空 Prefix。
+6. 每次先更新 prefix，再查詢歷史 Prefix，最後記錄目前 Prefix，避免計算空區間。
+
+關鍵程式碼：
+prefix += num % 2
+res += seen.get(prefix - k, 0)
+seen[prefix] = seen.get(prefix, 0) + 1
+
+方法二：Sliding Window + AtMost
+
+1. 奇數數量具有單調性：
+   Expand right → oddAmount 不會減少。
+   Shrink left → oddAmount 不會增加。
+2. 因此當 oddAmount > k，可以安全移動 left，因為未來新增元素不可能讓原本過多的奇數數量下降。
+3. 但 Exactly K 不容易直接計算所有合法左邊界，因此轉換成：
+   Exactly(k) = AtMost(k) - AtMost(k-1)
+4. atMost(k) 維護 oddAmount <= k。
+5. 當 Window 合法時，從 left 到 right 的所有起點都符合 AtMost(k)，一次累加 right - left + 1。
+
+關鍵程式碼：
+oddAmount += nums[r] % 2
+
+while oddAmount > k:
+    oddAmount -= nums[l] % 2
+    l += 1
+
+res += r - l + 1
+
+最後回傳：
+atMost(k) - atMost(k - 1)
+
+
+踩過的坑：
+
+1. 為什麼原本 Sliding Window 的 res += 1 會錯？
+
+   原本在 oddAmount == k 時只增加 1，但固定同一個 right，可能有多個合法左邊界。
+
+   例如 nums = [2,2,1]，k = 1：
+   [2,2,1]、[2,1]、[1] 都合法。
+
+   因此只增加 1 會漏算答案。
+
+2. Sliding Window 的 left 可以安全移動，為什麼 Exactly K 還是會出錯？
+
+   要分成兩個 Level：
+
+   Level 1：Window Movement
+   能不能安全移動 left，不會錯過未來答案？
+
+   Level 2：Answer Calculation
+   固定 right 後，到底有多少個合法 Subarray？
+
+   這題 Level 1 正確，因為 Odd Count 具有單調性。
+
+   但 Level 2 不能單純看到 oddAmount == k 就加 1，因為多個左邊界可能同時合法。
+
+   Sliding Window 能安全移動，不代表 Counting Logic 一定正確。
+
+3. 為什麼 AtMost 可以使用 right - left + 1？
+
+   AtMost 的合法性在 Shrink 時可以維持。
+
+   例如 nums = [1,2,2]，k = 1：
+   [1,2,2]、[2,2]、[2] 都符合 AtMost(1)。
+
+   因此固定 right 後，合法左邊界形成連續範圍，可以直接使用 right - left + 1。
+
+   但 Exactly(1) 只有 [1,2,2] 合法，不能套用相同公式。
+
+4. 什麼時候應該優先選 Prefix，而不是 Sliding Window？
+
+   Prefix：
+   如果 Goal 是 Count Exactly K，而且條件可以轉換成兩個 Prefix 的差值，優先考慮 Prefix + HashMap。
+
+   Sliding Window：
+   如果合法性具有單調性，可以安全移動 left，且能推導出正確的 Counting Property，就可以使用。
+
+   本題兩者都成立，但 Prefix 可以直接處理 Exact Counting，不需要額外透過兩次 AtMost 計算。
+
+   面試時優先使用自己能快速證明正確性的 Prefix 解法，再補充 Sliding Window 的 O(1) Space 優勢。
+
+
+橫向比較：
+
+560. Subarray Sum Equals K：
+累積原始數值，Prefix + Frequency，允許負數。
+
+930. Binary Subarrays With Sum：
+累積 0/1，Prefix 或 AtMost Sliding Window。
+
+1248. Count Number of Nice Subarrays：
+將奇數轉 1、偶數轉 0，與 930 屬於相同 Counting Pattern。
+
+525. Contiguous Array：
+尋找最長 Balance = 0 的 Subarray，因此 seen 儲存 Earliest Index，而不是 Frequency。
+
+992. Subarrays with K Different Integers：
+Distinct Count 無法直接透過兩個 Prefix Distinct Count 相減，適合使用 AtMost Sliding Window + Frequency Map。
+
+
+複雜度：
+
+Prefix + HashMap：
+O(n) expected time / O(n) space
+
+Sliding Window + AtMost：
+O(n) time / O(1) auxiliary space
+
+
+核心 Pattern：
+
+Count Exactly K + 可相減的累積值 → Prefix + Frequency。
+
+Count AtMost K + 單調性 → Sliding Window，count += right - left + 1。
+
+Count Exactly K + AtMost 可計數 → AtMost(k) - AtMost(k-1)。
+
+選擇演算法時，先判斷 Goal 和 Property，再決定 Algorithm 與 State，不要只因為看到 Subarray 就直接套 Prefix 或 Sliding Window。
