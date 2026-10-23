@@ -3,14 +3,14 @@ class Solution:
         # sliding window doesn't work, since r don't know how to stop
         # prefix, save remainer in seen
         # at least two
-        seen = {}
+        seen = set()
         res = prefix = 0
         for num in nums:
             prefix += num
             remainder = prefix % k
 
             if remainder in seen:
-                res += seen[remainder]
+                return True
             
-            seen[(prefix - num) % k] = seen.get((prefix - num) % k, 0) + 1
-        return res != 0
+            seen.add((prefix - num) % k)
+        return False
