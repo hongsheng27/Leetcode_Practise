@@ -98,6 +98,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0496-next-greater-element-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0496-next-greater-element-i) |
 | [0498-diagonal-traverse](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0498-diagonal-traverse) |
 | [0503-next-greater-element-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0503-next-greater-element-ii) |
+| [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0542-01-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0542-01-matrix) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
@@ -212,6 +213,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0438-find-all-anagrams-in-a-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0438-find-all-anagrams-in-a-string) |
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 | [0496-next-greater-element-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0496-next-greater-element-i) |
+| [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
 | [0567-permutation-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0567-permutation-in-string) |
@@ -424,6 +426,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0253-meeting-rooms-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0253-meeting-rooms-ii) |
 | [0303-range-sum-query-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0303-range-sum-query-immutable) |
 | [0304-range-sum-query-2d-immutable](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0304-range-sum-query-2d-immutable) |
+| [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 | [0525-contiguous-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0525-contiguous-array) |
 | [0560-subarray-sum-equals-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0560-subarray-sum-equals-k) |
 | [0713-subarray-product-less-than-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0713-subarray-product-less-than-k) |
@@ -490,6 +493,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
 | [0396-rotate-function](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0396-rotate-function) |
 | [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
+| [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 | [0836-rectangle-overlap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0836-rectangle-overlap) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
@@ -1266,4 +1270,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0802-find-eventual-safe-states](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0802-find-eventual-safe-states) |
+## Pigeonhole Principle
+|  |
+| ------- |
+| [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 <!---LeetCode Topics End-->
