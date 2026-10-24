@@ -1,0 +1,185 @@
+713. Subarray Product Less Than K
+
+題目概述：
+給一個全部為正整數的陣列 nums 和 k，計算有多少個連續 Subarray 的乘積嚴格小於 k。
+
+解題邏輯：
+
+使用 Variable-size Sliding Window + AtMost Counting。
+
+1. Goal 是 Count Product < K，且所有元素都是正整數，因此 Product 具有單調性：
+   Expand right → Product 不會減少。
+   Shrink left → Product 不會增加。
+
+2. State：
+   l：目前 Window 的左邊界。
+   r：目前 Window 的右邊界。
+   product：目前 Window 的乘積，初始化為 1。
+   res：合法 Subarray 的總數。
+
+3. Window Movement（Level 1）：
+
+   每次 Expand right，將 nums[r] 乘入 product。
+
+   當 product >= k，持續 Shrink left：
+   product //= nums[l]
+   l += 1
+
+   因為所有元素 >= 1，未來 Expand 不可能讓 Product 下降，因此可以永久排除目前不合法的左邊界。
+
+   當 product < k，停止 Shrink。
+
+4. Answer Calculation（Level 2）：
+
+   固定 right，計算所有以 right 結尾的合法 Subarray。
+
+   假設目前 Window = [5,2,6]，k = 100：
+
+   [5,2,6] → Product = 60，合法。
+   [2,6] → Product = 12，合法。
+   [6] → Product = 6，合法。
+
+   因為 Shrink 只會讓 Product 減少或不變，所以從 l 到 r 的所有起點都合法。
+
+   合法左邊界形成連續範圍 [l,r]，共有 r-l+1 個。
+
+   因此：
+   res += r - l + 1
+
+5. 為什麼不會重複計算？
+
+   每個 Subarray 都有唯一的右邊界。
+
+   每次固定 right，只計算以目前 right 結尾的合法 Subarray。
+
+   例如 nums = [10,5,2,6]，k = 100：
+
+   right = 0 → 新增 1 個。
+   right = 1 → 新增 2 個。
+   right = 2 → 新增 2 個。
+   right = 3 → 新增 3 個。
+
+   總共 8 個合法 Subarray。
+
+6. Edge Case：
+
+   因為所有 nums[i] >= 1，任何非空 Subarray 的 Product 都至少是 1。
+
+   因此 k <= 1 時，不可能存在合法答案，直接 return 0。
+
+7. 關鍵程式碼（面試推薦版本）：
+
+   if k <= 1:
+       return 0
+
+   product *= nums[r]
+
+   while product >= k:
+       product //= nums[l]
+       l += 1
+
+   res += r - l + 1
+
+
+踩過的坑：
+
+1. 為什麼原本 res += 1，再用剩餘 Window 長度計算組合數會錯？
+
+   原本每次 right 移動，只把目前合法 Window 算成一個答案。
+
+   但固定同一個 right，可能存在多個合法 Subarray。
+
+   例如 [5,2,6]，k = 100：
+   [5,2,6]、[2,6]、[6] 都合法。
+
+   因此 res += 1 會漏算。
+
+   最後再使用 remaining * (remaining + 1) // 2，只會計算最後一段 Window 內的 Subarray，無法補齊先前所有漏算的區間，也可能與已計算的區間重複。
+
+   正確方法是每輪直接計算：
+   res += r-l+1。
+
+2. 為什麼 r-l+1 代表合法 Subarray 數量？
+
+   因為它計算的是「固定 right，有多少個合法的 left」，不是整個 Window 內所有 Subarray 的組合數。
+
+   當 [l,r] 合法時，因為所有元素都是正整數，繼續移動 left 不會讓 Product 增加。
+
+   所以合法起點一定包含：
+   l、l+1、...、r。
+
+   總共有 r-l+1 個。
+
+   每個 Subarray 都只在自己的右邊界被處理時計算一次，因此不會重複。
+
+3. 原本沒有特別處理 k <= 1，為什麼程式仍然正確？只是運氣好嗎？
+
+   不是運氣，而是原本的 while 條件包含：
+
+   while l <= r and product >= k:
+
+   l <= r 保證不會在空 Window 時繼續 Shrink。
+
+   例如 nums = [10]，k = 1：
+   移除 10 後，product = 1、l = 1、r = 0。
+
+   此時 l > r，while 結束。
+   r-l+1 = 0，因此不會新增答案。
+
+   這個版本可以正確處理空 Window。
+
+4. 為什麼推薦先判斷 k <= 1，而不是使用 l <= r？
+
+   兩種寫法都正確。
+
+   但先處理 k <= 1，可以更明確表達題目 Property：
+
+   正整數的非空乘積至少為 1，因此 k <= 1 時沒有合法答案。
+
+   當 k > 1，即使 Window 被縮到空，product = 1 < k，while 也會自然結束。
+
+   因此不需要額外使用 l <= r，程式更容易解釋。
+
+
+橫向比較：
+
+209. Minimum Size Subarray Sum：
+Goal = Minimum Length with Sum >= target。
+Window 合法時 Shrink，並使用 min(res, length) 更新最短答案。
+
+930. Binary Subarrays With Sum：
+Goal = Count Exact Sum K。
+使用 AtMost(K) - AtMost(K-1)，合法 Window 以 r-l+1 計數。
+
+1248. Count Number of Nice Subarrays：
+Goal = Count Exactly K Odds。
+Odd Count 具有單調性，使用 AtMost 差值，也可以透過 Prefix + Frequency 直接計數。
+
+713. Subarray Product Less Than K：
+Goal = Count Product < K。
+本身就是單調的 AtMost 類型條件，可以直接用 Sliding Window + r-l+1，不需要執行兩次 AtMost。
+
+核心 Pattern：
+
+Variable-size Sliding Window + Counting：
+
+Level 1：Window Movement
+利用單調性安全移動 left，找到目前最早的合法左邊界。
+
+Level 2：Answer Calculation
+固定 right，判斷合法左邊界是否形成連續範圍。
+
+如果 [l,r] 合法，且所有更靠右的起點也都合法，就可以：
+
+count += r-l+1
+
+但這不適用於所有 Exact Counting 問題，必須先證明合法起點的連續性。
+
+Sliding Window 的關鍵不是只找到一個合法 Window，而是透過 Window Property，一次計算所有符合條件的 Subarray。
+
+
+複雜度：
+
+O(n) time / O(1) space
+
+雖然使用 for + while，但 right 與 left 都只向右移動，每個元素最多加入與移除一次，因此總時間為 O(n)。
