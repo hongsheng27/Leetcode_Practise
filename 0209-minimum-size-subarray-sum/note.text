@@ -1,0 +1,164 @@
+209. Minimum Size Subarray Sum
+
+題目概述：
+給一個全部為正整數的陣列 nums 和 target，找出總和 >= target 的最短連續 Subarray 長度；若不存在則回傳 0。
+
+解題邏輯：
+
+使用 Variable-size Sliding Window。
+
+1. Goal 是 Minimum Length，且所有元素都是正整數，因此 Window Sum 具有單調性：
+   Expand right → Sum 增加。
+   Shrink left → Sum 減少。
+
+2. State：
+   l：目前 Window 的左邊界。
+   r：目前 Window 的右邊界。
+   total：目前 Window 的總和。
+   res：目前找到的最短合法長度，初始化為 float('inf')。
+
+3. Window Movement：
+
+   當 total < target：
+   必須 Expand right，因為繼續 Shrink 只會讓 Sum 更小，不可能重新合法。
+
+   當 total >= target：
+   先記錄目前合法區間長度，再嘗試 Shrink left，尋找更短的合法區間。
+
+4. 為什麼合法時可以安全捨棄 left？
+
+   因為 Goal 是 Minimum Length。
+
+   假設 [2,3,1,2] 的 Sum = 8，target = 7，Length = 4。
+
+   已經找到以第一個 2 為左邊界、長度為 4 的合法答案。
+
+   未來如果繼續 Expand：
+   [2,3,1,2,4] → Length = 5。
+
+   即使仍然合法，也不可能比長度 4 更好。
+
+   因此記錄答案後，可以永久捨棄這個 left，不會錯失更短的答案。
+
+5. Answer Calculation：
+
+   只有 Window 合法時才能更新 res。
+
+   必須先更新最短長度，再移除 nums[l]。
+
+   關鍵程式碼：
+
+   total += nums[r]
+
+   while total >= target:
+       res = min(res, r - l + 1)
+       total -= nums[l]
+       l += 1
+
+6. 如果 res 仍為無限大，代表不存在合法 Subarray，回傳 0；否則回傳 res。
+
+
+踩過的坑：
+
+1. 為什麼 [2,3,1,2] 合法後，可以捨棄第一個 2？如果未來 [2,3,1,2,4] 反而需要它呢？
+
+   不是因為第一個 2 沒有用，而是因為保留它不可能產生更短的答案。
+
+   [2,3,1,2] 已經合法，長度為 4。
+   [2,3,1,2,4] 即使合法，長度也變成 5。
+
+   因為 Goal 是 Minimum Length，所以未來繼續保留同一個 left，不可能改善答案。
+
+   這是 Dominance Property：已經存在不比未來候選更差的答案，因此可以安全排除該左邊界。
+
+2. 為什麼 Window 不合法時要停止 Shrink？
+
+   因為 Shrink 也找不到答案。
+
+   例如 target = 7：
+
+   [3,1,2] → Sum = 6，不合法。
+   [1,2] → Sum = 3，不合法。
+   [2] → Sum = 2，不合法。
+
+   由於所有元素都是正整數，Shrink 只會讓 Sum 更小，因此必須 Expand right。
+
+3. 如果未來可能需要被捨棄的 left，是不是代表不能 Shrink？這是否就是 AtMost 的使用時機？
+
+   核心不是 left 未來還有沒有用，而是捨棄它會不會錯過尚未計算或更好的答案。
+
+   209：
+   Window 合法時 Shrink，因為同一個 left 未來只會形成更長的區間，無法改善 Minimum Length。
+
+   AtMost Counting：
+   Window 不合法時 Shrink，因為非負數保證未來 Expand 不會降低 Sum，原本不合法的左邊界不可能重新合法。
+
+   兩者都能安全 Shrink，但理由不同。
+
+4. 如果 Goal 從 Minimum Length 改成 Maximum Length，還需要 Shrink 嗎？
+
+   不需要。
+
+   因為全部是正整數，Expand 會同時增加 Sum 和 Length。
+
+   一旦 Window 合法，繼續 Expand 仍然合法，而且長度更長。
+
+   更進一步，如果 Goal 是 Maximum Length with Sum >= target，甚至不需要 Sliding Window。
+
+   只需要判斷：
+   sum(nums) >= target → return len(nums)
+   否則 → return 0
+
+   代表 Algorithm Selection 必須根據 Goal 決定，不能只看到 Sum >= target 就套 Sliding Window。
+
+
+橫向比較：
+
+209. Minimum Size Subarray Sum：
+Goal = Minimum Length with Sum >= K。
+正整數保證單調性，合法時 Shrink。
+Answer = min(res, r-l+1)。
+
+930. Binary Subarrays With Sum：
+Goal = Count Exact Sum K。
+利用 AtMost(K) - AtMost(K-1)。
+不合法時 Shrink，合法後 count += r-l+1。
+
+1248. Count Number of Nice Subarrays：
+Goal = Count Exactly K Odds。
+Odd Count 具有單調性，可以使用 AtMost Counting。
+也可以使用 Prefix + Frequency 直接處理 Exact Count。
+
+560. Subarray Sum Equals K：
+Goal = Count Exact Sum K。
+允許負數，Window Sum 不具備所需單調性。
+使用 Prefix + HashMap。
+
+核心 Pattern：
+
+Variable-size Sliding Window 要分成兩個 Level：
+
+Level 1：Window Movement
+何時能安全移動 left？
+被排除的左邊界，未來是否可能產生更好的答案？
+
+Level 2：Answer Calculation
+根據 Goal 決定如何計算答案。
+
+Minimum Length → min(res, length)。
+Maximum Length → max(res, length)。
+AtMost Count → count += r-l+1。
+Exact Count → 需要額外推導計數方式。
+
+209 最重要的兩個 Property：
+
+Sum >= target → 記錄答案後 Shrink，因為同一個 left 未來不可能產生更短答案。
+
+Sum < target → Expand，因為正整數保證繼續 Shrink 不可能重新合法。
+
+
+複雜度：
+
+O(n) time / O(1) space
+
+雖然使用 for + while，但左右指標都只會向右移動，每個元素最多被加入和移除一次，因此總時間為 O(n)。
