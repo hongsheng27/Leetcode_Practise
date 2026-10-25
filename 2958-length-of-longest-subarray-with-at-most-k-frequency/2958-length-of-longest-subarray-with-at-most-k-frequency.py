@@ -1,10 +1,9 @@
 class Solution:
     def maxSubarrayLength(self, nums: List[int], k: int) -> int:
         # sliding window: move right to get logner subarray until illegal
-        # move left to be come legal, move left can must decrease target[freq]
+        # Shrinking never increases any frequency, and eventually reduces the frequency of the violating element.
         # record ans while legal
         # use map to calculate freq
-        # 04:10
         res = l = 0
         count = defaultdict(int)
         for r in range(len(nums)):
