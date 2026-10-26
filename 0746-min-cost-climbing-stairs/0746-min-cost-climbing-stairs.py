@@ -1,6 +1,6 @@
 class Solution:
     def minCostClimbingStairs(self, cost: list[int]) -> int:
-        # dp[i] => minimum cost to i
+        # dp[i] =>  min cost to reach step i, including cost[i]
         # dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
         n = len(cost)
         dp = list(cost) 
