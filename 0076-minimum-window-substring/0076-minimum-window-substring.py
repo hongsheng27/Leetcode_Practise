@@ -11,12 +11,12 @@ class Solution:
         res = (0, float('inf'))
 
         for r in range(len(s)):
-            if s[r] in t:
+            if s[r] in count:
                 count[s[r]] -= 1
                 if count[s[r]] == 0: have += 1
             
             while have == len(count):
-                if s[l] in t:
+                if s[l] in count:
                     count[s[l]] += 1
                     if count[s[l]] == 1: have -= 1
                 if r - l < res[1] - res[0]:
