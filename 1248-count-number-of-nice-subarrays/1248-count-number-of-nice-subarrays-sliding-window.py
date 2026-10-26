@@ -13,6 +13,3 @@ class Solution:
                 if oddAmount <= _k: res += (r - l + 1)
             return res
         return atMost(k) - atMost(k - 1)
-
-
-        # 06:30 debug

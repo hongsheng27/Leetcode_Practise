@@ -1,2 +1,161 @@
-003
-題目講解
+3. Longest Substring Without Repeating Characters
+
+題目概述：
+給一個字串 s，找出不包含重複字元的最長連續 Substring 長度。
+
+解題邏輯：
+
+使用 Variable-size Sliding Window + Set。
+
+1. Goal 是 Longest Valid Substring，條件是 Window 內不能有重複字元，因此使用 Sliding Window。
+
+2. State：
+   l：目前 Window 的左邊界。
+   r：目前 Window 的右邊界。
+   window：Set，記錄目前 Window 中存在的字元。
+   res：目前找到的最長合法 Substring 長度。
+
+3. Window Movement（Level 1）：
+
+   每次 Expand right，檢查 s[r] 是否已存在於 window。
+
+   如果存在，代表加入 s[r] 後會產生重複，必須 Shrink left。
+
+   持續移除 s[l] 並移動 l，直到 s[r] 不再存在於 window。
+
+   接著將 s[r] 加入 Set。
+
+4. 為什麼可以安全捨棄 left？
+
+   因為一旦 Window 出現重複字元，繼續 Expand right 不可能消除已經存在的重複。
+
+   例如 s = "abca"：
+
+   "abca" → 重複 a，不合法。
+   "bc a" → 移除第一個 a 後合法。
+
+   只要保留兩個 a，不論未來加入什麼字元都無法重新合法，因此可以永久捨棄原本的 left。
+
+5. Window Invariant：
+
+   每次 for 迴圈結束後，Window [l,r] 都沒有重複字元。
+
+   因此前一輪的 Window 已經合法，加入新字元後，唯一可能產生重複的字元就是 s[r]。
+
+   不需要重新檢查整個 Window，只需要確認 s[r] 是否重複。
+
+6. Answer Calculation（Level 2）：
+
+   當 while 結束後，目前 Window 已經合法，而且是以 r 結尾的最長合法 Substring。
+
+   因為更早的左邊界都會造成重複，而更晚的左邊界只會讓長度縮短。
+
+   所以更新：
+   res = max(res, r-l+1)
+
+7. 關鍵程式碼（Set 版本）：
+
+   while s[r] in window:
+       window.remove(s[l])
+       l += 1
+
+   window.add(s[r])
+   res = max(res, r-l+1)
+
+8. 另一種解法：HashMap Frequency。
+
+   先加入新字元：
+   count[s[r]] = count.get(s[r], 0) + 1
+
+   當 count[s[r]] > 1，持續 Shrink left，直到目前字元的 Frequency 恢復為 1。
+
+   兩種方法時間與空間複雜度相同，但本題只需要判斷字元是否存在，Set 更精簡，面試優先使用 Set。
+
+
+踩過的坑：
+
+1. 為什麼 HashMap 版本只需要檢查 count[s[r]] > 1，而不用檢查所有字元？
+
+   因為 Window Invariant 保證前一輪沒有重複字元。
+
+   加入 s[r] 後，其他字元的 Frequency 沒有增加，所以唯一可能造成重複的字元就是 s[r]。
+
+   因此只需要檢查 count[s[r]] > 1。
+
+2. 為什麼 left 必須一直移動，直到找到上一個 s[r]？
+
+   例如 s = "abcbde"，當 r = 3：
+
+   "abcb" → b 出現兩次，不合法。
+   "bcb" → 移除 a，但 b 仍出現兩次。
+   "cb" → 移除第一個 b，重新合法。
+
+   因為其他字元原本就沒有重複，Shrink 也不會製造新的重複，所以當 count[s[r]] 恢復為 1，就能保證整個 Window 合法。
+
+3. 以前使用 Set，現在使用 HashMap Frequency，哪個比較適合面試？
+
+   兩者都正確，都是 O(n) Time。
+
+   但這題只需要知道字元是否存在，不需要記錄出現次數。
+
+   Set 已經提供足夠資訊，State 比 HashMap Frequency 更簡單。
+
+   因此優先使用 Set。
+
+   State Selection 原則：
+
+   Presence / Uniqueness → Set。
+   Frequency / Multiplicity → HashMap。
+   Latest / Earliest Position → HashMap 儲存 Index。
+
+
+橫向比較：
+
+3. Longest Substring Without Repeating Characters：
+Goal = Longest Valid Window。
+出現重複字元時 Shrink，合法後更新 max(length)。
+State 使用 Set 即可。
+
+209. Minimum Size Subarray Sum：
+Goal = Minimum Length with Sum >= target。
+Window 合法時 Shrink，並在 Shrink 前更新 min(length)。
+
+713. Subarray Product Less Than K：
+Goal = Count Valid Subarrays。
+Product >= k 時 Shrink，合法後使用 r-l+1 計算全部合法左邊界。
+
+340. Longest Substring with At Most K Distinct Characters：
+Goal = Longest Window with at most K distinct characters。
+需要 HashMap Frequency，因為移除一個字元後，必須知道該字元是否仍存在於 Window。
+
+76. Minimum Window Substring：
+Goal = Minimum Window satisfying required character frequencies。
+需要 HashMap Frequency 維護每個字元的數量需求。
+
+
+核心 Pattern：
+
+Longest Valid Sliding Window：
+
+1. Expand right，加入新元素。
+2. 如果 Window 不合法，持續 Shrink left。
+3. Window 恢復合法後，更新最長長度。
+
+Level 1：Window Movement
+不合法時 Shrink，因為未來 Expand 無法消除 Window 內既有的重複。
+
+Level 2：Answer Calculation
+合法後使用 max(res, r-l+1)。
+
+Invariant：
+每輪結束後，Window 都合法。
+
+State Design：
+只儲存維護 Invariant 真正需要的資訊，不必為了使用 Sliding Window 就一定建立 Frequency Map。
+
+
+複雜度：
+
+O(n) expected time / O(min(n, 字元集大小)) space
+
+左右指標都只向右移動，每個字元最多加入和移除 Set 各一次，因此整體時間為 O(n)。
