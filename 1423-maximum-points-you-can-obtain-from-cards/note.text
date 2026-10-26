@@ -1,0 +1,162 @@
+1423. Maximum Points You Can Obtain from Cards
+
+題目概述：
+給一個整數陣列 cardPoints，每次只能從最左邊或最右邊拿一張卡片，總共拿 k 張，求能取得的最大分數。
+
+解題邏輯：
+
+使用 Complement（補集思維）+ Fixed-size Sliding Window。
+
+1. 先從題目限制推導 Property：
+
+   每次只能從左右兩端拿卡片，因此最後拿走的卡片一定是「左邊連續一段 + 右邊連續一段」。
+
+   這代表中間沒被拿走的卡片，一定形成一個連續 Subarray。
+
+2. Problem Transformation：
+
+   原本 Goal：拿走 k 張卡片，最大化分數。
+
+   換個角度：
+   一共 n 張卡片，拿走 k 張，就會剩下 n-k 張。
+
+   Max Picked Sum = Total Sum - Min Remaining Sum
+
+   因此轉換成：
+   找出長度固定為 n-k 的最小連續 Subarray Sum。
+
+   這時才想到 Fixed-size Sliding Window，而不是一開始直接背 Sliding Window 模板。
+
+3. State：
+
+   total：所有卡片的總分。
+   windowLen = len(cardPoints) - k。
+   subArraySum：目前 Window 的總和。
+   minSubArraySum：目前找到的最小 Window Sum。
+   l、r：Window 左右邊界。
+
+4. 建立第一個 Window：
+
+   先計算前 windowLen 個元素的總和。
+
+   minSubArraySum = subArraySum
+
+   必須先記錄第一個 Window，因為它也可能是最佳答案。
+
+5. Fixed-size Window Movement：
+
+   每次向右移動一格：
+
+   加入新的右邊元素。
+   移除原本左邊元素。
+   left 向右移動。
+
+   關鍵程式碼：
+
+   for r in range(windowLen, len(cardPoints)):
+       subArraySum += cardPoints[r]
+       subArraySum -= cardPoints[l]
+       l += 1
+       minSubArraySum = min(minSubArraySum, subArraySum)
+
+6. Answer Calculation：
+
+   每次比較 Window Sum，記錄最小值。
+
+   最後回傳：
+   total - minSubArraySum
+
+   因為剩餘卡片的分數越低，代表拿走的分數越高。
+
+7. Edge Case：
+
+   當 k == n：
+   windowLen = 0，代表所有卡片都被拿走。
+
+   此時最小剩餘總和為 0，答案自然等於 total。
+
+   原本的程式可以正確處理，不需要額外特判。
+
+
+踩過的坑：
+
+1. 這題主要靠記憶，如何自己推導出 Complement Window？
+
+   不應該一開始就記住 total - minWindow。
+
+   應該先觀察拿卡片的限制：
+
+   只能從兩端拿 → 拿走的是左右兩段 → 剩下的一定是連續區間。
+
+   因此：
+   最大化拿走的分數 = 最小化留下的分數。
+
+   剩下的長度固定為 n-k，所以自然轉換成 Fixed-size Sliding Window。
+
+   真正需要記住的是這個轉換過程，而不是公式本身。
+
+2. Debug 時忘記 Sliding Window 的起始位置。
+
+   已經先建立第一個長度為 windowLen 的 Window。
+
+   因此下一個加入的元素必須從 index = windowLen 開始。
+
+   正確：
+   for r in range(windowLen, len(cardPoints)):
+
+   如果從 0 開始，就會把第一個 Window 中已經計算過的元素再次加入，導致 Window Sum 錯誤。
+
+3. total = minSubArraySum = sum(cardPoints) 不能同時賦值嗎？
+
+   可以，這是合法的 Python Chained Assignment。
+
+   但這題後面會重新執行：
+   minSubArraySum = subArraySum
+
+   因此 minSubArraySum 最初被指定的值完全沒有被使用，就被覆蓋了。
+
+   建議只寫：
+   total = sum(cardPoints)
+
+   建立第一個 Window 後，再初始化 minSubArraySum。
+
+
+橫向比較：
+
+1052. Grumpy Bookstore Owner：
+使用 Baseline + Max Gain。
+將原本的最大滿意人數問題，轉換成固定長度 Window 的最大額外收益。
+
+1423. Maximum Points You Can Obtain from Cards：
+使用 Total - Min Remaining。
+將左右兩端選取的最大分數問題，轉換成固定長度 Window 的最小剩餘總和。
+
+兩題都使用 Fixed-size Sliding Window，但 Problem Transformation 不同。
+
+Fixed Window 不需要像 Variable Window 一樣判斷何時合法或 Shrink，只需要維護固定長度內的進出元素與 Window Value。
+
+
+核心 Pattern：
+
+當題目要求從兩端選取元素時，先觀察：
+
+1. 選取後，剩餘元素是否一定連續？
+2. 能不能把最大化選取收益，轉換成最小化剩餘成本？
+3. 剩餘區間的長度是否固定？
+
+若三者成立，就可以考慮：
+
+Complement + Fixed-size Sliding Window。
+
+重點是先證明剩餘元素具有連續性，再決定使用 Sliding Window。
+
+
+複雜度：
+
+O(n) time / O(1) space
+
+sum(cardPoints) 需要 O(n)。
+建立第一個 Window 需要 O(n-k)。
+Sliding Window 最多移動 k 次。
+
+總時間為 O(n)，只維護固定數量的變數，因此額外空間 O(1)。
