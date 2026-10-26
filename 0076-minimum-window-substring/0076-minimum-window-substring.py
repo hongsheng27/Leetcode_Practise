@@ -1,27 +1,31 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        # sliding window: move right to become legal, move left until illgal, record ans(l, r) when legal
+        # while becomes illgal, start expending right, repeat 1 step
+        # maintain map like {'A': 2, 'B': 1}, and have == 2 to save number of elem,  every time meet target, minus 1, if it beomces zero, have -= 1
+        # 10:00
         if len(t) > len(s): return ""
-        count = {}
+        count = defaultdict(int)
         for c in t:
-            count[c] = count.get(c, 0) + 1
-        
-        l = have = 0
-        minRange = (0, float('inf'))
-        for r in range(len(s)):
-            if s[r] in count:
-                count[s[r]] -= 1
-                if count[s[r]] == 0: have += 1
-            while have == len(count):
-                if r - l < minRange[1] - minRange[0]:
-                    minRange = (l, r)
-                if s[l] in count:
-                    count[s[l]] += 1
-                    if count[s[l]] == 1: have -= 1
-                l += 1
-        
-        return s[minRange[0]: minRange[1] + 1] if minRange[1] != float('inf') else ""
-            
-            
-        
+            count[c] += 1
+        having = len(count)
+        l = 0
+        res = [0, float('inf')]
 
-        
+        for r in range(len(s)):
+            if s[r] in t:
+                count[s[r]] -= 1
+                if count[s[r]] == 0: having -= 1
+            
+            while having == 0:
+                if s[l] in t:
+                    count[s[l]] += 1
+                    if count[s[l]] == 1: having += 1
+                if r - l < res[1] - res[0]:
+                    res = [l, r]
+                l += 1 
+        return "" if res[1] == float('inf') else s[res[0]: res[1] + 1]
+        # 25: 00 debug, s[l: r + 1] is wrong
+
+
+
