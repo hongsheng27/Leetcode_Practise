@@ -117,6 +117,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0733-flood-fill](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0733-flood-fill) |
 | [0735-asteroid-collision](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0735-asteroid-collision) |
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
+| [0740-delete-and-earn](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0740-delete-and-earn) |
 | [0746-min-cost-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0746-min-cost-climbing-stairs) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
@@ -223,6 +224,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0705-design-hashset](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0705-design-hashset) |
 | [0706-design-hashmap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0706-design-hashmap) |
 | [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
+| [0740-delete-and-earn](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0740-delete-and-earn) |
 | [0752-open-the-lock](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0752-open-the-lock) |
 | [0763-partition-labels](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0763-partition-labels) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
@@ -538,6 +540,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0542-01-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0542-01-matrix) |
 | [0647-palindromic-substrings](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0647-palindromic-substrings) |
 | [0678-valid-parenthesis-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0678-valid-parenthesis-string) |
+| [0740-delete-and-earn](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0740-delete-and-earn) |
 | [0746-min-cost-climbing-stairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0746-min-cost-climbing-stairs) |
 | [0787-cheapest-flights-within-k-stops](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0787-cheapest-flights-within-k-stops) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
