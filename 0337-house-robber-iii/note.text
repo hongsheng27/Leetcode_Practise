@@ -1,0 +1,332 @@
+# 337. House Robber III
+
+## 題目概述
+
+給定一棵 Binary Tree，每個 Node 代表一間房子，`node.val` 是可以偷到的金額。
+
+限制：**不能同時偷直接相鄰的 Parent 和 Child。**
+
+Goal：求整棵樹可以偷到的最大金額。
+
+**核心 Pattern：Tree DP + Postorder DFS + Take / Skip**
+
+---
+
+## 解題邏輯
+
+### 1. Problem Transformation：從 House Robber I 到 Tree DP
+
+198. House Robber I 是 Linear Array：
+
+- 偷目前房子 → 不能偷前一間。
+- 不偷目前房子 → 可以使用前面範圍的最佳解。
+
+337. House Robber III 則是 Binary Tree：
+
+- 偷目前 Node → 左右 Child 都不能偷。
+- 不偷目前 Node → 左右 Child 可以自由決定偷或不偷。
+
+因為每個 Node 的決策會限制其 Children，所以需要讓 DFS 回傳不同條件下的最佳收益。
+
+### 2. State Definition
+
+定義：
+
+```python
+dfs(node) = (rob_current, skip_current)
+```
+
+其中：
+
+- `rob_current`：**一定偷目前 Node** 時，整棵子樹能取得的最大金額。
+- `skip_current`：**一定不偷目前 Node** 時，整棵子樹能取得的最大金額。
+
+注意：這兩個 State 都包含整棵子樹的收益，不只是目前 Node。
+
+這與 198 的 `dp[i]` 不同。
+
+198：
+
+```python
+# dp[i] = maximum money from index 0 to i
+```
+
+`dp[i]` 不代表一定偷第 `i` 間。
+
+337：
+
+```python
+# dfs(node) = (must_rob_node, must_skip_node)
+```
+
+這裡的兩個 State 有明確的選擇限制。
+
+### 3. Choices → Transition
+
+**Case A：Rob Current**
+
+偷目前 Node，就不能偷左右 Child。
+
+但 Grandchildren 仍然可以偷，因為限制只作用在直接相鄰的 Parent 和 Child。
+
+因此使用左右 Child 的 `skip` State：
+
+```python
+rob_current = node.val + left[1] + right[1]
+```
+
+**Case B：Skip Current**
+
+不偷目前 Node，左右 Child 就沒有受到目前 Node 的限制。
+
+每個 Child 可以自行選擇 Rob 或 Skip，取最大收益。
+
+```python
+skip_current = (
+    max(left[0], left[1])
+    + max(right[0], right[1])
+)
+```
+
+注意：
+
+`skip_current` **不能直接寫成**：
+
+```python
+skip_current = left[0] + right[0]
+```
+
+因為這代表強制偷左右 Child，但 Child 選擇 Skip 時，可能透過 Grandchildren 得到更多收益。
+
+### 4. Base Case
+
+```python
+if not node:
+    return (0, 0)
+```
+
+空節點沒有收益。
+
+不管是 Rob State 或 Skip State，收益都是 0。
+
+這讓葉節點也能直接套用同一個 Transition，不需要額外判斷左右 Child 是否存在。
+
+### 5. Postorder DFS
+
+先求左右子樹的 DP State，再計算目前 Node。
+
+關鍵程式碼：
+
+```python
+def dfs(node):
+    if not node:
+        return (0, 0)
+
+    left = dfs(node.left)
+    right = dfs(node.right)
+
+    rob_current = node.val + left[1] + right[1]
+
+    skip_current = (
+        max(left[0], left[1])
+        + max(right[0], right[1])
+    )
+
+    return (rob_current, skip_current)
+```
+
+使用 Postorder，是因為 Parent 的答案依賴左右 Children 已經計算完成的 State。
+
+### 6. Answer Calculation
+
+```python
+return max(dfs(root))
+```
+
+Root 沒有 Parent 限制，可以自由選擇 Rob 或 Skip。
+
+因此取兩個 State 的最大值。
+
+---
+
+## 踩過的坑
+
+### 1. 最初把 Linear DP 的概念直接套用到 Tree
+
+原本嘗試使用類似：
+
+```python
+# dp[i-1], dp[i-2]
+```
+
+的概念處理 Parent、Child 和 Grandchild。
+
+但 Tree 沒有單一線性順序，而且每個 Node 可能有左右兩棵子樹。
+
+因此不能直接沿用 198 的 Index-based State。
+
+解法是重新定義：
+
+```python
+dfs(node) = (rob_current, skip_current)
+```
+
+讓每個子樹回傳 Parent 真正需要的兩種資訊。
+
+### 2. `if dp and dp2` 無法判斷是否存在 Child
+
+最初寫：
+
+```python
+dp = dfs(node.left)
+dp2 = dfs(node.right)
+
+if dp and dp2:
+    ...
+```
+
+但 Base Case 回傳：
+
+```python
+(0, 0)
+```
+
+Python 中：
+
+```python
+bool((0, 0))  # True
+```
+
+非空 Tuple 即使所有元素都是 0，仍然是 Truthy。
+
+因此這個 `if` 永遠成立。
+
+這題其實不需要區分有沒有左右 Child，直接讓 Null Node 回傳 `(0, 0)` 即可。
+
+### 3. 最初的第二個 State 永遠回傳 0
+
+原本寫：
+
+```python
+return (
+    max(...),
+    0
+)
+```
+
+這會讓 Parent 無法知道：
+
+「如果我不偷這個 Child，Child 的整棵子樹最多可以偷多少？」
+
+例如不偷 Child，仍然可能偷 Grandchild。
+
+所以第二個 State 不能直接設定成 0，而是需要真正計算 `skip_current`。
+
+### 4. `skip_current` 誤以為左右 Child 一定要偷
+
+第二版寫：
+
+```python
+return (
+    left[1] + right[1] + node.val,
+    left[0] + right[0]
+)
+```
+
+第一個 State 正確，但第二個 State 錯誤。
+
+因為：
+
+- `left[0]` = **一定偷左 Child** 時的最大收益。
+- `right[0]` = **一定偷右 Child** 時的最大收益。
+
+當目前 Node 選擇 Skip，並不代表左右 Child 一定要 Rob。
+
+正確應該讓左右 Child 各自取最佳狀態：
+
+```python
+skip_current = (
+    max(left[0], left[1])
+    + max(right[0], right[1])
+)
+```
+
+### 5. 混淆 198 與 337 的 DP State
+
+曾經以為：
+
+```python
+left[0] + right[0]
+```
+
+已經代表左右子樹各自的最大收益，不一定偷 Child。
+
+但這與自己定義的 State 矛盾。
+
+198：
+
+```python
+dp[i] = maximum money up to i
+```
+
+沒有強制選取 `i`。
+
+337：
+
+```python
+dfs(node) = (rob_current, skip_current)
+```
+
+`left[0]` 明確要求偷左 Child，`left[1]` 明確要求不偷左 Child。
+
+**DP State 的意義由定義決定，不能把其他題目的 State 語義直接帶過來。**
+
+---
+
+## 橫向比較
+
+| 題目 | State | 核心 Transition |
+|---|---|---|
+| 198. House Robber | 前 i+1 間房的最大收益 | Rob / Skip 取 Max |
+| 213. House Robber II | 同 198 | 拆成兩段 Linear DP |
+| 740. Delete and Earn | 數值 1～i 的最大收益 | Value Aggregation → Rob / Skip |
+| 337. House Robber III | `(rob_current, skip_current)` | Tree DP，Parent 根據 Children 狀態計算 |
+
+337 最大的差異是：
+
+**不能太早把 Rob / Skip 合併成單一最大值，因為 Parent 可能需要指定 Child 必須 Skip。**
+
+因此先保留 Conditional States，再由 Parent 選擇適用的 State。
+
+---
+
+## Complexity
+
+設 `n` 為 Binary Tree 的節點數，`h` 為樹高。
+
+**Time：O(n)**
+
+每個 Node 只透過 DFS 訪問一次，每次只執行固定數量的比較與加法。
+
+**Space：O(h)**
+
+每個 DFS Call 只維護固定大小的 Tuple 和區域變數。
+
+主要額外空間來自 Recursion Stack：
+
+- Balanced Tree：O(log n)
+- Skewed Tree：O(n)
+
+---
+
+## 核心 Takeaway
+
+遇到 Tree DP 時，先問：
+
+1. **State**：Parent 需要 Child 提供哪些資訊？
+2. **Choices**：目前 Node 有哪些決策（Rob / Skip）？
+3. **Constraints**：目前決策會限制哪些 Child 狀態？
+4. **Transition**：如何組合左右子樹的 State？
+5. **Traversal Order**：是否需要先計算 Children，再計算 Parent？
+
+**最重要的 Pattern：當 Parent 的決策會限制 Child 的合法選擇時，讓 DFS 回傳多個 Conditional States，再用 Postorder 組合子問題。**
