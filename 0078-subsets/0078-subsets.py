@@ -7,7 +7,7 @@ class Solution:
                 return
             path.append(nums[i])
             dfs(i + 1, path)
-            path.remove(nums[i])
+            path.pop()
 
             dfs(i + 1, path)
         dfs(0, [])
