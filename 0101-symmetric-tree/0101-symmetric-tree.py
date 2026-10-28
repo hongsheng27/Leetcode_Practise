@@ -11,7 +11,7 @@ class Solution:
             if not left and not right: return True
             if not left or not right: return False
             if left.val != right.val: return False
-            # basecase
+       
             l = dfs(left.left, right.right)
             r = dfs(left.right, right.left)
             return l and r
