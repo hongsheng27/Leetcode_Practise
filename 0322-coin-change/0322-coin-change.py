@@ -2,7 +2,6 @@ class Solution:
     def coinChange(self, coins: list[int], amount: int) -> int:
         # dp[i] => minimal number of coin
         # dp[i] = min(dp[coin] + dp[i - coin]), and dp[coin] == 1
-        if amount == 0: return 0
         dp = [float('inf')] * (amount + 1)
         dp[0] = 0
         for coin in coins:
