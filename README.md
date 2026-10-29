@@ -492,6 +492,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0189-rotate-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0189-rotate-array) |
 | [0263-ugly-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0263-ugly-number) |
 | [0268-missing-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0268-missing-number) |
+| [0279-perfect-squares](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0279-perfect-squares) |
 | [0326-power-of-three](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0326-power-of-three) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [0381-insert-delete-getrandom-o1-duplicates-allowed](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0381-insert-delete-getrandom-o1-duplicates-allowed) |
@@ -531,6 +532,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0198-house-robber](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0198-house-robber) |
 | [0213-house-robber-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0213-house-robber-ii) |
 | [0221-maximal-square](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0221-maximal-square) |
+| [0279-perfect-squares](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0279-perfect-squares) |
 | [0300-longest-increasing-subsequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0300-longest-increasing-subsequence) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0337-house-robber-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0337-house-robber-iii) |
@@ -937,6 +939,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0210-course-schedule-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0210-course-schedule-ii) |
 | [0226-invert-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0226-invert-binary-tree) |
 | [0261-graph-valid-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0261-graph-valid-tree) |
+| [0279-perfect-squares](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0279-perfect-squares) |
 | [0297-serialize-and-deserialize-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0297-serialize-and-deserialize-binary-tree) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0323-number-of-connected-components-in-an-undirected-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0323-number-of-connected-components-in-an-undirected-graph) |
@@ -1174,11 +1177,13 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Knapsack Problem
 |  |
 | ------- |
+| [0279-perfect-squares](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0279-perfect-squares) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 | [0416-partition-equal-subset-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0416-partition-equal-subset-sum) |
 ## Complete Knapsack
 |  |
 | ------- |
+| [0279-perfect-squares](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0279-perfect-squares) |
 | [0322-coin-change](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0322-coin-change) |
 ## Brute-Force Search
 |  |
