@@ -1,0 +1,235 @@
+# 279. Perfect Squares
+
+## 題目概述
+
+給定正整數 `n`，可以重複使用任意 Perfect Square（1、4、9、16、25...），求最少需要幾個完全平方數，才能讓總和等於 `n`。
+
+例如：
+
+`n = 12` → `4 + 4 + 4` → 答案 3。
+
+**核心 Pattern：Unbounded Min DP（與 322. Coin Change 相同）**
+
+---
+
+## 解題邏輯
+
+### 1. Pattern Selection
+
+題目要求使用最少數量的完全平方數，組成指定總和。
+
+與 Coin Change 相同：
+
+- Goal：Minimum Number of Choices。
+- 每個 Perfect Square 可以重複使用。
+- 每次選擇一個平方數，就讓剩餘目標減少該數值。
+
+因此可以使用 Bottom-up DP。
+
+### 2. State Definition
+
+`dp[i]` = 組成整數 `i` 所需的最少 Perfect Squares 數量。
+
+例如：
+
+- `dp[1] = 1` → 1
+- `dp[4] = 1` → 4
+- `dp[8] = 2` → 4 + 4
+- `dp[12] = 3` → 4 + 4 + 4
+
+### 3. Choices → Transition
+
+計算 `dp[i]` 時，考慮最後使用哪個 Perfect Square `p`。
+
+如果最後使用 `p`，那之前必須先組成 `i-p`。
+
+因此 Candidate：
+
+`dp[i-p] + 1`
+
+其中：
+
+- `dp[i-p]`：組成剩餘數值所需的最少個數。
+- `+1`：目前選擇的 Perfect Square。
+
+因為 Goal 是 Minimum，必須比較所有合法的 `p`，取最小值。
+
+```python
+dp[i] = min(dp[i], dp[i - perfect] + 1)
+```
+
+條件：`perfect <= i`。
+
+### 4. Base Case
+
+```python
+dp = [float('inf')] * (n + 1)
+dp[0] = 0
+```
+
+- `dp[0] = 0`：組成 0 不需要任何平方數。
+- `inf`：目前尚未找到合法的組合。
+
+當 `i` 本身就是 Perfect Square 時：
+
+`dp[i] = dp[0] + 1 = 1`
+
+因此不需要額外初始化每個完全平方數的 DP Value。
+
+### 5. 預先建立 Perfect Squares
+
+```python
+perfects = []
+start = 1
+
+while start * start <= n:
+    perfects.append(start * start)
+    start += 1
+```
+
+只需要產生不超過 `n` 的平方數。
+
+因為：
+
+`start² <= n`
+
+所以：
+
+`start <= √n`
+
+因此 Perfect Squares 的數量：
+
+**P = floor(√n)**
+
+### 6. Bottom-up DP
+
+```python
+for i in range(1, n + 1):
+    for perfect in perfects:
+        if i >= perfect:
+            dp[i] = min(dp[i], 1 + dp[i - perfect])
+```
+
+Iteration Order：
+
+從小到大計算 `dp[i]`，確保使用 `dp[i-perfect]` 時，較小的 Subproblem 已經計算完成。
+
+最後：
+
+```python
+return dp[-1]
+```
+
+---
+
+## 踩過的坑
+
+### 1. 不確定 P 是 O(log n) 還是 O(√n)
+
+原本知道 Time 是 O(n × P)，但不確定 Perfect Squares 的數量如何計算。
+
+關鍵是觀察 Loop：
+
+```python
+while start * start <= n:
+    start += 1
+```
+
+條件為 `start² <= n`，代表 `start` 最多增加到 √n。
+
+所以執行次數為 O(√n)，不是 O(log n)。
+
+**區別：**
+
+- `i += 1`，直到 `i² > n` → O(√n)
+- `i *= 2`，直到 `i > n` → O(log n)
+
+Complexity 必須同時觀察 **Termination Condition** 和 **Variable Growth**。
+
+### 2. Transition 必須包含 `min()`
+
+原本想到：
+
+`dp[i] = 1 + dp[i-perfect]`
+
+但這只是「最後選擇某個平方數」的 Candidate。
+
+題目要求最少個數，因此必須遍歷所有合法 Choices 並比較：
+
+```python
+dp[i] = min(dp[i], dp[i-perfect] + 1)
+```
+
+記住：
+
+**Candidate Value 與 Aggregation 是兩個不同概念。**
+
+- Candidate：`dp[i-perfect] + 1`
+- Aggregation：`min()`
+
+### 3. 如何從 Coin Change 推導到 Perfect Squares？
+
+322. Coin Change 的 Choices 是給定的 Coins。
+
+279. Perfect Squares 的 Choices 則是所有不大於 n 的平方數。
+
+兩題的 DP State 與 Transition 結構相同，不需要重新發明演算法。
+
+真正改變的是 **合法 Choices 的來源與數量**。
+
+---
+
+## 橫向比較：322 vs 279
+
+| | 322. Coin Change | 279. Perfect Squares |
+|---|---|---|
+| Goal | 最少硬幣數 | 最少平方數 |
+| State | `dp[i]` = 組成 i 的最少硬幣數 | `dp[i]` = 組成 i 的最少平方數 |
+| Choices | 所有合法 Coins | 所有合法 Perfect Squares |
+| Candidate | `dp[i-coin] + 1` | `dp[i-perfect] + 1` |
+| Aggregation | `min()` | `min()` |
+| Base Case | `dp[0] = 0` | `dp[0] = 0` |
+| Time | O(amount × Coins) | O(n√n) |
+
+兩題都是 **Unbounded Min DP**：允許重複使用 Choice，並求達成目標的最小使用次數。
+
+---
+
+## Complexity
+
+令 `P = floor(√n)`。
+
+**Time：O(n√n)**
+
+1. 產生 Perfect Squares：O(√n)。
+2. 初始化 DP：O(n)。
+3. 外層遍歷 n 個 State，內層遍歷 P 個平方數：O(n × P) = O(n√n)。
+
+總時間由 DP 主迴圈主導：
+
+**O(n√n)**
+
+**Space：O(n)**
+
+- `perfects`：O(√n)
+- `dp`：O(n)
+
+總空間：O(n + √n) = **O(n)**。
+
+---
+
+## 核心 Takeaway
+
+**看到「最少使用幾個數字組成 Target」，優先考慮 Coin Change 類型的 Unbounded Min DP。**
+
+推導順序：
+
+1. Goal：Min Number of Choices。
+2. State：`dp[i]` = 達成 i 的最小使用次數。
+3. Choices：最後可以使用哪些合法數字？
+4. Candidate：`dp[i-choice] + 1`。
+5. Aggregation：對所有 Choices 取 `min()`。
+6. Base Case：`dp[0] = 0`。
+7. Complexity：`Number of States × Number of Choices`。
+
+**不要只背 Transition；要能解釋每個 Choice 為什麼能從較小的 State 轉移過來，以及 Choices 的數量如何影響時間複雜度。**
