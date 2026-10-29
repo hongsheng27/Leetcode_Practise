@@ -4,9 +4,7 @@ class Solution:
         # dp[i] = min(dp[coin] + dp[i - coin]), and dp[coin] == 1
         dp = [float('inf')] * (amount + 1)
         dp[0] = 0
-        for coin in coins:
-            if coin < len(dp):
-                dp[coin] = 1
+       
         for i in range(1, amount + 1):
             for coin in coins:
                 if i >= coin:
