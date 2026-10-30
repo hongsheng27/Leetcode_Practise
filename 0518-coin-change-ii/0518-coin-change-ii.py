@@ -9,7 +9,6 @@ class Solution:
             for i in range(1, amount + 1):
                 if i >= coin:
                     dp[i] += dp[i - coin]
-        print(dp)
         return dp[-1]
             
 
