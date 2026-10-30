@@ -1,6 +1,7 @@
 class Solution:
     def combinationSum4(self, nums: list[int], target: int) -> int:
         # brute force: dfs, tc: n of target(heiht), sc: target
+        # memo optimal: 
         res = 0
         cache = {}
         def dfs(total):
@@ -10,10 +11,10 @@ class Solution:
             if total > target: return 0
             if total in cache: return cache[total]
 
-            much = 0
+            ways = 0
             for i in range(len(nums)):
-                much += dfs(total + nums[i])
-            cache[total] = much
+                ways += dfs(total + nums[i])
+            cache[total] = ways
             
             return cache[total]
         return dfs(0)
