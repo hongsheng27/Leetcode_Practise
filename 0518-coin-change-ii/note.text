@@ -1,0 +1,368 @@
+# 518. Coin Change II
+
+## 題目概述
+
+給定 `amount` 和 `coins`，每種硬幣可以使用無限次，求有多少種不同的硬幣組合可以湊出 `amount`。
+
+**順序不重要，Combination 而不是 Permutation。**
+
+例如：
+
+```text
+amount = 3
+coins = [1, 2]
+
+合法組合：
+[1, 1, 1]
+[1, 2]
+
+答案 = 2
+```
+
+`[1,2]` 和 `[2,1]` 算同一種組合。
+
+**核心 Pattern：Unbounded Counting DP + Combination + Coin-first Loop**
+
+---
+
+## 解題邏輯
+
+### 1. Goal → State
+
+Goal：計算湊出指定金額的所有不同組合數。
+
+這題是 Counting DP，不是 Minimum DP。
+
+```python
+# dp[i] = number of combinations to make amount i
+#         using the coin types processed so far
+```
+
+特別注意：`dp[i]` 儲存的是「組合數量」，不是最少硬幣數量。
+
+而且因為我們要避免不同順序被重複計算，所以 State 隱含一個條件：**只能使用目前已經處理過的硬幣種類。**
+
+### 2. Base Case
+
+```python
+dp = [0] * (amount + 1)
+dp[0] = 1
+```
+
+`dp[0] = 1` 代表湊出 0 元有一種組合：不使用任何硬幣（Empty Combination）。
+
+這是 Counting DP 很重要的 Base Case。
+
+假設 `coin = 2`、`i = 2`：
+
+```python
+dp[2] += dp[0]
+# 新增 [2] 這一種組合
+```
+
+如果 `dp[0] = 0`，就無法從空組合建立第一個合法組合。
+
+### 3. Choices → Transition
+
+這題最難理解的是：
+
+```python
+dp[i] += dp[i - coin]
+```
+
+不要先背公式，先把所有組合分成兩類。
+
+假設目前正在處理 `coin = 2`，想湊出金額 `4`。
+
+**Case A：不使用目前這種硬幣**
+
+原本 `dp[4]` 已經紀錄不使用硬幣 2 時，可以湊出 4 元的組合數。
+
+例如只允許硬幣 1：
+
+```text
+[1,1,1,1]
+
+原本 dp[4] = 1
+```
+
+**Case B：至少使用一枚硬幣 2**
+
+如果決定加入一枚 2，那之前就必須先湊出：
+
+`4 - 2 = 2`
+
+假設：
+
+```text
+湊出 2 元的方法：
+[1,1]
+[2]
+
+dp[2] = 2
+```
+
+每一種方法再加入一枚 2：
+
+```text
+[1,1] + [2] → [1,1,2]
+[2]   + [2] → [2,2]
+```
+
+因此新增 2 種組合，而不是只新增 1 種。
+
+所以：
+
+```python
+dp[4] += dp[4 - 2]
+
+# dp[4] = 1 + 2 = 3
+```
+
+最後有三種：
+
+```text
+[1,1,1,1]
+[1,1,2]
+[2,2]
+```
+
+**通用 Transition：**
+
+```python
+dp[i] += dp[i - coin]
+```
+
+意思是：
+
+- `dp[i]`：原本已經知道的組合數。
+- `dp[i-coin]`：湊出剩餘金額的每一種組合，都可以再加上目前硬幣，形成一種新組合。
+- `+=`：把新組合數累積到原本的答案。
+
+這裡不是 `+1`，因為我們新增的可能不只一種組合。
+
+### 4. Loop Order：為什麼 Coin 必須在外層？
+
+518 的關鍵不是只有 Transition，還有 Loop Order。
+
+```python
+for coin in coins:
+    for i in range(coin, amount + 1):
+        dp[i] += dp[i - coin]
+```
+
+**Coin 在外層：避免重複計算排列。**
+
+例如 `coins = [1,2]`。
+
+先處理 Coin 1：
+
+只建立由 1 組成的組合。
+
+再處理 Coin 2：
+
+在已經處理過的硬幣種類基礎上，加入 2。
+
+這樣 `[1,2]` 只會建立一次，不會再把 `[2,1]` 當成另一種組合。
+
+每個組合都按照固定的硬幣種類處理順序建立。
+
+**Amount 在內層，且從小到大：允許重複使用相同硬幣。**
+
+因為計算 `dp[i]` 時，`dp[i-coin]` 已經在本輪更新過，所以裡面可以包含目前的 Coin。
+
+例如：
+
+```text
+coin = 2
+
+dp[2] 可以包含 [2]
+dp[4] 利用 dp[2] → [2,2]
+dp[6] 利用 dp[4] → [2,2,2]
+```
+
+這樣就自然實現 Unlimited Coins。
+
+### 5. Dry Run
+
+```text
+amount = 4
+coins = [1,2]
+
+Initial:
+dp = [1,0,0,0,0]
+```
+
+先處理 `coin = 1`：
+
+```text
+dp = [1,1,1,1,1]
+```
+
+再處理 `coin = 2`：
+
+| i | Transition | dp |
+|---|---|---|
+| 2 | dp[2] += dp[0] | [1,1,2,1,1] |
+| 3 | dp[3] += dp[1] | [1,1,2,2,1] |
+| 4 | dp[4] += dp[2] | [1,1,2,2,3] |
+
+因此答案：
+
+```python
+return dp[amount]  # 3
+```
+
+### 6. 核心程式碼
+
+```python
+dp = [0] * (amount + 1)
+dp[0] = 1
+
+for coin in coins:
+    for i in range(coin, amount + 1):
+        dp[i] += dp[i - coin]
+
+return dp[amount]
+```
+
+---
+
+## 踩過的坑
+
+### 1. 這題自己想不到 Transition
+
+一開始嘗試：
+
+```python
+dp[i] += dp[i - 1] + ?
+```
+
+這是受到 Climbing Stairs 的影響。
+
+但這題的 Choice 不是固定往前走一階，而是目前正在使用哪種 Coin。
+
+如果使用 `coin`，剩餘金額一定是：
+
+`i - coin`
+
+所以要從 `dp[i-coin]` 轉移。
+
+**應該先根據 Choice 推導上一個 State，而不是直接套 `dp[i-1]`。**
+
+### 2. 不理解為什麼 `dp[i] += dp[i-coin]`
+
+原本不清楚為什麼要加上另一個 DP State。
+
+最重要的觀念：
+
+**`dp[i-coin]` 是組合數，不是硬幣數。**
+
+假設湊出 `i-coin` 有 5 種組合。
+
+那麼這 5 種組合各加上一枚目前硬幣，就會產生 5 種新組合。
+
+所以新增的是 `dp[i-coin]` 種，而不是 1 種。
+
+### 3. 為什麼這題不能直接照搬 Climbing Stairs？
+
+Climbing Stairs：
+
+- `[1,2]` 與 `[2,1]` 是不同走法。
+- 要計算不同順序的所有走法。
+
+Coin Change II：
+
+- `[1,2]` 與 `[2,1]` 是同一種組合。
+- 要避免重複計算不同排列。
+
+因此 Loop Order 不同。
+
+如果在 518 使用 Amount 外層、Coin 內層的 Counting Transition，就可能把相同硬幣的不同順序當成不同答案。
+
+解法是 **Coin 外層、Amount 內層**。
+
+### 4. 為什麼 `dp[0] = 1`？
+
+因為這題儲存的是組合數。
+
+空組合本身算一種方法，讓第一枚硬幣可以從 `dp[0]` 建立合法組合。
+
+與 322 不同：
+
+- 322：湊出 0 元需要 0 枚硬幣 → `dp[0] = 0`
+- 518：湊出 0 元有 1 種組合 → `dp[0] = 1`
+
+**Base Case 要根據 State Definition 決定，不能直接複製其他 DP 題目。**
+
+---
+
+## 橫向比較
+
+| | 70. Climbing Stairs | 322. Coin Change | 518. Coin Change II |
+|---|---|---|---|
+| Goal | Count Ways | Min Coins | Count Combinations |
+| State | 到 i 的走法數 | 湊出 i 的最少硬幣數 | 湊出 i 的組合數 |
+| Choices | 最後走 1 或 2 階 | 最後使用哪枚 Coin | 按硬幣種類建立組合 |
+| Aggregation | `+` | `min()` | `+=` |
+| Base Case | `dp[0] = 1` | `dp[0] = 0` | `dp[0] = 1` |
+| 順序是否重要 | 是 | 不影響最小數量 | 否，必須避免排列重複 |
+
+特別記住這兩種 Loop：
+
+**Permutation Counting（順序重要）：**
+
+```python
+for i in range(1, amount + 1):
+    for coin in coins:
+        if i >= coin:
+            dp[i] += dp[i - coin]
+```
+
+**Combination Counting（順序不重要）：**
+
+```python
+for coin in coins:
+    for i in range(coin, amount + 1):
+        dp[i] += dp[i - coin]
+```
+
+兩者使用相似的 Transition，但計算的答案不同。
+
+---
+
+## Complexity
+
+設：
+
+- `A = amount`
+- `C = len(coins)`
+
+**Time：O(A × C)**
+
+外層遍歷 C 種硬幣，內層最多遍歷 A 個金額，每次更新 O(1)。
+
+**Space：O(A)**
+
+使用一個長度為 `amount + 1` 的 DP Array。
+
+---
+
+## 核心 Takeaway
+
+這題目前還不算是能獨立推導的 Pattern，需要之後再練習。
+
+下次遇到 Counting DP，按照以下順序思考：
+
+1. **Goal**：求方法數還是組合數？
+2. **State**：`dp[i]` 究竟儲存什麼？
+3. **Choices**：新增一個選擇，需要從哪個較小 State 轉移？
+4. **Candidate**：新增一個 Choice，會產生幾種新方法？
+5. **Aggregation**：是否可以直接相加？有沒有重複？
+6. **Loop Order**：順序重要嗎？每種 Choice 可以重複使用嗎？
+7. **Base Case**：空組合應該算 0 種還是 1 種？
+
+**518 最值得記住的兩件事：**
+
+- `dp[i] += dp[i-coin]`：每一種湊出剩餘金額的方法，都可以加入目前硬幣，形成新的組合。
+- Coin-first Loop：固定硬幣種類的處理順序，避免將不同排列重複計算。
