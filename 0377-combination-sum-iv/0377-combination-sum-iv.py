@@ -1,10 +1,10 @@
 class Solution:
     def combinationSum4(self, nums: list[int], target: int) -> int:
         # brute force: dfs, tc: n of target(heiht), sc: target
-        # memo optimal: 
+        # memo optimal: # Time: O(target * len(nums))
+        # Space: O(target)
         cache = {}
         def dfs(total):
-
             if total == target: 
                 return 1
             if total > target: return 0
