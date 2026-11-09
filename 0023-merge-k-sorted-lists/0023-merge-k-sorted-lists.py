@@ -8,20 +8,19 @@ class Solution:
         # traverse lists to put first to minHeap: O(L)
         # while minHeap: O(N * L)
         # heappop(), put into result, put next elem to heap O(logL)
-        # minHeap # (value, index ,node, nextNode)
+        # minHeap # (value, index ,node)
         # tc: O(N * L * logL) / sc: O(L * L) include result
         
         minHeap = []
         for i, node in enumerate(lists):
             if node:
-                heapq.heappush(minHeap, (node.val, i, node, node.next))
+                heapq.heappush(minHeap, (node.val, i, node))
         dummy = tail = ListNode()
         while minHeap:
-            val, index, node, nxt = heapq.heappop(minHeap)
+            val, index, node = heapq.heappop(minHeap)
             tail.next = node
             tail = tail.next
-            if nxt:
-                heapq.heappush(minHeap, (nxt.val, index + len(lists), nxt, nxt.next))
+            if node.next:
+                heapq.heappush(minHeap, (node.next.val, index + len(lists), node.next))
         return dummy.next
-        
-
+            # 25: 00 
