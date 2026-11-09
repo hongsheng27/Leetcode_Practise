@@ -21,6 +21,6 @@ class Solution:
             tail.next = node
             tail = tail.next
             if node.next:
-                heapq.heappush(minHeap, (node.next.val, index + len(lists), node.next))
+                heapq.heappush(minHeap, (node.next.val, index, node.next))
         return dummy.next
             # 25: 00 
