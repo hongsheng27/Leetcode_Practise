@@ -1300,4 +1300,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0337-house-robber-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0337-house-robber-iii) |
+## Tournament Sort
+|  |
+| ------- |
+| [0023-merge-k-sorted-lists](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0023-merge-k-sorted-lists) |
 <!---LeetCode Topics End-->
