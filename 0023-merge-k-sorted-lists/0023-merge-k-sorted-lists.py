@@ -5,11 +5,12 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
-        # traverse lists to put first to minHeap: O(L)
-        # while minHeap: O(N * L)
-        # heappop(), put into result, put next elem to heap O(logL)
+        # T = N × k, k of linkedlist, N node in each list
+        # traverse lists to put first to minHeap: O(k)
+        # while minHeap: O(T)
+        # heappop(), put into result, put next elem to heap O(log k)
         # minHeap # (value, index ,node)
-        # tc: O(N * L * logL) / sc: O(L * L) include result
+        # tc: O(k + T * logk) / sc: O(k) include result
         
         minHeap = []
         for i, node in enumerate(lists):
@@ -23,4 +24,3 @@ class Solution:
             if node.next:
                 heapq.heappush(minHeap, (node.next.val, index, node.next))
         return dummy.next
-            # 25: 00 
