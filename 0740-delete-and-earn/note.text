@@ -1,0 +1,207 @@
+# 740. Delete and Earn
+
+## 題目概述
+
+給定整數陣列 `nums`，每次選擇一個數字 `x`，可以獲得 `x` 分，但必須刪除所有數值為 `x-1` 和 `x+1` 的元素。
+
+求能獲得的最大總分。
+
+**核心 Pattern：Value Aggregation + House Robber（Take / Skip DP）**
+
+## 解題邏輯
+
+### 1. Problem Transformation：如何想到 House Robber？
+
+先觀察題目的兩個 Property：
+
+- 選擇 `x` 後，不能再選擇 `x-1` 或 `x+1`。
+- 相同數值不會互相衝突，且分數都是正數，所以選擇 `x` 時，可以把所有 `x` 一起選取。
+
+因此，我們真正要決定的不是「選擇哪個元素」，而是：
+
+**選擇哪些數值，才能讓總收益最大，而且不能同時選擇相鄰數值。**
+
+這就符合 House Robber 的限制。
+
+注意：
+
+- House Robber：相鄰 **Index** 不能同時選。
+- Delete and Earn：相鄰 **Value** 不能同時選。
+
+因此必須先把 Value 轉換成 Index。
+
+### 2. Value Aggregation：建立 Points Array
+
+例如：
+
+```text
+nums = [2, 2, 3, 3, 3, 4]
+
+選擇 2 → 4 分
+選擇 3 → 9 分
+選擇 4 → 4 分
+```
+
+轉換成：
+
+```text
+index    0  1  2  3  4
+points  [0, 0, 4, 9, 4]
+```
+
+使用：
+
+```python
+M = max(nums)
+points = [0] * (M + 1)
+
+for num in nums:
+    points[num] += num
+```
+
+`points[i]` 代表選取數值 `i`，能獲得的全部分數。
+
+這樣就不需要額外使用 `Counter`，也不需要 `num - 1` 的 Index Offset。
+
+### 3. State Definition
+
+**`dp[i]` = 從數值 1 到 i 中，不能同時選相鄰數值時，能獲得的最大總分。**
+
+注意：
+
+`dp[i]` 不代表一定選了數值 `i`。
+
+它代表考慮到 `i` 為止的最佳答案。
+
+### 4. Choices → Transition
+
+對目前數值 `i`，有兩個選擇。
+
+**Case A：Skip i**
+
+不選數值 `i`，直接繼承前面所有數值的最佳收益。
+
+```python
+dp[i - 1]
+```
+
+**Case B：Take i**
+
+選擇數值 `i`，就不能選 `i-1`。
+
+但可以搭配數值 1 到 `i-2` 的最佳合法組合。
+
+```python
+dp[i - 2] + points[i]
+```
+
+注意：`dp[i-2]` 不代表一定選了數值 `i-2`，而是該範圍的最佳收益。
+
+因為 Goal 是 Maximum Points，使用 `max()`：
+
+```python
+dp[i] = max(
+    dp[i - 1],
+    dp[i - 2] + points[i]
+)
+```
+
+這就是 House Robber 的 Transition。
+
+### 5. Base Cases
+
+使用數值直接對應 Index 的方式：
+
+```python
+dp = [0] * (M + 1)
+
+dp[0] = 0
+dp[1] = points[1]
+```
+
+接著：
+
+```python
+for i in range(2, M + 1):
+    dp[i] = max(
+        dp[i - 1],
+        dp[i - 2] + points[i]
+    )
+```
+
+最後回傳：
+
+```python
+return dp[M]
+```
+
+## 踩過的坑
+
+### 1. 如果沒有先做 House Robber，很難想到這個解法
+
+這題最難的不是 DP Transition，而是 Problem Transformation。
+
+不要直接背「740 = House Robber」。
+
+應該從題目限制推導：
+
+1. 選取一個數值，會排除相鄰數值。
+2. 相同數值可以合併成一筆總收益。
+3. 把數值依大小排列後，變成相鄰位置不能同時選。
+4. 因此轉換成 House Robber。
+
+**核心辨識條件：相鄰選擇互斥 + 最大化總收益 → 考慮 Take / Skip DP。**
+
+### 2. 原本使用 `Counter` 和 `num - 1`，讓程式較複雜
+
+原本做法：
+
+```python
+count = Counter(nums)
+lst = [0] * maxVal
+
+for num, freq in count.items():
+    lst[num - 1] = num * freq
+```
+
+雖然正確，但多了一層 Counter，也讓數值與 Index 產生偏移。
+
+更直觀的方式：
+
+```python
+points = [0] * (max(nums) + 1)
+
+for num in nums:
+    points[num] += num
+```
+
+讓 `points[i]` 直接對應數值 `i`，State 比較容易理解。
+
+### 3. 為什麼不需要 `if len(nums) == 1`？
+
+原本的 DP 初始化會存取 `dp[1]`，因此當 Array 太短時需要特判。
+
+但新版本：
+
+```python
+M = max(nums)
+dp = [0] * (M + 1)
+dp[1] = points[1]
+```
+
+題目保證 `nums[i] >= 1`，所以 `dp` 至少有兩格。
+
+即使：
+
+```text
+nums = [1]
+
+points = [0, 1]
+dp     = [0, 1]
+```
+
+迴圈不會執行，直接回傳 1。
+
+因此不需要另外處理 `len(nums) == 1`。
+
+**Edge Case 可以透過合理的 State Indexing 和 Base Case 設計來解決ß
