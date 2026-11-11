@@ -13,6 +13,7 @@ class Solution:
             for char, freq in needed.items():
                 if char not in available or available[char] < freq:
                     isValid = False
+                    break
             if isValid: res += len(word)
         return res
                 
