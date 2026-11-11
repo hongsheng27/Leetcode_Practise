@@ -148,6 +148,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1052-grumpy-bookstore-owner](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1052-grumpy-bookstore-owner) |
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
@@ -239,6 +240,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
+| [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
@@ -300,6 +302,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0981-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0981-time-based-key-value-store) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
+| [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 | [1768-merge-strings-alternately](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1768-merge-strings-alternately) |
@@ -413,6 +416,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
+| [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 ## Quickselect
 |  |
 | ------- |
