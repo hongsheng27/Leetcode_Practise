@@ -6,19 +6,13 @@ class Solution:
         # W of words and average length each word is k, len of chars is c
         # ts: O(c + W * k) sc(c)
         res = 0
+        available = Counter(chars)
         for word in words:
-            count = Counter(chars)
-            isDone = True
-            for c in word:
-                if c in count:
-                    count[c] -= 1
-                    if count[c] < 0: 
-                        isDone = False
-                        break
-                else:
-                    isDone = False
-                    break
-            print(word)
-            if isDone:res += len(word)
+            needed = Counter(word)
+            isValid = True
+            for char, freq in needed.items():
+                if char not in available or available[char] < freq:
+                    isValid = False
+            if isValid: res += len(word)
         return res
                 
