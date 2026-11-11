@@ -1,0 +1,306 @@
+# 1155. Number of Dice Rolls With Target Sum
+
+**Pattern：Counting DP / DFS + Memoization / Pruning**
+
+## 一、題目概述
+
+給定：
+- `n`：骰子數量
+- `k`：每顆骰子的面數（1～k）
+- `target`：目標總和
+
+計算 **恰好使用 n 顆骰子**，且點數總和等於 `target` 的方法數。
+
+不同擲出順序視為不同方法。
+
+例如：
+
+`n = 2, k = 6, target = 7`
+
+合法組合：
+
+`(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)`
+
+答案：`6`
+
+題目中的 **out of the k^n total ways**，代表 n 顆骰子全部擲出後，共有 k^n 種可能結果，因此不能只擲部分骰子就結束。
+
+答案需要對 `10^9 + 7` 取餘數。
+
+---
+
+## 二、解題邏輯
+
+### 1. State — 子問題定義
+
+`dfs(total, remaining)`
+
+代表：
+
+**目前已累積 total 點，還剩 remaining 顆骰子時，達到 target 的合法方法數。**
+
+Memoization：
+
+`cache[(total, remaining)]`
+
+為什麼需要兩個維度？
+
+假設 `target = 8, k = 6`：
+
+- `dfs(5, 1)`：剩一顆，必須擲出 3 → 1 種
+- `dfs(5, 2)`：剩兩顆，可以擲出 (1,2)、(2,1) → 2 種
+
+即使 `total` 相同，`remaining` 不同，子問題答案也可能不同。
+
+**State 設計原則：**
+
+> 只保留會影響未來合法選擇與結果的資訊，不需要保留完整歷史。
+
+檢查方式：
+
+1. 參數相同，後續答案是否一定相同？
+2. 刪掉某個參數後，是否可能讓不同子問題共用同一個 Cache？
+3. 有沒有不影響未來決策的冗餘參數？
+
+### 2. Choices — 當前可以做什麼？
+
+每顆骰子可以選擇 `1～k` 點。
+
+對每一個 `face`：
+
+- `total` 增加 `face`
+- `remaining` 減少 1
+
+### 3. Transition — 如何計算答案？
+
+因為要求的是**方法數**，所以將所有 Choice 的方法數相加：
+
+`ways += dfs(total + face, remaining - 1)`
+
+這是 Counting DP 的核心：
+
+**每個 Choice 貢獻的合法方法數，全部累加。**
+
+### 4. Base Case — 何時成功？
+
+當骰子全部用完時：
+
+`if remaining == 0:`
+
+`    return 1 if total == target else 0`
+
+只有兩個條件同時成立才算成功：
+
+- `remaining == 0`：恰好用完 n 顆骰子
+- `total == target`：總和達到目標
+
+不能只判斷 `total == target`，因為可能還有骰子沒有使用。
+
+### 5. Pruning — 如何提前排除失敗 State？
+
+剩下 `remaining` 顆骰子：
+
+- 最少還能增加 `remaining` 點
+- 最多還能增加 `remaining * k` 點
+
+因此，如果：
+
+`total + remaining > target`
+
+代表即使每顆都擲 1，仍會超過目標。
+
+如果：
+
+`total + remaining * k < target`
+
+代表即使每顆都擲 k，仍然無法達到目標。
+
+兩種情況都可以直接 `return 0`。
+
+### 6. Loop Order
+
+DFS 每次選擇一顆骰子的點數，再遞迴處理剩下的骰子。
+
+因為每一顆骰子的位置不同，所以 `(1,6)` 和 `(6,1)` 會透過不同路徑計算，符合題目的 Ordered Ways 定義。
+
+---
+
+## 三、最終程式碼
+
+```python
+class Solution:
+    def numRollsToTarget(self, n: int, k: int, target: int) -> int:
+        MOD = 10**9 + 7
+        cache = {}
+
+        # dfs(total, remaining) = valid ways to reach target
+        # using exactly the remaining dice
+        def dfs(total, remaining):
+            if remaining == 0:
+                return 1 if total == target else 0
+
+            # Pruning
+            if total + remaining > target:
+                return 0
+            if total + remaining * k < target:
+                return 0
+
+            if (total, remaining) in cache:
+                return cache[(total, remaining)]
+
+            ways = 0
+
+            for face in range(1, k + 1):
+                ways += dfs(total + face, remaining - 1)
+
+            cache[(total, remaining)] = ways % MOD
+            return cache[(total, remaining)]
+
+        return dfs(0, n)
+```
+
+---
+
+## 四、踩過的坑
+
+### 1. Cache 沒初始化就直接累加
+
+最初寫法：
+
+`cache[(total, limit)] += dfs(...)`
+
+問題：Key 尚不存在，會產生 `KeyError`。
+
+正確做法：
+
+- 使用 `ways = 0` 初始化本次 State 的方法數
+- 累加所有 Choices
+- 最後寫入 `cache[(total, remaining)]`
+
+### 2. 過早判斷成功
+
+原本：
+
+`if total == target: return 1`
+
+問題：題目要求恰好使用 n 顆骰子，不能提前完成。
+
+修正：
+
+`if remaining == 0: return 1 if total == target else 0`
+
+**Base Case 必須符合題目的完整成功條件，而不只是達到部分目標。**
+
+### 3. MOD 的用途與位置
+
+MOD 是取餘數：
+
+`MOD = 10**9 + 7`
+
+例如：
+
+`(1_000_000_012) % MOD = 5`
+
+題目只要求回傳餘數，不代表真正的方法數只有 5。
+
+Counting DP 可以在每個 State 計算完之後先取模，因為：
+
+`(a + b) % MOD == ((a % MOD) + (b % MOD)) % MOD`
+
+因此推薦：
+
+`cache[(total, remaining)] = ways % MOD`
+
+**每個 State 存入 Cache 前取模即可。**
+
+原本只在最外層 `return dfs(0, n) % MOD`，在 Python 中也正確，但中間會保留完整的大整數。
+
+注意：MOD 適用於題目要求的 Counting DP；不能隨意對 Min/Max DP 的比較數值取模。
+
+### 4. 不確定二維 Cache 會不會 TLE
+
+判斷流程：
+
+1. 先確認 State 是否足夠描述子問題。
+2. 計算每個維度可能有多少種不同數值。
+3. 將 State 數量乘上每個 State 的工作量。
+
+**不是看到二維 DP 就代表太慢，要看各維度的範圍。**
+
+---
+
+## 五、橫向比較
+
+| 題目 | State | 成功條件 | Counting 特性 |
+|---|---|---|---|
+| 377. Combination Sum IV | `dfs(total)` | 達到 target | 次數不限，順序有差 |
+| 518. Coin Change II | `dp[amount]`，依 coin 分階段 | 湊出 amount | 次數不限，順序無差 |
+| 1155. Dice Rolls | `dfs(total, remaining)` | 達到 target 且用完 n 顆 | 固定次數，順序有差 |
+
+**377 vs 1155**
+
+377 只需要知道目前總和，因為沒有固定使用次數。
+
+1155 除了總和，還需要知道剩餘骰子數量，因此多一個 State 維度。
+
+**518 vs 1155**
+
+518 要避免把相同硬幣的不同排列重複計算，因此需要控制 Choice 的順序。
+
+1155 每顆骰子的位置不同，排列本身就是不同結果，因此需要計算所有排列。
+
+---
+
+## 六、Complexity
+
+**Time = Number of Unique States × Work per State**
+
+State：
+
+- `total`：O(target) 種
+- `remaining`：O(n) 種
+
+因此 Unique States：
+
+`O(n × target)`
+
+每個 State 嘗試 `k` 種點數：
+
+`O(k)`
+
+**Time Complexity：O(n × target × k)**
+
+Space：
+
+- Dictionary Cache：O(n × target)
+- DFS Recursion Stack：O(n)
+
+**Space Complexity：O(n × target)**
+
+題目最大限制：
+
+- `n ≤ 30`
+- `k ≤ 30`
+- `target ≤ 1000`
+
+粗略 Transition 上界：
+
+`30 × 1000 × 30 = 900,000`
+
+屬於合理的 Memoization DP 規模。實際執行次數可能因可達 State 限制與 Pruning 而更少。
+
+---
+
+## 七、核心 Pattern 總結
+
+**DFS + Memoization 的三個檢查：**
+
+1. **State Correctness**：相同 State 是否代表相同的剩餘問題？
+2. **State Minimality**：有沒有缺少必要資訊，或包含多餘維度？
+3. **State Complexity**：所有維度的可能組合數 × 每個 State 的 Choices 是否可接受？
+
+**本題最重要的收穫：**
+
+> DP Cache 的 Key 不是任意選擇的參數，而是用來唯一描述「剩下需要解決什麼子問題」的最小必要資訊。
+
+而 Counting DP 只要 Transition 是加總方法數，就可以在每個 State 存入 Cache 前使用 `% MOD`，不影響最後答案的餘數。
