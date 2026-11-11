@@ -12,6 +12,6 @@ class Solution:
             res = 0
             for i in range(1, k + 1):
                 res += dfs(total + i, limit - 1)
-            cache[(total, limit)] = res
+            cache[(total, limit)] = res % MOD
             return cache[(total, limit)]
-        return dfs(0, n) % MOD
+        return dfs(0, n)
