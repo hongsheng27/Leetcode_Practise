@@ -1,0 +1,99 @@
+819. Most Common Word
+
+題目概述：
+
+給定一段 paragraph 和 banned 單字清單，忽略大小寫及標點符號，找出出現次數最多且不在 banned 中的單字。
+
+解題邏輯：
+
+使用 String Normalization + Hash Map Frequency Counting。
+
+1. 先將 paragraph 中的英文字母轉成小寫，所有非英文字母替換成空白，讓標點符號變成單字分隔符。
+2. 使用 split() 將處理後的字串切成 words。
+3. 將 banned 轉成 Set，讓查找平均為 O(1)。
+4. 使用 defaultdict(int) 統計每個非 banned 單字的出現次數。
+5. 使用 max(count.items(), key=lambda x: x[1]) 找出 Frequency 最大的項目，再用 [0] 取得 Word。
+
+關鍵程式碼：
+
+normalized_str = "".join(
+    c.lower() if c.isalpha() else " "
+    for c in paragraph
+)
+
+words = normalized_str.split()
+
+for word in words:
+    if word not in bannedSet:
+        count[word] += 1
+
+return max(count.items(), key=lambda x: x[1])[0]
+
+注意：本題單字只包含英文字母，使用 isalpha() 比 isalnum() 更符合題目定義，因為 isalnum() 也會保留數字。
+
+踩過的坑：
+
+1. 原本使用 paragraph.split() 搭配 strip(string.punctuation)，無法正確處理單字中間的標點。
+
+測資：
+
+paragraph = "a b.b"
+banned = []
+
+原本：
+
+"a b.b".split()
+→ ["a", "b.b"]
+
+"b.b".strip(string.punctuation)
+→ "b.b"
+
+但正確結果應該是：
+
+["a", "b", "b"]
+
+因此答案應該是 "b"。
+
+原因：
+- split() 預設只依空白切割。
+- strip() 只移除字串頭尾的指定字元，不會處理中間的標點。
+
+修正方式：先把標點符號替換成空白，再使用 split()。
+
+2. 不一定需要 Regex。
+
+原本討論過使用 re.findall() 切割單字，但也可以透過 String Normalization 完成。
+
+核心概念是先統一字串格式，再進行 Frequency Counting。
+
+3. max() 的 key 用法。
+
+count.items() 會產生 (word, frequency)。
+
+key=lambda x: x[1] 代表根據 frequency 比較，而不是根據 word 的字母順序。
+
+max(...) 回傳 (word, frequency)，因此最後使用 [0] 取得單字。
+
+複雜度：
+
+N = paragraph 長度
+B = banned 中所有字串的總長度
+
+Time：O(N + B)
+- Normalize paragraph：O(N)
+- split()：O(N)
+- 建立 bannedSet：O(B)
+- Frequency Counting：O(N)
+- max()：O(U)，U 為不同合法單字數，且 U ≤ O(N)
+
+Space：O(N + B)
+- normalized_str、words、count：O(N)
+- bannedSet：O(B)
+
+核心觀念：
+
+遇到字串切割題目，先確認「哪些字元是有效內容，哪些字元應該作為分隔符」。
+
+如果標點可能出現在單字中間，不能只使用 strip()。
+
+先 Normalize，再 split，最後利用 Hash Map 計算 Frequency，通常能讓整體邏輯更簡潔。
