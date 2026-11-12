@@ -148,6 +148,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1052-grumpy-bookstore-owner](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1052-grumpy-bookstore-owner) |
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
@@ -240,6 +241,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
@@ -345,6 +347,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
@@ -1025,6 +1028,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 ## String Matching
 |  |
 | ------- |
@@ -1206,6 +1210,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0056-merge-intervals](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0056-merge-intervals) |
 | [0252-meeting-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0252-meeting-rooms) |
 | [0455-assign-cookies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0455-assign-cookies) |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 ## Combinatorics
 |  |
 | ------- |
@@ -1309,4 +1314,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0023-merge-k-sorted-lists) |
+## Bubble Sort
+|  |
+| ------- |
+| [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 <!---LeetCode Topics End-->
