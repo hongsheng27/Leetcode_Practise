@@ -108,6 +108,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0622-design-circular-queue](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0622-design-circular-queue) |
 | [0643-maximum-average-subarray-i](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0643-maximum-average-subarray-i) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
+| [0675-cut-off-trees-for-golf-event](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0675-cut-off-trees-for-golf-event) |
 | [0682-baseball-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0682-baseball-game) |
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
@@ -389,6 +390,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0451-sort-characters-by-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0451-sort-characters-by-frequency) |
 | [0621-task-scheduler](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0621-task-scheduler) |
 | [0658-find-k-closest-elements](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0658-find-k-closest-elements) |
+| [0675-cut-off-trees-for-golf-event](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0675-cut-off-trees-for-golf-event) |
 | [0692-top-k-frequent-words](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0692-top-k-frequent-words) |
 | [0703-kth-largest-element-in-a-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0703-kth-largest-element-in-a-stream) |
 | [0743-network-delay-time](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0743-network-delay-time) |
@@ -478,6 +480,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0463-island-perimeter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0463-island-perimeter) |
 | [0498-diagonal-traverse](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0498-diagonal-traverse) |
 | [0542-01-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0542-01-matrix) |
+| [0675-cut-off-trees-for-golf-event](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0675-cut-off-trees-for-golf-event) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0733-flood-fill](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0733-flood-fill) |
 | [0778-swim-in-rising-water](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0778-swim-in-rising-water) |
@@ -964,6 +967,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0463-island-perimeter](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0463-island-perimeter) |
 | [0542-01-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0542-01-matrix) |
 | [0547-number-of-provinces](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0547-number-of-provinces) |
+| [0675-cut-off-trees-for-golf-event](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0675-cut-off-trees-for-golf-event) |
 | [0684-redundant-connection](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0684-redundant-connection) |
 | [0695-max-area-of-island](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0695-max-area-of-island) |
 | [0721-accounts-merge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0721-accounts-merge) |
