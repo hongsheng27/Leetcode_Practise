@@ -1,0 +1,216 @@
+1192. Critical Connections in a Network
+
+題目概述：
+
+給定 n 個 Nodes 和一組無向圖 Connections，找出所有 Critical Connections（Bridges）。如果移除某條 Edge 會讓 Graph 變成不連通，這條 Edge 就是 Bridge。
+
+解題邏輯：
+
+使用 Tarjan's Algorithm：DFS + Discovery Time + Low Link。
+
+核心觀念：如果一條 Edge 位於 Cycle 中，移除後仍有替代路徑，因此不是 Bridge。
+
+1. 建立 Undirected Graph
+
+使用 Adjacency List，因為每條 Edge 都是雙向的：
+
+adj[u].append(v)
+adj[v].append(u)
+
+2. 定義兩個 State
+
+disc[u]：Node u 第一次被 DFS 拜訪的時間，不會改變。
+
+low[u]：Node u 或其 DFS Subtree，透過 DFS Tree 往下及 Back Edge，最早能連回的 Discovery Time。
+
+初始化：
+
+disc = [-1] * n
+low = [0] * n
+time = 0
+
+進入 DFS 時：
+
+disc[node] = low[node] = time
+time += 1
+
+一開始不知道有沒有替代路徑，所以 low 先等於自己的 Discovery Time。
+
+3. DFS 遇到 Neighbor 時，分成兩種情況
+
+第一種：Tree Edge（尚未拜訪）
+
+if disc[nei] == -1:
+    dfs(nei, node)
+    low[node] = min(low[node], low[nei])
+
+必須先完成 Child 的 DFS，才能知道 Child Subtree 最早能連回哪個祖先。
+
+Child 的 low 資訊會在 DFS 回溯時傳遞給 Parent。
+
+第二種：Back Edge（已拜訪的祖先）
+
+else:
+    low[node] = min(low[node], disc[nei])
+
+表示目前 Node 發現另一條 Edge，可以直接連回先前拜訪的祖先。
+
+注意：Back Edge 使用 disc[nei]，不是 low[nei]。
+
+另外必須跳過 Parent：
+
+if nei == parent: continue
+
+因為原本從 Parent 走來的 Tree Edge，不能算是替代路徑。
+
+4. 判斷 Bridge
+
+必須在 Child DFS 完成後判斷：
+
+if low[nei] > disc[node]:
+    res.append([node, nei])
+
+三種情況：
+
+low[nei] < disc[node]
+→ Child Subtree 能連回 Parent 更早的祖先，不是 Bridge。
+
+low[nei] == disc[node]
+→ Child Subtree 能透過其他路徑連回 Parent，也不是 Bridge。
+
+low[nei] > disc[node]
+→ Child Subtree 無法連回 Parent 或更早的祖先，是 Bridge。
+
+核心條件：
+
+low[child] > disc[parent]
+
+5. 最後回傳 res
+
+題目保證 Graph 連通，因此 dfs(0, None) 就能遍歷全部 Nodes。
+
+
+踩過的坑：
+
+1. 一開始完全想不到解法。
+
+原本熟悉的 BFS / DFS 主要用來判斷能否抵達某個 Node。
+
+這題需要進一步分析 Graph 結構，以及移除 Edge 後是否仍有替代路徑。
+
+可以先想到 Brute Force：逐一移除 Edge，再執行 DFS 檢查連通性。
+
+但 O(E × (V + E)) 太慢，因此改用 Tarjan 一次 DFS 找出所有 Bridges。
+
+2. 不理解 low[u] 的語意。
+
+disc[u] 是自己被發現的時間。
+
+low[u] 不是 Node ID，也不是最短距離，而是 u 的 DFS Subtree 可以透過 Back Edge 連回的最早 Discovery Time。
+
+low[u] 會隨 DFS 探索與回溯更新，disc[u] 則不會改變。
+
+3. 為什麼 Node 2 找回 Node 0，low[2] 會變成 0？
+
+假設 DFS：
+
+0 → 1 → 2
+
+disc[0] = 0
+disc[1] = 1
+disc[2] = 2
+
+Node 2 發現 Back Edge 可以直接連回 Node 0。
+
+low[2] = min(low[2], disc[0])
+       = min(2, 0)
+       = 0
+
+這裡的 0 是 Discovery Time，不是 Node ID。
+
+即使第一個拜訪的 Node ID 是 5，只要它的 disc 是 0，連回它仍然會讓 low 變成 0。
+
+接著回溯到 Node 1：
+
+low[1] = min(low[1], low[2])
+       = min(1, 0)
+       = 0
+
+代表 Node 1 的子樹也具有連回更早祖先的替代路徑。
+
+4. 一開始的 DFS 把遞迴與 Low 更新混在同一行。
+
+原本：
+
+low[node] = min(low[nei], dfs(nei, node))
+
+問題：
+
+- low[nei] 可能尚未計算完成。
+- 沒有保留 low[node] 原本的最小值。
+- 沒有區分 Tree Edge 與 Back Edge。
+
+正確做法：
+
+先 dfs(nei, node)，再使用 low[nei] 更新 low[node]。
+
+如果 Neighbor 已經拜訪，則使用 disc[nei] 更新，而不是再次 DFS。
+
+5. 不理解為什麼 low[nei] > disc[node] 就是 Bridge。
+
+這個條件代表 Child Subtree 找不到其他路徑連回 Parent 或更早的祖先。
+
+因此一旦移除 Parent → Child 的 Edge，Child Subtree 就會斷開。
+
+特別注意必須是 >，不能是 >=。
+
+如果 low[nei] == disc[node]，代表仍有替代路徑能連回 Parent，因此不是 Bridge。
+
+6. DFS 不需要額外回傳 Low。
+
+最初曾使用 return disc[node] 與 return float('inf')。
+
+但 low 已經儲存在 low[] 中，DFS 可以直接更新陣列，不需要透過 Return Value 傳遞。
+
+7. Python Recursion Depth。
+
+題目 n 最多 10^5，若 Graph 是一條長 Chain，DFS 深度可能達 O(V)。
+
+Python 預設遞迴深度可能不足。可以提高 recursion limit，但極深遞迴仍可能遇到 Stack 限制，必要時使用 Iterative DFS。
+
+
+複雜度：
+
+V = Nodes 數量
+E = Edges 數量
+
+建立 Adjacency List：O(V + E)
+
+DFS：O(V + E)
+每個 Node 只拜訪一次，每條無向 Edge 最多從兩端各檢查一次。
+
+Time：O(V + E)
+
+Space：O(V + E)
+包含 Adjacency List、disc、low、DFS Recursion Stack 和答案。
+
+
+核心觀念：
+
+一般 DFS：探索哪些 Nodes 可以抵達。
+
+Tarjan DFS：利用 DFS Tree 和 Back Edge，判斷是否存在替代路徑。
+
+disc：我什麼時候被發現？
+
+low：我的子樹最早能繞回哪個 Discovery Time？
+
+Tree Edge → 使用 Child 的 low 更新 Parent。
+
+Back Edge → 使用 Ancestor 的 disc 更新目前 Node。
+
+Bridge → low[child] > disc[parent]
+
+記住整個流程：
+
+DFS 往下探索 → 發現 Back Edge → 更新 Low → 回溯傳遞 Low → 判斷 Bridge。
