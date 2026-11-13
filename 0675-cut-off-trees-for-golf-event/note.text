@@ -1,0 +1,155 @@
+675. Cut Off Trees for Golf Event
+
+題目概述：
+
+給一個 m × n 的 forest，0 是障礙物、1 是空地、> 1 是樹的高度。從 (0,0) 出發，必須依高度由小到大砍完所有樹，求最少移動步數；如果有樹無法抵達，回傳 -1。
+
+解題邏輯：
+
+使用 Sorting + Repeated Single-source BFS。
+
+1. 遍歷整個 Grid，蒐集所有 forest[r][c] > 1 的樹，儲存 (height, r, c)。
+
+2. 使用 trees.sort()，Python 會依 Tuple 第一個元素 height 排序，得到必須砍樹的順序。
+
+3. 設計 bfs(start, target)，計算從目前位置到指定樹座標的最短距離。
+
+4. 每次 BFS：
+   - Queue 初始化為 start。
+   - 建立新的 visited，起點立即加入。
+   - 使用 Level-order BFS，每完成一層 steps += 1。
+   - 遇到 (r, c) == target，直接 return steps。
+   - 只能走 forest[nr][nc] != 0 的格子。
+   - 鄰居加入 Queue 時立即加入 visited，避免重複入隊。
+   - 如果 Queue 清空仍未找到目標，return -1。
+
+5. 依序遍歷排序後的 trees：
+   - steps = bfs(start, (r, c))
+   - 如果 steps == -1，代表無法砍完所有樹，直接 return -1。
+   - 否則 res += steps，並更新 start = (r, c)。
+
+6. 全部樹都砍完後，return res。
+
+核心 Pattern：
+
+Sort Targets → BFS Between Consecutive Targets → Sum Shortest Distances
+
+因為砍樹順序固定，每段都走最短路徑，就能得到最小總步數。
+
+踩過的坑：
+
+1. 一開始不知道是否可以經過比較高的樹而不砍。
+
+可以。所有樹都必須砍，但必須按照高度排序。
+
+移動途中可以經過尚未輪到的高樹，不需要立刻砍掉。
+
+因此 BFS 的通行條件只需要 forest[nr][nc] != 0，不需要限制樹的高度。
+
+2. 最初使用類似 994. Rotting Oranges 的單次 BFS。
+
+994 是 Multi-source BFS，所有腐爛橘子同時向外擴散。
+
+675 是 Repeated Single-source BFS，只有一個人移動，必須依序抵達每棵樹。
+
+每砍完一棵樹，就從該位置重新 BFS 到下一棵，並累加距離。
+
+3. 一開始認為 Repeated BFS 的 O((MN)²) 太高，因此沒有考慮這個解法。
+
+題目 Constraints：
+
+m, n <= 50
+
+最多格子數 T = 50 × 50 = 2500。
+
+最差情況約 T 次 BFS，每次最多探索 T 個格子：
+
+2500² = 6,250,000 次格子探索。
+
+每格最多檢查四個方向，粗略上界約 2,500 萬次方向檢查。
+
+這個規模對本題的 BFS 解法是合理的。
+
+重要觀念：不能只看到 O(N²) 就認為會 TLE，必須代入 Constraints 估算實際運算量。
+
+4. 最初使用 BFS 蒐集樹，後來改成直接掃描 Grid。
+
+蒐集樹只需要遍歷所有格子，不需要 BFS。
+
+而且 BFS 只能蒐集可抵達的格子，無法完整得知是否存在不可抵達的樹。
+
+正確做法：
+
+if forest[r][c] > 1:
+    trees.append((forest[r][c], r, c))
+
+注意 1 是空地，不是樹。
+
+5. BFS 的 Row / Column 曾經寫反。
+
+Queue 儲存的是 (r, c)，取出時也必須使用：
+
+r, c = q.popleft()
+
+座標順序必須保持一致。
+
+6. BFS 的 Target 曾經比較錯誤。
+
+傳入 bfs(start, (r, c)) 時，target 是座標 Tuple，而不是樹的高度。
+
+因此成功條件應該是：
+
+if (r, c) == target:
+    return steps
+
+7. 找到 Target 後使用 break，無法結束整個 BFS。
+
+break 只會結束最內層迴圈，外面的 while 仍可能繼續。
+
+將 BFS 寫成獨立函式，找到目標直接 return steps，就能完整結束搜尋。
+
+8. 曾經在遍歷 trees 的同時，又在 BFS 裡 append 新元素。
+
+這會修改正在遍歷的 List，可能造成重複處理甚至無法結束。
+
+trees 只負責儲存排序後的目標；BFS 只負責計算最短距離，不應修改 trees。
+
+9. 曾經使用 steps > 0 判斷 BFS 是否成功。
+
+但 steps == 0 也是合法結果，代表起點本身就是目標。
+
+因此應該只檢查失敗條件：
+
+if steps == -1:
+    return -1
+
+其餘情況都屬於成功，直接累加 steps。
+
+10. 每段 BFS 必須重新建立 visited。
+
+visited 只代表目前這次 BFS 已經探索過的格子。
+
+上一段走過的格子，下一段仍然可以再次經過，不能共用 visited。
+
+複雜度：
+
+M = Rows，N = Columns，T = M × N，K = 樹的數量。
+
+蒐集樹：O(T)
+排序樹：O(K log K)
+單次 BFS：O(T)
+K 次 BFS：O(K × T)
+
+Time：O(T + K log K + KT)
+最差 K = O(T)，因此 O(T²) = O((MN)²)。
+
+Space：O(T) = O(MN)
+包含 Trees、BFS Queue 和 Visited。
+
+核心觀念：
+
+遇到 Unweighted Grid Shortest Path，優先考慮 BFS。
+
+如果題目有多個必須依指定順序到達的目標，可以先排序 Targets，再對相鄰目標反覆執行 BFS。
+
+先從題目結構推導演算法，再計算 Complexity，最後代入 Constraints 判斷是否可行。
