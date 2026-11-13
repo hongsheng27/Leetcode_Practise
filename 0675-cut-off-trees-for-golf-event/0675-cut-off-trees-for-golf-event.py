@@ -1,5 +1,8 @@
 class Solution:
     def cutOffTree(self, forest: list[list[int]]) -> int:
+        # K = the amount of tree
+        # Time：O(K × M × N + K log K)
+        # Space：O(M × N)
         ROWS, COLS = len(forest), len(forest[0])
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         trees = [] # height, r, c
