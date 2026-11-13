@@ -937,6 +937,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
+| [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -1129,6 +1130,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0841-keys-and-rooms](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0841-keys-and-rooms) |
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
+| [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
@@ -1330,4 +1332,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
+## Biconnected Component
+|  |
+| ------- |
+| [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
+## Bridge (Graph)
+|  |
+| ------- |
+| [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
 <!---LeetCode Topics End-->
