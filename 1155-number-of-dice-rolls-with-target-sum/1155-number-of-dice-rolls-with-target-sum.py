@@ -6,8 +6,7 @@ class Solution:
         cache = {} # (total, dice)
         def dfs(total, dice):
             if (total, dice) in cache: return cache[(total, dice)]
-            if total == target and dice == 0:
-                return 1
+            if dice == 0: return 1 if total == target else 0 
             if dice < 0 or total > target:
                 return 0
             res = 0
