@@ -1,6 +1,5 @@
 class Solution:
     def numEquivDominoPairs(self, dominoes: list[list[int]]) -> int:
-        # asssume only one pair
         freq = defaultdict(int)
         for first, second in dominoes:
             key = (min(first, second), max(first, second))
@@ -9,5 +8,4 @@ class Solution:
         for i in freq.values():
             if i > 1:
                 res += (i * (i - 1) // 2)
-
         return res
