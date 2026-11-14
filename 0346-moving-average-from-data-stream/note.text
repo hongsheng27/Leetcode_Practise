@@ -1,0 +1,91 @@
+346. Moving Average from Data Stream
+
+題目概述：
+
+設計 MovingAverage Class，給定固定 Window Size，每次呼叫 next(val) 時加入新數字，並回傳最近 size 個數字的平均值。如果目前數字不足 size 個，就計算所有已加入數字的平均值。
+
+解題邏輯：
+
+使用 Fixed-size Sliding Window + Deque + Running Sum。
+
+1. 初始化：
+   - q = deque()：儲存目前 Window 的數字。
+   - size：Window 最大長度。
+   - total = 0：維護目前 Window 的總和。
+
+2. 每次呼叫 next(val)：
+   - q.append(val)：將新數字加入 Queue。
+   - total += val：更新 Window Sum。
+
+3. 如果 Window 超過指定大小：
+
+   if len(self.q) > self.size:
+       self.total -= self.q.popleft()
+
+   使用 popleft() 移除最舊的元素，同時從 total 扣除該數字。
+
+4. 回傳目前 Window 的平均值：
+
+   return self.total / len(self.q)
+
+核心 Pattern：
+
+Append New → Remove Old → Update Running Sum → Calculate Average
+
+因為每次只新增一個元素，最多移除一個元素，所以不需要重新遍歷整個 Window。
+
+
+踩過的坑：
+
+1. 原本額外維護 self.length，但這是冗餘 State。
+
+原本：
+
+self.length += 1
+
+if self.length > self.size:
+    ...
+    self.length -= 1
+
+其實 deque 已經可以透過 len(self.q) 在 O(1) 時間取得長度。
+
+因此不需要額外儲存 self.length，也不需要每次手動更新。
+
+重要觀念：如果某個 State 可以直接從現有資料結構以 O(1) 取得，就先思考是否真的需要額外維護。
+
+2. 原始解法已經正確，不需要更換演算法。
+
+使用 deque + running sum 已經達到最佳時間複雜度。
+
+優化重點只是移除冗餘 State，讓程式更簡潔、降低維護成本。
+
+
+複雜度：
+
+K = Window Size。
+
+next(val)：
+
+Time：O(1)
+- deque.append()：O(1)
+- deque.popleft()：O(1)
+- len(deque)：O(1)
+- 更新 total 與計算平均：O(1)
+
+Space：O(K)
+- Queue 最多儲存 K 個元素。
+- total 和 size 只需要 O(1) 空間。
+
+__init__()：O(1) time / O(1) space。
+
+核心觀念：
+
+一般 Array Sliding Window 使用 Left / Right Pointers 維護區間。
+
+Data Stream 無法預先取得完整 Array，因此可以使用 Deque 維護最近 K 個元素。
+
+搭配 Running Sum，每次只需要加上新元素、扣掉過期元素，就能在 O(1) 時間計算平均值。
+
+不要每次重新 sum(q)，否則 next() 會變成 O(K)。
+
+另外，盡量避免儲存不必要的 State；讓資料結構本身負責維護可以直接取得的資訊。
