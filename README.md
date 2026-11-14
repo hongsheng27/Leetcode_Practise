@@ -152,6 +152,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
+| [1128-number-of-equivalent-domino-pairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1128-number-of-equivalent-domino-pairs) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
@@ -246,6 +247,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
+| [1128-number-of-equivalent-domino-pairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1128-number-of-equivalent-domino-pairs) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
@@ -426,6 +428,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0767-reorganize-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0767-reorganize-string) |
 | [0819-most-common-word](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0819-most-common-word) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
+| [1128-number-of-equivalent-domino-pairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1128-number-of-equivalent-domino-pairs) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 ## Quickselect
 |  |
