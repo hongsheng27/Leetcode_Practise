@@ -6,6 +6,7 @@ class Solution:
         # each bfs: return steps, if can not reach, return -1
         # tc: k * M * N + K log K
         # sc: M * N
+        if forest[0][0] == 0: return -1
         ROWS, COLS = len(forest), len(forest[0])
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         trees = [] # height, r, c
