@@ -1,0 +1,28 @@
+1022. Sum of Root To Leaf Binary Numbers
+
+題目概述：
+給一棵節點值只有 0 或 1 的 Binary Tree，每條 Root-to-Leaf Path 代表一個二進位數字，求所有路徑轉換成十進位後的總和。
+
+解題邏輯：
+
+使用 DFS + Backtracking，透過 path 紀錄當前路徑的二進位數字。
+1. 如果 node 是 None，return 0。
+2. 進入節點時，使用 path.append(str(node.val)) 加入目前數字。
+3. 如果是 Leaf Node（沒有左右孩子），用 "".join(path) 組成 Binary String，再用 int(binaryString, 2) 轉成十進位。
+4. 如果不是 Leaf，遞迴左右子樹，將結果相加。
+5. 每個節點在 return 前都要執行 path.pop()，還原路徑。
+踩過的坑：
+
+1. 不能用 if not node 判斷完整路徑，因為 None 不一定代表到達 Leaf，也可能是中間節點缺少某個 Child。必須使用 if not node.left and not node.right。
+
+2. 原本嘗試在遇到 None 時將 Binary String 轉換後除以 2，讓 Leaf 的左右兩個 None 各貢獻一半。但中間節點的 None 也會被計算，造成重複加總。
+
+3. Leaf Node 如果直接 return，會跳過 path.pop()，導致上一條路徑的數字殘留，影響下一條路徑。每次 append 都必須對應一次 pop。
+
+複雜度：
+
+Time：O(N × H)，每個節點訪問一次，Leaf 需要 O(H) 的 String Join 與 Binary Conversion。
+
+Space：O(H)，DFS Recursion Stack 與 Path 最多儲存 H 層。
+
+N = 節點數量，H = Tree Height。
