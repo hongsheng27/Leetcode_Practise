@@ -1,269 +1,66 @@
-# 1160. Find Words That Can Be Formed by Characters
+1160. Find Words That Can Be Formed by Characters
 
-**Pattern：Hash Map / Frequency Counting**
+題目概述：
 
-## 一、題目概述
+給定 words 和 chars，判斷每個 word 是否能用 chars 提供的字母組成，每個字母不能使用超過提供的次數。回傳所有合法 word 的長度總和，不同 word 可以重複使用 chars。
 
-給定：
+解題邏輯：
 
-- `words`：一組單字
-- `chars`：可使用的字母
+使用 Counter 統計字母出現次數，直接比較需求量與可用量，不需要模擬字母消耗。
+1. 在迴圈外建立 available = Counter(chars)，只需要統計一次。
+2. 遍歷每個 word，建立 needed = Counter(word)。
+3. 設定 isValid = True。
+4. 遍歷 needed.items()，檢查每個字母的需求量。
+5. 如果 available[char] < freq，代表字母不足，設定 isValid = False 並 break。
+6. 如果 isValid，將 len(word) 加入 res。
+核心判斷：
 
-判斷每個 Word 是否能使用 `chars` 中的字母組成。
+if available[char] <freq:
+    isValid = False
+    break
 
-每個字母的使用次數不能超過 `chars` 提供的數量，但不同 Word 可以重新使用整份 `chars`。
+踩過的坑：
 
-回傳所有合法 Word 的長度總和。
+1. 最初寫法太醜、判斷邏輯太繞。
 
-例如：
+原本每個 word 都重新建立 Counter(chars)，再逐字扣除數量，還需要判斷字母是否存在及扣除後是否小於 0。
 
-```python
-words = ["cat", "bt", "hat", "tree"]
-chars = "atach"
-```
+雖然正確，但做了太多不必要的模擬。
 
-合法的有 `"cat"` 和 `"hat"`。
+這題真正要求的只有：每個字母的需求量是否小於或等於可用量。
 
-答案：`3 + 3 = 6`
+以後寫 if 前，先思考「達成題目要求需要滿足哪些條件」，再找出最直接的失敗條件，不要一開始就設計複雜的判斷流程。
 
----
-
-## 二、解題邏輯
-
-### 1. Goal — 題目真正要求什麼？
-
-對每個 Word，判斷：
-
-**Word 需要的每一種字母數量，是否都小於或等於 chars 提供的數量？**
-
-這就是判斷合法性的完整條件。
-
-不需要真的從庫存扣除字母，也不需要模擬組成 Word 的過程。
-
-### 2. State / Data Structure
-
-使用兩個 Counter：
-
-```python
-available = Counter(chars)
-needed = Counter(word)
-```
-
-- `available[char]`：提供多少個該字母
-- `needed[char]`：Word 需要多少個該字母
-
-`available` 只需建立一次，因為所有 Word 都使用同一份字母庫存。
-
-### 3. 核心判斷 — 最簡單的 if
-
-```python
-for char, freq in needed.items():
-    if available[char] < freq:
-        isValid = False
-        break
-```
-
-這個 `if` 已經完整描述 Word 不合法的條件。
-
-**只要任何一種字母的需求超過庫存，Word 就不能組成。**
-
-不需要額外判斷：
-
-```python
-if char not in available:
-```
-
-因為 Counter 對不存在的 Key 會回傳 `0`，而需求 `freq` 一定大於 0。
-
-因此：
-
-```python
-available[char] < freq
-```
-
-就已經涵蓋字母不存在與字母數量不足兩種情況。
-
----
-
-## 三、最終程式碼
-
-```python
-from collections import Counter
-
-class Solution:
-    def countCharacters(self, words: list[str], chars: str) -> int:
-        available = Counter(chars)
-        res = 0
-
-        for word in words:
-            needed = Counter(word)
-            isValid = True
-
-            for char, freq in needed.items():
-                if available[char] < freq:
-                    isValid = False
-                    break
-
-            if isValid:
-                res += len(word)
-
-        return res
-```
-
----
-
-## 四、踩過的坑
-
-### 1. 最初寫法太繞，雖然正確但不夠簡潔
-
-最初的做法是：
-
-```python
-for word in words:
-    count = Counter(chars)
-    isDone = True
-
-    for c in word:
-        if c in count:
-            count[c] -= 1
-            if count[c] < 0:
-                isDone = False
-                break
-        else:
-            isDone = False
-            break
-```
-
-這個版本的問題不是 Correctness，而是：
-
-- 每個 Word 都重新建立一次 `Counter(chars)`。
-- 需要修改 Counter 的數值。
-- 同時判斷字母是否存在、扣除後是否小於 0。
-- 使用較多巢狀 `if`，讓簡單的合法性檢查變複雜。
-
-**核心反思：我當初想著如何模擬使用字母，卻沒有先思考題目真正要求檢查什麼。**
-
-題目只是要求判斷能否組成 Word，並沒有要求實際扣除庫存。
-
-因此可以直接比較 Frequency，不必模擬消耗。
-
-### 2. if 應該關注達成題目要求所需的條件
-
-這是本題最重要的教訓。
-
-在寫一堆條件之前，先問自己：
-
-1. 題目要求的合法條件是什麼？
-2. 有沒有一個最直接的條件能判斷成功或失敗？
-3. 目前的 `if` 是否包含多餘或重複的檢查？
-4. 我是不是在模擬一個不必要的過程？
-
-本題的合法條件：
-
-`needed[char] <= available[char]`，對所有需要的字母都成立。
-
-所以不合法條件就是：
-
-```python
-if available[char] < freq:
-```
-
-**先定義 Valid Condition，再寫它的反面作為 Early Exit，通常能讓邏輯清楚很多。**
-
-注意：簡化條件時仍必須涵蓋所有真正必要的限制，不能為了縮短程式而漏判。
-
-### 3. 重複計算沒有變動的資料
+2. 不需要額外檢查 char 是否存在。
 
 原本：
 
-```python
-for word in words:
-    count = Counter(chars)
-```
+if char not in available or available[char] < freq:
 
-`chars` 沒有改變，卻在每次迴圈都重新統計。
+Counter 對不存在的 Key 會回傳 0，所以只需要：
 
-改善：
+if available[char] < freq:
 
-```python
-available = Counter(chars)
+同時涵蓋字母不存在與數量不足。
 
-for word in words:
-    needed = Counter(word)
-```
+3. 不使用 all() 也可以寫得簡潔。
 
-將不變的計算移到迴圈外。
+使用 isValid = True，搭配 for loop 和 break，即可完成相同的檢查。
 
-這是很常見的 Time Complexity 優化方式。
+不用為了縮短程式碼而強迫使用 all()，清楚表達判斷邏輯更重要。
 
----
+複雜度：
 
-## 五、橫向比較
+W = words 數量，k = 平均 word 長度，c = chars 長度。
 
-### Simulation vs Frequency Comparison
+原始版本：O(W × (c + k)) time，因為每個 word 都重新建立 Counter(chars)。
 
-| | 原始做法 | 優化做法 |
-|---|---|---|
-| 思考方向 | 模擬每個字母的消耗 | 直接檢查必要條件 |
-| Counter(chars) | 每個 Word 建立一次 | 只建立一次 |
-| 修改庫存 | 需要 | 不需要 |
-| 判斷方式 | 存在性 + 扣除 + 負數 | 需求量是否超過庫存 |
-| 可讀性 | 條件較複雜 | 直觀簡潔 |
+優化版本：O(c + W × k) time，因為 available 只需要建立一次。
 
-**不是所有 Simulation 都不好，而是如果題目只需要判斷某個條件，可以優先考慮直接驗證條件。**
+Space：O(1)，因為題目只有 26 種小寫英文字母，兩個 Counter 最多各儲存 26 個 Key。
 
----
+核心觀念：
 
-## 六、Complexity
+Validity Checking 題目，先定義合法條件，再用最簡單的 if 判斷是否違反條件。
 
-設：
-
-- `W`：Words 數量
-- `k`：平均 Word 長度
-- `c`：chars 長度
-
-### 原始版本
-
-每個 Word 都要建立 `Counter(chars)`，花費 O(c)，再掃描 Word，花費 O(k)。
-
-**Time：O(W × (c + k))**
-
-### 優化版本
-
-- `Counter(chars)`：O(c)，只做一次
-- 每個 Word 建立 Counter 並檢查：O(k)
-- W 個 Words：O(W × k)
-
-**Time：O(c + W × k)**
-
-### Space
-
-因為題目限制只有 26 種小寫英文字母：
-
-- `available` 最多 26 個 Key
-- `needed` 最多 26 個 Key
-
-**Auxiliary Space：O(1)**
-
-若不限制字元集合，則可用 O(c + m) 作為上界，其中 m 是最長 Word 的長度。
-
----
-
-## 七、核心 Pattern 總結
-
-**這題真正需要記住的不是 Counter 語法，而是如何讓判斷邏輯變簡單。**
-
-以後遇到 Validity Checking 題目：
-
-1. **Define Validity**：先用一句話描述合法條件。
-2. **Find Necessary Information**：找出判斷所需的最少資訊。
-3. **Write the Failure Condition**：用最直接的 `if` 找出失敗情況。
-4. **Early Exit**：確認不合法後立即停止檢查。
-5. **Remove Redundancy**：刪除重複的條件與不必要的模擬。
-6. **Precompute Invariants**：不會改變的資料盡量在迴圈外計算。
-
-**本題最重要的一句話：**
-
-> Don't simulate more than the problem requires. Identify the necessary conditions and check them directly.
-
-不要做超過題目要求的事情。先確認必要條件，再寫出最簡單、完整的判斷邏輯。
+不要模擬超過題目要求的過程，也要注意能否將不變的計算移到迴圈外

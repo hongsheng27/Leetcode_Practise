@@ -1,0 +1,143 @@
+1128. Number of Equivalent Domino Pairs
+
+題目概述：
+
+給定一組 Dominoes，每張 Domino 有兩個數字 [a, b]。如果兩張 Domino 相同，或交換順序後相同，就視為 Equivalent。計算有多少組不同 Index 的 Domino Pairs 符合條件，每組只計算一次。
+
+解題邏輯：
+
+使用 Hash Map + Canonical Representation + Combination Counting。
+
+1. 將每張 Domino 轉換成統一的 Key（Canonical Representation）。
+
+因為 [1,2] 和 [2,1] 應該視為相同，所以把較小的數字放前面：
+
+key = (min(a, b), max(a, b))
+
+例如：
+
+[1,2] → (1,2)
+[2,1] → (1,2)
+[1,1] → (1,1)
+
+2. 使用 defaultdict(int) 統計每種 Equivalent Domino 出現的次數。
+
+freq[key] += 1
+
+3. 對每種 Domino，假設出現 f 次，代表有 f 個不同 Index 可以選擇。
+
+因為每組 Pair 需要選出 2 張 Domino，而且順序不影響配對數，所以使用 Combination：
+
+C(f, 2) = f × (f - 1) // 2
+
+4. 遍歷 freq.values()，把每種 Domino 的 Pair 數量加入 res。
+
+res += f * (f - 1) // 2
+
+最後回傳 res。
+
+
+踩過的坑：
+
+1. 一開始無法從題目英文和 Examples 判斷出要使用組合計數。
+
+題目關鍵句：
+
+Return the number of pairs (i, j) for which 0 <= i < j < dominoes.length.
+
+意思是從 Array 中挑選兩個不同 Index，並且這兩張 Domino 必須 Equivalent。
+
+i < j 是為了確保每組 Pair 只計算一次，避免 (0,1) 和 (1,0) 重複。
+
+以後看到 Number of Pairs (i, j)，要先思考：
+
+題目是不是要求從符合條件的一群元素中選出兩個？
+
+2. 不確定什麼時候使用 C(f,2)，什麼時候使用 C(i,1)。
+
+有兩種等價的計數方式。
+
+方法 A：先統計 Frequency，再使用 Combination。
+
+假設某種 Domino 出現 4 次：
+
+C(4,2) = 4 × 3 // 2 = 6
+
+方法 B：遍歷時直接計算新增 Pair 數量。
+
+第 1 張：前面有 0 張 → 新增 0
+第 2 張：前面有 1 張 → 新增 1
+第 3 張：前面有 2 張 → 新增 2
+第 4 張：前面有 3 張 → 新增 3
+
+總共 0 + 1 + 2 + 3 = 6。
+
+因為目前這張已經固定，只需要從之前出現的 i 張 Equivalent Domino 中選出一張，所以是 C(i,1) = i。
+
+實作：
+
+res += freq[key]
+freq[key] += 1
+
+注意：必須先累加，再更新 Frequency，避免把目前這張與自己配對。
+
+3. 原本使用長度 10 的 Frequency Array 作為 Domino Key。
+
+原本：
+
+board = [0] * 10
+board[first] += 1
+board[second] += 1
+freq[tuple(board)] += 1
+
+這個方法正確，也能處理 [1,1]。
+
+但因為每張 Domino 只有兩個數字，而且只允許交換順序，所以不需要記錄 10 個位置的 Frequency。
+
+直接使用：
+
+key = (min(first, second), max(first, second))
+
+就能表達相同資訊，程式更簡潔。
+
+核心反思：設計 Hash Map Key 時，應該先思考判斷兩個物件 Equivalent 所需的最少資訊。
+
+
+複雜度：
+
+N = Dominoes 數量
+U = 不同 Canonical Keys 的數量
+
+建立 Frequency：O(N)
+計算所有 Pair：O(U)
+
+Time：O(N + U) = O(N)
+
+Space：O(U)
+
+因為題目限制 Domino 數字介於 1～9，最多只有 45 種不同的無序 Domino，因此 U ≤ 45。
+
+Space：O(1)
+
+
+核心觀念：
+
+1. Canonical Representation
+
+當題目允許交換順序，但交換後仍視為相同物件時，可以先轉換成統一的 Key，再使用 Hash Map 統計。
+
+2. Counting Pairs
+
+如果同一組有 f 個元素，選出兩個不同元素的 Pair 數量為：
+
+C(f,2) = f × (f - 1) // 2
+
+如果逐一遍歷，固定目前元素，只計算它與之前元素形成的新 Pair：
+
+res += freq[key]
+
+3. 題意辨識
+
+遇到 Number of Pairs (i, j)，先確認 i、j 代表 Index，並判斷是否要求從符合條件的元素中選出兩個。
+
+不要只關注 Example 的輸出，還要從 i < j 的限制推導出「不同 Index、每組只計算一次」的語意。
