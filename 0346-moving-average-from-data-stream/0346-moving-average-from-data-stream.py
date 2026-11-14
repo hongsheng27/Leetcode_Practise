@@ -9,8 +9,7 @@ class MovingAverage:
         self.q.append(val)
         
         if len(self.q) > self.size:
-            elem = self.q.popleft()
-            self.total -= elem
+            self.total -= self.q.popleft()
         
         return self.total / len(self.q)
 
