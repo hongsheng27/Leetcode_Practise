@@ -1,10 +1,9 @@
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: list[str]) -> str:
-        normalized_str = "".join([c.lower() if c.isalnum() else " " for c in paragraph])
-        words = normalized_str.split()
-        count = defaultdict(int)
+        filtered_word = "".join([c.lower() if c.isalnum() else " " for c in paragraph])
         bannedSet = set(banned)
-        for word in words:
+        count = defaultdict(int)
+        for word in filtered_word.split():
             if word not in bannedSet:
-                 count[word] += 1
-        return max(count.items(), key = lambda x: x[1])[0]
+                count[word] += 1
+        return max(count.items(), key=lambda x: x[1])[0]
