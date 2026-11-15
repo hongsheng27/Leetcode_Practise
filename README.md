@@ -158,6 +158,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1343-number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold) |
 | [1423-maximum-points-you-can-obtain-from-cards](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1423-maximum-points-you-can-obtain-from-cards) |
@@ -251,6 +252,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1207-unique-number-of-occurrences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1207-unique-number-of-occurrences) |
 | [1248-count-number-of-nice-subarrays](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1248-count-number-of-nice-subarrays) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 | [1275-find-winner-on-a-tic-tac-toe-game](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1275-find-winner-on-a-tic-tac-toe-game) |
 | [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
@@ -314,6 +316,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 | [1768-merge-strings-alternately](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1768-merge-strings-alternately) |
 | [2115-find-all-possible-recipes-from-given-supplies](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2115-find-all-possible-recipes-from-given-supplies) |
 | [2116-check-if-a-parentheses-string-can-be-valid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2116-check-if-a-parentheses-string-can-be-valid) |
@@ -356,6 +359,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 | [1498-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1498-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [1552-magnetic-force-between-two-balls](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1552-magnetic-force-between-two-balls) |
 | [1838-frequency-of-the-most-frequent-element](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1838-frequency-of-the-most-frequent-element) |
@@ -831,6 +835,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0212-word-search-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0212-word-search-ii) |
 | [0797-all-paths-from-source-to-target](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0797-all-paths-from-source-to-target) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 ## Queue
 |  |
 | ------- |
@@ -1117,6 +1122,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0785-is-graph-bipartite](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0785-is-graph-bipartite) |
 | [0886-possible-bipartition](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0886-possible-bipartition) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
+| [1258-synonymous-sentences](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1258-synonymous-sentences) |
 | [1584-min-cost-to-connect-all-points](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1584-min-cost-to-connect-all-points) |
 | [1631-path-with-minimum-effort](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1631-path-with-minimum-effort) |
 | [1971-find-if-path-exists-in-graph](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1971-find-if-path-exists-in-graph) |
