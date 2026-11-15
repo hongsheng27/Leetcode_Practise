@@ -9,9 +9,8 @@ class Solution:
         def dfs(node, seen):
             if not node: return seen
             seen.add(target - node.val)
-            left = dfs(node.left, seen)
-            right = dfs(node.right, seen)
-            return left | right
+            seen = dfs(node.left, seen)
+            return dfs(node.right, seen)
 
         def isSumTarget(node, want):
             if not node: return False
