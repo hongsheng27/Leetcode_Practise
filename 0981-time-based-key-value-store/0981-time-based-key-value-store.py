@@ -1,28 +1,26 @@
 class TimeMap:
     def __init__(self):
-        self.map = defaultdict(list)
-        # {"foo": [(1, "bar"), (4, "bar2")]}
+        self.storage = defaultdict(list) # {"foo": [(1, "bar")]}
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.map[key].append((timestamp, value))
+        self.storage[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
-        if key not in self.map: return ""
-        l = 0
-        r = len(self.map[key]) - 1
-        res = ""
-        while l <= r:
-            m = (l + r) // 2
-            if timestamp >= self.map[key][m][0]:
-                res = self.map[key][m][1]
-                l = m + 1
-            else:
-                r = m - 1  
-        return res
+        if key in self.storage:
+            l = 0
+            r = len(self.storage[key]) - 1
+            while l <= r:
+                m = (l + r) // 2
+                if self.storage[key][m][0] == timestamp:
+                    return self.storage[key][m][1]
+                if self.storage[key][m][0] < timestamp:
+                    l = m + 1
+                else:
+                    r = m - 1
+            return "" if r < 0 else self.storage[key][r][1]
 
-        
-        
-        
+        else:
+            return ""
         
 
 
