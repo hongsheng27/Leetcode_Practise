@@ -6,21 +6,27 @@
 #         self.right = right
 class Solution:
     def twoSumBSTs(self, root1: TreeNode | None, root2: TreeNode | None, target: int) -> bool:
-        def dfs(node, seen):
-            if not node: return seen
-            seen.add(target - node.val)
-            seen = dfs(node.left, seen)
-            return dfs(node.right, seen)
-
-        def isSumTarget(node, want):
-            if not node: return False
-            if node.val in want: return True
-
-            return (isSumTarget(node.left, want) or
-                    isSumTarget(node.right, want))
+        want1 = set()
+        want2 = set()
+        def dfs(node1, node2):
+            # base case
+            if not node1 and not node2: return False
+            
+            node1Left = node1Right = node2Left = node2Right = None
+           
+            if node2:
+                want1.add(target - node2.val)
+                node2Left = node2.left
+                node2Right = node2.right
+            if node1:
+                want2.add(target - node1.val)
+                node1Left = node1.left
+                node1Right = node1.right
+            
+            if ((node1 and node1.val in want1) or
+                (node2 and node2.val in want2)): return True
+            
+            return (dfs(node1Left, node2Left) or 
+                    dfs(node1Right, node2Right))
         
-        want = dfs(root1, set())
-        return isSumTarget(root2, want)
-        
-        
-        
+        return dfs(root1, root2)
