@@ -1,0 +1,98 @@
+1258. Synonymous Sentences
+
+題目概述：
+給定多組同義詞 pairs 和一個句子 text，同義詞具有傳遞性（A = B、B = C，則 A = C）。將句子中的單字替換成所有可能的同義詞，產生所有不同的句子，並按照字典順序排序。
+
+解題邏輯：
+
+使用 Graph BFS + Backtracking。
+
+1. 建立 Undirected Graph：
+每組 synonyms 建立雙向 Edge，例如 happy ↔ joy ↔ cheerful。
+
+2. 使用 BFS 找出 Connected Component：
+get_synonyms(word) 從指定單字開始，透過 queue 和 visited 找出所有可連通的同義詞，包含 word 自己。
+
+3. 建立 textList：
+遍歷 text.split()，每個位置存放所有可替換的單字。
+如果沒有同義詞，就只放原本的 word。
+
+例如：
+   text = "I am happy today"
+   textList = [["I"], ["am"], ["happy", "joy", "cheerful"], ["today"]]
+
+4. 使用 Backtracking 產生所有句子：
+dfs(i, path) 代表目前正在處理第 i 個位置。
+遍歷 textList[i] 的所有選項，append 到 path，遞迴 dfs(i + 1, path)，再 pop 還原。
+
+   當 i == len(textList)，使用 " ".join(path) 組成句子，加入 res。
+
+5. 最後 return sorted(res)，按照 Lexicographical Order 排序。
+
+踩過的坑：
+
+1. 一開始想建立第二個 Graph（adj2），把句子中的單字連接起來，形成多條從第一個 Word 到最後一個 Word 的路徑。
+
+   但其實不需要 adj2，因為句子本身已經有固定順序。只需要透過 index + 1 前進到下一個位置，Backtracking 就能列舉所有可能路徑。
+
+2. 原本不確定如何找出所有同義詞。
+
+   不能只看 adj[word] 的直接鄰居，因為同義詞具有傳遞性。需要 BFS + visited 找出整個 Connected Component。
+
+3. Complexity 容易忽略每個單字都可能重新執行 BFS。
+
+   一次 BFS 是 O(V + P)，如果 N 個單字都需要 BFS，最壞就是 O(N(V + P))。
+
+4. Backtracking 的組合數量要把每個位置的選項數相乘。
+
+例如：
+   text = "happy sad happy"
+
+   happy 有 3 種選擇，sad 有 2 種選擇。
+
+   R = 3 × 2 × 3 = 18 個句子。
+
+   每個完整句子需要 O(N) 組合，所以產生答案需要 O(RN)。
+
+5. 題目雖然只有最多 10 組 Synonym pairs、10 個 Words，但不能只看這兩個數字就認為 Backtracking 一定很小。
+
+   10 組 pairs 最多可以連通 11 個不同單字。如果 10 個位置都能選 11 種，理論上最多有 11^10 種組合。
+
+   這是 Output-sensitive Problem，因為題目要求產生所有答案，組合數量無法避免。
+
+複雜度：
+
+變數定義：
+
+N = text 的 Word 數量（最多 10）
+P = Synonym pairs 數量（最多 10）
+V = Graph 中不同單字的數量（最多 20）
+K = 每個位置最多可選擇的單字數量（最多 11）
+R = 最終產生的句子數量（最多 K^N）
+
+Time：
+
+建立 Graph：O(P)
+
+BFS：O(N(V + P))
+每個 Word 最多執行一次 BFS，每次走訪 V 個 Nodes 和 P 條 Edges。
+
+Backtracking：O(RN)
+共產生 R 個句子，每個句子有 N 個 Words。
+
+Sorting：O(RN log R)
+排序 R 個句子，每次字串比較最壞需要 O(N)。
+
+Total Time：O(N(V + P) + RN log(R + 1))
+
+Space：
+
+Graph：O(V + P)
+textList：O(NK)
+BFS：O(V)
+Backtracking Stack + Path：O(N)
+Results：O(RN)
+
+Total Space：O(V + P + NK + RN)
+
+以上假設每個 Word 的長度視為常數。
