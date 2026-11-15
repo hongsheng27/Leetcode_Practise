@@ -11,9 +11,7 @@ class TimeMap:
             r = len(self.storage[key]) - 1
             while l <= r:
                 m = (l + r) // 2
-                if self.storage[key][m][0] == timestamp:
-                    return self.storage[key][m][1]
-                if self.storage[key][m][0] < timestamp:
+                if self.storage[key][m][0] <= timestamp:
                     l = m + 1
                 else:
                     r = m - 1
