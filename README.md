@@ -1356,4 +1356,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
+## Manacher
+|  |
+| ------- |
+| [0005-longest-palindromic-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0005-longest-palindromic-substring) |
 <!---LeetCode Topics End-->
