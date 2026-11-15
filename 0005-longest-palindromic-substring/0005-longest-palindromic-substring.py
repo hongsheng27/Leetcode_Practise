@@ -1,7 +1,6 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        best_left = len(s)
-        best_right = 0
+        best_left = best_right = 0
         
         def expend(left, right):
             while left >= 0 and right < len(s) and s[left] == s[right]:
@@ -12,9 +11,11 @@ class Solution:
         for i in range(len(s)):
             for l, r in [(i, i), (i, i + 1)]:
                 left, right = expend(l, r)
+                print(left, right)
                 if right - left > best_right - best_left:
                     best_left = left
                     best_right = right
+            print('---')
         return s[best_left: best_right + 1]
 
         
