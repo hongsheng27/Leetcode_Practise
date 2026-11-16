@@ -12,12 +12,11 @@ class Solution:
         while days < n:
             state = tuple(cells)
             if state in seen:
-                cycle_start = seen[state]
                 cycle = days - seen[state]
-                remainer = cycle_start + (n - cycle_start) % cycle    
-                for c, d in seen.items():
-                    if d == remainer:
-                        return c
+                remainer = (n - days) % cycle    
+                for _ in range(remainer):
+                    cells = nextDay(cells)
+                return cells
             seen[state] = days
             cells = nextDay(cells)
             days += 1
