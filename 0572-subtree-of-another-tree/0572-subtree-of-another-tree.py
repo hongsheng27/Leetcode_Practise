@@ -5,6 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    # tc: O(N * M)
     def isSubtree(self, root: TreeNode | None, subRoot: TreeNode | None) -> bool:
         def isSameTree(node1, node2):
             if not node1 and not node2: return True
