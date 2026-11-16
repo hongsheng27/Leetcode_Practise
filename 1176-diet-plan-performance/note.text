@@ -1,0 +1,16 @@
+1176. Diet Plan Performance
+題目概述
+給每天的熱量，對每段連續 k 天的總熱量計分。低於 lower 扣 1 分，高於 upper 加 1 分，介於兩者之間（含邊界）得 0 分，最後回傳總分。
+
+解題邏輯
+使用固定長度 Sliding Window。先加總前 k 天並計分。接著每往右移一格，就加上新進來的 calories[r]，扣掉離開的 calories[l]，再把 l 往右移一格。
+
+每次更新完，total 都是連續 k 天的熱量總和。用 res += scoreWindow(total) 累加這個視窗的分數，總共計分 n - k + 1 次。
+
+踩過的坑
+原本用 nonlocal res 在 helper 裡直接改總分。改成讓 scoreWindow 回傳單一視窗的分數，由外層用 += 累加，讀呼叫那行就知道總分何時更新。
+
+命名時在 score 和 calculate 之間猶豫。scoreWindow 的 score 是動詞，意思是「依規則為視窗計分」，適合這個回傳 -1、0 或 1 的 helper。
+
+複雜度
+O(n) time / O(1) 額外空間，n 是天數。初始化花 O(k)，剩下 n - k 次滑動各花 O(1)。
