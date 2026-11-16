@@ -138,6 +138,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0907-koko-eating-bananas](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0907-koko-eating-bananas) |
 | [0930-binary-subarrays-with-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0930-binary-subarrays-with-sum) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
+| [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [0974-subarray-sums-divisible-by-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0974-subarray-sums-divisible-by-k) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
@@ -243,6 +244,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0874-walking-robot-simulation](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0874-walking-robot-simulation) |
 | [0904-fruit-into-baskets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0904-fruit-into-baskets) |
 | [0930-binary-subarrays-with-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0930-binary-subarrays-with-sum) |
+| [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [0974-subarray-sums-divisible-by-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0974-subarray-sums-divisible-by-k) |
 | [0981-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0981-time-based-key-value-store) |
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
@@ -527,6 +529,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
 | [0836-rectangle-overlap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0836-rectangle-overlap) |
+| [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 | [1137-n-th-tribonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1137-n-th-tribonacci-number) |
@@ -650,6 +653,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0338-counting-bits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0338-counting-bits) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
+| [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 ## Binary Search
 |  |
@@ -1370,4 +1374,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0005-longest-palindromic-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0005-longest-palindromic-substring) |
+## Floyd's Cycle Finding Algorithm
+|  |
+| ------- |
+| [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 <!---LeetCode Topics End-->
