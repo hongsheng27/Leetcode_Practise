@@ -1,7 +1,7 @@
 class Solution:
     def dietPlanPerformance(self, calories: list[int], k: int, lower: int, upper: int) -> int:
         res = 0
-        def calScore(t):
+        def scoreWindow(t):
             score = 0
             if t < lower:
                 score -= 1
@@ -12,7 +12,7 @@ class Solution:
         total = 0
         for i in range(k):
             total += calories[i]
-        res += calScore(total)
+        res += scoreWindow(total)
         
         l = 0
         for r in range(k, len(calories)):
@@ -21,5 +21,5 @@ class Solution:
             total -= calories[l]
             l += 1
                 
-            res += calScore(total)
+            res += scoreWindow(total)
         return res
