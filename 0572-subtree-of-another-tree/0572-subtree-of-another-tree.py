@@ -5,16 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        # base case
+    def isSubtree(self, root: TreeNode | None, subRoot: TreeNode | None) -> bool:
+        def isSameTree(node1, node2):
+            if not node1 and not node2: return True
+            if not node1 or not node2: return False
+            if node1.val != node2.val: return False
+            
+            return (isSameTree(node1.left, node2.left) and
+                    isSameTree(node1.right, node2.right))
+        
         if not root: return False
-        if self.isSameTree(root, subRoot): return True
-        # recursion case
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
-
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p and not q: return True
-        if not p or not q: return False
-        if p.val != q.val: return False
-
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        left = self.isSubtree(root.left, subRoot)
+        right = self.isSubtree(root.right, subRoot)
+        
+        return isSameTree(root, subRoot) or left or right
