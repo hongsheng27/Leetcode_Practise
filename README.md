@@ -188,6 +188,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
 | [2461-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2461-maximum-sum-of-distinct-subarrays-with-length-k) |
+| [2500-delete-greatest-value-in-each-row](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2500-delete-greatest-value-in-each-row) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
 | [2659-make-array-empty](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2659-make-array-empty) |
 | [2958-length-of-longest-subarray-with-at-most-k-frequency](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2958-length-of-longest-subarray-with-at-most-k-frequency) |
@@ -372,6 +373,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1846-maximum-element-after-decreasing-and-rearranging) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
 | [2250-count-number-of-rectangles-containing-each-point](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2250-count-number-of-rectangles-containing-each-point) |
+| [2500-delete-greatest-value-in-each-row](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2500-delete-greatest-value-in-each-row) |
 | [2659-make-array-empty](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2659-make-array-empty) |
 | [3413-maximum-coins-from-k-consecutive-bags](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3413-maximum-coins-from-k-consecutive-bags) |
 ## Divide and Conquer
@@ -418,6 +420,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1631-path-with-minimum-effort](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1631-path-with-minimum-effort) |
 | [1642-furthest-building-you-can-reach](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1642-furthest-building-you-can-reach) |
 | [1851-minimum-interval-to-include-each-query](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1851-minimum-interval-to-include-each-query) |
+| [2500-delete-greatest-value-in-each-row](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2500-delete-greatest-value-in-each-row) |
 ## Bucket Sort
 |  |
 | ------- |
@@ -507,6 +510,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
 | [1926-nearest-exit-from-entrance-in-maze](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1926-nearest-exit-from-entrance-in-maze) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
+| [2500-delete-greatest-value-in-each-row](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2500-delete-greatest-value-in-each-row) |
 ## Math
 |  |
 | ------- |
@@ -1193,6 +1197,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1914-cyclically-rotating-a-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1914-cyclically-rotating-a-grid) |
 | [1929-concatenation-of-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1929-concatenation-of-array) |
 | [2257-count-unguarded-cells-in-the-grid](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2257-count-unguarded-cells-in-the-grid) |
+| [2500-delete-greatest-value-in-each-row](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2500-delete-greatest-value-in-each-row) |
 | [2502-design-memory-allocator](https://github.com/hongsheng27/Leetcode_Practise/tree/master/2502-design-memory-allocator) |
 | [3028-ant-on-the-boundary](https://github.com/hongsheng27/Leetcode_Practise/tree/master/3028-ant-on-the-boundary) |
 ## Shortest Path
