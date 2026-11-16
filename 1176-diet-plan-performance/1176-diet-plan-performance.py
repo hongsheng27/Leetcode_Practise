@@ -2,16 +2,17 @@ class Solution:
     def dietPlanPerformance(self, calories: list[int], k: int, lower: int, upper: int) -> int:
         res = 0
         def calScore(t):
-            nonlocal res
+            score = 0
             if t < lower:
-                res -= 1
+                score -= 1
             elif t > upper:
-                res += 1
-
+                score += 1
+            return score
+            
         total = 0
         for i in range(k):
             total += calories[i]
-        calScore(total)
+        res += calScore(total)
         
         l = 0
         for r in range(k, len(calories)):
@@ -20,5 +21,5 @@ class Solution:
             total -= calories[l]
             l += 1
                 
-            calScore(total)
+            res += calScore(total)
         return res
