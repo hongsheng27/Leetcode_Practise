@@ -15,7 +15,7 @@ class Solution:
                     isSameTree(node1.right, node2.right))
         
         if not root: return False
-        left = self.isSubtree(root.left, subRoot)
-        right = self.isSubtree(root.right, subRoot)
         
-        return isSameTree(root, subRoot) or left or right
+        return (isSameTree(root, subRoot) or 
+                self.isSubtree(root.left, subRoot) or 
+                self.isSubtree(root.right, subRoot))
