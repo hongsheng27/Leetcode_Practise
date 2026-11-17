@@ -16,4 +16,5 @@ class Solution:
             node.next = None
 
             return [node, dummy]
-        return recursion(head)[1].next
+        _, dummy = recursion(head)
+        return dummy.next
