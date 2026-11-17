@@ -4,12 +4,16 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev = None
-        cur = head
-        while cur:
-            nxt = cur.next
-            cur.next = prev
-            prev = cur
-            cur = nxt
-        return prev
+    def reverseList(self, head: ListNode | None) -> ListNode | None:
+        def recursion(node):
+            # basecase
+            if not node: 
+                dummy = tail = ListNode()
+                return [tail, dummy]
+            # recurrence relation
+            t, d = recursion(node.next)
+            t.next = node
+            node.next = None
+
+            return [node, d]
+        return recursion(head)[1].next
