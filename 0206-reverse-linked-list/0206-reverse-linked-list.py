@@ -11,9 +11,9 @@ class Solution:
                 dummy = tail = ListNode()
                 return [tail, dummy]
             # recurrence relation
-            t, d = recursion(node.next)
-            t.next = node
+            tail, dummy = recursion(node.next)
+            tail.next = node
             node.next = None
 
-            return [node, d]
+            return [node, dummy]
         return recursion(head)[1].next
