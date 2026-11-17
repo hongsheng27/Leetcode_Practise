@@ -6,13 +6,11 @@
 class Solution:
     def swapPairs(self, head: ListNode | None) -> ListNode | None:
         def recursion(node):
-            if not node: return None
+            if not node or not node.next: return node
             nxt = node.next
-            if nxt:
-                nextHead = nxt.next
-                nxt.next = node
-                node.next = recursion(nextHead)
-                return nxt
-            else:
-                return node
+            rest = nxt.next
+            nxt.next = node
+            node.next = recursion(rest)
+            return nxt
+    
         return recursion(head)
