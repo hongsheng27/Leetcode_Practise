@@ -1,0 +1,18 @@
+24. Swap Nodes in Pairs
+題目概述
+將單向 linked list 的相鄰節點兩兩交換。最後若剩一個節點就保留，並回傳交換後的新頭。
+
+解題邏輯
+定義 swap_from(first) 為「交換從 first 開始的串列，回傳交換後的新頭」。如果剩零個或一個節點，直接回傳 first。
+
+每層先記下第二個節點 second 和第三個節點 rest。把 rest 交給遞迴，將 first.next 接到遞迴回傳的新頭，再讓 second.next 指向 first。最後回傳 second。
+
+例如 1 → 2 → 3 → 4，後半段交換後回傳節點 4。接著讓 1.next 指向 4，再讓 2.next 指向 1，得到 2 → 1 → 4 → 3。
+
+踩過的坑
+原本先做 second.next = first，再讀 second.next。這時讀到的是 first，遞迴就會一直從同一個節點開始。要在改指標前先保存原本的第三個節點。
+
+只檢查空串列時，剩一個節點仍可能讀到 node.next.next，造成錯誤。Base case 要同時處理零個和一個節點。
+
+複雜度
+O(n) time / O(n) 額外空間，n 是節點數。每層處理兩個節點，只做固定次數的指標操作。遞迴堆疊最深有 n // 2 + 1 層。
