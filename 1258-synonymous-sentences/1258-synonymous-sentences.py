@@ -4,8 +4,7 @@ class Solution:
         for first, second in synonyms:
             adj[first].append(second)
             adj[second].append(first)
-
-        def get_synonyms(word):
+        def getSynonyms(word):
             q = deque([word])
             visited = set([word])
             res = [word]
@@ -13,27 +12,21 @@ class Solution:
                 w = q.popleft()
                 for nei in adj[w]:
                     if nei not in visited:
-                        res.append(nei)
                         visited.add(nei)
                         q.append(nei)
+                        res.append(nei)
             return res
-        textList = []
-        for word in text.split():
-            if word in adj:
-                textList.append(get_synonyms(word))
-            else:
-                textList.append([word])
+        
+        textList = [getSynonyms(w) if w in adj else [w] for w in text.split(" ")]
         res = []
         def dfs(i, path):
-            # basecasse
             if i == len(textList):
                 res.append(" ".join(path))
                 return
-            for w in textList[i]:
-                path.append(w)
+            for nei in textList[i]:
+                path.append(nei)
                 dfs(i + 1, path)
                 path.pop()
-
+        
         dfs(0, [])
         return sorted(res)
-            
