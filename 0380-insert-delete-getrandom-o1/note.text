@@ -1,0 +1,22 @@
+380. Insert Delete GetRandom O(1)
+題目概述
+設計一個不允許重複值的集合，支援插入、刪除和等機率隨機取值，三個操作都要求平均 O(1)。
+
+解題邏輯
+用 list 存值，並用 dict 記錄「值 → 在 list 裡的 index」。
+
+insert 先用 dict 檢查值是否已存在。若不存在，就把它加到 list 尾端，並記下 index。
+
+remove 先用 dict 找到要刪除的 index，更新尾端元素在 dict 裡的 index，再刪掉目標值的 key。接著把目標值和尾端元素交換，最後用 pop() 移除尾端。
+
+getRandom 用 random.choice(lst)。每個值在 list 裡只佔一格，所以每個值被抽到的機率都是 1/n。
+
+踩過的坑
+刪除中間元素時，可以用 swap and pop，前提是元素順序可以改變。例如從 [10, 20, 30, 40] 刪掉 20，結果是 [10, 40, 30]。只有尾端的 40 搬到被刪除的位置，其他元素的 index 都不用更新。
+
+除錯時印出整個 list 和 dict，每次成功插入或刪除都會多花 O(n) 時間。提交前要刪掉這兩行 print。
+
+複雜度
+insert、remove、getRandom 平均都是 O(1) time。dict 操作以平均 O(1) 計算，list 的 append 和尾端 pop 以攤銷 O(1) 計算。
+
+O(n) space，n 是目前儲存的元素數量。list 和 dict 各存 n 筆。
