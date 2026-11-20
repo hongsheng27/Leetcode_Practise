@@ -5,15 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def dfs(node, ground, ceil):
-            # base case
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        def dfs(node, upper, bottom):
             if not node: return True
+            if not (bottom < node.val < upper): return False
 
-            # recursion case
-            return (dfs(node.left, ground, node.val) and
-                    dfs(node.right, node.val, ceil) and
-                    ground < node.val < ceil)
-
-        return dfs(root, float('-inf'), float('inf'))
-        
+            return (dfs(node.left, node.val, bottom) and 
+                    dfs(node.right, upper, node.val))
+            
+        return dfs(root, float('inf'), float('-inf'))
