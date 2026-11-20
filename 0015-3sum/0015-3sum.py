@@ -17,9 +17,9 @@ class Solution:
                 if nums[l] + nums[r] == diff:
                     res.append([nums[i], nums[l], nums[r]])
                     r -= 1
-                    while r >= 0 and r + 1 < len(nums) and nums[r] == nums[r + 1]:
+                    while l < r and nums[r] == nums[r + 1]:
                         r -= 1
-                if nums[l] + nums[r] < diff:
+                elif nums[l] + nums[r] < diff:
                     l += 1
                 else:
                     r -= 1
