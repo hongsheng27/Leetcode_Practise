@@ -3,13 +3,13 @@ class Solution:
         def recursion(row, col):
             # base case
             if row == 1: return 0
-            child = recursion(row - 1, (col + 1) // 2)
-            if child == 0:
+            parent = recursion(row - 1, (col + 1) // 2)
+            if parent == 0:
                 if col % 2 == 1:
                     return 0
                 else:
                     return 1
-            elif child == 1:
+            elif parent == 1:
                 if col % 2 == 1:
                     return 1
                 else:
