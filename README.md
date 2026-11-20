@@ -1406,4 +1406,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
+## Longest Increasing Subsequence
+|  |
+| ------- |
+| [0300-longest-increasing-subsequence](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0300-longest-increasing-subsequence) |
 <!---LeetCode Topics End-->
