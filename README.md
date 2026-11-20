@@ -539,6 +539,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0412-fizz-buzz](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0412-fizz-buzz) |
 | [0509-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0509-fibonacci-number) |
 | [0523-continuous-subarray-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0523-continuous-subarray-sum) |
+| [0779-k-th-symbol-in-grammar](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0779-k-th-symbol-in-grammar) |
 | [0836-rectangle-overlap](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0836-rectangle-overlap) |
 | [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
@@ -610,6 +611,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
 | [0394-decode-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0394-decode-string) |
 | [0509-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0509-fibonacci-number) |
+| [0779-k-th-symbol-in-grammar](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0779-k-th-symbol-in-grammar) |
 | [1013-fibonacci-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1013-fibonacci-number) |
 ## Memoization
 |  |
@@ -670,6 +672,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0287-find-the-duplicate-number](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0287-find-the-duplicate-number) |
 | [0338-counting-bits](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0338-counting-bits) |
 | [0342-power-of-four](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0342-power-of-four) |
+| [0779-k-th-symbol-in-grammar](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0779-k-th-symbol-in-grammar) |
 | [0957-prison-cells-after-n-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0957-prison-cells-after-n-days) |
 | [1239-maximum-length-of-a-concatenated-string-with-unique-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1239-maximum-length-of-a-concatenated-string-with-unique-characters) |
 ## Binary Search
