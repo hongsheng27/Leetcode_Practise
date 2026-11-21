@@ -11,13 +11,13 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node: return None
         oldToNew = {}
-        def dfs(node):
-            if node in oldToNew: return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for original in node.neighbors:
-                copy.neighbors.append(dfs(original))
-            return copy
-            
-        return dfs(node)
-        
+        def dfs(n):
+            # basecase
+            if n in oldToNew: return oldToNew[n]
+
+            oldToNew[n] = Node(n.val)
+            for nei in n.neighbors: 
+                oldToNew[n].neighbors.append(dfs(nei))
+            return oldToNew[n]
+        dfs(node)
+        return oldToNew[node]
