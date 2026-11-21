@@ -19,5 +19,4 @@ class Solution:
             for nei in n.neighbors: 
                 oldToNew[n].neighbors.append(dfs(nei))
             return oldToNew[n]
-        dfs(node)
-        return oldToNew[node]
+        return dfs(node)
