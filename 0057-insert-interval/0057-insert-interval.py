@@ -15,7 +15,5 @@ class Solution:
             else:
                 newInterval[0] = min(newInterval[0], start)
                 newInterval[1] = max(newInterval[1], end)
-            
-       
         res.append(newInterval)
         return res
