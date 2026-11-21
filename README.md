@@ -34,6 +34,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0063-unique-paths-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0063-unique-paths-ii) |
 | [0064-minimum-path-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0064-minimum-path-sum) |
+| [0073-set-matrix-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0073-set-matrix-zeroes) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
 | [0075-sort-colors](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0075-sort-colors) |
 | [0078-subsets](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0078-subsets) |
@@ -204,6 +205,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0013-roman-to-integer](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0013-roman-to-integer) |
 | [0036-valid-sudoku](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0036-valid-sudoku) |
 | [0049-group-anagrams](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0049-group-anagrams) |
+| [0073-set-matrix-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0073-set-matrix-zeroes) |
 | [0076-minimum-window-substring](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0076-minimum-window-substring) |
 | [0105-construct-binary-tree-from-preorder-and-inorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0105-construct-binary-tree-from-preorder-and-inorder-traversal) |
 | [0127-word-ladder](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0127-word-ladder) |
@@ -487,6 +489,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0059-spiral-matrix-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0059-spiral-matrix-ii) |
 | [0063-unique-paths-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0063-unique-paths-ii) |
 | [0064-minimum-path-sum](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0064-minimum-path-sum) |
+| [0073-set-matrix-zeroes](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0073-set-matrix-zeroes) |
 | [0074-search-a-2d-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0074-search-a-2d-matrix) |
 | [0079-word-search](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0079-word-search) |
 | [0130-surrounded-regions](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0130-surrounded-regions) |
