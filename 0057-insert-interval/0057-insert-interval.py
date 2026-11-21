@@ -10,14 +10,12 @@ class Solution:
             # right
             elif start > newInterval[1]:
                 res.append(newInterval)
-                res += intervals[i:]
-                isInclude = True
-                break
+                return res + intervals[i:]
             # middle 
             else:
                 newInterval[0] = min(newInterval[0], start)
                 newInterval[1] = max(newInterval[1], end)
             
-        if not isInclude:
-            res.append(newInterval)
+       
+        res.append(newInterval)
         return res
