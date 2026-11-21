@@ -5,15 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        self.small = 0
-        self.res = -1
+    def kthSmallest(self, root: TreeNode | None, k: int) -> int:
+        res = 0
+        index = 0
         def dfs(node):
-            if not node: return 
+            nonlocal res
+            nonlocal index
+            if not node: return
             dfs(node.left)
-            self.small += 1
-            if self.small == k:
-                self.res = node.val
+            index += 1
+            if index == k:
+                res = node.val
             dfs(node.right)
+            
         dfs(root)
-        return self.res
+        return res
