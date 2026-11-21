@@ -3,20 +3,25 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
+        n = len(matrix)
         TOP = LEFT = 0
-        BOTTOM = RIGHT = len(matrix) - 1
-        
+        RIGHT = n - 1
+        BOTTOM = n - 1
+
         while LEFT < RIGHT and TOP < BOTTOM:
             for i in range(RIGHT - LEFT):
-                tmp = matrix[TOP + i][LEFT]
-                matrix[TOP + i][LEFT] = matrix[BOTTOM][LEFT + i]
-                matrix[BOTTOM][LEFT + i] = matrix[BOTTOM - i][RIGHT]
-                matrix[BOTTOM - i][RIGHT] = matrix[TOP][RIGHT - i]
-                matrix[TOP][RIGHT - i] = tmp
-
+                tmp = matrix[TOP][LEFT + i]
+                matrix[TOP][LEFT + i] = matrix[BOTTOM - i][LEFT]
+                matrix[BOTTOM - i][LEFT] = matrix[BOTTOM][RIGHT - i]
+                matrix[BOTTOM][RIGHT - i] = matrix[TOP + i][RIGHT]
+                matrix[TOP + i][RIGHT] = tmp
             TOP += 1
             RIGHT -= 1
-            LEFT += 1
             BOTTOM -= 1
+            LEFT += 1
 
+
+            
+        
+        
         
