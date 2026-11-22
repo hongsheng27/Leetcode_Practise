@@ -1,0 +1,28 @@
+Greatest Common Divisor of Strings
+
+題目概述：
+給兩個字串，找出最長的 base，使得 base 重複若干次剛好等於 str1，也剛好等於 str2，沒有就回傳空字串。本質是把數字的最大公因數搬到字串上。
+
+解題邏輯：
+從長到短試每一種 base 長度 L，範圍是 min(n1, n2) 到 1。
+
+長度不能同時整除 n1 和 n2 就跳過：n1 % L or n2 % L => continue。
+取 base = str1[:L]，用字串乘法檢查：
+base * (n1 // L) == str1 且 base * (n2 // L) == str2 => return base。
+從長往短試，第一個成功的就是最長的答案。
+
+數學解（知道就好）：
+str1 + str2 != str2 + str1 => 沒有共同 base，return ""。
+否則答案長度就是 gcd(n1, n2)，return str1[:gcd(n1, n2)]。
+
+踩過的坑：
+第一版寫得很複雜：把 str2 的每一種長度都試一遍，用 for 迴圈加 isPass 旗標一段一段比對，先收集所有可能的 base 到 possible list，再挑最長的。結果是對的，但少用了兩個觀察：
+base 長度必須同時整除兩個字串的長度，不能整除的直接跳過。
+檢查重複直接用 base * k == s，一行取代整段迴圈。
+找最大的答案時從大往小試，第一個成功就 return，不用全部收集再挑。
+
+第二版用 range(n2, -1, -1) 搭配 str2[:i+1]，第一圈 str2[:n2+1] 切超過結尾還是整個 str2，長度 n2 被試了兩次（off-by-one）。改成讓迴圈變數直接代表長度：range(min(n1, n2), 0, -1)，結尾 0 不包含，L 最小到 1。程式裡一直出現 i+1，通常就是迴圈變數該換了。
+
+複雜度：
+暴力解 O(min(n1, n2) * (n1 + n2)) time / O(n1 + n2) space（字串乘法會產生新字串）
+數學解 O(n1 + n2) time / O(n1 + n2) space
