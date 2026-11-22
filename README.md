@@ -149,6 +149,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [0999-available-captures-for-rook](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0999-available-captures-for-rook) |
 | [1004-max-consecutive-ones-iii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1004-max-consecutive-ones-iii) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
@@ -806,6 +807,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1047-remove-all-adjacent-duplicates-in-string](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1047-remove-all-adjacent-duplicates-in-string) |
 | [1209-remove-all-adjacent-duplicates-in-string-ii](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1209-remove-all-adjacent-duplicates-in-string-ii) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
@@ -856,6 +858,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0739-daily-temperatures](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0739-daily-temperatures) |
 | [0853-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0853-car-fleet) |
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 ## Backtracking
 |  |
 | ------- |
@@ -939,6 +942,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0700-search-in-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0700-search-in-a-binary-search-tree) |
 | [0701-insert-into-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0701-insert-into-a-binary-search-tree) |
 | [0703-kth-largest-element-in-a-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0703-kth-largest-element-in-a-stream) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1022-sum-of-root-to-leaf-binary-numbers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1022-sum-of-root-to-leaf-binary-numbers) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
@@ -1079,6 +1083,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0700-search-in-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0700-search-in-a-binary-search-tree) |
 | [0701-insert-into-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0701-insert-into-a-binary-search-tree) |
 | [0703-kth-largest-element-in-a-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0703-kth-largest-element-in-a-stream) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1022-sum-of-root-to-leaf-binary-numbers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1022-sum-of-root-to-leaf-binary-numbers) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
@@ -1124,6 +1129,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0700-search-in-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0700-search-in-a-binary-search-tree) |
 | [0701-insert-into-a-binary-search-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0701-insert-into-a-binary-search-tree) |
 | [0703-kth-largest-element-in-a-stream](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0703-kth-largest-element-in-a-stream) |
+| [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
 ## Geometry
 |  |
