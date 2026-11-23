@@ -1,0 +1,35 @@
+Boundary of Binary Tree
+
+題目概述：
+依逆時針順序回傳二元樹的邊界：root、左邊界（由上往下，不含葉子）、所有葉子（由左到右）、右邊界（由下往上，不含葉子）。左邊界從 root.left 出發，能往左就往左，不行才往右；右邊界對稱。
+
+解題邏輯：
+解法一：三段式（面試推薦）
+左邊界：從 root.left 用 while 走下去，遇到葉子就停，每一步 cur = cur.left if cur.left else cur.right。
+葉子：DFS 整棵樹，先左後右收集葉子。
+右邊界：從 root.right 用 while 走下去，先存進 stack，最後反過來接上。
+root 是葉子時要先 return [root.val]，不然 root 會被葉子 DFS 再算一次。
+
+解法二：一次 DFS，往下傳 on_left、on_right 兩個 flag
+葉子先判斷，放進 leaves 就 return。
+on_left => 往下走之前收集（preorder），由上往下。
+on_right => 子樹走完回來才收集（postorder），自然就是由下往上。
+左子節點：dfs(node.left, on_left, on_right and not node.right)
+右子節點：dfs(node.right, on_left and not node.left, on_right)
+從 dfs(root.left, True, False) 和 dfs(root.right, False, True) 開始，root 直接放最前面；root 不進 dfs，所以 root 是葉子時也不用特例。
+
+踩過的坑：
+一開始寫三個 DFS，看起來不好看。問題不在拆成三段，而在左右邊界不需要遞迴：邊界每一步只往一個方向走，不會分岔，用 while 走就好。真正需要 DFS 的只有找葉子。寫遞迴前先問：這條路會分岔嗎？
+
+一次 DFS 的難點是 flag 怎麼傳給子節點：
+左邊界節點的左子節點一定在左邊界；右子節點只有在沒有左子節點時才在左邊界。右邊界左右對調。
+左邊界節點和葉子在 DFS 裡會交錯出現，所以要分 left、leaves、right 三個 list 存，最後再接起來。
+一次 DFS 並沒有比較快，兩種都是 O(n)；面試寫三段式，被追問再講傳 flag 的做法。
+
+官方解法對照：
+Approach 1 = 三段式。差別是 while 遇到葉子不停，只是不加進去，下一步自然變 null，效果一樣。
+Approach 2 = 一次 DFS，但用一個 int flag（ROOT / LEFT / RIGHT / OTHER），右邊界在 preorder 時插到最前面。它先判斷邊界、才判斷葉子，所以邊界上的葉子會被放進邊界 list；但左邊界走到底的葉子剛好是第一個葉子，右邊界走到底的葉子剛好是最後一個葉子，接起來的位置一樣，結果不受影響。
+改寫成 Python 時，LinkedList.add(0, x) 要換成 deque.appendleft(x)；list.insert(0, x) 每次是 O(n)。
+
+複雜度：
+O(n) time / O(n) space（存答案；遞迴深度 O(h)，最差 O(n)）
