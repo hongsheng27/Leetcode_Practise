@@ -155,6 +155,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
 | [1052-grumpy-bookstore-owner](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1052-grumpy-bookstore-owner) |
+| [1086-high-five](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1086-high-five) |
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
@@ -260,6 +261,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0992-subarrays-with-k-different-integers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0992-subarrays-with-k-different-integers) |
 | [0997-find-the-town-judge](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0997-find-the-town-judge) |
 | [1023-time-based-key-value-store](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1023-time-based-key-value-store) |
+| [1086-high-five](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1086-high-five) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1128-number-of-equivalent-domino-pairs](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1128-number-of-equivalent-domino-pairs) |
 | [1160-find-words-that-can-be-formed-by-characters](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1160-find-words-that-can-be-formed-by-characters) |
@@ -372,6 +374,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0883-car-fleet](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0883-car-fleet) |
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
+| [1086-high-five](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1086-high-five) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1122-relative-sort-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1122-relative-sort-array) |
 | [1200-minimum-absolute-difference](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1200-minimum-absolute-difference) |
@@ -426,6 +429,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0948-sort-an-array](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0948-sort-an-array) |
 | [0973-k-closest-points-to-origin](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0973-k-closest-points-to-origin) |
 | [1046-last-stone-weight](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1046-last-stone-weight) |
+| [1086-high-five](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1086-high-five) |
 | [1094-car-pooling](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1094-car-pooling) |
 | [1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit) |
 | [1631-path-with-minimum-effort](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1631-path-with-minimum-effort) |
