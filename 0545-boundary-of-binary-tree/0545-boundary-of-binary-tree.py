@@ -6,7 +6,6 @@
 #         self.right = right
 class Solution:
     def boundaryOfBinaryTree(self, root: Optional[TreeNode]) -> List[int]:
-        head = [root.val]
         left, right, leaves = [], [], []
        
         def dfs(node, onLeft, onRight):
@@ -22,5 +21,4 @@ class Solution:
 
         dfs(root.left, True, False)
         dfs(root.right, False, True)
-        print(head, left, leaves, right)
-        return head + left + leaves + right
+        return [root.val] + left + leaves + right
