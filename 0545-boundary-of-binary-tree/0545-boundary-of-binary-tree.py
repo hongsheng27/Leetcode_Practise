@@ -48,5 +48,4 @@ class Solution:
         leftDfs(root)
         rightDfs(root)
         getLeaf(root)
-        print(head, left, leaf, right)
         return head + left + leaf + right
