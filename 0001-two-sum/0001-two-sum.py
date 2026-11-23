@@ -1,7 +1,8 @@
-class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
-        seen = {} # num, i
-        for i, num in enumerate(nums):
-            if target - num in seen:
-                return [seen[target - num], i]
-            seen[num] = i
+class Solution(object):
+    def twoSum(self, nums, target):
+        seen = {}
+        for i, ele in enumerate(nums):
+            remaining = target - ele
+            if remaining in seen:
+                return [seen[remaining],i]
+            seen[ele] = i
