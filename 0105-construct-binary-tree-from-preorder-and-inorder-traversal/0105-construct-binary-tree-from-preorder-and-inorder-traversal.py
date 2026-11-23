@@ -5,15 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        def dfs(p, i):
-            # base case
-            if not p and not i: return None
-            # recursion case
-            head = TreeNode(p[0])
-            m = i.index(p[0])
-            head.left = dfs(p[1: m + 1], i[:m])
-            head.right = dfs(p[m + 1:], i[m + 1:])
+    def buildTree(self, preorder: list[int], inorder: list[int]) -> TreeNode | None:
+        inorderIndex = {}
+        for i in range(len(inorder)):
+            inorderIndex[inorder[i]] = i
+        p = 0
+        def build(l, r):
+            nonlocal p
+            if l > r: 
+                return None
+
+            head = TreeNode(preorder[p])
+            m = inorderIndex[preorder[p]]
+            p += 1
+
+            head.left = build(l, m - 1)
+            head.right = build(m + 1, r)
             return head
-            
-        return dfs(preorder, inorder)
+        return build(0, len(inorder) - 1)
