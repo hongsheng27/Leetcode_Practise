@@ -12,8 +12,7 @@ class Solution:
             if not left or not right: return False
             if left.val != right.val: return False
 
-            return (left.val == right.val and
-                    dfs(left.left, right.right) and
+            return (dfs(left.left, right.right) and
                     dfs(left.right, right.left))
         return dfs(root.left, root.right)
         
