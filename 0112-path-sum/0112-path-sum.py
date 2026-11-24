@@ -10,9 +10,8 @@ class Solution:
        
         def dfs(node, total):
             if not node: return False
-            if not node.left and not node.right and total + node.val > targetSum: 
-                return False
-            if not node.left and not node.right and total + node.val == targetSum: return True
+            if not node.left and not node.right and total + node.val == targetSum: 
+                return True
             
             total += node.val
             left = dfs(node.left, total)
