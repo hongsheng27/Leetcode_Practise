@@ -1,0 +1,32 @@
+Path Sum
+
+題目概述：
+給一棵二元樹和 targetSum，判斷是否存在一條從 root 到葉子的路徑，路徑上的值加起來等於 targetSum。節點的值可以是負數。屬於「往下傳狀態」的 tree 題。
+
+解題邏輯：
+DFS 往下傳「從 root 到目前為止的總和」（或是「還剩多少」）。
+
+每到一個節點：
+node 是 None => return False。
+先把自己的值算進去：total += node.val。
+是葉子 => return total == targetSum。
+不是葉子 => return dfs(node.left, total) or dfs(node.right, total)，左邊找到 True 就不會再算右邊。
+
+也可以用 remaining 從 targetSum 往下扣，到葉子時檢查 remaining == 0。
+
+踩過的坑：
+第一版判斷葉子時還沒加上葉子自己的值，所以 root = [1]、target = 1 這種情況也會錯，LeetCode 範例 1 回傳 False。往下傳的狀態，要先把自己算進去，再做判斷。
+
+用 total 當 cache 的 key 是錯的：不同節點走到同一個 total，下面接的子樹不同，答案也不同。而且 tree 的 DFS 每個節點只拜訪一次，沒有重複的子問題，根本不需要 memoization；那是 DP 題才會用的。
+
+total > targetSum 就剪枝是錯的，因為值可以是負數，例如 5 加上 -4 還能回到 1。只有確定所有值都是正數時才能這樣剪。
+
+第二版修好了，但有多餘的程式碼：
+葉子的 > targetSum 判斷多餘，> 和 < 的結果都是 False，只要判斷 == 就夠了。
+total -= node.val 多餘，int 不可變，每一層的 total 都是自己的區域變數，不用還原。只有傳 list 這種可變物件時才需要 backtracking。
+if not root 多餘，dfs 第一行就會處理 None。
+left = dfs(...)、right = dfs(...) 再 return left or right，會把兩邊都走完；直接 return dfs(...) or dfs(...) 才能提早結束。
+判斷多餘程式碼的方法：每一行都問，把它刪掉結果會變嗎？不會就刪。
+
+複雜度：
+O(n) time / O(h) space（遞迴深度 = 樹高，最差 O(n)）
