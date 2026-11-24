@@ -1,0 +1,27 @@
+Construct Binary Tree from Inorder and Postorder Traversal
+題目概述：
+給一棵二元樹的 inorder 和 postorder，把樹建回來（值不重複）。跟 105 一樣，只是 root 改成在 postorder 的最後一個，所以 p 要從尾巴往前讀，而且要先建右、再建左。
+
+解題邏輯：
+先建 hashmap {值: 在 inorder 的位置}，查 root 位置是 O(1)。
+p 從 len(postorder) - 1 開始，依序往前讀。
+
+build(l, r) 負責 inorder 區間 [l, r]：
+l > r => return None。
+root = postorder[p]，p -= 1。
+m = root 在 inorder 的位置。
+先建右子樹 build(m + 1, r)，再建左子樹 build(l, m - 1)。
+
+為什麼先建右：
+postorder 是「左 → 右 → root」，從尾巴往前讀變成「root → 右 → 左」，所以 p 讀到的下一個值一定屬於右子樹。順序對調，p 就會把右子樹的值拿去建左子樹。
+inorder 的區間 [l, r] 決定這棵子樹有幾個節點、什麼時候停；p 只決定下一個節點是誰。
+
+跟 105、108、1008 是同一個 build(l, r) 模板，只差 root 怎麼選、從哪裡切：
+105 => preorder 從頭往後讀，先左後右
+106 => postorder 從尾往前讀，先右後左
+
+踩過的坑：
+無，一次寫對。
+
+複雜度：
+O(n) time / O(n) space（hashmap O(n)，遞迴深度 O(h)，最差 O(n)）
