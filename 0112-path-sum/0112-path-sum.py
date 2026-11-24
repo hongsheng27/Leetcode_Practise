@@ -16,7 +16,6 @@ class Solution:
             total += node.val
             left = dfs(node.left, total)
             right = dfs(node.right, total)
-            total -= node.val
            
             return left or right
         return dfs(root, 0)
