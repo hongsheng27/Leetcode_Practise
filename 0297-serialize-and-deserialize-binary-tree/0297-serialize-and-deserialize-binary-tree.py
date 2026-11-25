@@ -35,12 +35,12 @@ class Codec:
         index = 0
         def dfs():
             nonlocal index
-            if index >= len(data) or data[index] == "N":
+            val = data[index]
+            index += 1
+            if val == "N":
                 return None
-            head = TreeNode(int(data[index]))
-            index += 1
+            head = TreeNode(int(val))
             head.left = dfs()
-            index += 1
             head.right = dfs()
             return head
         return dfs()
