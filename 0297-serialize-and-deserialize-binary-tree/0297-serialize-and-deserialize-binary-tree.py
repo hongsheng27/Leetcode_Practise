@@ -31,16 +31,13 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        print(data)
         data = data.split()
-        print(data)
-        
         index = 0
         def dfs():
             nonlocal index
             if index >= len(data) or data[index] == "N":
                 return None
-            head = TreeNode(data[index])
+            head = TreeNode(int(data[index]))
             index += 1
             head.left = dfs()
             index += 1
