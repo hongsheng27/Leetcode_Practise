@@ -14,4 +14,3 @@ class Solution:
             head.right = build(m + 1, r)
             return head
         return build(0, len(nums) - 1)
-        
