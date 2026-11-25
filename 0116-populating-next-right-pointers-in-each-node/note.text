@@ -1,0 +1,30 @@
+Populating Next Right Pointers in Each Node
+
+題目概述：
+給一棵完美二元樹，把每個節點的 next 指向同一層右邊的鄰居，每一層最右邊的節點指向 None。
+
+解題邏輯：
+BFS 一層一層處理，每一層把同一層的節點兩兩串起來。
+我的寫法是先放右小孩、再放左小孩，所以每一層在 queue 裡是從右排到左：
+q[0] 是最右邊的節點 => next = None
+q[i].next = q[i-1]，因為 queue 裡的前一個剛好是它右邊的鄰居
+串完這一層，再把下一層全部放進 queue。
+
+另一種常見寫法：先左後右，每層開頭設 prev = None，pop 出來時做 prev.next = node。
+BFS 不在乎樹是不是完美的，所以同一份 code 也能過 117。
+
+Follow-up（O(1) space）：上一層已經用 next 串好了，沿著它橫著走（cur = cur.next），用 dummy + tail 把下一層的小孩一個一個接起來，head = dummy.next 進到下一層。
+
+踩過的坑：
+
+prev 寫法有沒有處理到最右邊的 None？
+有。prev.next = node 只會設定「前一個」節點，最右邊的節點後面沒有人，所以沒人去改它，它會保持題目預設的 None。
+要小心的是：prev = None 必須在每一層開始時重設，否則上一層最右邊的節點會錯接到下一層的第一個。
+BFS 和 DFS 算不算 O(1) space？
+都不算。BFS 的 queue 會裝下整整一層，space 是 O(n)；DFS 的遞迴 stack 是 O(h)。
+題目說遞迴的 stack 不算額外空間，所以依照題目的定義 DFS 可以算 O(1)，但面試時要講清楚真實成本是 O(h)。
+只有走 next 鏈的寫法是真正的 O(1)。time 不可能是 O(1)，每個節點都要設一次 next，至少就是 O(n)。
+
+複雜度：
+BFS：O(n) time / O(n) space
+走 next 鏈：O(n) time / O(1) space
