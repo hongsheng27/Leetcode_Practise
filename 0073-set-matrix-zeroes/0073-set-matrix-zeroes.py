@@ -15,12 +15,8 @@ class Solution:
                         matrix[r][0] = 0                    
                 
         for r in range(1, ROWS):
-            if matrix[r][0] == 0:
-                for c in range(1, COLS):
-                    matrix[r][c] = 0
-        for c in range(1, COLS):
-            if matrix[0][c] == 0:
-                for r in range(1, ROWS):
+            for c in range(1, COLS):
+                if matrix[r][0] == 0 or matrix[0][c] == 0:
                     matrix[r][c] = 0
         if matrix[0][0] == 0:
             for r in range(1, ROWS):
