@@ -9,13 +9,10 @@ class Solution:
         def build(l, r):
             if l > r: return None
             head = TreeNode(preorder[l])
-
-            j = l + 1
-            
-            while j <= r and preorder[j] < preorder[l]:
-                j += 1
-
-            head.left = build(l + 1, j - 1)
-            head.right = build(j, r)
+            m = l + 1
+            while m <= r and preorder[m] < preorder[l]:
+                m += 1
+            head.left = build(l+1, m - 1)
+            head.right = build(m, r)
             return head
         return build(0, len(preorder) - 1)
