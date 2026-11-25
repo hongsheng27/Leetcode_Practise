@@ -1,0 +1,32 @@
+Populating Next Right Pointers in Each Node II
+
+題目概述：
+跟 116 一樣，把每個節點的 next 指向同一層右邊的鄰居，但這次樹不一定完美，有些節點會缺小孩。要求 O(1) space。
+
+解題邏輯：
+BFS 解法跟 116 完全一樣就能過，因為 queue 裡只會有存在的節點，缺小孩不影響。
+
+O(1) 解法：站在上一層，去接下一層。
+head = 目前這一層最左邊的節點
+每一輪建一個新的 dummy，tail 從 dummy 開始
+cur 從 head 出發，沿著這一層已經接好的 next 往右走（cur = cur.next）
+有左小孩 => tail.next = 左小孩，tail 往後移
+有右小孩 => tail.next = 右小孩，tail 往後移
+走完這層 => head = dummy.next，進到下一層；dummy.next 是 None 就結束
+
+上一層的 next 鏈取代了 queue。dummy + tail 就是 Merge Two Sorted Lists 的技巧，只是改成接小孩。
+
+跟 116 的差別：116 每個節點都有兩個小孩，可以直接寫 node.right.next = node.next.left；117 的 node.next 可能沒有小孩，所以用 dummy + tail 一個一個接最簡單。這個寫法 116 也能用。
+
+踩過的坑：
+
+這題只能用 DFS 或 iterative traversal 寫嗎？
+有三種：BFS（queue，O(n)）、DFS 遞迴（O(h)，題目說不計）、走 next 鏈（真正的 O(1)）。
+平常用 stack 寫的 iterative traversal 也不是 O(1)，stack 還是會疊到 O(h)。這題的 O(1) 不是靠 traversal，而是靠自己建好的 next。
+O(1) 想不到
+關鍵是問自己：queue 在幫我做什麼？答案是「按順序拿到同一層的所有節點」，而上一層的 next 鏈已經能做到這件事。
+思考方向要從「站在這一層，把自己接起來」換成「走在上一層，把小孩接起來」。
+
+複雜度：
+BFS：O(n) time / O(n) space
+走 next 鏈：O(n) time / O(1) space
