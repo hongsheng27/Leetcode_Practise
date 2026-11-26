@@ -1,0 +1,23 @@
+Sum of Nodes with Even-Valued Grandparent
+
+題目概述：
+把所有「祖父節點的值是偶數」的節點的值加起來。
+
+解題邏輯：
+DFS 往下傳兩個狀態：父親的值、祖父的值。
+dfs(node, parent, grand)：
+node 是空的 => return
+grand 存在而且是偶數 => res += node.val
+往下一層時大家升一級：dfs(child, node.val, parent)，我變成父親，父親變成祖父
+起點是 dfs(root, None, None)。
+
+判斷祖父存在要用 grand is not None，不要用 if grand：值是 0 時，if grand 會把 0 當成沒有祖父。題目限制值是 1 到 100，所以不會出事，但 is not None 比較穩。
+另一種寫法是往下傳 bool（parent_even, grand_even），起點給 False，就不會有 0 和 None 混淆的問題。
+
+pattern：需要祖先的資訊時，用參數往下傳；往下一層時把狀態往上移一格。
+
+踩過的坑：
+無，一次寫對。
+
+複雜度：
+O(n) time / O(h) space
