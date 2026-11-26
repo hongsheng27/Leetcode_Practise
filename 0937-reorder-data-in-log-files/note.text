@@ -1,0 +1,30 @@
+Reorder Data in Log Files
+
+題目概述：
+每個 log 是「識別碼 + 內容」。字母 log 排在數字 log 前面；字母 log 先比內容，內容一樣再比識別碼；數字 log 保持原本的順序。
+
+解題邏輯：
+用 log.split(" ", 1) 切成 ident 和 content。
+content[0] 是數字 => 放進 digits，保持原順序，不排序。
+否則 => 把 (content, ident, log) 放進 letters。
+letters.sort()：tuple 會依序比較，先比 content，再比 ident，剛好就是題目要的規則。
+最後取出 letters 裡的原始 log，再接上 digits。
+
+第一版寫成 key = (log.split()[1:], log.split()[0])，用 list 比內容也是對的，因為空白的 ASCII 比所有小寫字母都小，所以 list 比較和字串比較的結果一致。
+
+pattern：多條件排序就用 tuple 當 key（第一優先, 第二優先, ...）；不需要排序的那一組分開放，最後再接起來。
+
+踩過的坑：
+
+log.split(" ", 1) 是什麼意思？
+用空白切，最多切 1 刀，得到 2 段：[識別碼, 剩下的整段內容]，內容裡的空白會保留。
+split() 不給參數會每個空白都切。
+split(" ", 1) 和 split("", 1) 的差別？
+split("", 1) 會報 ValueError: empty separator，分隔符號不能是空字串。
+想用「任何空白」來切，要寫 split(None, 1) 或 split(maxsplit=1)。
+content, ident = log.split(" ", 1) 順序寫反
+split 回傳的是 [識別碼, 內容]，名字對調不會報錯，但排序結果會錯。
+正確是 ident, content = log.split(" ", 1)。
+
+複雜度：
+O(n log n · m) time / O(n · m) space（n 是 log 數量，m 是 log 長度，字串比較要 O(m)）
