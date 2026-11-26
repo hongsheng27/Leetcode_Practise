@@ -29,5 +29,5 @@ class Solution:
                     atlanticStart.append((r, c))
         pacificSet = bfs(pacificStart)
         atlanticSet = bfs(atlanticStart)
-        return [[r, c] for r, c in list(pacificSet & atlanticSet)]
+        return list(pacificSet & atlanticSet)
         
