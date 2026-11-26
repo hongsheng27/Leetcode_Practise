@@ -12,7 +12,7 @@ class Solution:
             # base
             if not node: return
             
-            if grand and grand % 2 == 0:
+            if grand != None and grand % 2 == 0:
                 res += node.val
             
             dfs(node.left, node.val, parent)
