@@ -967,6 +967,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1022-sum-of-root-to-leaf-binary-numbers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1022-sum-of-root-to-leaf-binary-numbers) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
+| [1315-sum-of-nodes-with-even-valued-grandparent](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1315-sum-of-nodes-with-even-valued-grandparent) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 ## Depth-First Search
@@ -1027,6 +1028,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1022-sum-of-root-to-leaf-binary-numbers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1022-sum-of-root-to-leaf-binary-numbers) |
 | [1192-critical-connections-in-a-network](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1192-critical-connections-in-a-network) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
+| [1315-sum-of-nodes-with-even-valued-grandparent](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1315-sum-of-nodes-with-even-valued-grandparent) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -1078,6 +1080,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0994-rotting-oranges](https://github.com/hongsheng27/Leetcode_Practise/tree/master/0994-rotting-oranges) |
 | [1020-number-of-enclaves](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1020-number-of-enclaves) |
 | [1091-shortest-path-in-binary-matrix](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1091-shortest-path-in-binary-matrix) |
+| [1315-sum-of-nodes-with-even-valued-grandparent](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1315-sum-of-nodes-with-even-valued-grandparent) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1462-course-schedule-iv](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1462-course-schedule-iv) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
@@ -1123,6 +1126,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [1008-construct-binary-search-tree-from-preorder-traversal](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1008-construct-binary-search-tree-from-preorder-traversal) |
 | [1022-sum-of-root-to-leaf-binary-numbers](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1022-sum-of-root-to-leaf-binary-numbers) |
 | [1214-two-sum-bsts](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1214-two-sum-bsts) |
+| [1315-sum-of-nodes-with-even-valued-grandparent](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1315-sum-of-nodes-with-even-valued-grandparent) |
 | [1448-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1448-count-good-nodes-in-binary-tree) |
 | [1544-count-good-nodes-in-binary-tree](https://github.com/hongsheng27/Leetcode_Practise/tree/master/1544-count-good-nodes-in-binary-tree) |
 ## Doubly-Linked List
