@@ -6,5 +6,4 @@ class Solution:
         countT = {}
         for c in t:
             countT[c] = countT.get(c, 0) + 1
-        print(countS, countT)
         return countS == countT
