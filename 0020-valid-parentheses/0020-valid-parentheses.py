@@ -7,11 +7,11 @@ class Solution:
             "}": "{"
         }
         for c in s:
-            if c not in closeToOpen:
-                stack.append(c)
-                continue
-            if stack and stack[-1] == closeToOpen[c]:
-                stack.pop()
+            if c in closeToOpen:
+                if stack and stack[-1] == closeToOpen[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                return False
+                stack.append(c) 
         return len(stack) == 0
