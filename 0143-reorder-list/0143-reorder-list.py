@@ -23,7 +23,7 @@ class Solution:
             list2 = cur
             cur = nxt
         # concate
-        newDummy = tail = ListNode()
+        tail = dummy
         list1 = dummy.next
         while list1 and list2:
             nxt1 = list1.next
@@ -36,7 +36,6 @@ class Solution:
             list1 = nxt1
             list2 = nxt2
         tail.next = list1 or list2
-        return newDummy.next
 
 
 
