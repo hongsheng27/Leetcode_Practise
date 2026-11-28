@@ -12,7 +12,6 @@ class Solution:
             prefix[i] = leftMost
             leftMost = max(leftMost, height[i])
         res = 0
-        print(prefix, suffix)
         for i in range(len(height) - 1):
             print(res)
             res += max(min(prefix[i], suffix[i]) - height[i], 0)
